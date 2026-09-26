@@ -4,13 +4,14 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>CodeCaps Companion Support -- Simple With Us</title>
-  <meta name="description" content="Provider keys, refresh behavior, and known-issue reference for CodeCaps Companion on iOS." />
+  <meta name="description" content="Support for CodeCaps." />
   <meta name="theme-color" content="#1a1a2e" />
   <link rel="icon" type="image/png" href="/assets/logos/swu-logo-whitecircle-1024.png" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
   <link rel="stylesheet" href="/style.css" />
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 
 <header class="site-header">
   <div class="container">
@@ -27,34 +28,15 @@
   </div>
 </header>
 
-<article class="article">
-  <span class="kicker">CodeCaps Companion</span>
+<article class="article" id="main">
+  <span class="kicker">CodeCaps</span>
   <h1>Support</h1>
-  <p class="lede">Provider keys, refresh behavior, and known-issue reference. If the four checks below don't fix it, send the output to <code>feedback@simplewithus.com</code> and we'll come back the same day.</p>
-
-  <h2>The four checks that catch 90% of stale-data reports</h2>
-  <ol>
-    <li><strong>iOS: provider configured.</strong> Open Settings &gt; Providers. Each provider you want caps on must be added here, with its key pasted. Keys are masked after entry; tap Reveal to confirm.</li>
-    <li><strong>Provider: key still works.</strong> Open the provider's dashboard in Safari and confirm the same key returns usage. If the dashboard says the key is revoked, regenerate and re-paste in the app.</li>
-    <li><strong>iOS: Background refresh.</strong> The app pulls usage on launch and pull-to-refresh only; if you don't see the app for a week, numbers will be a week old. Settings &gt; General &gt; Background App Refresh -- enable for CodeCaps Companion if you want fresher data on open.</li>
-    <li><strong>iOS: app version.</strong> Open Settings &gt; Version. If you're on an old TestFlight build, the per-model mapping can lag behind the provider's current model names. Update via TestFlight.</li>
-  </ol>
-
-  <h2>Crash log or "Application keeps closing"</h2>
-  <p>If CodeCaps Companion crashes immediately on launch or while pulling usage, pull a Console log from the Mac (Console.app &gt; iPhone &gt; CodeCaps Companion) and send the last ~200 lines to <code>feedback@simplewithus.com</code>. If you can also repro the crash, note the steps and the provider you were viewing.</p>
-
-  <h2>Caps look wrong</h2>
-  <p>This is almost always a provider-side change -- new model names, new limits, or a reset window. Confirm by opening the provider's official dashboard in Safari and comparing the same window. If our numbers diverge from the dashboard by more than 5%, send a screenshot of both to <code>feedback@simplewithus.com</code>.</p>
-
-  <h2>Sending logs to support</h2>
-  <p>The app's Settings screen has a "Send Logs" action (under Diagnostics). It bundles the last few minutes into a single zip, scrubbed of your provider keys, and opens a prefilled email to <code>feedback@simplewithus.com</code>. Attach the zip; we respond usually within a business day.</p>
-
+  <p class="lede">For missing or stale readings, note the provider, source, reset window, and last successful refresh.</p>
+  <h2>Before contacting us</h2>
+  <p>Quota and cost fields vary by provider.&nbsp; The Mac app can reuse local CLI sessions; optional collector tokens are stored in macOS Keychain.&nbsp; If a source is unavailable, check its own authorization and reported reset time.</p>
+  <p>Check the <a href="/codecaps/">product page</a> for current platform availability and the <a href="/privacy.html">privacy notice</a> for site-level information.</p>
   <h2>Contact</h2>
-  <div class="callout">
-    <p><strong>feedback@simplewithus.com</strong> -- open a thread, don't worry about templates. Link to your TestFlight build if you have it (<code>Settings &gt; Version &gt; Build</code>).</p>
-  </div>
-
-  <p style="margin-top: 32px;"><a class="btn btn-secondary" href="/">&larr; Back to Simple With Us</a></p>
+  <p>Email <a href="mailto:feedback@simplewithus.com?subject=codecaps%20support">feedback@simplewithus.com</a> with your device or browser version and steps to reproduce.&nbsp; Leave out passwords, API keys, personal contact data, and private logs.</p>
 </article>
 
 <footer class="site-footer">

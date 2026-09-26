@@ -1,18 +1,21 @@
 {
-  "schema": 1,
-  "updated": "2026-09-25",
-  "notes": "Single source of truth for the simplewithus.com catalog.  Edit this file, then run python3 scripts/build_catalog.py to regenerate the card grid in index.html.  CI runs the same script with --check and fails when index.html is stale.  Only state what is true today.  Every link must resolve, and a null link renders no button.  See docs/DESIGN-BRIEF.md section 5 for the field rules.",
+  "schema": 2,
+  "updated": "2026-09-26",
+  "notes": "Public release facts for the catalog and product pages.  Availability is per platform; a null URL means no public install action.  Run python3 scripts/build_catalog.py after editing.  Verification describes the evidence checked on that date, not a promise that a beta invite is open.",
   "teamId": "CC8UTF7ATG",
   "appStoreProviderToken": null,
   "apps": [
     {
       "slug": "codecaps",
       "name": "CodeCaps",
-      "tagline": "AI coding quotas in the macOS menu bar, with an iPhone companion.",
+      "tagline": "Check supported AI quota and reset windows from the macOS menu bar.",
       "shelf": "ai-coders",
-      "platforms": ["macOS", "iOS"],
+      "platforms": [
+        "macOS",
+        "iOS"
+      ],
       "status": "beta",
-      "statusText": "Private beta",
+      "statusText": "macOS beta download; iOS access unconfirmed",
       "icon": "/assets/app-icons/codecaps.png",
       "accent": "#0f766e",
       "page": "/codecaps/",
@@ -24,41 +27,92 @@
         "testFlight": null,
         "brew": null
       },
-      "bundleIds": ["com.simplewithus.codecaps.macos", "com.simplewithus.codecaps.ios"],
-      "appleIds": { "ios": 6814623846, "macos": null },
-      "associatedDomains": false
+      "bundleIds": [
+        "com.simplewithus.codecaps.macos",
+        "com.simplewithus.codecaps.ios"
+      ],
+      "appleIds": {
+        "ios": 6814623846,
+        "macos": null
+      },
+      "associatedDomains": false,
+      "availability": {
+        "macOS": {
+          "status": "beta",
+          "label": "macOS beta download (macOS 14+)",
+          "channel": "download",
+          "url": "https://github.com/jaywedgeworth22/codecaps/releases/latest/download/CodeCaps.dmg",
+          "verifiedOn": "2026-09-26",
+          "verification": "Direct DMG URL returned HTTP 200 after redirects; installation was not tested."
+        },
+        "iOS": {
+          "status": "beta",
+          "label": "iOS beta; no public install link confirmed",
+          "channel": null,
+          "url": null,
+          "verifiedOn": "2026-09-26",
+          "verification": "Beta status from project source; public enrollment or download was not verified."
+        }
+      }
     },
     {
       "slug": "usage-client",
       "name": "Usage Client Monitor",
-      "tagline": "API and agent quota and spend across providers, synced through a server you can self-host.",
+      "tagline": "View data from your self-hosted Usage Monitor server on iPhone.",
       "shelf": "ai-coders",
-      "platforms": ["iOS", "Web"],
+      "platforms": [
+        "iOS",
+        "Web"
+      ],
       "status": "beta",
-      "statusText": "App Store record pending",
+      "statusText": "iOS beta access not confirmed",
       "icon": "/assets/app-icons/usage-monitor.png",
       "accent": "#ea580c",
       "page": "/usage-client/",
       "support": "/usage-client/support.html",
       "links": {
-        "website": "https://usage.jays.services/",
+        "website": null,
         "github": "https://github.com/jaywedgeworth22/Usage-Monitor",
         "appStore": null,
         "testFlight": null,
         "brew": null
       },
-      "bundleIds": ["com.simplewithus.usage.client"],
-      "appleIds": { "ios": null },
-      "associatedDomains": false
+      "bundleIds": [
+        "com.simplewithus.usage.client"
+      ],
+      "appleIds": {
+        "ios": null
+      },
+      "associatedDomains": false,
+      "availability": {
+        "iOS": {
+          "status": "beta",
+          "label": "iOS beta; no public install link confirmed",
+          "channel": null,
+          "url": null,
+          "verifiedOn": "2026-09-26",
+          "verification": "Beta status from project source; public enrollment or download was not verified."
+        },
+        "Web": {
+          "status": "source",
+          "label": "Self-host from public source",
+          "channel": "source",
+          "url": "https://github.com/jaywedgeworth22/Usage-Monitor",
+          "verifiedOn": "2026-09-26",
+          "verification": "Public repository returned HTTP 200; installation was not tested."
+        }
+      }
     },
     {
       "slug": "usage-local",
       "name": "Usage Local Monitor",
-      "tagline": "On-device AI usage monitor.  No account and no server.",
+      "tagline": "Track supported provider usage and manual subscription costs on iPhone.",
       "shelf": "ai-coders",
-      "platforms": ["iOS"],
+      "platforms": [
+        "iOS"
+      ],
       "status": "beta",
-      "statusText": "App Store record pending",
+      "statusText": "iOS beta access not confirmed",
       "icon": "/assets/app-icons/usage-monitor.png",
       "accent": "#ea580c",
       "page": "/usage-local/",
@@ -70,16 +124,32 @@
         "testFlight": null,
         "brew": null
       },
-      "bundleIds": ["com.simplewithus.usage.local"],
-      "appleIds": { "ios": null },
-      "associatedDomains": false
+      "bundleIds": [
+        "com.simplewithus.usage.local"
+      ],
+      "appleIds": {
+        "ios": null
+      },
+      "associatedDomains": false,
+      "availability": {
+        "iOS": {
+          "status": "beta",
+          "label": "iOS beta; no public install link confirmed",
+          "channel": null,
+          "url": null,
+          "verifiedOn": "2026-09-26",
+          "verification": "Beta status from project source; public enrollment or download was not verified."
+        }
+      }
     },
     {
       "slug": "harness",
       "name": "Harness",
-      "tagline": "A friendly adaptation of DeepSeek's dsh agent harness, with DeepSeek and MiniMax parity.",
+      "tagline": "Run a local agent harness with DeepSeek and MiniMax support.",
       "shelf": "ai-coders",
-      "platforms": ["macOS"],
+      "platforms": [
+        "macOS"
+      ],
       "status": "source",
       "statusText": "Build from source",
       "icon": "/assets/app-icons/harness.png",
@@ -93,16 +163,32 @@
         "testFlight": null,
         "brew": null
       },
-      "bundleIds": ["com.simplewithus.harness.mac"],
-      "appleIds": { "macos": null },
-      "associatedDomains": false
+      "bundleIds": [
+        "com.simplewithus.harness.mac"
+      ],
+      "appleIds": {
+        "macos": null
+      },
+      "associatedDomains": false,
+      "availability": {
+        "macOS": {
+          "status": "source",
+          "label": "Build from public source",
+          "channel": "source",
+          "url": "https://github.com/jaywedgeworth22/Harness",
+          "verifiedOn": "2026-09-26",
+          "verification": "Public repository returned HTTP 200; installation was not tested."
+        }
+      }
     },
     {
       "slug": "minimax-remote",
       "name": "MiniMax Remote",
-      "tagline": "Drive MiniMax Code from your iPhone.  Chat, sessions, scheduled tasks, and agents.",
+      "tagline": "Use an iPhone to follow MiniMax Code sessions on a paired Mac.",
       "shelf": "ai-coders",
-      "platforms": ["iOS"],
+      "platforms": [
+        "iOS"
+      ],
       "status": "beta",
       "statusText": "Private beta",
       "icon": "/assets/app-icons/minimax-remote.png",
@@ -116,18 +202,36 @@
         "testFlight": null,
         "brew": null
       },
-      "bundleIds": ["com.simplewithus.minimaxremote"],
-      "appleIds": { "ios": 6814624056 },
-      "associatedDomains": false
+      "bundleIds": [
+        "com.simplewithus.minimaxremote"
+      ],
+      "appleIds": {
+        "ios": 6814624056
+      },
+      "associatedDomains": false,
+      "availability": {
+        "iOS": {
+          "status": "beta",
+          "label": "iOS beta; no public install link confirmed",
+          "channel": null,
+          "url": null,
+          "verifiedOn": "2026-09-26",
+          "verification": "Beta status from project source; public enrollment or download was not verified."
+        }
+      }
     },
     {
       "slug": "botfleet",
       "name": "BotFleet",
-      "tagline": "Pick a platform for each bot.  Use your own subscriptions and APIs.",
+      "tagline": "Run and inspect AI bots from one workspace.",
       "shelf": "ai-coders",
-      "platforms": ["iOS", "macOS", "Web"],
+      "platforms": [
+        "iOS",
+        "macOS",
+        "Web"
+      ],
       "status": "live",
-      "statusText": "Add-ons in testing",
+      "statusText": "Web live; apps in beta",
       "icon": "/assets/app-icons/botfleet.png",
       "accent": "#0284c7",
       "page": "/botfleet/",
@@ -136,19 +240,54 @@
         "website": "https://botfleet.app/",
         "github": "https://github.com/jaywedgeworth22/BotFleet",
         "appStore": null,
-        "testFlight": null,
+        "testFlight": "https://testflight.apple.com/join/ER6sPNMh",
         "brew": null
       },
-      "bundleIds": ["app.botfleet", "app.botfleet.macos"],
-      "appleIds": { "ios": 6806379515, "macos": 6806385361 },
-      "associatedDomains": false
+      "bundleIds": [
+        "app.botfleet",
+        "app.botfleet.macos"
+      ],
+      "appleIds": {
+        "ios": 6806379515,
+        "macos": 6806385361
+      },
+      "associatedDomains": false,
+      "availability": {
+        "iOS": {
+          "status": "beta",
+          "label": "iOS public TestFlight page",
+          "channel": "testFlight",
+          "url": "https://testflight.apple.com/join/ER6sPNMh",
+          "verifiedOn": "2026-09-26",
+          "verification": "Product-specific TestFlight page returned HTTP 200; enrollment was not tested."
+        },
+        "macOS": {
+          "status": "beta",
+          "label": "macOS beta download",
+          "channel": "download",
+          "url": "https://github.com/jaywedgeworth22/BotFleet/releases/latest/download/BotFleet.dmg",
+          "verifiedOn": "2026-09-26",
+          "verification": "Direct DMG URL returned HTTP 200 after redirects; installation was not tested."
+        },
+        "Web": {
+          "status": "live",
+          "label": "Web app",
+          "channel": "website",
+          "url": "https://botfleet.app/",
+          "verifiedOn": "2026-09-26",
+          "verification": "Anonymous product entry returned HTTP 200; authenticated workflows were not checked."
+        }
+      }
     },
     {
       "slug": "socratic-trade",
-      "name": "Socratic.Trade",
-      "tagline": "Agentic trading console for Alpaca, Tradier, and Robinhood accounts.  Not investment advice.",
+      "name": "Socratic Trade",
+      "tagline": "Review AI-generated trading proposals and manage broker execution.",
       "shelf": "markets",
-      "platforms": ["Web", "iOS"],
+      "platforms": [
+        "Web",
+        "iOS"
+      ],
       "status": "live",
       "statusText": "Live on the web",
       "icon": "/assets/app-icons/socratic-trade.svg",
@@ -162,16 +301,41 @@
         "testFlight": null,
         "brew": null
       },
-      "bundleIds": ["trade.socratic.app"],
-      "appleIds": { "ios": 6799238379 },
-      "associatedDomains": false
+      "bundleIds": [
+        "trade.socratic.app"
+      ],
+      "appleIds": {
+        "ios": 6799238379
+      },
+      "associatedDomains": false,
+      "availability": {
+        "Web": {
+          "status": "live",
+          "label": "Web app",
+          "channel": "website",
+          "url": "https://socratictrade.com/",
+          "verifiedOn": "2026-09-26",
+          "verification": "Anonymous product entry returned HTTP 200; authenticated workflows were not checked."
+        },
+        "iOS": {
+          "status": "beta",
+          "label": "iOS beta; no public install link confirmed",
+          "channel": null,
+          "url": null,
+          "verifiedOn": "2026-09-26",
+          "verification": "Beta status from project source; public enrollment or download was not verified."
+        }
+      }
     },
     {
       "slug": "congress-trade",
       "name": "Congress.Trade",
-      "tagline": "Public STOCK Act disclosures from the House, Senate, and Executive Branch.",
+      "tagline": "Explore public trading disclosures and inspect source filings.",
       "shelf": "markets",
-      "platforms": ["Web", "iOS"],
+      "platforms": [
+        "Web",
+        "iOS"
+      ],
       "status": "live",
       "statusText": "Live on the web",
       "icon": "/assets/app-icons/congress-trade.png",
@@ -185,16 +349,40 @@
         "testFlight": null,
         "brew": null
       },
-      "bundleIds": ["trade.congress.ios"],
-      "appleIds": { "ios": 6798076688 },
-      "associatedDomains": false
+      "bundleIds": [
+        "trade.congress.ios"
+      ],
+      "appleIds": {
+        "ios": 6798076688
+      },
+      "associatedDomains": false,
+      "availability": {
+        "Web": {
+          "status": "live",
+          "label": "Web app",
+          "channel": "website",
+          "url": "https://congress.trade/",
+          "verifiedOn": "2026-09-26",
+          "verification": "Anonymous product entry returned HTTP 200; authenticated workflows were not checked."
+        },
+        "iOS": {
+          "status": "beta",
+          "label": "iOS beta; no public install link confirmed",
+          "channel": null,
+          "url": null,
+          "verifiedOn": "2026-09-26",
+          "verification": "Beta status from project source; public enrollment or download was not verified."
+        }
+      }
     },
     {
       "slug": "hoghunter",
       "name": "HogHunter",
-      "tagline": "Mac menu bar view of CPU and memory hogs right now, over the past hour, and over the past day.",
+      "tagline": "See which Mac processes use the most CPU and memory.",
       "shelf": "utilities",
-      "platforms": ["macOS"],
+      "platforms": [
+        "macOS"
+      ],
       "status": "source",
       "statusText": "Build from source",
       "icon": "/assets/app-icons/hoghunter.png",
@@ -208,16 +396,35 @@
         "testFlight": null,
         "brew": null
       },
-      "bundleIds": ["com.simplewithus.hoghunter.macos"],
-      "appleIds": { "macos": null },
-      "associatedDomains": true
+      "bundleIds": [
+        "com.simplewithus.hoghunter.macos"
+      ],
+      "appleIds": {
+        "macos": null
+      },
+      "associatedDomains": true,
+      "availability": {
+        "macOS": {
+          "status": "source",
+          "label": "Build from public source",
+          "channel": "source",
+          "url": "https://github.com/jaywedgeworth22/HogHunter",
+          "verifiedOn": "2026-09-26",
+          "verification": "Public repository returned HTTP 200; installation was not tested."
+        }
+      }
     },
     {
       "slug": "contactlogo",
       "name": "ContactLogo",
-      "tagline": "Brand icons for your address book, matched review-first.",
+      "tagline": "Review suggested company logos before applying them to contacts.",
       "shelf": "utilities",
-      "platforms": ["iOS", "macOS", "Android", "Web"],
+      "platforms": [
+        "iOS",
+        "macOS",
+        "Android",
+        "Web"
+      ],
       "status": "live",
       "statusText": "Live on the web",
       "icon": "/assets/app-icons/contactlogo.png",
@@ -231,16 +438,60 @@
         "testFlight": null,
         "brew": null
       },
-      "bundleIds": ["com.contactlogo", "com.contactlogo.macos"],
-      "appleIds": { "ios": 6804247582, "macos": 6804248235 },
-      "associatedDomains": false
+      "bundleIds": [
+        "com.contactlogo",
+        "com.contactlogo.macos"
+      ],
+      "appleIds": {
+        "ios": 6804247582,
+        "macos": 6804248235
+      },
+      "associatedDomains": false,
+      "availability": {
+        "iOS": {
+          "status": "beta",
+          "label": "iOS beta; no public install link confirmed",
+          "channel": null,
+          "url": null,
+          "verifiedOn": "2026-09-26",
+          "verification": "Beta status from project source; public enrollment or download was not verified."
+        },
+        "macOS": {
+          "status": "beta",
+          "label": "macOS beta; no public install link confirmed",
+          "channel": null,
+          "url": null,
+          "verifiedOn": "2026-09-26",
+          "verification": "Beta status from project source; public enrollment or download was not verified."
+        },
+        "Android": {
+          "status": "unverified",
+          "label": "Android distribution not confirmed",
+          "channel": null,
+          "url": null,
+          "verifiedOn": "2026-09-26",
+          "verification": "No public distribution link was verified."
+        },
+        "Web": {
+          "status": "live",
+          "label": "Web app",
+          "channel": "website",
+          "url": "https://contactlogo.com/",
+          "verifiedOn": "2026-09-26",
+          "verification": "Anonymous product entry returned HTTP 200; authenticated workflows were not checked."
+        }
+      }
     },
     {
       "slug": "dealdex",
       "name": "DealDex",
-      "tagline": "Pokémon listing desk.  Scan eBay and Mercari singles and score each ask against market prices.",
+      "tagline": "Compare Pokémon card listing prices with available market sources.",
       "shelf": "utilities",
-      "platforms": ["iOS", "Android", "Web"],
+      "platforms": [
+        "iOS",
+        "Android",
+        "Web"
+      ],
       "status": "live",
       "statusText": "Live on the web",
       "icon": "/assets/app-icons/dealdex.png",
@@ -254,16 +505,51 @@
         "testFlight": null,
         "brew": null
       },
-      "bundleIds": ["net.dealdex"],
-      "appleIds": { "ios": 6802474288 },
-      "associatedDomains": false
+      "bundleIds": [
+        "net.dealdex"
+      ],
+      "appleIds": {
+        "ios": 6802474288
+      },
+      "associatedDomains": false,
+      "availability": {
+        "iOS": {
+          "status": "beta",
+          "label": "iOS beta; no public install link confirmed",
+          "channel": null,
+          "url": null,
+          "verifiedOn": "2026-09-26",
+          "verification": "Beta status from project source; public enrollment or download was not verified."
+        },
+        "Android": {
+          "status": "beta",
+          "label": "Android beta; no public install link confirmed",
+          "channel": null,
+          "url": null,
+          "verifiedOn": "2026-09-26",
+          "verification": "Beta status from project source; public enrollment or download was not verified."
+        },
+        "Web": {
+          "status": "live",
+          "label": "Web app",
+          "channel": "website",
+          "url": "https://dealdex.net/",
+          "verifiedOn": "2026-09-26",
+          "verification": "Anonymous product entry returned HTTP 200; authenticated workflows were not checked."
+        }
+      }
     },
     {
       "slug": "autorotate",
       "name": "Autorotate",
-      "tagline": "Zero-plaintext secret rotation across web, iOS, macOS, and Android.",
+      "tagline": "Manage supported credential rotations with verification and an audit trail.",
       "shelf": "utilities",
-      "platforms": ["iOS", "macOS", "Android", "Web"],
+      "platforms": [
+        "iOS",
+        "macOS",
+        "Android",
+        "Web"
+      ],
       "status": "beta",
       "statusText": "Private beta",
       "icon": "/assets/app-icons/autorotate.png",
@@ -277,9 +563,49 @@
         "testFlight": null,
         "brew": null
       },
-      "bundleIds": ["codes.autorotate", "codes.autorotate.macos"],
-      "appleIds": { "ios": 6804248985, "macos": 6804928534 },
-      "associatedDomains": false
+      "bundleIds": [
+        "codes.autorotate",
+        "codes.autorotate.macos"
+      ],
+      "appleIds": {
+        "ios": 6804248985,
+        "macos": 6804928534
+      },
+      "associatedDomains": false,
+      "availability": {
+        "iOS": {
+          "status": "beta",
+          "label": "iOS beta; no public install link confirmed",
+          "channel": null,
+          "url": null,
+          "verifiedOn": "2026-09-26",
+          "verification": "Beta status from project source; public enrollment or download was not verified."
+        },
+        "macOS": {
+          "status": "beta",
+          "label": "macOS beta; no public install link confirmed",
+          "channel": null,
+          "url": null,
+          "verifiedOn": "2026-09-26",
+          "verification": "Beta status from project source; public enrollment or download was not verified."
+        },
+        "Android": {
+          "status": "unverified",
+          "label": "Android distribution not confirmed",
+          "channel": null,
+          "url": null,
+          "verifiedOn": "2026-09-26",
+          "verification": "No public distribution link was verified."
+        },
+        "Web": {
+          "status": "source",
+          "label": "Self-host from public source",
+          "channel": "source",
+          "url": "https://github.com/jaywedgeworth22/Autorotate",
+          "verifiedOn": "2026-09-26",
+          "verification": "Public repository returned HTTP 200; installation was not tested."
+        }
+      }
     }
   ],
   "shelves": {
@@ -288,8 +614,20 @@
     "utilities": "Everyday Utilities"
   },
   "unlisted": [
-    { "slug": "personal-site", "name": "Personal-Site", "reason": "The maker's portfolio at https://jays.services/, linked from the footer, not a tool." },
-    { "slug": "congress-trading-shared", "name": "congress-trading-shared", "reason": "Shared TypeScript contracts library, not a user-facing tool." },
-    { "slug": "ai-fleet-coordinator", "name": "ai-fleet-coordinator", "reason": "Fleet coordination infrastructure, not a user-facing tool." }
+    {
+      "slug": "personal-site",
+      "name": "Personal-Site",
+      "reason": "The maker's portfolio at https://jays.services/, linked from the footer, not a tool."
+    },
+    {
+      "slug": "congress-trading-shared",
+      "name": "congress-trading-shared",
+      "reason": "Shared TypeScript contracts library, not a user-facing tool."
+    },
+    {
+      "slug": "ai-fleet-coordinator",
+      "name": "ai-fleet-coordinator",
+      "reason": "Fleet coordination infrastructure, not a user-facing tool."
+    }
   ]
 }

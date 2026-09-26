@@ -4,13 +4,14 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Usage Client Monitor Support -- Simple With Us</title>
-  <meta name="description" content="Provider keys, self-host server, and known-issue reference for Usage Client Monitor on iOS." />
+  <meta name="description" content="Support for Usage Client Monitor." />
   <meta name="theme-color" content="#1a1a2e" />
   <link rel="icon" type="image/png" href="/assets/logos/swu-logo-whitecircle-1024.png" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
   <link rel="stylesheet" href="/style.css" />
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 
 <header class="site-header">
   <div class="container">
@@ -27,34 +28,15 @@
   </div>
 </header>
 
-<article class="article">
+<article class="article" id="main">
   <span class="kicker">Usage Client Monitor</span>
   <h1>Support</h1>
-  <p class="lede">Provider keys, self-host server, and known-issue reference. If the four checks below don't fix it, send the output to <code>feedback@simplewithus.com</code> and we'll come back the same day.</p>
-
-  <h2>The four checks that catch 90% of sync issues</h2>
-  <ol>
-    <li><strong>Provider key still valid.</strong> Most "the app stopped updating" reports trace back to an expired or rotated API key. Re-issue the key at the provider, paste it into the app, and pull-to-refresh on the rollup screen.</li>
-    <li><strong>Self-host server reachable.</strong> From the iPhone, open the server URL in Safari. If Safari can't reach it, neither can the app. Check your LAN, your tunnel, and your DNS.</li>
-    <li><strong>Server version compatibility.</strong> Older server builds don't speak the current sync protocol. Check the release notes for the server and bump if you're behind.</li>
-    <li><strong>iOS keychain intact.</strong> If you wiped the device or restored from an old backup, the keychain entry for the provider key may be gone. Re-add it in the Providers screen.</li>
-  </ol>
-
-  <h2>Crash log or "Application keeps closing"</h2>
-  <p>If Usage Client Monitor crashes immediately on launch or after a specific screen, pull a Console log from the Mac (Console.app &gt; iPhone &gt; Usage Client Monitor) and send the last ~200 lines to <code>feedback@simplewithus.com</code>. If you can repro, note the exact steps and the iOS version (Settings &gt; General &gt; About).</p>
-
-  <h2>Usage numbers don't match the provider dashboard</h2>
-  <p>Usage endpoints report API spend; provider dashboards report invoiced charges. Discounts, credits, refunds, and proration can show up on the invoice but not on the usage endpoint. Treat the two as separate ledgers; reconcile monthly, not daily.</p>
-
-  <h2>Sending logs to support</h2>
-  <p>The app's Settings screen has a "Send Logs" action (under Diagnostics). It bundles the last few minutes into a single zip, scrubbed of your API keys, and opens a prefilled email to <code>feedback@simplewithus.com</code>. Attach the zip; we respond usually within a business day.</p>
-
+  <p class="lede">For a connection issue, note the iOS version, server version, and the error shown in the app.</p>
+  <h2>Before contacting us</h2>
+  <p>This iPhone app depends on a reachable Usage Monitor server.&nbsp; Check your own server URL and authentication before investigating provider data at the server.</p>
+  <p>Check the <a href="/usage-client/">product page</a> for current platform availability and the <a href="/privacy.html">privacy notice</a> for site-level information.</p>
   <h2>Contact</h2>
-  <div class="callout">
-    <p><strong>feedback@simplewithus.com</strong> -- open a thread, don't worry about templates. Note your iOS version and the providers you've connected.</p>
-  </div>
-
-  <p style="margin-top: 32px;"><a class="btn btn-secondary" href="/">&larr; Back to Simple With Us</a></p>
+  <p>Email <a href="mailto:feedback@simplewithus.com?subject=usage-client%20support">feedback@simplewithus.com</a> with your device or browser version and steps to reproduce.&nbsp; Leave out passwords, API keys, personal contact data, and private logs.</p>
 </article>
 
 <footer class="site-footer">

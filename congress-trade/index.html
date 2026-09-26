@@ -3,14 +3,21 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Congress.Trade -- Congressional trades, surfaced within minutes</title>
-  <meta name="description" content="Congress.Trade turns congressional disclosures into a watchlist-matched feed. Know what members of Congress are trading the day they file it." />
+  <title>Congress.Trade — Simple With Us</title>
+  <meta name="description" content="Explore public trading disclosures and inspect source filings." />
+
+  <link rel="canonical" href="https://simplewithus.com/congress-trade/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Congress.Trade — Simple With Us" />
+  <meta property="og:description" content="Explore public trading disclosures and inspect source filings." />
+  <meta property="og:url" content="https://simplewithus.com/congress-trade/" />
   <meta name="theme-color" content="#1a1a2e" />
   <link rel="icon" type="image/png" href="/assets/logos/swu-logo-whitecircle-1024.png" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
   <link rel="stylesheet" href="/style.css" />
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 
 <header class="site-header">
   <div class="container">
@@ -27,56 +34,41 @@
   </div>
 </header>
 
-<article class="article">
-  <span class="kicker">iOS disclosure tracker</span>
-  <h1>Know what Congress is trading, the day they disclose it.</h1>
-  <p class="lede">Members of Congress disclose trades within days of executing them. Congress.Trade pulls those filings within minutes and matches them against the tickers you care about, so you can see whose portfolio is moving in your sector before the news headlines catch up.</p>
-
+<article class="article" id="main">
+  <span class="kicker">Public disclosure explorer</span>
+  <h1>Explore public trading disclosures.</h1>
+  <p class="lede">Congress.Trade organizes public filings and ranked views.&nbsp; Filter by person, company, and date, then open the underlying source before drawing conclusions.</p>
+  <!-- catalog:availability:start -->
+<section class="availability" aria-labelledby="availability-title">
+  <h2 id="availability-title">Availability</h2>
+  <ul class="availability-list">
+    <li><strong>Web</strong><span>Web app</span></li>
+    <li><strong>iOS</strong><span>iOS beta; no public install link confirmed</span></li>
+  </ul>
   <div class="btn-row">
-    <a class="btn btn-primary" href="https://congress.trade">Open Congress.Trade</a>
-    <a class="btn btn-secondary" href="support.html">Support</a>
-    <a class="btn btn-secondary" href="/privacy.html">Privacy</a>
+    <a class="btn btn-primary" href="https://congress.trade/" rel="noopener">Open web app</a>
+    <a class="btn btn-secondary" href="/congress-trade/support.html">Support</a>
   </div>
-
-  <h2>What's inside</h2>
+  <p class="availability-note">Checked 26 Sep 2026.  Beta enrollment and native installation were not verified.</p>
+</section>
+  <!-- catalog:availability:end -->
+  <h2>What you can do</h2>
   <ul>
-    <li><strong>Disclosure feed.</strong> Senate and House filings as they land, in chronological order, with the member, the chamber, the asset, and the trade direction.</li>
-    <li><strong>Watchlist match.</strong> Add tickers; the feed shows only the trades that hit your list. Tap a card to see the full filing PDF.</li>
-    <li><strong>Member profiles.</strong> Tap any member to see their full trade history, the sectors they trade most, and the committees they sit on.</li>
-    <li><strong>Committee overlap.</strong> Surface trades by members of committees with jurisdiction over the asset -- a quick read on insider-adjacent flows.</li>
-    <li><strong>Daily digest.</strong> One notification at market open summarising yesterday's filings, opt-in and skippable.</li>
+    <li><strong>Find filings.</strong> Browse House, Senate, and available executive-branch disclosures.</li>
+    <li><strong>Read dates carefully.</strong> A transaction date, disclosure date, and ingestion date can differ.</li>
+    <li><strong>Ranked views.</strong> The site offers rankings; review the published methodology and source data.</li>
   </ul>
-
-  <h2>How it works</h2>
-  <p>Congress.Trade reads public disclosure filings from official Senate and House repositories. The app refreshes the feed on launch and on pull; no background polling, no push notifications by default. Your watchlist and member list stay on-device.</p>
-
-  <ol>
-    <li>Add tickers to a watchlist. The app filters the feed to show only trades that touch those tickers.</li>
-    <li>Optionally follow specific members or committees to broaden the feed.</li>
-    <li>Tap any filing to open the source PDF -- the app never edits or summarises the disclosure itself.</li>
-  </ol>
-
-  <h2>What it doesn't do</h2>
-  <ul>
-    <li><strong>Predictions or trade signals.</strong> The app surfaces public filings; it does not score, rank, or recommend acting on them.</li>
-    <li><strong>Personalised advice.</strong> No "follow this member" prompts, no copy-trading hooks.</li>
-    <li><strong>Non-US disclosures.</strong> Senate and House only on the v1 path. International parliament disclosures come later.</li>
-  </ul>
-
-  <h2>Privacy</h2>
-  <p>Congress.Trade pulls filings from public sources. Your watchlist and member list stay on-device. Crash reports are opt-in and scrubbed of identifiers. Full notice at <a href="/privacy.html">/privacy</a>.</p>
-
-  <h2>Need help?</h2>
-  <p>If the disclosure feed looks stale, it's almost always the Senate/House filing source being slow, not the app. <a href="support.html">The support page</a> covers the four checks that catch 90% of freshness issues; if those don't help, write to <code>feedback@simplewithus.com</code> with the time of your last refresh.</p>
-
-  <p><a class="btn btn-primary" href="https://congress.trade">Get Congress.Trade</a></p>
+  <h2>Scope and data</h2>
+  <p>Disclosures can arrive well after a transaction.&nbsp; The site does not establish a trading advantage or predict future performance.</p>
+  <p>See the <a href="support.html">product support page</a> and <a href="/privacy.html">privacy notice</a> for more detail.</p>
+  <p class="source-credit">Upstream source: <a href="https://github.com/jaywedgeworth22/Congress.Trade" rel="noopener">Congress.Trade on GitHub</a>.</p>
 </article>
 
 <footer class="site-footer">
   <div class="container">
     <div class="copy">
       <span>&copy; 2026 Simple With Us. All rights reserved.</span>
-      <span><a href="/">Home</a> &middot; <a href="support.html">Support</a> &middot; <a href="/privacy.html">Privacy</a></span>
+      <span><a href="/">Home</a> &middot; <a href="/support.html">Support</a> &middot; <a href="/privacy.html">Privacy</a></span>
     </div>
   </div>
 </footer>

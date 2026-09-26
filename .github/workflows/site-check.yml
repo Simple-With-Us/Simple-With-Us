@@ -16,6 +16,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      # Fails when index.html is stale against apps/index.json, a link has the wrong shape,
-      # an image is over the 200 KB budget, or the AASA file is invalid.
+      # Fails when generated catalog/detail regions drift, a public link has the wrong
+      # shape, an image exceeds the budget, or the AASA file is invalid.
       - run: python3 scripts/build_catalog.py --check
+      - run: python3 -m unittest discover -s scripts -p 'test_*.py'

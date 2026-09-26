@@ -3,14 +3,21 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>CodeCaps Companion -- Know your AI caps before they bite</title>
-  <meta name="description" content="CodeCaps Companion tracks your AI subscriptions in one place on iPhone. Per-model caps, daily spend, and rate-limit warnings -- so you can stop guessing when you'll hit the ceiling." />
+  <title>CodeCaps — Simple With Us</title>
+  <meta name="description" content="Check supported AI quota and reset windows from the macOS menu bar." />
+
+  <link rel="canonical" href="https://simplewithus.com/codecaps/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="CodeCaps — Simple With Us" />
+  <meta property="og:description" content="Check supported AI quota and reset windows from the macOS menu bar." />
+  <meta property="og:url" content="https://simplewithus.com/codecaps/" />
   <meta name="theme-color" content="#1a1a2e" />
   <link rel="icon" type="image/png" href="/assets/logos/swu-logo-whitecircle-1024.png" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
   <link rel="stylesheet" href="/style.css" />
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 
 <header class="site-header">
   <div class="container">
@@ -27,63 +34,41 @@
   </div>
 </header>
 
-<article class="article">
-  <span class="kicker">iOS AI subscription tracker</span>
-  <h1>Know your AI caps before they bite.</h1>
-  <p class="lede">Track your AI subscriptions in one place. Per-model caps, daily spend, and rate-limit warnings -- so you can stop guessing when you'll hit the ceiling.</p>
-
+<article class="article" id="main">
+  <span class="kicker">AI usage on Mac and iPhone</span>
+  <h1>See supported AI usage and quota windows.</h1>
+  <p class="lede">CodeCaps reads supported quota and reset data from local CLI sessions on macOS 14+; an iPhone companion is in beta.&nbsp; What is available depends on the provider and credential scope.</p>
+  <!-- catalog:availability:start -->
+<section class="availability" aria-labelledby="availability-title">
+  <h2 id="availability-title">Availability</h2>
+  <ul class="availability-list">
+    <li><strong>macOS</strong><span>macOS beta download (macOS 14+)</span></li>
+    <li><strong>iOS</strong><span>iOS beta; no public install link confirmed</span></li>
+  </ul>
   <div class="btn-row">
-    <a class="btn btn-primary" href="https://testflight.apple.com/">Join the TestFlight Beta</a>
-    <a class="btn btn-secondary" href="support.html">Support</a>
-    <a class="btn btn-secondary" href="/privacy.html">Privacy</a>
+    <a class="btn btn-secondary" href="https://github.com/jaywedgeworth22/codecaps/releases/latest/download/CodeCaps.dmg" rel="noopener">Download Mac beta</a>
+    <a class="btn btn-secondary" href="/codecaps/support.html">Support</a>
   </div>
-
-  <h2>What's inside</h2>
+  <p class="availability-note">Checked 26 Sep 2026.  Beta enrollment and native installation were not verified.</p>
+</section>
+  <!-- catalog:availability:end -->
+  <h2>What you can do</h2>
   <ul>
-    <li><strong>Per-model caps.</strong> Daily and weekly caps across every provider you subscribe to, on one screen.</li>
-    <li><strong>Daily spend.</strong> Real spend, broken out by model and by day. No estimates, no projections.</li>
-    <li><strong>Rate-limit warnings.</strong> A heads-up before you hit the limit -- not after the request fails.</li>
-    <li><strong>Provider roster.</strong> Switch providers without losing the per-model breakdown.</li>
+    <li><strong>Quota windows.</strong> Check remaining capacity and reset timing where a provider exposes it.</li>
+    <li><strong>Usage and cost.</strong> Separate measured API usage and estimated cost from subscription charges.</li>
+    <li><strong>Provider setup.</strong> The Mac app reuses local CLI or session credentials.&nbsp; Optional collector tokens are stored in macOS Keychain; availability depends on the source.</li>
   </ul>
-
-  <h2>How it works</h2>
-  <p>CodeCaps Companion reads usage from the providers you connect, rolls up the numbers per model, and shows you what's left in the current window. Numbers refresh on launch and on pull-to-refresh; there is no background polling.</p>
-
-  <ol>
-    <li>Add a provider from the in-app list and paste your API key. Keys live in the iOS Keychain.</li>
-    <li>Open the dashboard. Caps and daily spend show immediately.</li>
-    <li>Tap a model to drill into per-day history. Pin the ones you care about to the top.</li>
-  </ol>
-
-  <div class="callout">
-    <p><strong>Privacy:</strong> your provider keys live in the iOS Keychain. Usage numbers are stored on-device. The app does not call home. Full notice at <a href="/privacy.html">/privacy</a>.</p>
-  </div>
-
-  <h2 id="mac">Mac version</h2>
-  <p>CodeCaps for Mac shows the same per-model caps at a glance in a window-level overlay.  Global hotkey pulls the any-cap view from any app, and Settings &rarr; Sources lets you disable the per-app overlay for any specific macOS app.  Provider keys live in the macOS Keychain; usage stays on this Mac.</p>
-  <p>Direct download (DMG).  Email <a href="mailto:feedback@simplewithus.com?subject=CodeCaps%20for%20Mac">feedback@simplewithus.com</a> for the build link until the notarized installer is published.</p>
-
-  <h2>What it doesn't do</h2>
-  <ul>
-    <li><strong>Cross-device sync.</strong> Caps and history live on this iPhone. There is no account and no cloud mirror.</li>
-    <li><strong>Forecasting.</strong> We show what you used, not what you'll use. Predicting future spend is a different job.</li>
-    <li><strong>Provider auth mediation.</strong> We never proxy your calls. The app reads usage only; you make requests elsewhere.</li>
-  </ul>
-
-  <h2>Privacy</h2>
-  <p>CodeCaps Companion does not transmit anything to Simple With Us. Provider keys live in the iOS Keychain; usage history lives on this iPhone. Crash reports are opt-in and scrubbed of identifiers. Full notice at <a href="/privacy.html">/privacy</a>.</p>
-
-  <h2>Need help?</h2>
-  <p>If a provider's numbers look stale or wrong, the cause is almost always a revoked or expired key. <a href="support.html">The support page</a> covers the four checks that catch 90% of stale-data reports; if those don't help, write to <code>feedback@simplewithus.com</code> with the provider name and the timestamp of the last good fetch.</p>
-
-  <p><a class="btn btn-primary" href="https://testflight.apple.com/">Get CodeCaps Companion</a></p>
+  <h2>Scope and data</h2>
+  <p>Mac data stays local unless optional endpoint push or pull is enabled.&nbsp; Unsupported provider readings remain unavailable; review the current build and privacy details before connecting a source.</p>
+  <p>See the <a href="support.html">product support page</a> and <a href="/privacy.html">privacy notice</a> for more detail.</p>
+  <p class="source-credit">Upstream source: <a href="https://github.com/jaywedgeworth22/CodeCaps" rel="noopener">CodeCaps on GitHub</a>.</p>
 </article>
 
 <footer class="site-footer">
   <div class="container">
     <div class="copy">
       <span>&copy; 2026 Simple With Us. All rights reserved.</span>
-      <span><a href="/">Home</a> &middot; <a href="support.html">Support</a> &middot; <a href="/privacy.html">Privacy</a></span>
+      <span><a href="/">Home</a> &middot; <a href="/support.html">Support</a> &middot; <a href="/privacy.html">Privacy</a></span>
     </div>
   </div>
 </footer>

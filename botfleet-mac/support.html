@@ -3,14 +3,15 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>BotFleet for Mac Support -- Simple With Us</title>
-  <meta name="description" content="Menu-bar launch, permissions, and known-issue reference for BotFleet on macOS." />
+  <title>BotFleet for Mac — Simple With Us</title>
+  <meta name="description" content="Current availability and support for BotFleet for Mac." />
   <meta name="theme-color" content="#1a1a2e" />
   <link rel="icon" type="image/png" href="/assets/logos/swu-logo-whitecircle-1024.png" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
   <link rel="stylesheet" href="/style.css" />
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 
 <header class="site-header">
   <div class="container">
@@ -27,34 +28,15 @@
   </div>
 </header>
 
-<article class="article">
+<article class="article" id="main">
   <span class="kicker">BotFleet for Mac</span>
-  <h1>Support</h1>
-  <p class="lede">Menu-bar launch, permissions, and known-issue reference. If the four checks below don't fix it, send the output to <code>feedback@simplewithus.com</code> and we'll come back the same day.</p>
-
-  <h2>The four checks that catch 90% of companion-launch failures</h2>
-  <ol>
-    <li><strong>Mac: is the companion running?</strong> Open Terminal, paste <code>launchctl list | grep botfleet</code>. You should see a row for the companion. If not: <code>launchctl load -w ~/Library/LaunchAgents/com.simplewithus.botfleet.companion.plist</code>.</li>
-    <li><strong>Mac: same network as the orchestrator?</strong> The companion and the orchestrator must be reachable to each other on localhost or a local subnet. If the orchestrator is on a different host, set <code>ORCHESTRATOR_HOST</code> in the companion's plist.</li>
-    <li><strong>macOS: Notifications permission.</strong> Open System Settings &gt; Notifications &gt; BotFleet. If notifications are off, the shared-notifications feature stays silent. Toggle on and pick "Alerts".</li>
-    <li><strong>macOS: persistent settings.</strong> If the companion has stopped connecting after a Mac reboot, open the app once from Applications to re-register the menu-bar item; the LaunchAgent alone does not bring back a hidden menu-bar entry.</li>
-  </ol>
-
-  <h2>Crash log or "Application keeps closing"</h2>
-  <p>If the companion disappears from the menu bar or crashes on launch, open Console.app and filter by process <code>BotFleetCompanion</code>. Send the last ~200 lines to <code>feedback@simplewithus.com</code>. If you can also repro the crash, note the steps.</p>
-
-  <h2>Menu bar icon never appears</h2>
-  <p>This is almost always a LaunchAgent that didn't load, or a hidden menu-bar entry. Run <code>launchctl list | grep botfleet</code> to confirm the agent is registered; if it isn't, re-install via the bundled installer. If it is registered but the icon is hidden, open the app once from Applications to reveal it.</p>
-
-  <h2>Sending logs to support</h2>
-  <p>The app's Help menu has a "Send Logs" action. It bundles the last few minutes into a single zip, scrubbed of your local token, and opens a prefilled email to <code>feedback@simplewithus.com</code>. Attach the zip; we respond usually within a business day.</p>
-
-  <h2>Contact</h2>
-  <div class="callout">
-    <p><strong>feedback@simplewithus.com</strong> -- open a thread, don't worry about templates. Link to your installed build if you have it (<code>BotFleetCompanion &gt; About BotFleetCompanion</code>).</p>
+  <h1>Mac app support</h1>
+  <p class="lede">The current BotFleet for Mac availability and support information is maintained with the main product page.</p>
+  <div class="btn-row">
+    <a class="btn btn-primary" href="/botfleet/">View BotFleet for Mac availability</a>
+    <a class="btn btn-secondary" href="/botfleet/support.html">Product support</a>
   </div>
-
-  <p style="margin-top: 32px;"><a class="btn btn-secondary" href="/">&larr; Back to Simple With Us</a></p>
+  <p>If you need help, email <a href="mailto:feedback@simplewithus.com?subject=botfleet%20Mac%20support">feedback@simplewithus.com</a> with the app version and steps to reproduce.&nbsp; Do not send credentials or private logs.</p>
 </article>
 
 <footer class="site-footer">

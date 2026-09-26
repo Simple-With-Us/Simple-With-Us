@@ -3,14 +3,15 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Autorotate for Mac Support -- Simple With Us</title>
-  <meta name="description" content="Per-app rotation rules, display arrangement, and known-issue reference for Autorotate for Mac." />
+  <title>Autorotate for Mac — Simple With Us</title>
+  <meta name="description" content="Current availability and support for Autorotate for Mac." />
   <meta name="theme-color" content="#1a1a2e" />
   <link rel="icon" type="image/png" href="/assets/logos/swu-logo-whitecircle-1024.png" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
   <link rel="stylesheet" href="/style.css" />
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 
 <header class="site-header">
   <div class="container">
@@ -27,34 +28,15 @@
   </div>
 </header>
 
-<article class="article">
+<article class="article" id="main">
   <span class="kicker">Autorotate for Mac</span>
-  <h1>Support</h1>
-  <p class="lede">Per-app rotation rules, display arrangements, and known-issue reference. If the four checks below don't fix it, send the output to <code>feedback@simplewithus.com</code> and we'll come back the same day.</p>
-
-  <h2>The four checks that catch 90% of "rule did nothing" reports</h2>
-  <ol>
-    <li><strong>Rule toggle is on.</strong> The Rules screen shows the toggle on the right. If it's off, the rule is defined but never fires. Toggle on.</li>
-    <li><strong>Display arrangement selected.</strong> If the rule targets an arrangement, the arrangement must be active. Move a display or plug one in to confirm the rule fires when the arrangement matches.</li>
-    <li><strong>macOS Accessibility permission.</strong> The first time the app applies a rule, macOS prompts for Accessibility permission. If you declined, System Settings &gt; Privacy &amp; Security &gt; Accessibility and re-enable Autorotate for Mac.</li>
-    <li><strong>Display supports rotation.</strong> Open Displays in System Settings and look for the rotation dropdown on the affected display. If the dropdown is missing, the display does not expose rotation, and the rule can never apply.</li>
-  </ol>
-
-  <h2>Crash log or "Application keeps closing"</h2>
-  <p>If Autorotate for Mac crashes immediately on launch or after a specific screen, open Console.app on the Mac, filter for "Autorotate", and send the last ~200 lines to <code>feedback@simplewithus.com</code>. If you can repro, note the exact steps and the macOS version (Apple menu &gt; About This Mac).</p>
-
-  <h2>Rule fired but the display did not rotate</h2>
-  <p>The Diagnostics screen shows recent firings with the response from macOS. If macOS accepted the rule and the display ignored it, the display's EDID does not match its driver. There's no fix from inside the app; contact the display maker. If macOS rejected the rule, the rule's display-arrangement is wrong -- adjust and retest.</p>
-
-  <h2>Sending logs to support</h2>
-  <p>The app's Settings screen has a "Send Logs" action (under Diagnostics). It bundles the last few minutes into a single zip, scrubbed of your rule names, and opens a prefilled email to <code>feedback@simplewithus.com</code>. Attach the zip; we respond usually within a business day.</p>
-
-  <h2>Contact</h2>
-  <div class="callout">
-    <p><strong>feedback@simplewithus.com</strong> -- open a thread, don't worry about templates. Note your macOS version and the display model you were testing.</p>
+  <h1>Mac app support</h1>
+  <p class="lede">The current Autorotate for Mac availability and support information is maintained with the main product page.</p>
+  <div class="btn-row">
+    <a class="btn btn-primary" href="/autorotate/">View Autorotate for Mac availability</a>
+    <a class="btn btn-secondary" href="/autorotate/support.html">Product support</a>
   </div>
-
-  <p style="margin-top: 32px;"><a class="btn btn-secondary" href="/">&larr; Back to Simple With Us</a></p>
+  <p>If you need help, email <a href="mailto:feedback@simplewithus.com?subject=autorotate%20Mac%20support">feedback@simplewithus.com</a> with the app version and steps to reproduce.&nbsp; Do not send credentials or private logs.</p>
 </article>
 
 <footer class="site-footer">

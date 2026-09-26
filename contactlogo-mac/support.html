@@ -3,14 +3,15 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>ContactLogo for Mac Support -- Simple With Us</title>
-  <meta name="description" content="Permissions, roster files, and known-issue reference for ContactLogo on macOS." />
+  <title>ContactLogo for Mac — Simple With Us</title>
+  <meta name="description" content="Current availability and support for ContactLogo for Mac." />
   <meta name="theme-color" content="#1a1a2e" />
   <link rel="icon" type="image/png" href="/assets/logos/swu-logo-whitecircle-1024.png" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
   <link rel="stylesheet" href="/style.css" />
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 
 <header class="site-header">
   <div class="container">
@@ -27,34 +28,15 @@
   </div>
 </header>
 
-<article class="article">
+<article class="article" id="main">
   <span class="kicker">ContactLogo for Mac</span>
-  <h1>Support</h1>
-  <p class="lede">Permissions, roster files, and known-issue reference. If the four checks below don't fix it, send the output to <code>feedback@simplewithus.com</code> and we'll come back the same day.</p>
-
-  <h2>The four checks that catch 90% of match misses</h2>
-  <ol>
-    <li><strong>macOS: Contacts permission.</strong> Open System Settings &gt; Privacy &amp; Security &gt; Contacts. Confirm ContactLogo is in the list and toggled on. If it isn't, launch the app once and re-check.</li>
-    <li><strong>Roster file path &amp; format.</strong> The default roster folder is <code>~/Library/Application Support/ContactLogo/rosters</code>. CSV headers must be <code>company,domain</code>; image folders must contain PNG or SVG named by company slug.</li>
-    <li><strong>Address Book source.</strong> Open Contacts.app, confirm the source you want branded is the default. ContactLogo writes only to the default source; other sources are skipped, not merged.</li>
-    <li><strong>Storage: undo log.</strong> If a previous batch went sideways, open Undo Log from the app menu and roll back to before that run. Logs live at <code>~/Library/Application Support/ContactLogo/undo.log</code>; the last 20 batches are kept.</li>
-  </ol>
-
-  <h2>Crash log or "Application keeps closing"</h2>
-  <p>If ContactLogo for Mac crashes on launch or while writing a batch, open Console.app and filter by process <code>ContactLogo</code>. Send the last ~200 lines to <code>feedback@simplewithus.com</code>. If you can also repro the crash, note the steps and the roster file you were using.</p>
-
-  <h2>Brand runs but no contacts change</h2>
-  <p>This is almost always a roster-format or source-selection issue. Confirm the header row is <code>company,domain</code> and that the roster file is in the rosters folder the app is reading. Confirm the Address Book default source in Contacts.app matches the source you expect.</p>
-
-  <h2>Sending logs to support</h2>
-  <p>The app's Help menu has a "Send Logs" action. It bundles the last few minutes into a single zip, scrubbed of your Address Book data, and opens a prefilled email to <code>feedback@simplewithus.com</code>. Attach the zip; we respond usually within a business day.</p>
-
-  <h2>Contact</h2>
-  <div class="callout">
-    <p><strong>feedback@simplewithus.com</strong> -- open a thread, don't worry about templates. Link to your installed build if you have it (<code>ContactLogo &gt; About ContactLogo</code>).</p>
+  <h1>Mac app support</h1>
+  <p class="lede">The current ContactLogo for Mac availability and support information is maintained with the main product page.</p>
+  <div class="btn-row">
+    <a class="btn btn-primary" href="/contactlogo/">View ContactLogo for Mac availability</a>
+    <a class="btn btn-secondary" href="/contactlogo/support.html">Product support</a>
   </div>
-
-  <p style="margin-top: 32px;"><a class="btn btn-secondary" href="/">&larr; Back to Simple With Us</a></p>
+  <p>If you need help, email <a href="mailto:feedback@simplewithus.com?subject=contactlogo%20Mac%20support">feedback@simplewithus.com</a> with the app version and steps to reproduce.&nbsp; Do not send credentials or private logs.</p>
 </article>
 
 <footer class="site-footer">

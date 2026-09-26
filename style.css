@@ -62,6 +62,9 @@ html, body {
 }
 
 a { color: inherit; }
+:focus-visible { outline: 2px solid var(--accent-deep); outline-offset: 3px; }
+.skip-link { position: absolute; left: 16px; top: -60px; z-index: 20; padding: 10px 14px; background: var(--primary); color: var(--primary-fg); }
+.skip-link:focus { top: 10px; }
 
 img, svg { max-width: 100%; height: auto; display: block; }
 
@@ -84,7 +87,7 @@ img, svg { max-width: 100%; height: auto; display: block; }
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 64px;
+  min-height: 64px;
   gap: 32px;
 }
 .brand {
@@ -331,7 +334,7 @@ img, svg { max-width: 100%; height: auto; display: block; }
 .article {
   max-width: 720px;
   margin: 0 auto;
-  padding: 80px 24px 64px;
+  padding: 56px 24px 64px;
 }
 .article h1 {
   font-size: clamp(32px, 4.5vw, 44px);
@@ -343,7 +346,7 @@ img, svg { max-width: 100%; height: auto; display: block; }
 .article .lede {
   font-size: 19px;
   color: var(--text-mid);
-  margin-bottom: 40px;
+  margin-bottom: 24px;
 }
 .article h2 {
   font-size: 22px;
@@ -354,6 +357,14 @@ img, svg { max-width: 100%; height: auto; display: block; }
 .article p { margin: 0 0 16px; }
 .article ul { padding-left: 22px; margin: 0 0 16px; }
 .article li { margin-bottom: 6px; }
+.availability { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-card); padding: 22px; margin: 28px 0 36px; }
+.availability h2 { margin: 0 0 16px; }
+.availability-list { padding: 0 !important; margin: 0 !important; list-style: none; }
+.availability-list li { display: flex; justify-content: space-between; gap: 8px 20px; flex-wrap: wrap; border-bottom: 1px solid var(--border); padding: 8px 0; margin: 0; }
+.availability-list span, .availability-note, .source-credit { color: var(--text-mid); }
+.availability .btn-row { margin: 20px 0 12px; }
+.availability-note { font-size: 13px; margin: 0 !important; }
+.source-credit { border-top: 1px solid var(--border); margin-top: 36px !important; padding-top: 16px; font-size: 14px; }
 .article code {
   background: var(--code-bg);
   padding: 2px 6px;
@@ -411,8 +422,11 @@ img, svg { max-width: 100%; height: auto; display: block; }
 
 /* --- Mobile tweaks --- */
 @media (max-width: 600px) {
-  .nav { gap: 14px; font-size: 13px; }
+  .site-header .container { flex-wrap: wrap; height: auto; padding-top: 10px; padding-bottom: 10px; gap: 8px; }
+  .nav { flex-wrap: wrap; gap: 8px 14px; font-size: 13px; }
   .nav .cta { padding: 6px 12px; }
   .hero { padding: 56px 0 32px; }
   .section { padding: 40px 0; }
+  .article { padding-top: 40px; }
 }
+@media (prefers-reduced-motion: reduce) { .btn, .nav a { transition: none; } }

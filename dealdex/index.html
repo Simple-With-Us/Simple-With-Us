@@ -3,14 +3,21 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>DealDex -- Find the best-priced Pokémon card listings</title>
-  <meta name="description" content="DealDex scans live eBay and Mercari Buy It Now Pokémon singles and scores each ask against TCGPlayer, Cardmarket, eBay solds, and PriceCharting. Native iOS, Android, and an optional web app at dealdex.net." />
+  <title>DealDex — Simple With Us</title>
+  <meta name="description" content="Compare Pokémon card listing prices with available market sources." />
+
+  <link rel="canonical" href="https://simplewithus.com/dealdex/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="DealDex — Simple With Us" />
+  <meta property="og:description" content="Compare Pokémon card listing prices with available market sources." />
+  <meta property="og:url" content="https://simplewithus.com/dealdex/" />
   <meta name="theme-color" content="#1a1a2e" />
   <link rel="icon" type="image/png" href="/assets/logos/swu-logo-whitecircle-1024.png" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
   <link rel="stylesheet" href="/style.css" />
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 
 <header class="site-header">
   <div class="container">
@@ -19,7 +26,7 @@
     </a>
     <nav class="nav">
       <a href="/#apps">Apps</a>
-      <a href="support.html">Support</a>
+      <a href="/support.html">Support</a>
       <a href="/privacy.html">Privacy</a>
       <a href="/terms.html">Terms</a>
       <a class="cta" href="mailto:feedback@simplewithus.com">Contact</a>
@@ -27,68 +34,35 @@
   </div>
 </header>
 
-<article class="article">
-  <span class="kicker">iOS &middot; Android &middot; Web</span>
-  <h1>Find the best-priced Pokémon card listings.</h1>
-  <p class="lede">DealDex hunts live Buy It Now singles on eBay and Mercari, then scores each ask against TCGPlayer, Cardmarket, TCGCSV, eBay solds, and PriceCharting.  Paste a listing or search a card name, get a side-by-side desk read, and decide if the ask is fair.</p>
-
+<article class="article" id="main">
+  <span class="kicker">Pokémon listing research</span>
+  <h1>Compare card asking prices with market sources.</h1>
+  <p class="lede">DealDex brings available listing and pricing sources into one web view.&nbsp; Search for a card or inspect a listing, then check source and freshness before buying.</p>
+  <!-- catalog:availability:start -->
+<section class="availability" aria-labelledby="availability-title">
+  <h2 id="availability-title">Availability</h2>
+  <ul class="availability-list">
+    <li><strong>iOS</strong><span>iOS beta; no public install link confirmed</span></li>
+    <li><strong>Android</strong><span>Android beta; no public install link confirmed</span></li>
+    <li><strong>Web</strong><span>Web app</span></li>
+  </ul>
   <div class="btn-row">
-    <a class="btn btn-primary" href="#download">Get DealDex</a>
-    <a class="btn btn-secondary" href="https://dealdex.net">Open the web app</a>
-    <a class="btn btn-secondary" href="support.html">Support</a>
+    <a class="btn btn-primary" href="https://dealdex.net/" rel="noopener">Open web app</a>
+    <a class="btn btn-secondary" href="/dealdex/support.html">Support</a>
   </div>
-
-  <section id="download">
-    <h2>Install</h2>
-    <table class="install-table">
-      <thead>
-        <tr><th>Platform</th><th>Where</th><th>How</th></tr>
-      </thead>
-      <tbody>
-        <tr><td><strong>iOS</strong></td><td>TestFlight beta</td><td>Email <a href="mailto:feedback@simplewithus.com?subject=DealDex%20TestFlight">feedback@simplewithus.com</a> with your Apple ID email; we send a TestFlight invite, usually within a business day.</td></tr>
-        <tr><td><strong>Android</strong></td><td>Direct APK (sideload)</td><td>Drop us a note at the same address; we'll send the signed build and the install instructions.</td></tr>
-        <tr><td><strong>Web</strong></td><td><a href="https://dealdex.net">dealdex.net</a></td><td>Live now -- scans run server-side and need a paid-desk key in your account to score against JustTCG, PriceCharting, etc.</td></tr>
-      </tbody>
-    </table>
-    <p class="hint">Phone apps scan on device.  Your desk keys never leave the device; the scan endpoint refuses a keys payload outright.  The web app runs scans server-side, so a key saved in your browser does leave the device during a scan -- if that's a concern, use the phone apps.</p>
-  </section>
-
-  <h2>What's inside</h2>
+  <p class="availability-note">Checked 26 Sep 2026.  Beta enrollment and native installation were not verified.</p>
+</section>
+  <!-- catalog:availability:end -->
+  <h2>What you can do</h2>
   <ul>
-    <li><strong>Free desks, no key needed.</strong> TCGPlayer, Cardmarket, TCGCSV, and eBay solds all light up the moment you open the app.  No signup, no API key entry, no settings.</li>
-    <li><strong>Paid desks, opt in.</strong> JustTCG, PriceCharting, and pokemontcg.io unlock finer pricing when you add your own key in Settings.  Keys stay on the device.</li>
-    <li><strong>List or card-name search.</strong> Paste an eBay or Mercari listing URL and DealDex resolves the card, normalizes the ask, and shows every desk's read side by side.  Or search a card name and DealDex ranks the live Buy It Now singles by how fair the ask is.</li>
-    <li><strong>Condition + grade multipliers.</strong> The desk read is multiplied by condition (NM, LP, MP, HP, DMG) and grade (raw, PSA 10, BGS 9.5, CGC 10, ACE 10) so the score matches what you'd actually receive -- not what the raw listing title suggests.</li>
-    <li><strong>Confidence indicator.</strong> Green when desks agree, red when they disagree by more than ~35%.  A disagreement on a raw card is normal; on a graded card, a disagreement is a yellow flag.</li>
-    <li><strong>Per-card alerts.</strong> Set a target for any card.  When a Buy It Now single crosses your threshold, the device notifies you without ever sending the watchlist off-device.</li>
+    <li><strong>Search listings.</strong> Explore available eBay and Mercari results.</li>
+    <li><strong>Compare prices.</strong> Read the market sources returned for that card and condition.</li>
+    <li><strong>Decide yourself.</strong> Source coverage and freshness vary; purchases take place on the marketplace.</li>
   </ul>
-
-  <h2>How it works</h2>
-  <p>DealDex pulls live Buy It Now singles from eBay and Mercari, normalizes the title and ask, then asks each desk for a current read.  The free desks respond in-line; the paid desks only get queried when you've added the keys.  The scan endpoint refuses a keys payload outright, so even an accidental entry of your JustTCG key from the phone UI never leaves the device.</p>
-  <p>The web app at <a href="https://dealdex.net">dealdex.net</a> runs the same scoring pipeline but server-side, which means it can carry your saved keys across devices.  If you don't want that, use the phone apps for everything.</p>
-  <ol>
-    <li>Open the app or the web client.</li>
-    <li>Paste a listing URL or search a card name.</li>
-    <li>Read the desk scores side by side; the confidence indicator flips when desks agree.</li>
-    <li>Set a per-card alert if you want; the next fair listing notifies you.</li>
-  </ol>
-
-  <h2>What it doesn't do</h2>
-  <ul>
-    <li><strong>No buy or sell on your behalf.</strong> DealDex scores the ask.  You place the order on eBay or Mercari yourself.  The app never initiates a purchase, never holds payment credentials, never contacts a marketplace on your behalf.</li>
-    <li><strong>No community or sale history.</strong> This is a pricing tool, not a marketplace.  Sale history comes from each desk's own sold-listing feed.</li>
-    <li><strong>No key leaves the device on the phone apps.</strong> The only time a paid-desk key leaves your phone is if you explicitly tap "Push keys to account" in Settings; that is the opt-in path, and the scan endpoint refuses a keys payload either way.</li>
-    <li><strong>No trade calls.</strong> The app surfaces desk reads; the buy-or-skip call is yours.</li>
-  </ul>
-
-  <h2>Privacy</h2>
-  <p>Phone apps send no analytics, no telemetry, no crash data unless you opt in.  Scan queries to free desks carry the listing URL and a normalized title only.  Paid-desk queries stay on the device when you use the phone apps.  The web app at <a href="https://dealdex.net">dealdex.net</a> carries your saved keys in the browser and ships them with each scan; sign-in is optional, and if you skip it you still get free-desk scoring.</p>
-  <p>Full notice at <a href="/privacy.html">/privacy</a>.</p>
-
-  <h2>Need help?</h2>
-  <p>If a desk reports stale or odd prices, the most common cause is a stale listing or a sold-cache lag.  <a href="support.html">The support page</a> covers the four checks that catch 90% of scoring discrepancies; if those don't help, write to <code>feedback@simplewithus.com</code> with the listing URL, the card name, and the desk in question.</p>
-
-  <p><a class="btn btn-primary" href="#download">Get DealDex</a></p>
+  <h2>Scope and data</h2>
+  <p>Pricing data is an estimate based on available sources.&nbsp; The product site contains the current web workflow and access details.</p>
+  <p>See the <a href="support.html">product support page</a> and <a href="/privacy.html">privacy notice</a> for more detail.</p>
+  <p class="source-credit">Upstream source: <a href="https://github.com/jaywedgeworth22/DealDex" rel="noopener">DealDex on GitHub</a>.</p>
 </article>
 
 <footer class="site-footer">

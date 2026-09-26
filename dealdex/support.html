@@ -4,13 +4,14 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>DealDex Support -- Simple With Us</title>
-  <meta name="description" content="Listing desync, paid-desk keys, confidence indicator, and known-issue reference for DealDex on iOS, Android, and the web." />
+  <meta name="description" content="Support for DealDex." />
   <meta name="theme-color" content="#1a1a2e" />
   <link rel="icon" type="image/png" href="/assets/logos/swu-logo-whitecircle-1024.png" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
   <link rel="stylesheet" href="/style.css" />
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 
 <header class="site-header">
   <div class="container">
@@ -27,47 +28,15 @@
   </div>
 </header>
 
-<article class="article">
+<article class="article" id="main">
   <span class="kicker">DealDex</span>
   <h1>Support</h1>
-  <p class="lede">Listing desync, paid-desk keys, confidence indicator, and a few known-issue notes.  If the four checks below don't fix it, send the output to <code>feedback@simplewithus.com</code> and we'll come back the same day.</p>
-
-  <h2>The four checks that catch 90% of scoring discrepancies</h2>
-  <ol>
-    <li><strong>Pull-to-refresh on the feed.</strong> eBay and Mercari can lag a few seconds on hot listings.  Pull the feed down; the freshest listings show up immediately.</li>
-    <li><strong>Condition selected correctly.</strong> A raw single scores differently from a PSA 10 of the same card.  Confirm the condition is the one you'd actually receive before trusting the desk read.</li>
-    <li><strong>Grade source authoritative.</strong> If you sorted by PSA 10, double-check the seller-claimed grade matches the title; a graded single with a stock photo and no certificate link is often mislabeled.</li>
-    <li><strong>Paid-desk key valid (web only).</strong> If a paid desk shows "stale" or no rows, your key may have expired.  Re-add it in Settings; phone apps don't carry your paid-desk keys across devices.</li>
-  </ol>
-
-  <h2>Phone app shows different scores than web app</h2>
-  <p>The phone app and the web app query the same desks and apply the same multipliers.  Differences come down to:</p>
-  <ul>
-    <li>The phone app uses your device's locale for currency; the web app uses your account locale.  Set them the same and the totals line up.</li>
-    <li>The phone app shows the per-desk read; the web app sometimes aggregates them.  Toggle "show per-desk" in the web app settings.</li>
-    <li>Condition and grade sit at the listing level, not the card level.  A re-grading trip in your watchlist may shift scores noticeably.</li>
-  </ul>
-
-  <h2>Paid-desk key handling</h2>
-  <p>The phone apps refuse a keys payload at the scan endpoint by design.  If you tap "Push keys to account" in Settings, those keys are saved on the server side and used by the web app at <a href="https://dealdex.net">dealdex.net</a>; the phone app still queries paid desks locally by passing the key in headers.  We never see your JustTCG or PriceCharting usage beyond the desk's own usage reporting.</p>
-
-  <h2>Alert not firing</h2>
-  <p>The phone apps check the desk prices on launch and on pull-to-refresh; there is no background polling.  If you set an alert and don't see a notification:</p>
-  <ul>
-    <li>Confirm notifications are allowed in iOS / Android Settings for DealDex.</li>
-    <li>Pull-to-refresh once after you set the alert to seed it.</li>
-    <li>Confirm the desk you set the alert against is in your enabled list (Settings &rarr; Desks).</li>
-  </ul>
-
-  <h2>Sending logs to support</h2>
-  <p>The app's Settings screen has a "Send Logs" action (under Diagnostics).  It bundles the last few minutes into a single zip, scrubbed of any URL that contains a paid-desk query string, and opens a prefilled email to <code>feedback@simplewithus.com</code>.  Attach the zip; we respond usually within a business day.</p>
-
+  <p class="lede">For a pricing mismatch, include the listing URL, card name, condition, source, and observation time.</p>
+  <h2>Before contacting us</h2>
+  <p>Pricing sources may be delayed or unavailable.&nbsp; Recheck the marketplace listing before buying.</p>
+  <p>Check the <a href="/dealdex/">product page</a> for current platform availability and the <a href="/privacy.html">privacy notice</a> for site-level information.</p>
   <h2>Contact</h2>
-  <div class="callout">
-    <p><strong>feedback@simplewithus.com</strong> -- open a thread, don't worry about templates.  Include the listing URL, the card name, and which desk is disagreeing with the rest.</p>
-  </div>
-
-  <p style="margin-top: 32px;"><a class="btn btn-secondary" href="/">&larr; Back to Simple With Us</a></p>
+  <p>Email <a href="mailto:feedback@simplewithus.com?subject=dealdex%20support">feedback@simplewithus.com</a> with your device or browser version and steps to reproduce.&nbsp; Leave out passwords, API keys, personal contact data, and private logs.</p>
 </article>
 
 <footer class="site-footer">

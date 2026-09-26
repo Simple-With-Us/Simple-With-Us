@@ -3,14 +3,21 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>ContactLogo -- Brand every contact with their company logo</title>
-  <meta name="description" content="ContactLogo puts a company logo on every contact in your iPhone address book. One-time batch, fully on-device, with an undo log for safety." />
+  <title>ContactLogo — Simple With Us</title>
+  <meta name="description" content="Review suggested company logos before applying them to contacts." />
+
+  <link rel="canonical" href="https://simplewithus.com/contactlogo/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="ContactLogo — Simple With Us" />
+  <meta property="og:description" content="Review suggested company logos before applying them to contacts." />
+  <meta property="og:url" content="https://simplewithus.com/contactlogo/" />
   <meta name="theme-color" content="#1a1a2e" />
   <link rel="icon" type="image/png" href="/assets/logos/swu-logo-whitecircle-1024.png" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
   <link rel="stylesheet" href="/style.css" />
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 
 <header class="site-header">
   <div class="container">
@@ -27,63 +34,43 @@
   </div>
 </header>
 
-<article class="article">
-  <span class="kicker">Native iOS contact branding</span>
-  <h1>Brand every contact with their company logo.</h1>
-  <p class="lede">ContactLogo puts a real company logo on every contact in your iPhone address book. One-time batch, fully on-device, with an undo log for safety.</p>
-
+<article class="article" id="main">
+  <span class="kicker">Contact branding</span>
+  <h1>Recognize business contacts at a glance.</h1>
+  <p class="lede">ContactLogo suggests company logos for contacts and lets you review changes before applying them.&nbsp; The live web app explains its import, review, and export or sync workflow.</p>
+  <!-- catalog:availability:start -->
+<section class="availability" aria-labelledby="availability-title">
+  <h2 id="availability-title">Availability</h2>
+  <ul class="availability-list">
+    <li><strong>iOS</strong><span>iOS beta; no public install link confirmed</span></li>
+    <li><strong>macOS</strong><span>macOS beta; no public install link confirmed</span></li>
+    <li><strong>Android</strong><span>Android distribution not confirmed</span></li>
+    <li><strong>Web</strong><span>Web app</span></li>
+  </ul>
   <div class="btn-row">
-    <a class="btn btn-primary" href="https://contactlogo.com">Visit contactlogo.com</a>
-    <a class="btn btn-secondary" href="support.html">Support</a>
-    <a class="btn btn-secondary" href="/privacy.html">Privacy</a>
+    <a class="btn btn-primary" href="https://contactlogo.com/" rel="noopener">Open web app</a>
+    <a class="btn btn-secondary" href="/contactlogo/support.html">Support</a>
   </div>
-
-  <h2>What's inside</h2>
+  <p class="availability-note">Checked 26 Sep 2026.  Beta enrollment and native installation were not verified.</p>
+</section>
+  <!-- catalog:availability:end -->
+  <h2>What you can do</h2>
   <ul>
-    <li><strong>Bulk brand.</strong> Match every contact against a curated company roster in one pass; missing logos are flagged, not guessed.</li>
-    <li><strong>On-device.</strong> Your address book never leaves your phone. No upload step, no account, no cloud round-trip.</li>
-    <li><strong>Undo log.</strong> Every batch is recorded with a timestamp; one tap restores the previous state if a contact looks wrong.</li>
-    <li><strong>Source-aware.</strong> Respects iCloud, Google, and local sources; only writes to the source you choose.</li>
+    <li><strong>Review matches.</strong> Inspect suggested logos before updating a contact.</li>
+    <li><strong>Choose a destination.</strong> Export results or use a supported contact sync path.</li>
+    <li><strong>Understand transfers.</strong> Network lookups and selected Google sync actions may send data to external services.</li>
   </ul>
-
-  <h2>How it works</h2>
-  <p>ContactLogo reads your address book with permission, matches companies against a curated roster, and writes the logo back as the contact's image. The match is deterministic, so re-running on the same roster is idempotent.</p>
-
-  <ol>
-    <li>Grant Contacts permission on first run. ContactLogo only reads; nothing uploads.</li>
-    <li>Pick a roster -- the default curated set, or drop in your own CSV.</li>
-    <li>Tap Brand. The app writes matches and shows a summary. Open the Undo log to roll back.</li>
-  </ol>
-
-  <div class="callout">
-    <p><strong>Privacy:</strong> ContactLogo is fully on-device. The address book and the matches stay on your phone. Full notice at <a href="/privacy.html">/privacy</a>.</p>
-  </div>
-
-  <h2 id="mac">Mac version</h2>
-  <p>ContactLogo for Mac is the macOS sibling.  Reads your Address Book with permission, matches companies against the roster you provide, and writes the chosen image back as the contact's photo.  The match is deterministic, so re-running is safe.  One shared undo log across the Address Book source.</p>
-  <p>Direct download (DMG).  Email <a href="mailto:feedback@simplewithus.com?subject=ContactLogo%20for%20Mac">feedback@simplewithus.com</a> for the build link until the notarized installer is published.</p>
-
-  <h2>What it doesn't do</h2>
-  <ul>
-    <li><strong>Auto-detect companies.</strong> We don't infer company from email domain; the match comes from the roster you choose.</li>
-    <li><strong>Background sync.</strong> No daemon, no push, no scheduled refresh. Run a batch when you want one.</li>
-    <li><strong>Social avatars.</strong> We don't pull profile photos from third-party networks.</li>
-  </ul>
-
-  <h2>Privacy</h2>
-  <p>ContactLogo does not transmit anything to Simple With Us. The app reads your contacts on-device, writes logos, and that's it. Crash reports are opt-in and scrubbed of identifiers. Full notice at <a href="/privacy.html">/privacy</a>.</p>
-
-  <h2>Need help?</h2>
-  <p>A match can occasionally skip a contact if the company name in your roster differs from the one stored on the contact. <a href="support.html">The support page</a> covers the four checks that catch 90% of match misses; if those don't help, write to <code>feedback@simplewithus.com</code> with a sample contact (no real data needed) and which roster you used.</p>
-
-  <p><a class="btn btn-primary" href="https://contactlogo.com">Get ContactLogo</a></p>
+  <h2>Scope and data</h2>
+  <p>Contact data is handled differently across local, web, and sync workflows.&nbsp; Check the product privacy details before importing or syncing contacts.</p>
+  <p>See the <a href="support.html">product support page</a> and <a href="/privacy.html">privacy notice</a> for more detail.</p>
+  <p class="source-credit">Upstream source: <a href="https://github.com/jaywedgeworth22/ContactLogo" rel="noopener">ContactLogo on GitHub</a>.</p>
 </article>
 
 <footer class="site-footer">
   <div class="container">
     <div class="copy">
       <span>&copy; 2026 Simple With Us. All rights reserved.</span>
-      <span><a href="/">Home</a> &middot; <a href="support.html">Support</a> &middot; <a href="/privacy.html">Privacy</a></span>
+      <span><a href="/">Home</a> &middot; <a href="/support.html">Support</a> &middot; <a href="/privacy.html">Privacy</a></span>
     </div>
   </div>
 </footer>
