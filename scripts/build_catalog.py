@@ -23,6 +23,7 @@ import pathlib
 import re
 import sys
 from html.parser import HTMLParser
+from urllib.parse import urlsplit
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 DATA = ROOT / "apps" / "index.json"
@@ -240,6 +241,12 @@ def lint(data: dict) -> list:
         for href in parsed.hrefs:
             if any(private in href for private in PRIVATE_DESTINATIONS):
                 errors.append(f"{page.relative_to(ROOT)}: private repository destination")
+            target = urlsplit(href)
+            if target.hostname == "github.com" and target.path.startswith("/jaywedgeworth22/"):
+                repo = target.path.strip("/").split("/")[1]
+                allowed = {name.lower() for name in PUBLIC_SOURCE_REPOS | {"Simple-With-Us"}}
+                if repo.lower() not in allowed:
+                    errors.append(f"{page.relative_to(ROOT)}: GitHub repository is not on the verified public list")
             if href.rstrip("/") in {"https://testflight.apple.com", "https://apps.apple.com", "https://apps.apple.com/app"}:
                 errors.append(f"{page.relative_to(ROOT)}: generic store destination")
             if href.startswith("/") and not href.startswith("//") and not exists(href.split("#")[0].split("?")[0]):
