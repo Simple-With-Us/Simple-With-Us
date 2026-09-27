@@ -231,7 +231,7 @@
         "Web"
       ],
       "status": "live",
-      "statusText": "Web live; apps in beta",
+      "statusText": "Website and app betas",
       "icon": "/assets/app-icons/botfleet.png",
       "accent": "#0284c7",
       "page": "/botfleet/",
@@ -271,11 +271,11 @@
         },
         "Web": {
           "status": "live",
-          "label": "Web app",
+          "label": "Product website",
           "channel": "website",
           "url": "https://botfleet.app/",
           "verifiedOn": "2026-09-26",
-          "verification": "Anonymous product entry returned HTTP 200; authenticated workflows were not checked."
+          "verification": "Marketing homepage returned HTTP 200; authenticated workflows were not checked."
         }
       }
     },
@@ -346,7 +346,7 @@
         "website": "https://congress.trade/",
         "github": "https://github.com/jaywedgeworth22/Congress.Trade",
         "appStore": null,
-        "testFlight": null,
+        "testFlight": "https://testflight.apple.com/join/VNUEU6Ge",
         "brew": null
       },
       "bundleIds": [
@@ -367,11 +367,11 @@
         },
         "iOS": {
           "status": "beta",
-          "label": "iOS beta; no public install link confirmed",
-          "channel": null,
-          "url": null,
+          "label": "iOS public TestFlight page",
+          "channel": "testFlight",
+          "url": "https://testflight.apple.com/join/VNUEU6Ge",
           "verifiedOn": "2026-09-26",
-          "verification": "Beta status from project source; public enrollment or download was not verified."
+          "verification": "Product-specific TestFlight page returned HTTP 200; enrollment was not tested."
         }
       }
     },

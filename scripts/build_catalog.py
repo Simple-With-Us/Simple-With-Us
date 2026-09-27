@@ -118,7 +118,7 @@ def card(app: dict, provider_token) -> str:
     if chosen or app.get("support"):
         out.append('  <div class="card-links">')
         if chosen:
-            label = {"website": "Open web app", "source": "View public source", "download": "Download Mac beta", "testFlight": "Open TestFlight beta", "appStore": "Open App Store listing"}[chosen["channel"]]
+            label = {"website": "Visit website", "source": "View public source", "download": "Download Mac beta", "testFlight": "Open TestFlight beta", "appStore": "Open App Store listing"}[chosen["channel"]]
             out.append(f'    <a href="{attr(chosen["url"])}" rel="noopener">{label}<span aria-hidden="true"> ↗</span></a>')
         if app.get("support"):
             out.append(f'    <a href="{attr(app["support"])}">Support</a>')
@@ -153,7 +153,7 @@ def availability_region(app: dict) -> str:
     for platform, fact in app["availability"].items():
         if not fact["url"]:
             continue
-        label = {"website": "Open web app", "source": "View public source", "appStore": "Open App Store listing", "testFlight": "Open TestFlight beta", "download": "Download Mac beta"}[fact["channel"]]
+        label = {"website": "Visit website", "source": "View public source", "appStore": "Open App Store listing", "testFlight": "Open TestFlight beta", "download": "Download Mac beta"}[fact["channel"]]
         klass = "btn btn-primary" if fact["status"] == "live" else "btn btn-secondary"
         rows.append(f'    <a class="{klass}" href="{attr(fact["url"])}" rel="noopener">{label}</a>')
     rows.append(f'    <a class="btn btn-secondary" href="{attr(app["support"])}">Support</a>')
