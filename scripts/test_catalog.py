@@ -64,12 +64,35 @@ class CatalogContractTests(unittest.TestCase):
             self.assertIn(f'{url}?{query}swu-codecaps-hero', detail)
             self.assertNotIn("{{providerToken}}", card + detail)
 
-    def test_independent_platform_check_dates_are_rendered(self):
-        app = copy.deepcopy(self.data["apps"][0])
-        app["availability"]["macOS"]["verifiedOn"] = "2026-10-02"
+    def test_public_copy_omits_internal_verification_notes(self):
+        app = self.data["apps"][0]
         region = catalog.availability_region(app)
-        self.assertIn("macOS 02 Oct 2026", region)
-        self.assertIn("iOS 26 Sep 2026", region)
+        self.assertNotIn("not verified", region)
+        self.assertNotIn("Checked", region)
+        self.assertIn("verification", app["availability"]["iOS"])
+
+    def test_family_count_keeps_both_monitor_editions(self):
+        self.assertEqual(11, catalog.app_count(self.data["apps"]))
+        editions = [a for a in self.data["apps"] if a.get("catalogGroup") == "usage-monitor"]
+        self.assertEqual({"usage-client", "usage-local"}, {a["slug"] for a in editions})
+        self.assertEqual(2, len({a["icon"] for a in editions}))
+        card = catalog.family_card(editions)
+        for app in editions:
+            self.assertIn(app["page"], card)
+            self.assertIn(app["icon"], card)
+
+    def test_all_public_pages_share_brand_and_product_identity(self):
+        for path in catalog.ROOT.rglob("*.html"):
+            if ".git" in path.parts or "_template" in path.parts:
+                continue
+            page = path.read_text()
+            self.assertEqual(page, catalog.chrome(page), str(path))
+            if 'http-equiv="refresh"' not in page:
+                self.assertIn(catalog.HEADER, page)
+        for app in self.data["apps"]:
+            page = (catalog.ROOT / app["page"].lstrip("/") / "index.html").read_text()
+            self.assertIn(catalog.identity_region(app), page)
+            self.assertLess(page.index(f'<h1>{app["name"]}</h1>'), page.index('class="lede"'))
 
     def test_invalid_shelf_support_and_calendar_date_are_rejected(self):
         data = copy.deepcopy(self.data)

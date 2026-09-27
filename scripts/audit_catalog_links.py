@@ -12,6 +12,8 @@ import argparse
 from dataclasses import dataclass, field
 from html.parser import HTMLParser
 import json
+import re
+from html import unescape
 from pathlib import Path
 import socket
 import sys
@@ -186,17 +188,35 @@ def validate_final_destination(target_url: str, final_url: str) -> str | None:
     return None
 
 
+def testflight_content_issue(body: str) -> str | None:
+    """A 200 response may be a generic or explicitly retired Apple invite."""
+    match = re.search(r"<title[^>]*>(.*?)</title>", body, re.I | re.S)
+    title = unescape(re.sub(r"\s+", " ", match[1])).strip() if match else ""
+    if re.search(r"\b(ignore|retired|obsolete)\b", title, re.I):
+        return "TestFlight page identifies a retired app"
+    if not re.search(r"\bjoin\b.+\bbeta\b", title, re.I):
+        return "TestFlight returned no named beta invitation"
+    return None
+
+
 def external_result(target: Target, timeout: float = 10.0) -> Result:
     request = Request(target.url, headers={"User-Agent": USER_AGENT, "Accept": "text/html,application/json;q=0.9,*/*;q=0.5"})
     try:
         with urlopen(request, timeout=timeout) as response:
-            response.read(1)
+            is_testflight = urlsplit(target.url).hostname == "testflight.apple.com"
+            body = response.read(262144).decode("utf-8", errors="replace") if is_testflight else ""
+            if not is_testflight:
+                response.read(1)
             status = int(response.status)
             final_url = response.geturl()
             state = classify_http_status(status)
             mismatch = validate_final_destination(target.url, final_url) if state == "ok" else None
             if mismatch:
                 return Result(target, "broken", mismatch, final_url, status)
+            if state == "ok" and is_testflight:
+                issue = testflight_content_issue(body)
+                if issue:
+                    return Result(target, "unverified", issue, final_url, status)
             return Result(target, state, f"HTTP {status}", final_url, status)
     except HTTPError as exc:
         status = int(exc.code)

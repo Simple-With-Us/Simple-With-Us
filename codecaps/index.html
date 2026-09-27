@@ -13,43 +13,38 @@
   <meta property="og:url" content="https://simplewithus.com/codecaps/" />
   <meta name="theme-color" content="#1a1a2e" />
   <link rel="icon" type="image/png" href="/assets/logos/swu-logo-whitecircle-1024.png" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
-  <link rel="stylesheet" href="/style.css" />
+  <link rel="stylesheet" href="/assets/site.css" />
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
 
 <header class="site-header">
-  <div class="container">
-    <a class="brand" href="/">
-      <picture><source media="(max-width: 640px)" srcset="/assets/logos/swu-logo-wide-nomark.png" /><img class="brand-mark" src="/assets/logos/swu-logo-wide.png" alt="Simple With Us" /></picture>
-    </a>
-    <nav class="nav">
-      <a href="/#apps">Apps</a>
-      <a href="/support.html">Support</a>
-      <a href="/privacy.html">Privacy</a>
-      <a href="/terms.html">Terms</a>
-      <a class="cta" href="mailto:feedback@simplewithus.com">Contact</a>
+  <div class="wrap">
+    <a class="wordmark" href="/" aria-label="Simple With Us home"><img src="/assets/logos/swu-wordmark.webp" alt="Simple With Us" width="288" height="30"></a>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="/#apps">Apps</a><a href="/#status">Status</a><a href="/support.html">Support</a>
     </nav>
   </div>
 </header>
 
 <article class="article" id="main">
-  <span class="kicker">AI usage on Mac and iPhone</span>
-  <h1>See supported AI usage and quota windows.</h1>
+<!-- catalog:identity:start -->
+<div class="app-identity">
+    <img class="app-icon" src="/assets/app-icons/codecaps.png" alt="" width="80" height="80">
+    <div><a class="back-link" href="/#apps">← All apps</a><h1>CodeCaps</h1></div>
+  </div><!-- catalog:identity:end -->
   <p class="lede">CodeCaps reads supported quota and reset data from local CLI sessions on macOS 14+; an iPhone companion is in beta.&nbsp; What is available depends on the provider and credential scope.</p>
   <!-- catalog:availability:start -->
 <section class="availability" aria-labelledby="availability-title">
   <h2 id="availability-title">Availability</h2>
   <ul class="availability-list">
-    <li><strong>macOS</strong><span>macOS beta download (macOS 14+)</span></li>
-    <li><strong>iOS</strong><span>iOS beta; no public install link confirmed</span></li>
+    <li><strong>macOS</strong><span><a href="https://github.com/jaywedgeworth22/codecaps/releases/latest/download/CodeCaps.dmg" rel="noopener">macOS beta download (macOS 14+)<span aria-hidden="true"> ↗</span></a></span></li>
+    <li><strong>iOS</strong><span>Companion · invite-only beta</span></li>
   </ul>
   <div class="btn-row">
-    <a class="btn btn-secondary" href="https://github.com/jaywedgeworth22/codecaps/releases/latest/download/CodeCaps.dmg" rel="noopener">Download Mac beta</a>
+    <a class="btn btn-primary" href="https://codecaps.simplewithus.com/">Visit website</a>
     <a class="btn btn-secondary" href="/codecaps/support.html">Support</a>
   </div>
-  <p class="availability-note">Checked 26 Sep 2026.  Beta enrollment and native installation were not verified.</p>
 </section>
   <!-- catalog:availability:end -->
   <h2>What you can do</h2>
@@ -61,15 +56,14 @@
   <h2>Scope and data</h2>
   <p>Mac data stays local unless optional endpoint push or pull is enabled.&nbsp; Unsupported provider readings remain unavailable; review the current build and privacy details before connecting a source.</p>
   <p>See the <a href="support.html">product support page</a> and <a href="/privacy.html">privacy notice</a> for more detail.</p>
-  <p class="source-credit">Upstream source: <a href="https://github.com/jaywedgeworth22/CodeCaps" rel="noopener">CodeCaps on GitHub</a>.</p>
+  <p class="source-credit">Source: <a href="https://github.com/jaywedgeworth22/CodeCaps" rel="noopener">CodeCaps on GitHub</a>.</p>
 </article>
 
 <footer class="site-footer">
-  <div class="container">
-    <div class="copy">
-      <span>&copy; 2026 Simple With Us. All rights reserved.</span>
-      <span><a href="/">Home</a> &middot; <a href="/support.html">Support</a> &middot; <a href="/privacy.html">Privacy</a></span>
-    </div>
+  <div class="wrap">
+    <p>Apps by <a href="https://jays.services/">Jay Wedgeworth</a>.</p>
+    <nav aria-label="Footer"><a href="/#apps">Apps</a><a href="/#status">Status</a><a href="/support.html">Support</a><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a></nav>
+    <p class="legal">© 2026 Simple With Us.</p>
   </div>
 </footer>
 

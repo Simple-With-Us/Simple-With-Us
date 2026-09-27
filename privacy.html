@@ -7,23 +7,16 @@
   <meta name="description" content="Privacy information for the Simple With Us catalog and links to product-specific practices." />
   <meta name="theme-color" content="#1a1a2e" />
   <link rel="icon" type="image/png" href="/assets/logos/swu-logo-whitecircle-1024.png" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
-  <link rel="stylesheet" href="/style.css" />
+  <link rel="stylesheet" href="/assets/site.css" />
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
 
 <header class="site-header">
-  <div class="container">
-    <a class="brand" href="/">
-      <picture><source media="(max-width: 640px)" srcset="/assets/logos/swu-logo-wide-nomark.png" /><img class="brand-mark" src="/assets/logos/swu-logo-wide.png" alt="Simple With Us" /></picture>
-    </a>
-    <nav class="nav">
-      <a href="/#apps">Apps</a>
-      <a href="/support.html">Support</a>
-      <a href="/privacy.html">Privacy</a>
-      <a href="/terms.html">Terms</a>
-      <a class="cta" href="mailto:feedback@simplewithus.com">Contact</a>
+  <div class="wrap">
+    <a class="wordmark" href="/" aria-label="Simple With Us home"><img src="/assets/logos/swu-wordmark.webp" alt="Simple With Us" width="288" height="30"></a>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="/#apps">Apps</a><a href="/#status">Status</a><a href="/support.html">Support</a>
     </nav>
   </div>
 </header>
@@ -31,10 +24,10 @@
 <article class="article" id="main">
   <span class="kicker">Privacy notice</span>
   <h1>Privacy at Simple With Us</h1>
-  <p class="lede">Updated 26 September 2026.&nbsp; This notice describes the public catalog at <code>simplewithus.com</code>.&nbsp; Product data flows depend on the app and platform; check each product's own privacy information before using it.</p>
+  <p class="lede">Updated 27 September 2026.&nbsp; This notice describes the public catalog at <code>simplewithus.com</code>.&nbsp; Product data flows depend on the app and platform; check each product's own privacy information before using it.</p>
 
   <h2>This website</h2>
-  <p>The catalog is a static site hosted through GitHub Pages.&nbsp; Its current page code does not include an analytics or advertising script.&nbsp; GitHub Pages and linked resources, including Google Fonts on some pages, may receive ordinary web requests under their own policies.</p>
+  <p>The catalog is a static site hosted through GitHub Pages.&nbsp; The service-status summary loads from our public Better Stack status page.&nbsp; GitHub Pages, Cloudflare, and the status provider receive ordinary web requests under their own policies.</p>
   <p>Opening an external product site, public source repository, download, or TestFlight page sends a request to that destination.&nbsp; Links are labeled so you can choose when to leave this site.</p>
 
   <h2>Product data varies</h2>
@@ -51,11 +44,10 @@
 </article>
 
 <footer class="site-footer">
-  <div class="container">
-    <div class="copy">
-      <span>&copy; 2026 Simple With Us. All rights reserved.</span>
-      <span><a href="/">Home</a> &middot; <a href="/support.html">Support</a> &middot; <a href="/terms.html">Terms</a></span>
-    </div>
+  <div class="wrap">
+    <p>Apps by <a href="https://jays.services/">Jay Wedgeworth</a>.</p>
+    <nav aria-label="Footer"><a href="/#apps">Apps</a><a href="/#status">Status</a><a href="/support.html">Support</a><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a></nav>
+    <p class="legal">© 2026 Simple With Us.</p>
   </div>
 </footer>
 

@@ -104,14 +104,14 @@ def card(app: dict, provider_token) -> str:
 
     out = [f'<li class="card" style="--card-accent: {attr(app["accent"])}">']
     out.append('  <div class="card-head">')
-    out.append(f'    <img class="card-icon" src="{attr(app["icon"])}" alt="" width="48" height="48" loading="lazy" decoding="async">')
+    out.append(f'    <img class="card-icon" src="{attr(app["icon"])}" alt="" width="48" height="48" decoding="async">')
     out.append("    <div>")
     if primary:
         rel = "" if primary.startswith("/") else ' rel="noopener"'
         out.append(f'      <h4><a href="{attr(primary)}"{rel}>{gap(app["name"])}</a></h4>')
     else:
         out.append(f'      <h4>{gap(app["name"])}</h4>')
-    pills = "".join(f'<li class="pill">{gap(p)}</li>' for p in app["platforms"])
+    pills = "".join(f'<li class="pill">{gap(p)}{" · source" if app["availability"][p]["status"] == "source" else " · beta" if app["availability"][p]["status"] == "beta" else ""}</li>' for p in app["platforms"])
     out.append(f'      <ul class="pills" aria-label="Platforms">{pills}</ul>')
     out.append("    </div>")
     out.append("  </div>")
@@ -131,6 +131,20 @@ def card(app: dict, provider_token) -> str:
     return "\n".join(out)
 
 
+def family_card(apps: list) -> str:
+    rows = ['<li class="card family-card">', '<h4>Usage Monitor</h4>',
+            '<p>Usage monitoring for a server you manage or directly on your iPhone.</p>',
+            '<ul class="editions" aria-label="Usage Monitor editions">']
+    for app in apps:
+        edition = "Client" if app["slug"] == "usage-client" else "Local"
+        summary = "Connect to your own server" if edition == "Client" else "Track usage on your iPhone"
+        rows.append(f'<li><a href="{attr(app["page"])}"><img src="{attr(app["icon"])}" alt="" width="40" height="40"><span><strong>{edition}</strong><small>{summary}</small></span><span aria-hidden="true">→</span></a></li>')
+    return "\n".join(rows + ['</ul>', '</li>'])
+
+
+def app_count(apps: list) -> int:
+    return len({app.get("catalogGroup") or app["slug"] for app in apps})
+
 def render(data: dict) -> dict:
     apps = data["apps"]
     token = data.get("appStoreProviderToken")
@@ -140,10 +154,17 @@ def render(data: dict) -> dict:
         grid += [f'<section class="catalog-group" aria-labelledby="shelf-{attr(shelf)}">',
                  f'  <h3 id="shelf-{attr(shelf)}">{gap(title)}</h3>',
                  '  <ul class="grid" role="list">']
-        grid += [card(a, token) for a in subset]
+        rendered_groups = set()
+        for app in subset:
+            group = app.get("catalogGroup")
+            if group:
+                if group not in rendered_groups:
+                    grid.append(family_card([a for a in subset if a.get("catalogGroup") == group]))
+                    rendered_groups.add(group)
+            else:
+                grid.append(card(app, token))
         grid += ['  </ul>', '</section>']
-    public_src = sum(1 for a in apps if a["links"].get("github"))
-    facts = f'<p class="facts">{len(apps)} apps · {public_src} with public source · platform availability shown per app</p>'
+    facts = f'<p class="facts">{app_count(apps)} apps</p>'
     return {"facts": facts, "grid": "\n".join(grid)}
 
 
@@ -151,28 +172,52 @@ def availability_region(app: dict, provider_token=None) -> str:
     rows = ['<section class="availability" aria-labelledby="availability-title">',
             '  <h2 id="availability-title">Availability</h2>',
             '  <ul class="availability-list">']
+    linked = set()
     for platform, fact in app["availability"].items():
-        rows.append(f'    <li><strong>{gap(platform)}</strong><span>{gap(fact["label"])}</span></li>')
+        label = gap(fact["label"])
+        if fact["url"]:
+            url = (app_store_url(fact["url"], app["slug"], provider_token, "hero")
+                   if fact["channel"] == "appStore" else fact["url"])
+            linked.add(fact["url"])
+            label = f'<a href="{attr(url)}" rel="noopener">{label}<span aria-hidden="true"> ↗</span></a>'
+        rows.append(f'    <li><strong>{gap(platform)}</strong><span>{label}</span></li>')
     rows += ['  </ul>', '  <div class="btn-row">']
-    for platform, fact in app["availability"].items():
-        if not fact["url"]:
-            continue
-        label = {"website": "Visit website", "source": "View public source", "appStore": "Open App Store listing", "testFlight": "Open TestFlight beta", "download": "Download Mac beta"}[fact["channel"]]
-        klass = "btn btn-primary" if fact["status"] == "live" else "btn btn-secondary"
-        url = (app_store_url(fact["url"], app["slug"], provider_token, "hero")
-               if fact["channel"] == "appStore" else fact["url"])
-        rows.append(f'    <a class="{klass}" href="{attr(url)}" rel="noopener">{label}</a>')
+    website = app["links"].get("website")
+    if website and website not in linked:
+        rows.append(f'    <a class="btn btn-primary" href="{attr(website)}">Visit website</a>')
     if app.get("support"):
         rows.append(f'    <a class="btn btn-secondary" href="{attr(app["support"])}">Support</a>')
-    checked = {platform: date.fromisoformat(fact["verifiedOn"]).strftime("%d %b %Y")
-               for platform, fact in app["availability"].items()}
-    if len(set(checked.values())) == 1:
-        note = "Checked " + next(iter(checked.values()))
-    else:
-        note = "Checked: " + "; ".join(f"{platform} {stamp}" for platform, stamp in checked.items())
-    rows += ['  </div>', f'  <p class="availability-note">{gap(note)}.{NBSP_GAP}Beta enrollment and native installation were not verified.</p>', '</section>']
+    rows += ['  </div>', '</section>']
     return "\n".join(rows)
 
+
+HEADER = """<header class="site-header">
+  <div class="wrap">
+    <a class="wordmark" href="/" aria-label="Simple With Us home"><img src="/assets/logos/swu-wordmark.webp" alt="Simple With Us" width="288" height="30"></a>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="/#apps">Apps</a><a href="/#status">Status</a><a href="/support.html">Support</a>
+    </nav>
+  </div>
+</header>"""
+FOOTER = """<footer class="site-footer">
+  <div class="wrap">
+    <p>Apps by <a href="https://jays.services/">Jay Wedgeworth</a>.</p>
+    <nav aria-label="Footer"><a href="/#apps">Apps</a><a href="/#status">Status</a><a href="/support.html">Support</a><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a></nav>
+    <p class="legal">© 2026 Simple With Us.</p>
+  </div>
+</footer>"""
+
+
+def chrome(page: str) -> str:
+    page = re.sub(r'<header class="site-header">.*?</header>', lambda _: HEADER, page, flags=re.S)
+    return re.sub(r'<footer class="site-footer">.*?</footer>', lambda _: FOOTER, page, flags=re.S)
+
+
+def identity_region(app: dict) -> str:
+    return f'''<div class="app-identity">
+    <img class="app-icon" src="{attr(app["icon"])}" alt="" width="80" height="80">
+    <div><a class="back-link" href="/#apps">← All apps</a><h1>{gap(app["name"])}</h1></div>
+  </div>'''
 
 def splice(page: str, name: str, body: str, filename="index.html") -> str:
     pat = re.compile(rf"(<!-- catalog:{name}:start -->)(.*?)(\s*<!-- catalog:{name}:end -->)", re.S)
@@ -316,12 +361,27 @@ def main() -> int:
         detail = ROOT / app["page"].lstrip("/") / "index.html"
         original = detail.read_text()
         rendered = splice(original, "availability", availability_region(app, data.get("appStoreProviderToken")), detail.relative_to(ROOT))
+        rendered = splice(rendered, "identity", identity_region(app), detail.relative_to(ROOT))
         if rendered != original:
             if check:
                 errors.append(f"{detail.relative_to(ROOT)} is stale: run python3 scripts/build_catalog.py")
             else:
                 detail.write_text(rendered)
                 changed.append(str(detail.relative_to(ROOT)))
+    for path in ROOT.rglob("*.html"):
+        if ".git" in path.parts:
+            continue
+        original = path.read_text()
+        rendered = chrome(original)
+        app = next((a for a in data["apps"] if a.get("support") == "/" + path.relative_to(ROOT).as_posix()), None)
+        if app and "<!-- catalog:identity:start -->" in rendered:
+            rendered = splice(rendered, "identity", identity_region(app))
+        if rendered != original:
+            if check:
+                errors.append(f"{path.relative_to(ROOT)}: shared header or footer is stale")
+            else:
+                path.write_text(rendered)
+                changed.append(str(path.relative_to(ROOT)))
     if changed:
         print("regenerated:", ", ".join(changed))
     for e in errors:

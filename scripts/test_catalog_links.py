@@ -64,6 +64,12 @@ class CatalogLinkAuditTests(unittest.TestCase):
         self.assertIn("invite identity", audit.validate_final_destination(invite, "https://testflight.apple.com/join/OTHER"))
         self.assertIn("invite identity", audit.validate_final_destination(invite, "https://testflight.apple.com/join/ABC1234"))
 
+    def test_generic_and_retired_testflight_pages_are_not_successes(self):
+        self.assertIsNone(audit.testflight_content_issue("<title>Join the ContactLogo beta - TestFlight - Apple</title>"))
+        self.assertIn("retired", audit.testflight_content_issue("<title>Join the IGNORE old ST beta - TestFlight - Apple</title>"))
+        self.assertIn("no named", audit.testflight_content_issue("<title>TestFlight - Apple</title>"))
+        self.assertIn("no named", audit.testflight_content_issue("<html>provider challenge</html>"))
+
     def test_online_audit_combines_local_and_live_results(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
