@@ -400,7 +400,8 @@
         "brew": null
       },
       "bundleIds": [
-        "com.simplewithus.hoghunter.macos"
+        "com.simplewithus.hoghunter.macos",
+        "com.simplewithus.hoghunter.ios"
       ],
       "appleIds": {
         "macos": null,
@@ -424,7 +425,10 @@
           "verifiedOn": "2026-09-27",
           "verification": "iPhone companion source exists.  Current-bundle ASC app 6816633156 was created and verified through the Apple API; no uploaded public beta build is available yet."
         }
-      }
+      },
+      "associatedDomainBundleIds": [
+        "com.simplewithus.hoghunter.macos"
+      ]
     },
     {
       "slug": "contactlogo",
@@ -576,7 +580,7 @@
         "brew": null
       },
       "bundleIds": [
-        "codes.autorotate",
+        "codes.autorotate.ios",
         "codes.autorotate.macos"
       ],
       "appleIds": {
