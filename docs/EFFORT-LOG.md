@@ -2,6 +2,8 @@
 
 ## In progress
 
+2026-09-27 — CODEX — Issue #19: unify site branding and app identity, correct platform links and icons, simplify public copy, and embed public service status.  Branch `codex/brand-product-clarity-20260927`.
+
 2026-09-27 — CODEX — Report-only public catalog destination audit for manifest, support/privacy routes, and generated links.  Issue #13; branch `codex/catalog-link-audit`.  The scheduled/manual workflow does not participate in source PR gating and classifies provider challenges and transient failures as unverified.
 
 ## Deployed

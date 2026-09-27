@@ -9,13 +9,13 @@
       "slug": "codecaps",
       "name": "CodeCaps",
       "tagline": "Check supported AI quota and reset windows from the macOS menu bar.",
-      "shelf": "ai-coders",
+      "shelf": "coding",
       "platforms": [
         "macOS",
         "iOS"
       ],
       "status": "beta",
-      "statusText": "macOS beta download; iOS access unconfirmed",
+      "statusText": "Mac beta · iPhone companion by invitation",
       "icon": "/assets/app-icons/codecaps.png",
       "accent": "#0f766e",
       "page": "/codecaps/",
@@ -47,11 +47,11 @@
         },
         "iOS": {
           "status": "beta",
-          "label": "iOS beta; no public install link confirmed",
+          "label": "Companion · invite-only beta",
           "channel": null,
           "url": null,
-          "verifiedOn": "2026-09-26",
-          "verification": "Beta status from project source; public enrollment or download was not verified."
+          "verifiedOn": "2026-09-27",
+          "verification": "Read-only App Store Connect beta-group check found internal testing only, with no public invitation on 2026-09-27."
         }
       }
     },
@@ -59,14 +59,14 @@
       "slug": "usage-client",
       "name": "Usage Client Monitor",
       "tagline": "View data from your self-hosted Usage Monitor server on iPhone.",
-      "shelf": "ai-coders",
+      "shelf": "coding",
       "platforms": [
         "iOS",
         "Web"
       ],
       "status": "beta",
-      "statusText": "iOS beta access not confirmed",
-      "icon": "/assets/app-icons/usage-monitor.png",
+      "statusText": "iOS TestFlight beta",
+      "icon": "/assets/app-icons/usage-client.png",
       "accent": "#ea580c",
       "page": "/usage-client/",
       "support": "/usage-client/support.html",
@@ -74,7 +74,7 @@
         "website": null,
         "github": "https://github.com/jaywedgeworth22/Usage-Monitor",
         "appStore": null,
-        "testFlight": null,
+        "testFlight": "https://testflight.apple.com/join/KPq42UrC",
         "brew": null
       },
       "bundleIds": [
@@ -87,11 +87,11 @@
       "availability": {
         "iOS": {
           "status": "beta",
-          "label": "iOS beta; no public install link confirmed",
-          "channel": null,
-          "url": null,
-          "verifiedOn": "2026-09-26",
-          "verification": "Beta status from project source; public enrollment or download was not verified."
+          "label": "TestFlight beta",
+          "channel": "testFlight",
+          "url": "https://testflight.apple.com/join/KPq42UrC",
+          "verifiedOn": "2026-09-27",
+          "verification": "Named product TestFlight invitation confirmed on Apple public join page.  Enrollment and installation were not tested."
         },
         "Web": {
           "status": "source",
@@ -101,19 +101,20 @@
           "verifiedOn": "2026-09-26",
           "verification": "Public repository returned HTTP 200; installation was not tested."
         }
-      }
+      },
+      "catalogGroup": "usage-monitor"
     },
     {
       "slug": "usage-local",
       "name": "Usage Local Monitor",
       "tagline": "Track supported provider usage and manual subscription costs on iPhone.",
-      "shelf": "ai-coders",
+      "shelf": "coding",
       "platforms": [
         "iOS"
       ],
       "status": "beta",
-      "statusText": "iOS beta access not confirmed",
-      "icon": "/assets/app-icons/usage-monitor.png",
+      "statusText": "iOS TestFlight beta",
+      "icon": "/assets/app-icons/usage-local.png",
       "accent": "#ea580c",
       "page": "/usage-local/",
       "support": "/usage-local/support.html",
@@ -121,7 +122,7 @@
         "website": null,
         "github": "https://github.com/jaywedgeworth22/Usage-Monitor",
         "appStore": null,
-        "testFlight": null,
+        "testFlight": "https://testflight.apple.com/join/YXZGGeUs",
         "brew": null
       },
       "bundleIds": [
@@ -134,28 +135,29 @@
       "availability": {
         "iOS": {
           "status": "beta",
-          "label": "iOS beta; no public install link confirmed",
-          "channel": null,
-          "url": null,
-          "verifiedOn": "2026-09-26",
-          "verification": "Beta status from project source; public enrollment or download was not verified."
+          "label": "TestFlight beta",
+          "channel": "testFlight",
+          "url": "https://testflight.apple.com/join/YXZGGeUs",
+          "verifiedOn": "2026-09-27",
+          "verification": "Named product TestFlight invitation confirmed on Apple public join page.  Enrollment and installation were not tested."
         }
-      }
+      },
+      "catalogGroup": "usage-monitor"
     },
     {
       "slug": "harness",
       "name": "Harness",
       "tagline": "Run a local agent harness with DeepSeek and MiniMax support.",
-      "shelf": "ai-coders",
+      "shelf": "coding",
       "platforms": [
         "macOS"
       ],
       "status": "source",
       "statusText": "Build from source",
-      "icon": "/assets/app-icons/harness.png",
+      "icon": "/assets/app-icons/harness-wordmark.svg",
       "accent": "#0ea5e9",
-      "page": null,
-      "support": null,
+      "page": "/harness/",
+      "support": "/harness/support.html",
       "links": {
         "website": null,
         "github": "https://github.com/jaywedgeworth22/Harness",
@@ -185,7 +187,7 @@
       "slug": "minimax-remote",
       "name": "MiniMax Remote",
       "tagline": "Use an iPhone to follow MiniMax Code sessions on a paired Mac.",
-      "shelf": "ai-coders",
+      "shelf": "coding",
       "platforms": [
         "iOS"
       ],
@@ -212,11 +214,11 @@
       "availability": {
         "iOS": {
           "status": "beta",
-          "label": "iOS beta; no public install link confirmed",
+          "label": "Invite-only beta",
           "channel": null,
           "url": null,
-          "verifiedOn": "2026-09-26",
-          "verification": "Beta status from project source; public enrollment or download was not verified."
+          "verifiedOn": "2026-09-27",
+          "verification": "Read-only App Store Connect beta-group check found internal testing only, with no public invitation on 2026-09-27."
         }
       }
     },
@@ -224,7 +226,7 @@
       "slug": "botfleet",
       "name": "BotFleet",
       "tagline": "Run and inspect AI bots from one workspace.",
-      "shelf": "ai-coders",
+      "shelf": "coding",
       "platforms": [
         "iOS",
         "macOS",
@@ -255,7 +257,7 @@
       "availability": {
         "iOS": {
           "status": "beta",
-          "label": "iOS public TestFlight page",
+          "label": "TestFlight beta",
           "channel": "testFlight",
           "url": "https://testflight.apple.com/join/ER6sPNMh",
           "verifiedOn": "2026-09-26",
@@ -270,12 +272,12 @@
           "verification": "Direct DMG URL returned HTTP 200 after redirects; installation was not tested."
         },
         "Web": {
-          "status": "live",
-          "label": "Product website",
-          "channel": "website",
-          "url": "https://botfleet.app/",
-          "verifiedOn": "2026-09-26",
-          "verification": "Marketing homepage returned HTTP 200; authenticated workflows were not checked."
+          "status": "source",
+          "label": "Self-hosted web interface",
+          "channel": "source",
+          "url": "https://github.com/jaywedgeworth22/BotFleet",
+          "verifiedOn": "2026-09-27",
+          "verification": "Web UI exists in public source; botfleet.app is the marketing website, not a hosted web workspace."
         }
       }
     },
@@ -283,29 +285,29 @@
       "slug": "socratic-trade",
       "name": "Socratic Trade",
       "tagline": "Review AI-generated trading proposals and manage broker execution.",
-      "shelf": "markets",
+      "shelf": "financial",
       "platforms": [
         "Web",
         "iOS"
       ],
       "status": "live",
       "statusText": "Live on the web",
-      "icon": "/assets/app-icons/socratic-trade.svg",
+      "icon": "/assets/app-icons/socratic-trade.png",
       "accent": "#2563eb",
       "page": "/socratic-trade/",
       "support": "/socratic-trade/support.html",
       "links": {
-        "website": "https://socratictrade.com/",
+        "website": "https://socratictrade.com/welcome",
         "github": "https://github.com/jaywedgeworth22/Socratic-Trade",
         "appStore": null,
         "testFlight": null,
         "brew": null
       },
       "bundleIds": [
-        "trade.socratic.app"
+        "com.socratictrade.ios"
       ],
       "appleIds": {
-        "ios": 6799238379
+        "ios": 6815511597
       },
       "associatedDomains": false,
       "availability": {
@@ -313,17 +315,17 @@
           "status": "live",
           "label": "Web app",
           "channel": "website",
-          "url": "https://socratictrade.com/",
+          "url": "https://socratictrade.com/welcome",
           "verifiedOn": "2026-09-26",
           "verification": "Anonymous product entry returned HTTP 200; authenticated workflows were not checked."
         },
         "iOS": {
-          "status": "beta",
-          "label": "iOS beta; no public install link confirmed",
-          "channel": null,
-          "url": null,
-          "verifiedOn": "2026-09-26",
-          "verification": "Beta status from project source; public enrollment or download was not verified."
+          "status": "source",
+          "label": "In development",
+          "channel": "source",
+          "url": "https://github.com/jaywedgeworth22/Socratic-Trade",
+          "verifiedOn": "2026-09-27",
+          "verification": "Current ASC app 6815511597 has no beta groups.  Previous 6799238379 is explicitly retired as IGNORE old ST; do not publish its invite."
         }
       }
     },
@@ -331,7 +333,7 @@
       "slug": "congress-trade",
       "name": "Congress.Trade",
       "tagline": "Explore public trading disclosures and inspect source filings.",
-      "shelf": "markets",
+      "shelf": "financial",
       "platforms": [
         "Web",
         "iOS"
@@ -367,7 +369,7 @@
         },
         "iOS": {
           "status": "beta",
-          "label": "iOS public TestFlight page",
+          "label": "TestFlight beta",
           "channel": "testFlight",
           "url": "https://testflight.apple.com/join/VNUEU6Ge",
           "verifiedOn": "2026-09-26",
@@ -378,17 +380,18 @@
     {
       "slug": "hoghunter",
       "name": "HogHunter",
-      "tagline": "See which Mac processes use the most CPU and memory.",
-      "shelf": "utilities",
+      "tagline": "Inspect Mac resource usage, or check it from an iPhone on the same Wi-Fi.",
+      "shelf": "utility",
       "platforms": [
-        "macOS"
+        "macOS",
+        "iOS"
       ],
       "status": "source",
       "statusText": "Build from source",
       "icon": "/assets/app-icons/hoghunter.png",
       "accent": "#92400e",
-      "page": null,
-      "support": null,
+      "page": "/hoghunter/",
+      "support": "/hoghunter/support.html",
       "links": {
         "website": null,
         "github": "https://github.com/jaywedgeworth22/HogHunter",
@@ -411,6 +414,14 @@
           "url": "https://github.com/jaywedgeworth22/HogHunter",
           "verifiedOn": "2026-09-26",
           "verification": "Public repository returned HTTP 200; installation was not tested."
+        },
+        "iOS": {
+          "status": "source",
+          "label": "Companion · build from source",
+          "channel": "source",
+          "url": "https://github.com/jaywedgeworth22/HogHunter",
+          "verifiedOn": "2026-09-27",
+          "verification": "iOS companion source and September 26 rollout confirm implementation; no public App Store or TestFlight distribution."
         }
       }
     },
@@ -418,7 +429,7 @@
       "slug": "contactlogo",
       "name": "ContactLogo",
       "tagline": "Review suggested company logos before applying them to contacts.",
-      "shelf": "utilities",
+      "shelf": "utility",
       "platforms": [
         "iOS",
         "macOS",
@@ -426,7 +437,7 @@
         "Web"
       ],
       "status": "live",
-      "statusText": "Live on the web",
+      "statusText": "Web · iPhone and Mac betas",
       "icon": "/assets/app-icons/contactlogo.png",
       "accent": "#6366f1",
       "page": "/contactlogo/",
@@ -435,7 +446,7 @@
         "website": "https://contactlogo.com/",
         "github": "https://github.com/jaywedgeworth22/ContactLogo",
         "appStore": null,
-        "testFlight": null,
+        "testFlight": "https://testflight.apple.com/join/HRzFDeA1",
         "brew": null
       },
       "bundleIds": [
@@ -450,27 +461,27 @@
       "availability": {
         "iOS": {
           "status": "beta",
-          "label": "iOS beta; no public install link confirmed",
-          "channel": null,
-          "url": null,
-          "verifiedOn": "2026-09-26",
-          "verification": "Beta status from project source; public enrollment or download was not verified."
+          "label": "TestFlight beta",
+          "channel": "testFlight",
+          "url": "https://testflight.apple.com/join/HRzFDeA1",
+          "verifiedOn": "2026-09-27",
+          "verification": "Named product TestFlight invitation confirmed on Apple public join page.  Enrollment and installation were not tested."
         },
         "macOS": {
           "status": "beta",
-          "label": "macOS beta; no public install link confirmed",
-          "channel": null,
-          "url": null,
-          "verifiedOn": "2026-09-26",
-          "verification": "Beta status from project source; public enrollment or download was not verified."
+          "label": "TestFlight beta",
+          "channel": "testFlight",
+          "url": "https://testflight.apple.com/join/xsPB27gf",
+          "verifiedOn": "2026-09-27",
+          "verification": "Named product TestFlight invitation confirmed on Apple public join page.  Enrollment and installation were not tested."
         },
         "Android": {
-          "status": "unverified",
-          "label": "Android distribution not confirmed",
-          "channel": null,
-          "url": null,
-          "verifiedOn": "2026-09-26",
-          "verification": "No public distribution link was verified."
+          "status": "source",
+          "label": "Build from source",
+          "channel": "source",
+          "url": "https://github.com/jaywedgeworth22/ContactLogo",
+          "verifiedOn": "2026-09-27",
+          "verification": "Android project exists in public source; no published Play listing or hosted APK verified."
         },
         "Web": {
           "status": "live",
@@ -486,14 +497,14 @@
       "slug": "dealdex",
       "name": "DealDex",
       "tagline": "Compare Pokémon card listing prices with available market sources.",
-      "shelf": "utilities",
+      "shelf": "utility",
       "platforms": [
         "iOS",
         "Android",
         "Web"
       ],
       "status": "live",
-      "statusText": "Live on the web",
+      "statusText": "Web · iPhone beta by invitation",
       "icon": "/assets/app-icons/dealdex.png",
       "accent": "#b45309",
       "page": "/dealdex/",
@@ -509,25 +520,25 @@
         "net.dealdex"
       ],
       "appleIds": {
-        "ios": 6802474288
+        "ios": 6804249232
       },
       "associatedDomains": false,
       "availability": {
         "iOS": {
           "status": "beta",
-          "label": "iOS beta; no public install link confirmed",
+          "label": "Invite-only beta",
           "channel": null,
           "url": null,
-          "verifiedOn": "2026-09-26",
-          "verification": "Beta status from project source; public enrollment or download was not verified."
+          "verifiedOn": "2026-09-27",
+          "verification": "Read-only App Store Connect beta-group check found internal testing only, with no public invitation on 2026-09-27."
         },
         "Android": {
-          "status": "beta",
-          "label": "Android beta; no public install link confirmed",
-          "channel": null,
-          "url": null,
-          "verifiedOn": "2026-09-26",
-          "verification": "Beta status from project source; public enrollment or download was not verified."
+          "status": "source",
+          "label": "Build from source",
+          "channel": "source",
+          "url": "https://github.com/jaywedgeworth22/DealDex",
+          "verifiedOn": "2026-09-27",
+          "verification": "Android project exists in public source; no published Play listing or hosted APK verified."
         },
         "Web": {
           "status": "live",
@@ -543,7 +554,7 @@
       "slug": "autorotate",
       "name": "Autorotate",
       "tagline": "Manage supported credential rotations with verification and an audit trail.",
-      "shelf": "utilities",
+      "shelf": "utility",
       "platforms": [
         "iOS",
         "macOS",
@@ -551,7 +562,7 @@
         "Web"
       ],
       "status": "beta",
-      "statusText": "Private beta",
+      "statusText": "Mac TestFlight beta",
       "icon": "/assets/app-icons/autorotate.png",
       "accent": "#059669",
       "page": "/autorotate/",
@@ -574,28 +585,28 @@
       "associatedDomains": false,
       "availability": {
         "iOS": {
-          "status": "beta",
-          "label": "iOS beta; no public install link confirmed",
-          "channel": null,
-          "url": null,
-          "verifiedOn": "2026-09-26",
-          "verification": "Beta status from project source; public enrollment or download was not verified."
+          "status": "source",
+          "label": "Build from source",
+          "channel": "source",
+          "url": "https://github.com/jaywedgeworth22/Autorotate",
+          "verifiedOn": "2026-09-27",
+          "verification": "iOS source exists; previous public TestFlight URL returns only a generic Apple page."
         },
         "macOS": {
           "status": "beta",
-          "label": "macOS beta; no public install link confirmed",
-          "channel": null,
-          "url": null,
-          "verifiedOn": "2026-09-26",
-          "verification": "Beta status from project source; public enrollment or download was not verified."
+          "label": "TestFlight beta",
+          "channel": "testFlight",
+          "url": "https://testflight.apple.com/join/5yDXA8Vk",
+          "verifiedOn": "2026-09-27",
+          "verification": "Named product TestFlight invitation confirmed on Apple public join page.  Enrollment and installation were not tested."
         },
         "Android": {
-          "status": "unverified",
-          "label": "Android distribution not confirmed",
-          "channel": null,
-          "url": null,
-          "verifiedOn": "2026-09-26",
-          "verification": "No public distribution link was verified."
+          "status": "source",
+          "label": "Build from source",
+          "channel": "source",
+          "url": "https://github.com/jaywedgeworth22/Autorotate",
+          "verifiedOn": "2026-09-27",
+          "verification": "Android project exists in public source; no published Play listing or hosted APK verified."
         },
         "Web": {
           "status": "source",
@@ -609,9 +620,9 @@
     }
   ],
   "shelves": {
-    "ai-coders": "For AI Coders",
-    "markets": "For Markets",
-    "utilities": "Everyday Utilities"
+    "coding": "Coding",
+    "financial": "Financial",
+    "utility": "Utility"
   },
   "unlisted": [
     {
