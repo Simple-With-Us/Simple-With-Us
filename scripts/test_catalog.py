@@ -38,6 +38,8 @@ class CatalogContractTests(unittest.TestCase):
         template = (catalog.ROOT / "_template" / "index.html").read_text()
         app = self.data["apps"][0]
         generated = catalog.splice(template, "availability", catalog.availability_region(app))
+        self.assertEqual(1, generated.count('class="btn-row"'))
+        self.assertNotIn("{{links.appStore}}", generated)
         self.assertIn('id="availability-title"', generated)
         self.assertIn('<!-- catalog:availability:end -->', generated)
         self.assertEqual(generated, catalog.splice(generated, "availability", catalog.availability_region(app)))
@@ -60,6 +62,15 @@ class CatalogContractTests(unittest.TestCase):
             self.assertTrue(any(message in error for error in errors), errors)
         app["availability"]["macOS"]["verifiedOn"] = "2026-09-26"
         self.assertNotIn('>Support</a>', catalog.availability_region(app))
+
+
+    def test_store_actions_preserve_provider_and_placement_campaign(self):
+        app = copy.deepcopy(self.data["apps"][0])
+        app["availability"] = {"iOS": {"status": "live", "label": "App Store", "channel": "appStore",
+            "url": "https://apps.apple.com/app/id123", "verifiedOn": "2026-09-26"}}
+        self.assertIn("?pt=456&amp;ct=swu-codecaps-card", catalog.card(app, "456"))
+        self.assertIn("?pt=456&amp;ct=swu-codecaps-hero", catalog.availability_region(app, "456"))
+        self.assertIn("?ct=swu-codecaps-hero", catalog.availability_region(app))
 
 
 if __name__ == "__main__":
