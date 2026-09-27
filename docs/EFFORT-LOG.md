@@ -2,11 +2,11 @@
 
 ## In progress
 
-2026-09-27 — CODEX — Issue #19: unify site branding and app identity, correct platform links and icons, simplify public copy, and embed public service status.  Branch `codex/brand-product-clarity-20260927`.
-
 2026-09-27 — CODEX — Report-only public catalog destination audit for manifest, support/privacy routes, and generated links.  Issue #13; branch `codex/catalog-link-audit`.  The scheduled/manual workflow does not participate in source PR gating and classifies provider challenges and transient failures as unverified.
 
 ## Deployed
+
+2026-09-27 — CODEX — Issue #19 / PR #20 (`28af546`): unified complete logo, app identity, 11 app families, corrected icons/platform links and public service-status feed.  Pages run `36303036956` published the exact merge SHA.  All 89 live catalog destinations passed; manifest, CSS, status module, logo and every app icon matched source.  Eighteen Python tests and the Node status test pass.  External beta publication continues separately.
 
 2026-09-26 — CODEX and Instinct — Public catalog release facts, generated platform availability, factual copy and link validation.  PRs #11 and #12 passed CI and were published.  Product links and beta labels were checked live.
 

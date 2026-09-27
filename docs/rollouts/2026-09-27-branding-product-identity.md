@@ -11,3 +11,7 @@ The homepage reads the existing public Better Stack JSON feed.  It displays the 
 Validation before publication: generated freshness and destination policy; 18 Python regression tests; a Node status-state test; offline route and fragment audit with no broken destinations.  Browser review covered desktop and 390px layouts, including app identity, complete logo, platform actions, and the live status summary.  Some initial local-preview image requests failed transiently and loaded after refresh; public asset checks are required after publication.
 
 The public link auditor now treats generic or explicitly retired TestFlight pages as unverified even when Apple responds with HTTP 200.  Release enrollment and native installation are separate checks.
+
+## Publication
+
+PR #20 merged as `28af546`.  GitHub Pages run `36303036956` succeeded at that exact commit.  The live catalog audit passed all 89 destinations, with no broken or unverified results.  The public manifest, shared stylesheet, status module, complete SWU logo, and all 12 edition icon assets matched source.  The initial local-preview image failures did not reproduce in the deployed asset checks.
