@@ -186,7 +186,7 @@
     {
       "slug": "minimax-remote",
       "name": "MiniMax Remote",
-      "tagline": "Use an iPhone to follow MiniMax Code sessions on a paired Mac.",
+      "tagline": "Preview build: pairs your iPhone to a Mac companion over the local network. Content is placeholder data, not your real sessions.",
       "shelf": "coding",
       "platforms": [
         "iOS"
