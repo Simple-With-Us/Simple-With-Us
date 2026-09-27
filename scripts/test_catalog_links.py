@@ -62,6 +62,7 @@ class CatalogLinkAuditTests(unittest.TestCase):
         invite = "https://testflight.apple.com/join/ABC123"
         self.assertIsNone(audit.validate_final_destination(invite, invite))
         self.assertIn("invite identity", audit.validate_final_destination(invite, "https://testflight.apple.com/join/OTHER"))
+        self.assertIn("invite identity", audit.validate_final_destination(invite, "https://testflight.apple.com/join/ABC1234"))
 
     def test_online_audit_combines_local_and_live_results(self):
         with tempfile.TemporaryDirectory() as directory:

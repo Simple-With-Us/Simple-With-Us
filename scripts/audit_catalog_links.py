@@ -181,7 +181,7 @@ def validate_final_destination(target_url: str, final_url: str) -> str | None:
             return f"App Store redirect lost product identity ({product_id or 'missing product id'})"
     if target.hostname == "testflight.apple.com":
         invite = target.path.split("/join/", 1)[-1] if "/join/" in target.path else ""
-        if final.hostname != "testflight.apple.com" or not invite or f"/join/{invite}" not in final.path:
+        if final.hostname != "testflight.apple.com" or not invite or final.path.rstrip("/") != f"/join/{invite}":
             return f"TestFlight redirect lost invite identity ({invite or 'missing invite'})"
     return None
 
