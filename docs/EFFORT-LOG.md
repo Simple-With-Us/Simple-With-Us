@@ -4,6 +4,10 @@
 
 2026-09-27 — CODEX — Report-only public catalog destination audit for manifest, support/privacy routes, and generated links.  Issue #13; branch `codex/catalog-link-audit`.  The scheduled/manual workflow does not participate in source PR gating and classifies provider challenges and transient failures as unverified.
 
+## Completed
+
+- **2026-09-27 — CODEX — COMPLETED — Current beta review and app identities (#22 / PR #23, board e7074f23, codex/beta-review-status-20260927).**  Reflect Apple review pending for DealDex, CodeCaps iOS, and MiniMax Remote; preserve Socratic Trade invitation-only access.  Hog Hunter and Autorotate current-bundle App Store Connect records created.  No pending invitation is presented as an available install.
+
 ## Deployed
 
 2026-09-27 — CODEX — Issue #19 / PR #20 (`28af546`): unified complete logo, app identity, 11 app families, corrected icons/platform links and public service-status feed.  Pages run `36303036956` published the exact merge SHA.  All 89 live catalog destinations passed; manifest, CSS, status module, logo and every app icon matched source.  Eighteen Python tests and the Node status test pass.  External beta publication continues separately.
