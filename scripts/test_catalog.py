@@ -34,6 +34,14 @@ class CatalogContractTests(unittest.TestCase):
         self.assertTrue(any("source repository has not been verified public" in error for error in errors), errors)
         self.assertTrue(any("destination does not match its channel" in error for error in errors), errors)
 
+    def test_new_detail_page_template_has_availability_region(self):
+        template = (catalog.ROOT / "_template" / "index.html").read_text()
+        app = self.data["apps"][0]
+        generated = catalog.splice(template, "availability", catalog.availability_region(app))
+        self.assertIn('id="availability-title"', generated)
+        self.assertIn('<!-- catalog:availability:end -->', generated)
+        self.assertEqual(generated, catalog.splice(generated, "availability", catalog.availability_region(app)))
+
     def test_independent_platform_check_dates_are_rendered(self):
         app = copy.deepcopy(self.data["apps"][0])
         app["availability"]["macOS"]["verifiedOn"] = "2026-10-02"
