@@ -34,6 +34,25 @@ class CatalogContractTests(unittest.TestCase):
         self.assertTrue(any("source repository has not been verified public" in error for error in errors), errors)
         self.assertTrue(any("destination does not match its channel" in error for error in errors), errors)
 
+    def test_independent_platform_check_dates_are_rendered(self):
+        app = copy.deepcopy(self.data["apps"][0])
+        app["availability"]["macOS"]["verifiedOn"] = "2026-10-02"
+        region = catalog.availability_region(app)
+        self.assertIn("macOS 02 Oct 2026", region)
+        self.assertIn("iOS 26 Sep 2026", region)
+
+    def test_invalid_shelf_support_and_calendar_date_are_rejected(self):
+        data = copy.deepcopy(self.data)
+        app = data["apps"][0]
+        app["shelf"] = "not-a-real-shelf"
+        app["support"] = None
+        app["availability"]["macOS"]["verifiedOn"] = "2026-99-99"
+        errors = catalog.lint(data)
+        for message in ["declared catalog shelf", "support destination", "verifiedOn must be a date"]:
+            self.assertTrue(any(message in error for error in errors), errors)
+        app["availability"]["macOS"]["verifiedOn"] = "2026-09-26"
+        self.assertNotIn('>Support</a>', catalog.availability_region(app))
+
 
 if __name__ == "__main__":
     unittest.main()

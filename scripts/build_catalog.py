@@ -18,6 +18,7 @@ Rules enforced (see docs/DESIGN-BRIEF.md sections 5 and 9):
   * generated links do not point to private repositories or generic store pages
 """
 import html
+from datetime import date
 import json
 import pathlib
 import re
@@ -156,8 +157,15 @@ def availability_region(app: dict) -> str:
         label = {"website": "Visit website", "source": "View public source", "appStore": "Open App Store listing", "testFlight": "Open TestFlight beta", "download": "Download Mac beta"}[fact["channel"]]
         klass = "btn btn-primary" if fact["status"] == "live" else "btn btn-secondary"
         rows.append(f'    <a class="{klass}" href="{attr(fact["url"])}" rel="noopener">{label}</a>')
-    rows.append(f'    <a class="btn btn-secondary" href="{attr(app["support"])}">Support</a>')
-    rows += ['  </div>', f'  <p class="availability-note">Checked 26 Sep 2026.{NBSP_GAP}Beta enrollment and native installation were not verified.</p>', '</section>']
+    if app.get("support"):
+        rows.append(f'    <a class="btn btn-secondary" href="{attr(app["support"])}">Support</a>')
+    checked = {platform: date.fromisoformat(fact["verifiedOn"]).strftime("%d %b %Y")
+               for platform, fact in app["availability"].items()}
+    if len(set(checked.values())) == 1:
+        note = "Checked " + next(iter(checked.values()))
+    else:
+        note = "Checked: " + "; ".join(f"{platform} {stamp}" for platform, stamp in checked.items())
+    rows += ['  </div>', f'  <p class="availability-note">{gap(note)}.{NBSP_GAP}Beta enrollment and native installation were not verified.</p>', '</section>']
     return "\n".join(rows)
 
 
@@ -193,6 +201,10 @@ def lint(data: dict) -> list:
         if slug in seen:
             errors.append(f"{slug}: duplicate slug")
         seen.add(slug)
+        if app.get("shelf") not in data.get("shelves", {}):
+            errors.append(f"{slug}: shelf must name a declared catalog shelf")
+        if app.get("page") and not app.get("support"):
+            errors.append(f"{slug}: detail page needs a support destination")
         for key, rule in LINK_RULES.items():
             val = app["links"].get(key)
             if val is not None and not rule.fullmatch(val):
@@ -221,7 +233,9 @@ def lint(data: dict) -> list:
                 errors.append(f"{slug}/{platform}: source destination differs from verified public repository")
             if channel == "website" and url != app["links"].get("website"):
                 errors.append(f"{slug}/{platform}: web destination differs from website link")
-            if not re.fullmatch(r"\d{4}-\d\d-\d\d", fact.get("verifiedOn", "")):
+            try:
+                date.fromisoformat(fact.get("verifiedOn", ""))
+            except (ValueError, TypeError):
                 errors.append(f"{slug}/{platform}: verifiedOn must be a date")
             if not fact.get("verification") or not fact.get("label"):
                 errors.append(f"{slug}/{platform}: label and verification are required")
