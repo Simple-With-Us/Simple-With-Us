@@ -1,0 +1,38 @@
+name: Public Catalog Link Audit
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "23 5 * * 1"
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Audit public catalog destinations
+        id: audit
+        continue-on-error: true
+        run: python3 scripts/audit_catalog_links.py --report catalog-link-audit.md --timeout 10
+      - name: Add report to job summary
+        if: always()
+        run: |
+          if test -f catalog-link-audit.md; then
+            cat catalog-link-audit.md >> "$GITHUB_STEP_SUMMARY"
+          else
+            printf '%s\n' 'Catalog link audit did not produce a report.' >> "$GITHUB_STEP_SUMMARY"
+          fi
+      - name: Upload audit report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: catalog-link-audit-${{ github.run_number }}
+          path: catalog-link-audit.md
+          if-no-files-found: warn

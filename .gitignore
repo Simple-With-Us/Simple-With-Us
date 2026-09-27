@@ -33,3 +33,6 @@ npm-debug.log*
 # Generated images (we keep source SVG, regenerate on demand)
 *.min.png
 *.bak
+
+# On-demand catalog audit output
+catalog-link-audit.md
