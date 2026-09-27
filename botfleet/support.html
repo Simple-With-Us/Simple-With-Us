@@ -4,13 +4,14 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>BotFleet Support -- Simple With Us</title>
-  <meta name="description" content="Pairing, network, and known-issue reference for BotFleet on iOS." />
+  <meta name="description" content="Support for BotFleet." />
   <meta name="theme-color" content="#1a1a2e" />
   <link rel="icon" type="image/png" href="/assets/logos/swu-logo-whitecircle-1024.png" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
   <link rel="stylesheet" href="/style.css" />
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 
 <header class="site-header">
   <div class="container">
@@ -27,34 +28,15 @@
   </div>
 </header>
 
-<article class="article">
+<article class="article" id="main">
   <span class="kicker">BotFleet</span>
   <h1>Support</h1>
-  <p class="lede">Pairing, networks, and known-issue reference. If the four checks below don't fix it, send the output to <code>feedback@simplewithus.com</code> and we'll come back the same day.</p>
-
-  <h2>The four checks that catch 90% of pair failures</h2>
-  <ol>
-    <li><strong>Mac: is the orchestrator running?</strong> Open Terminal, paste <code>launchctl list | grep botfleet</code>. You should see a row with the binary path. If not: <code>launchctl load -w ~/Library/LaunchAgents/com.simplewithus.botfleet.orchestrator.plist</code>.</li>
-    <li><strong>Mac: same network?</strong> Bonjour only finds the orchestrator on the local network segment. If your iPhone is on a cellular-only connection, pair won't work -- turn Wi-Fi on, or use the manual host entry in Settings.</li>
-    <li><strong>iOS: camera permission.</strong> The first time you tap "Scan QR" iOS asks for camera permission. If you declined, Settings &gt; BotFleet &gt; Camera &gt; On.</li>
-    <li><strong>iOS: persistent settings.</strong> If you've already paired once and it stopped working, try Settings &gt; Forget Pairing and re-scan. Saved tokens are bound to the local iOS keychain and occasionally need a refresh after an OS upgrade.</li>
-  </ol>
-
-  <h2>Crash log or "Application keeps closing"</h2>
-  <p>If BotFleet crashes immediately on launch or after a specific screen, pull a Console log from the Mac (Console.app &gt; iPhone &gt; BotFleet) and send the last ~200 lines to <code>feedback@simplewithus.com</code>. If you can also repro the crash, note the steps.</p>
-
-  <h2>Pair succeeds, but fleet never loads</h2>
-  <p>This is almost always a Bonjour discovery issue. Check that no firewall on the Mac blocks the port your orchestrator is on (default 4815). If your Mac is behind an aggressive corporate firewall, switch to manual host entry and confirm the host:port you supply is reachable from the iPhone.</p>
-
-  <h2>Sending logs to support</h2>
-  <p>The app's Settings screen has a "Send Logs" action (under Diagnostics). It bundles the last few minutes into a single zip, scrubbed of your pair token, and opens a prefilled email to <code>feedback@simplewithus.com</code>. Attach the zip; we respond usually within a business day.</p>
-
+  <p class="lede">For a bot or app issue, include the platform, app version, and the action that produced the error.</p>
+  <h2>Before contacting us</h2>
+  <p>Check the current platform setup and beta instructions on the BotFleet product site.&nbsp; Add-on features may still be in testing.</p>
+  <p>Check the <a href="/botfleet/">product page</a> for current platform availability and the <a href="/privacy.html">privacy notice</a> for site-level information.</p>
   <h2>Contact</h2>
-  <div class="callout">
-    <p><strong>feedback@simplewithus.com</strong> -- open a thread, don't worry about templates. Link to your TestFlight build if you have it (<code>Settings &gt; Version &gt; Build</code>).</p>
-  </div>
-
-  <p style="margin-top: 32px;"><a class="btn btn-secondary" href="/">&larr; Back to Simple With Us</a></p>
+  <p>Email <a href="mailto:feedback@simplewithus.com?subject=botfleet%20support">feedback@simplewithus.com</a> with your device or browser version and steps to reproduce.&nbsp; Leave out passwords, API keys, personal contact data, and private logs.</p>
 </article>
 
 <footer class="site-footer">

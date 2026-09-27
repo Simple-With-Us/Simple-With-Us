@@ -3,14 +3,21 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Usage Local Monitor -- On-device AI spend tracker, no cloud, no account</title>
-  <meta name="description" content="Usage Local Monitor tracks AI usage entirely on your iPhone. No account, no server, no cloud sync. Caps, daily spend, and model availability, all from your phone." />
+  <title>Usage Local Monitor — Simple With Us</title>
+  <meta name="description" content="Track supported provider usage and manual subscription costs on iPhone." />
+
+  <link rel="canonical" href="https://simplewithus.com/usage-local/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Usage Local Monitor — Simple With Us" />
+  <meta property="og:description" content="Track supported provider usage and manual subscription costs on iPhone." />
+  <meta property="og:url" content="https://simplewithus.com/usage-local/" />
   <meta name="theme-color" content="#1a1a2e" />
   <link rel="icon" type="image/png" href="/assets/logos/swu-logo-whitecircle-1024.png" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
   <link rel="stylesheet" href="/style.css" />
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 
 <header class="site-header">
   <div class="container">
@@ -27,56 +34,39 @@
   </div>
 </header>
 
-<article class="article">
-  <span class="kicker">iOS on-device monitor</span>
-  <h1>Track AI spend without sending a byte to anyone.</h1>
-  <p class="lede">Usage Local Monitor is the no-account counterpart to its server-backed sibling. You enter your plan and your daily spend manually; the app rolls it up locally and warns you before you hit the cap. There is no server, no cloud sync, no account. Your numbers stay on your phone.</p>
-
+<article class="article" id="main">
+  <span class="kicker">On-device iOS monitor</span>
+  <h1>Track supported provider usage and subscriptions on your device.</h1>
+  <p class="lede">Usage Local Monitor keeps its tracking store on the iPhone without requiring a Usage Monitor server or app account.&nbsp; Add manual subscription rows, or poll supported providers with credentials stored in iOS Keychain.</p>
+  <!-- catalog:availability:start -->
+<section class="availability" aria-labelledby="availability-title">
+  <h2 id="availability-title">Availability</h2>
+  <ul class="availability-list">
+    <li><strong>iOS</strong><span>iOS beta; no public install link confirmed</span></li>
+  </ul>
   <div class="btn-row">
-    <a class="btn btn-primary" href="https://testflight.apple.com/">Join the TestFlight Beta</a>
-    <a class="btn btn-secondary" href="support.html">Support</a>
-    <a class="btn btn-secondary" href="/privacy.html">Privacy</a>
+    <a class="btn btn-secondary" href="/usage-local/support.html">Support</a>
   </div>
-
-  <h2>What's inside</h2>
+  <p class="availability-note">Checked 26 Sep 2026.  Beta enrollment and native installation were not verified.</p>
+</section>
+  <!-- catalog:availability:end -->
+  <h2>What you can do</h2>
   <ul>
-    <li><strong>Caps and daily spend.</strong> Set a per-provider cap; log your daily spend; the app warns when you're approaching the line.</li>
-    <li><strong>Model availability.</strong> Per-provider, per-model -- a quick lookup of which models are accessible on your plan, with quota brackets where the provider publishes them.</li>
-    <li><strong>Manual entry, no scraping.</strong> The app reads no usage endpoints; you stay in control of what enters it.</li>
-    <li><strong>Local notifications.</strong> Cap-warning notifications fire from your device, not a server. No background telemetry, no relay.</li>
-    <li><strong>CSV export.</strong> Per-provider, per-date-range. Export once, archive forever.</li>
+    <li><strong>Direct polling.</strong> Supported adapters include selected provider cost or balance endpoints; coverage varies by provider.</li>
+    <li><strong>Manual rows.</strong> Enter subscription charges that providers do not expose through an API.</li>
+    <li><strong>Local data.</strong> Provider polling sends requests to those providers; stored tracking data remains on the device unless you choose to export it.</li>
   </ul>
-
-  <h2>How it works</h2>
-  <p>Usage Local Monitor is the simplest thing that works: a local store for plan, cap, and the day's spend. There is no provider integration, no API key, no account. The app never talks to a server. The trade-off is that you maintain the entry -- but the upside is that nothing leaves the device.</p>
-
-  <ol>
-    <li>Add your plan and per-provider cap in the Providers screen.</li>
-    <li>Log your daily spend; the app rolls it up locally.</li>
-    <li>Set a cap-warning threshold and let the local notification fire when you're close.</li>
-  </ol>
-
-  <h2>What it doesn't do</h2>
-  <ul>
-    <li><strong>Provider integration.</strong> The app does not read any provider's usage endpoint. You enter your spend manually.</li>
-    <li><strong>Cross-device sync.</strong> No iCloud, no server. If you wipe the device, your numbers go with it (CSV export first).</li>
-    <li><strong>Auto-renewal tracking.</strong> The app does not manage subscriptions or trial expiry.</li>
-  </ul>
-
-  <h2>Privacy</h2>
-  <p>Usage Local Monitor runs entirely on-device. No account, no server, no cloud sync, no analytics. The app does not transmit your spend to anyone. Crash reports are opt-in and scrubbed of identifiers. Full notice at <a href="/privacy.html">/privacy</a>.</p>
-
-  <h2>Need help?</h2>
-  <p>The most common hiccup is forgetting the manual entry after a long session. <a href="support.html">The support page</a> covers the four checks that catch 90% of "the cap warning never fires" reports; if those don't help, write to <code>feedback@simplewithus.com</code> with your iOS version.</p>
-
-  <p><a class="btn btn-primary" href="https://testflight.apple.com/">Get Usage Local Monitor</a></p>
+  <h2>Scope and data</h2>
+  <p>The app does not require the Usage Monitor server.&nbsp; Direct polling needs network access and provider credentials for the chosen adapters.</p>
+  <p>See the <a href="support.html">product support page</a> and <a href="/privacy.html">privacy notice</a> for more detail.</p>
+  <p class="source-credit">Upstream source: <a href="https://github.com/jaywedgeworth22/Usage-Monitor" rel="noopener">Usage Local Monitor on GitHub</a>.</p>
 </article>
 
 <footer class="site-footer">
   <div class="container">
     <div class="copy">
       <span>&copy; 2026 Simple With Us. All rights reserved.</span>
-      <span><a href="/">Home</a> &middot; <a href="support.html">Support</a> &middot; <a href="/privacy.html">Privacy</a></span>
+      <span><a href="/">Home</a> &middot; <a href="/support.html">Support</a> &middot; <a href="/privacy.html">Privacy</a></span>
     </div>
   </div>
 </footer>

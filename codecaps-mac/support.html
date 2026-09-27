@@ -3,14 +3,15 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>CodeCaps for Mac Support -- Simple With Us</title>
-  <meta name="description" content="Provider keys, Accessibility, and known-issue reference for CodeCaps on macOS." />
+  <title>CodeCaps for Mac — Simple With Us</title>
+  <meta name="description" content="Current availability and support for CodeCaps for Mac." />
   <meta name="theme-color" content="#1a1a2e" />
   <link rel="icon" type="image/png" href="/assets/logos/swu-logo-whitecircle-1024.png" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
   <link rel="stylesheet" href="/style.css" />
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 
 <header class="site-header">
   <div class="container">
@@ -27,34 +28,15 @@
   </div>
 </header>
 
-<article class="article">
+<article class="article" id="main">
   <span class="kicker">CodeCaps for Mac</span>
-  <h1>Support</h1>
-  <p class="lede">Provider keys, Accessibility, and known-issue reference. If the four checks below don't fix it, send the output to <code>feedback@simplewithus.com</code> and we'll come back the same day.</p>
-
-  <h2>The four checks that catch 90% of overlay-missing reports</h2>
-  <ol>
-    <li><strong>macOS: Accessibility permission.</strong> Open System Settings &gt; Privacy &amp; Security &gt; Accessibility. Confirm CodeCaps is in the list and toggled on. Without this, the window-level overlay never appears.</li>
-    <li><strong>macOS: provider keys in Keychain.</strong> Open Settings &gt; Providers. Each provider you want caps on must be added here; keys are stored in the macOS Keychain, never on disk in plaintext.</li>
-    <li><strong>macOS: network permission.</strong> If you use a system firewall (Little Snitch, LuLu, or the macOS app firewall), allow CodeCaps to reach your providers' usage endpoints. Denied connections show as "stale" in the dashboard.</li>
-    <li><strong>macOS: app version.</strong> Open <code>CodeCaps &gt; About CodeCaps</code>. If you're on an old build, the per-model mapping can lag behind the provider's current model names. Re-download from the brand page to update.</li>
-  </ol>
-
-  <h2>Crash log or "Application keeps closing"</h2>
-  <p>If CodeCaps for Mac crashes on launch or while pulling usage, open Console.app and filter by process <code>CodeCaps</code>. Send the last ~200 lines to <code>feedback@simplewithus.com</code>. If you can also repro the crash, note the steps and the apps you had focused.</p>
-
-  <h2>Overlay never shows up</h2>
-  <p>This is almost always Accessibility permission or an app-level opt-out. Confirm CodeCaps is in the Accessibility list under System Settings. Then open Settings &gt; Overlay and confirm the app you were hovering is in the "Enabled sources" list -- per-app opt-out is on by default for non-editor apps.</p>
-
-  <h2>Sending logs to support</h2>
-  <p>The app's Help menu has a "Send Logs" action. It bundles the last few minutes into a single zip, scrubbed of your provider keys, and opens a prefilled email to <code>feedback@simplewithus.com</code>. Attach the zip; we respond usually within a business day.</p>
-
-  <h2>Contact</h2>
-  <div class="callout">
-    <p><strong>feedback@simplewithus.com</strong> -- open a thread, don't worry about templates. Link to your installed build if you have it (<code>CodeCaps &gt; About CodeCaps</code>).</p>
+  <h1>Mac app support</h1>
+  <p class="lede">The current CodeCaps for Mac availability and support information is maintained with the main product page.</p>
+  <div class="btn-row">
+    <a class="btn btn-primary" href="/codecaps/">View CodeCaps for Mac availability</a>
+    <a class="btn btn-secondary" href="/codecaps/support.html">Product support</a>
   </div>
-
-  <p style="margin-top: 32px;"><a class="btn btn-secondary" href="/">&larr; Back to Simple With Us</a></p>
+  <p>If you need help, email <a href="mailto:feedback@simplewithus.com?subject=codecaps%20Mac%20support">feedback@simplewithus.com</a> with the app version and steps to reproduce.&nbsp; Do not send credentials or private logs.</p>
 </article>
 
 <footer class="site-footer">

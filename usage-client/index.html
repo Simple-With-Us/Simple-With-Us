@@ -3,14 +3,21 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Usage Client Monitor -- One screen for every AI subscription you pay for</title>
-  <meta name="description" content="Usage Client Monitor is the iOS dashboard for API spend across OpenAI, Anthropic, Google, and more. Server-backed for cross-device sync; self-host the server free." />
+  <title>Usage Client Monitor — Simple With Us</title>
+  <meta name="description" content="View data from your self-hosted Usage Monitor server on iPhone." />
+
+  <link rel="canonical" href="https://simplewithus.com/usage-client/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Usage Client Monitor — Simple With Us" />
+  <meta property="og:description" content="View data from your self-hosted Usage Monitor server on iPhone." />
+  <meta property="og:url" content="https://simplewithus.com/usage-client/" />
   <meta name="theme-color" content="#1a1a2e" />
   <link rel="icon" type="image/png" href="/assets/logos/swu-logo-whitecircle-1024.png" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
   <link rel="stylesheet" href="/style.css" />
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 
 <header class="site-header">
   <div class="container">
@@ -27,56 +34,41 @@
   </div>
 </header>
 
-<article class="article">
-  <span class="kicker">iOS usage dashboard</span>
-  <h1>One screen for every AI subscription you pay for.</h1>
-  <p class="lede">Usage Client Monitor rolls up your API spend across OpenAI, Anthropic, Google, and a dozen other providers into a single iOS dashboard. Per-day, per-week, per-month; per-model, per-team, per-account. The server is yours -- self-host free, point the app at it, and your usage syncs across every device.</p>
-
+<article class="article" id="main">
+  <span class="kicker">iOS dashboard for your server</span>
+  <h1>Check your Usage Monitor server from your phone.</h1>
+  <p class="lede">Usage Client Monitor connects to a Usage Monitor server you control.&nbsp; The server polls and stores provider data; the iPhone app presents available history and budgets.</p>
+  <!-- catalog:availability:start -->
+<section class="availability" aria-labelledby="availability-title">
+  <h2 id="availability-title">Availability</h2>
+  <ul class="availability-list">
+    <li><strong>iOS</strong><span>iOS beta; no public install link confirmed</span></li>
+    <li><strong>Web</strong><span>Self-host from public source</span></li>
+  </ul>
   <div class="btn-row">
-    <a class="btn btn-primary" href="https://testflight.apple.com/">Join the TestFlight Beta</a>
-    <a class="btn btn-secondary" href="support.html">Support</a>
-    <a class="btn btn-secondary" href="/privacy.html">Privacy</a>
+    <a class="btn btn-secondary" href="https://github.com/jaywedgeworth22/Usage-Monitor" rel="noopener">View public source</a>
+    <a class="btn btn-secondary" href="/usage-client/support.html">Support</a>
   </div>
-
-  <h2>What's inside</h2>
+  <p class="availability-note">Checked 26 Sep 2026.  Beta enrollment and native installation were not verified.</p>
+</section>
+  <!-- catalog:availability:end -->
+  <h2>What you can do</h2>
   <ul>
-    <li><strong>Multi-provider rollup.</strong> One rollup screen for every connected provider, broken out by day, week, and month, with a sparkline at the top.</li>
-    <li><strong>Per-model breakdowns.</strong> Drill from a provider into a model; see which models dominate your spend and which are barely ticking.</li>
-    <li><strong>Cap detection.</strong> Set a per-provider or per-model threshold. The app warns you at 80% and 100%, both in-app and via local notification.</li>
-    <li><strong>Self-hosted server.</strong> Point the app at your own server (free, source available) for cross-device sync. Or run the iOS app alone; it works either way.</li>
-    <li><strong>CSV export.</strong> Per-provider, per-account, per-date-range. Export once, archive forever.</li>
+    <li><strong>Server-backed view.</strong> See the providers and history configured on your server.</li>
+    <li><strong>Budgets.</strong> Review spending limits and available alerts in the client.</li>
+    <li><strong>Setup.</strong> Deploy the public server source, then connect the iPhone app to your server URL.</li>
   </ul>
-
-  <h2>How it works</h2>
-  <p>Usage Client Monitor reads usage from each provider's usage endpoint using API keys you supply in-app. Keys live in the iOS keychain by default; if you run the self-hosted server, you can opt to share them across your devices. The app never proxies your traffic -- it talks to each provider directly.</p>
-
-  <ol>
-    <li>Add a provider and paste the API key. The app pulls usage history on first connect.</li>
-    <li>Optionally point the app at your self-hosted server URL in Settings for cross-device sync.</li>
-    <li>Set caps in the Cap screen. The app warns when you approach the line.</li>
-  </ol>
-
-  <h2>What it doesn't do</h2>
-  <ul>
-    <li><strong>Subscription management.</strong> The app reads usage; it does not pause, downgrade, or cancel your provider plan.</li>
-    <li><strong>Billing reconciliation.</strong> Usage endpoints report API spend, not invoice charges. Treat the two as separate ledgers.</li>
-    <li><strong>Real-time minute-by-minute.</strong> Pulls refresh every few minutes; not a high-frequency telemetry stream.</li>
-  </ul>
-
-  <h2>Privacy</h2>
-  <p>Usage Client Monitor stores API keys in the iOS keychain by default. The app reads each provider's usage endpoint directly; no Simple With Us relay. Crash reports are opt-in and scrubbed of identifiers. Full notice at <a href="/privacy.html">/privacy</a>.</p>
-
-  <h2>Need help?</h2>
-  <p>The most common issue is the self-hosted server URL being reachable from the iPhone but not the Mac. <a href="support.html">The support page</a> covers the four checks that catch 90% of sync issues; if those don't help, write to <code>feedback@simplewithus.com</code> with your server URL and provider list.</p>
-
-  <p><a class="btn btn-primary" href="https://testflight.apple.com/">Get Usage Client Monitor</a></p>
+  <h2>Scope and data</h2>
+  <p>This target requires a reachable Usage Monitor server.&nbsp; No public hosted signup is offered for this client.</p>
+  <p>See the <a href="support.html">product support page</a> and <a href="/privacy.html">privacy notice</a> for more detail.</p>
+  <p class="source-credit">Upstream source: <a href="https://github.com/jaywedgeworth22/Usage-Monitor" rel="noopener">Usage Client Monitor on GitHub</a>.</p>
 </article>
 
 <footer class="site-footer">
   <div class="container">
     <div class="copy">
       <span>&copy; 2026 Simple With Us. All rights reserved.</span>
-      <span><a href="/">Home</a> &middot; <a href="support.html">Support</a> &middot; <a href="/privacy.html">Privacy</a></span>
+      <span><a href="/">Home</a> &middot; <a href="/support.html">Support</a> &middot; <a href="/privacy.html">Privacy</a></span>
     </div>
   </div>
 </footer>

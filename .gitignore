@@ -22,6 +22,7 @@ node_modules/
 .tmp/
 dist/
 build/
+__pycache__/
 *.log
 npm-debug.log*
 

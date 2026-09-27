@@ -3,11 +3,11 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Simple With Us — Open Tools, Built in Public</title>
-  <meta name="description" content="A small catalog of apps for AI coders, markets, and everyday Mac and iPhone chores.  Most are open source under Apache-2.0.">
+  <title>Simple With Us — Apps for work and everyday tasks</title>
+  <meta name="description" content="Explore tools for AI work, market research, and everyday tasks.  Check platform availability and current actions.">
   <link rel="canonical" href="https://simplewithus.com/">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Simple With Us — Open Tools, Built in Public">
+  <meta property="og:title" content="Simple With Us — Apps for work and everyday tasks">
   <meta property="og:description" content="A small catalog of apps for AI coders, markets, and everyday Mac and iPhone chores.">
   <meta property="og:url" content="https://simplewithus.com/">
   <meta property="og:image" content="https://simplewithus.com/assets/logos/swu-logo-1024.png">
@@ -24,7 +24,7 @@
     <a class="wordmark" href="/"><span class="caret" aria-hidden="true">&gt;</span>Simple With Us</a>
     <nav class="site-nav" aria-label="Primary">
       <a href="#apps">Apps</a>
-      <a href="#honest">How It Works</a>
+      <a href="#honest">Availability</a>
       <a href="#source">Source</a>
       <a href="/support.html">Support</a>
     </nav>
@@ -34,10 +34,10 @@
 <main id="main">
   <section class="hero">
     <div class="wrap">
-      <h1>Open Tools, Built in Public</h1>
-      <p>Simple With Us is a small catalog of apps for AI coders, markets, and everyday Mac and iPhone chores.  Most of them are open source, and every card says exactly how you can get the app today.</p>
+      <h1>Tools for work and everyday tasks</h1>
+      <p>Explore AI tools, market research, and practical utilities.  Each app shows its current platform access and a useful next step.</p>
       <!-- catalog:facts:start -->
-<p class="facts">12 apps · 11 with public source · Apache‑2.0</p>
+<p class="facts">12 apps · 11 with public source · platform availability shown per app</p>
       <!-- catalog:facts:end -->
       <div class="btn-row">
         <a class="btn btn-primary" href="#apps">Browse the Apps</a>
@@ -48,23 +48,24 @@
 
   <section class="section" id="apps" aria-labelledby="apps-title">
     <div class="wrap">
-      <h2 id="apps-title">The Apps</h2>
-      <p class="lede">Each card links to the app's page, its source, and its support page.  A store or beta button appears only when the link behind it works.</p>
+      <h2 id="apps-title">Find an app</h2>
+      <p class="lede">Browse by task.  Open a product page to see availability by platform, including beta or source-only access.</p>
       <!-- catalog:grid:start -->
-<ul class="grid" role="list">
+<section class="catalog-group" aria-labelledby="shelf-ai-coders">
+  <h3 id="shelf-ai-coders">For AI Coders</h3>
+  <ul class="grid" role="list">
 <li class="card" style="--card-accent: #0f766e">
   <div class="card-head">
     <img class="card-icon" src="/assets/app-icons/codecaps.png" alt="" width="48" height="48" loading="lazy" decoding="async">
     <div>
-      <h3><a href="/codecaps/">CodeCaps</a></h3>
+      <h4><a href="/codecaps/">CodeCaps</a></h4>
       <ul class="pills" aria-label="Platforms"><li class="pill">macOS</li><li class="pill">iOS</li></ul>
     </div>
   </div>
-  <p>AI coding quotas in the macOS menu bar, with an iPhone companion.</p>
-  <span class="status status-beta">Private beta</span>
+  <p>Check supported AI quota and reset windows from the macOS menu bar.</p>
+  <span class="status status-beta">macOS beta download; iOS access unconfirmed</span>
   <div class="card-links">
-    <a href="https://codecaps.simplewithus.com/" rel="noopener">Website<span aria-hidden="true"> ↗</span></a>
-    <a href="https://github.com/jaywedgeworth22/CodeCaps" rel="noopener">Source<span aria-hidden="true"> ↗</span></a>
+    <a href="https://github.com/jaywedgeworth22/codecaps/releases/latest/download/CodeCaps.dmg" rel="noopener">Download Mac beta<span aria-hidden="true"> ↗</span></a>
     <a href="/codecaps/support.html">Support</a>
   </div>
 </li>
@@ -72,15 +73,14 @@
   <div class="card-head">
     <img class="card-icon" src="/assets/app-icons/usage-monitor.png" alt="" width="48" height="48" loading="lazy" decoding="async">
     <div>
-      <h3><a href="/usage-client/">Usage Client Monitor</a></h3>
+      <h4><a href="/usage-client/">Usage Client Monitor</a></h4>
       <ul class="pills" aria-label="Platforms"><li class="pill">iOS</li><li class="pill">Web</li></ul>
     </div>
   </div>
-  <p>API and agent quota and spend across providers, synced through a server you can self-host.</p>
-  <span class="status status-beta">App Store record pending</span>
+  <p>View data from your self-hosted Usage Monitor server on iPhone.</p>
+  <span class="status status-beta">iOS beta access not confirmed</span>
   <div class="card-links">
-    <a href="https://usage.jays.services/" rel="noopener">Website<span aria-hidden="true"> ↗</span></a>
-    <a href="https://github.com/jaywedgeworth22/Usage-Monitor" rel="noopener">Source<span aria-hidden="true"> ↗</span></a>
+    <a href="https://github.com/jaywedgeworth22/Usage-Monitor" rel="noopener">View public source<span aria-hidden="true"> ↗</span></a>
     <a href="/usage-client/support.html">Support</a>
   </div>
 </li>
@@ -88,14 +88,14 @@
   <div class="card-head">
     <img class="card-icon" src="/assets/app-icons/usage-monitor.png" alt="" width="48" height="48" loading="lazy" decoding="async">
     <div>
-      <h3><a href="/usage-local/">Usage Local Monitor</a></h3>
+      <h4><a href="/usage-local/">Usage Local Monitor</a></h4>
       <ul class="pills" aria-label="Platforms"><li class="pill">iOS</li></ul>
     </div>
   </div>
-  <p>On-device AI usage monitor.  No account and no server.</p>
-  <span class="status status-beta">App Store record pending</span>
+  <p>Track supported provider usage and manual subscription costs on iPhone.</p>
+  <span class="status status-beta">iOS beta access not confirmed</span>
   <div class="card-links">
-    <a href="https://github.com/jaywedgeworth22/Usage-Monitor" rel="noopener">Source<span aria-hidden="true"> ↗</span></a>
+    <a href="https://github.com/jaywedgeworth22/Usage-Monitor" rel="noopener">View public source<span aria-hidden="true"> ↗</span></a>
     <a href="/usage-local/support.html">Support</a>
   </div>
 </li>
@@ -103,22 +103,22 @@
   <div class="card-head">
     <img class="card-icon" src="/assets/app-icons/harness.png" alt="" width="48" height="48" loading="lazy" decoding="async">
     <div>
-      <h3><a href="https://github.com/jaywedgeworth22/Harness" rel="noopener">Harness</a></h3>
+      <h4><a href="https://github.com/jaywedgeworth22/Harness" rel="noopener">Harness</a></h4>
       <ul class="pills" aria-label="Platforms"><li class="pill">macOS</li></ul>
     </div>
   </div>
-  <p>A friendly adaptation of DeepSeek&#x27;s dsh agent harness, with DeepSeek and MiniMax parity.</p>
+  <p>Run a local agent harness with DeepSeek and MiniMax support.</p>
   <span class="status status-source">Build from source</span>
 </li>
 <li class="card" style="--card-accent: #ff6b35">
   <div class="card-head">
     <img class="card-icon" src="/assets/app-icons/minimax-remote.png" alt="" width="48" height="48" loading="lazy" decoding="async">
     <div>
-      <h3><a href="/minimax-remote/">MiniMax Remote</a></h3>
+      <h4><a href="/minimax-remote/">MiniMax Remote</a></h4>
       <ul class="pills" aria-label="Platforms"><li class="pill">iOS</li></ul>
     </div>
   </div>
-  <p>Drive MiniMax Code from your iPhone.  Chat, sessions, scheduled tasks, and agents.</p>
+  <p>Use an iPhone to follow MiniMax Code sessions on a paired Mac.</p>
   <span class="status status-beta">Private beta</span>
   <div class="card-links">
     <a href="/minimax-remote/support.html">Support</a>
@@ -128,31 +128,34 @@
   <div class="card-head">
     <img class="card-icon" src="/assets/app-icons/botfleet.png" alt="" width="48" height="48" loading="lazy" decoding="async">
     <div>
-      <h3><a href="/botfleet/">BotFleet</a></h3>
+      <h4><a href="/botfleet/">BotFleet</a></h4>
       <ul class="pills" aria-label="Platforms"><li class="pill">iOS</li><li class="pill">macOS</li><li class="pill">Web</li></ul>
     </div>
   </div>
-  <p>Pick a platform for each bot.  Use your own subscriptions and APIs.</p>
-  <span class="status status-live">Add-ons in testing</span>
+  <p>Run and inspect AI bots from one workspace.</p>
+  <span class="status status-live">Website and app betas</span>
   <div class="card-links">
-    <a href="https://botfleet.app/" rel="noopener">Website<span aria-hidden="true"> ↗</span></a>
-    <a href="https://github.com/jaywedgeworth22/BotFleet" rel="noopener">Source<span aria-hidden="true"> ↗</span></a>
+    <a href="https://botfleet.app/" rel="noopener">Visit website<span aria-hidden="true"> ↗</span></a>
     <a href="/botfleet/support.html">Support</a>
   </div>
 </li>
+  </ul>
+</section>
+<section class="catalog-group" aria-labelledby="shelf-markets">
+  <h3 id="shelf-markets">For Markets</h3>
+  <ul class="grid" role="list">
 <li class="card" style="--card-accent: #2563eb">
   <div class="card-head">
     <img class="card-icon" src="/assets/app-icons/socratic-trade.svg" alt="" width="48" height="48" loading="lazy" decoding="async">
     <div>
-      <h3><a href="/socratic-trade/">Socratic.Trade</a></h3>
+      <h4><a href="/socratic-trade/">Socratic Trade</a></h4>
       <ul class="pills" aria-label="Platforms"><li class="pill">Web</li><li class="pill">iOS</li></ul>
     </div>
   </div>
-  <p>Agentic trading console for Alpaca, Tradier, and Robinhood accounts.  Not investment advice.</p>
+  <p>Review AI-generated trading proposals and manage broker execution.</p>
   <span class="status status-live">Live on the web</span>
   <div class="card-links">
-    <a href="https://socratictrade.com/" rel="noopener">Website<span aria-hidden="true"> ↗</span></a>
-    <a href="https://github.com/jaywedgeworth22/Socratic-Trade" rel="noopener">Source<span aria-hidden="true"> ↗</span></a>
+    <a href="https://socratictrade.com/" rel="noopener">Visit website<span aria-hidden="true"> ↗</span></a>
     <a href="/socratic-trade/support.html">Support</a>
   </div>
 </li>
@@ -160,42 +163,45 @@
   <div class="card-head">
     <img class="card-icon" src="/assets/app-icons/congress-trade.png" alt="" width="48" height="48" loading="lazy" decoding="async">
     <div>
-      <h3><a href="/congress-trade/">Congress.Trade</a></h3>
+      <h4><a href="/congress-trade/">Congress.Trade</a></h4>
       <ul class="pills" aria-label="Platforms"><li class="pill">Web</li><li class="pill">iOS</li></ul>
     </div>
   </div>
-  <p>Public STOCK Act disclosures from the House, Senate, and Executive Branch.</p>
+  <p>Explore public trading disclosures and inspect source filings.</p>
   <span class="status status-live">Live on the web</span>
   <div class="card-links">
-    <a href="https://congress.trade/" rel="noopener">Website<span aria-hidden="true"> ↗</span></a>
-    <a href="https://github.com/jaywedgeworth22/Congress.Trade" rel="noopener">Source<span aria-hidden="true"> ↗</span></a>
+    <a href="https://congress.trade/" rel="noopener">Visit website<span aria-hidden="true"> ↗</span></a>
     <a href="/congress-trade/support.html">Support</a>
   </div>
 </li>
+  </ul>
+</section>
+<section class="catalog-group" aria-labelledby="shelf-utilities">
+  <h3 id="shelf-utilities">Everyday Utilities</h3>
+  <ul class="grid" role="list">
 <li class="card" style="--card-accent: #92400e">
   <div class="card-head">
     <img class="card-icon" src="/assets/app-icons/hoghunter.png" alt="" width="48" height="48" loading="lazy" decoding="async">
     <div>
-      <h3><a href="https://github.com/jaywedgeworth22/HogHunter" rel="noopener">HogHunter</a></h3>
+      <h4><a href="https://github.com/jaywedgeworth22/HogHunter" rel="noopener">HogHunter</a></h4>
       <ul class="pills" aria-label="Platforms"><li class="pill">macOS</li></ul>
     </div>
   </div>
-  <p>Mac menu bar view of CPU and memory hogs right now, over the past hour, and over the past day.</p>
+  <p>See which Mac processes use the most CPU and memory.</p>
   <span class="status status-source">Build from source</span>
 </li>
 <li class="card" style="--card-accent: #6366f1">
   <div class="card-head">
     <img class="card-icon" src="/assets/app-icons/contactlogo.png" alt="" width="48" height="48" loading="lazy" decoding="async">
     <div>
-      <h3><a href="/contactlogo/">ContactLogo</a></h3>
+      <h4><a href="/contactlogo/">ContactLogo</a></h4>
       <ul class="pills" aria-label="Platforms"><li class="pill">iOS</li><li class="pill">macOS</li><li class="pill">Android</li><li class="pill">Web</li></ul>
     </div>
   </div>
-  <p>Brand icons for your address book, matched review-first.</p>
+  <p>Review suggested company logos before applying them to contacts.</p>
   <span class="status status-live">Live on the web</span>
   <div class="card-links">
-    <a href="https://contactlogo.com/" rel="noopener">Website<span aria-hidden="true"> ↗</span></a>
-    <a href="https://github.com/jaywedgeworth22/ContactLogo" rel="noopener">Source<span aria-hidden="true"> ↗</span></a>
+    <a href="https://contactlogo.com/" rel="noopener">Visit website<span aria-hidden="true"> ↗</span></a>
     <a href="/contactlogo/support.html">Support</a>
   </div>
 </li>
@@ -203,15 +209,14 @@
   <div class="card-head">
     <img class="card-icon" src="/assets/app-icons/dealdex.png" alt="" width="48" height="48" loading="lazy" decoding="async">
     <div>
-      <h3><a href="/dealdex/">DealDex</a></h3>
+      <h4><a href="/dealdex/">DealDex</a></h4>
       <ul class="pills" aria-label="Platforms"><li class="pill">iOS</li><li class="pill">Android</li><li class="pill">Web</li></ul>
     </div>
   </div>
-  <p>Pokémon listing desk.  Scan eBay and Mercari singles and score each ask against market prices.</p>
+  <p>Compare Pokémon card listing prices with available market sources.</p>
   <span class="status status-live">Live on the web</span>
   <div class="card-links">
-    <a href="https://dealdex.net/" rel="noopener">Website<span aria-hidden="true"> ↗</span></a>
-    <a href="https://github.com/jaywedgeworth22/DealDex" rel="noopener">Source<span aria-hidden="true"> ↗</span></a>
+    <a href="https://dealdex.net/" rel="noopener">Visit website<span aria-hidden="true"> ↗</span></a>
     <a href="/dealdex/support.html">Support</a>
   </div>
 </li>
@@ -219,31 +224,32 @@
   <div class="card-head">
     <img class="card-icon" src="/assets/app-icons/autorotate.png" alt="" width="48" height="48" loading="lazy" decoding="async">
     <div>
-      <h3><a href="/autorotate/">Autorotate</a></h3>
+      <h4><a href="/autorotate/">Autorotate</a></h4>
       <ul class="pills" aria-label="Platforms"><li class="pill">iOS</li><li class="pill">macOS</li><li class="pill">Android</li><li class="pill">Web</li></ul>
     </div>
   </div>
-  <p>Zero-plaintext secret rotation across web, iOS, macOS, and Android.</p>
+  <p>Manage supported credential rotations with verification and an audit trail.</p>
   <span class="status status-beta">Private beta</span>
   <div class="card-links">
-    <a href="https://github.com/jaywedgeworth22/Autorotate" rel="noopener">Source<span aria-hidden="true"> ↗</span></a>
+    <a href="https://github.com/jaywedgeworth22/Autorotate" rel="noopener">View public source<span aria-hidden="true"> ↗</span></a>
     <a href="/autorotate/support.html">Support</a>
   </div>
 </li>
-</ul>
+  </ul>
+</section>
       <!-- catalog:grid:end -->
     </div>
   </section>
 
   <section class="section" id="honest" aria-labelledby="honest-title">
     <div class="wrap">
-      <h2 id="honest-title">How This Catalog Stays Honest</h2>
-      <p class="lede">A catalog is only useful if it is right.  These rules are enforced by the build, not by memory.</p>
+      <h2 id="honest-title">Availability</h2>
+      <p class="lede">Each app page shows the current web, beta, or source option we could verify.  Access can change as products move between platforms.</p>
       <ul class="claims" role="list">
-        <li><strong>Generated From One File</strong><p>Every card is rendered from <a href="https://github.com/jaywedgeworth22/Simple-With-Us/blob/main/apps/index.json" rel="noopener"><code>apps/index.json</code></a>.  The build fails when this page and that file disagree.</p></li>
-        <li><strong>No Dead Buttons</strong><p>An App Store or TestFlight button only appears when it points at a real listing or a public invite.  Invite-only betas say so instead.</p></li>
-        <li><strong>Claims Link to Proof</strong><p>Each app links to its source repo or its own site, so anything said here can be checked there.</p></li>
-        <li><strong>What Leaves Your Device</strong><p>Some apps send crash reports so bugs get fixed.  Read the <a href="/privacy.html">privacy notice</a> before you install, and ask us anything.</p></li>
+        <li><strong>Web apps</strong><p>Visit the product website when a public web destination is available.</p></li>
+        <li><strong>Beta access</strong><p>Use a product-specific TestFlight or download link when one is available.  Otherwise the page names the current status and support path.</p></li>
+        <li><strong>Build from source</strong><p>Some tools are shared as public source, without a hosted app or install package.</p></li>
+        <li><strong>Privacy by product</strong><p>Data flows vary by app and platform.  Review the <a href="/privacy.html">site notice</a> and the product's own policy.</p></li>
       </ul>
     </div>
   </section>
@@ -251,7 +257,7 @@
   <section class="section" id="source" aria-labelledby="source-title">
     <div class="wrap">
       <h2 id="source-title">Build From Source</h2>
-      <p class="lede">Every public repo keeps its build steps in its README.  Clone one and follow along.</p>
+      <p class="lede">Some apps are available as public source.  Open a project's repository and follow its current README for setup details.</p>
       <div class="code">
         <button class="copy" type="button" hidden>Copy</button>
         <pre><code>git clone https://github.com/jaywedgeworth22/HogHunter.git

@@ -4,13 +4,14 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Autorotate.Codes Support -- Simple With Us</title>
-  <meta name="description" content="Per-app rules, Bluetooth triggers, and known-issue reference for Autorotate.Codes on iOS." />
+  <meta name="description" content="Support for Autorotate." />
   <meta name="theme-color" content="#1a1a2e" />
   <link rel="icon" type="image/png" href="/assets/logos/swu-logo-whitecircle-1024.png" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
   <link rel="stylesheet" href="/style.css" />
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 
 <header class="site-header">
   <div class="container">
@@ -27,34 +28,15 @@
   </div>
 </header>
 
-<article class="article">
-  <span class="kicker">Autorotate.Codes</span>
+<article class="article" id="main">
+  <span class="kicker">Autorotate</span>
   <h1>Support</h1>
-  <p class="lede">Per-app rules, Bluetooth triggers, and known-issue reference. If the four checks below don't fix it, send the output to <code>feedback@simplewithus.com</code> and we'll come back the same day.</p>
-
-  <h2>The four checks that catch 90% of "rule did nothing" reports</h2>
-  <ol>
-    <li><strong>Rule toggle is on.</strong> Rules screen shows the toggle on the right. If it's off, the rule is defined but never fires. Toggle on.</li>
-    <li><strong>App in foreground when you test.</strong> The rule fires on app-foreground events. If the app is already open, leave it and reopen. Foreground events drive the rule, not background motion.</li>
-    <li><strong>Bluetooth device actually connected.</strong> For device-triggered rules, confirm the device shows as Connected in iOS Settings &gt; Bluetooth, not just Paired. Many car mounts stay Paired but never connect until the engine starts.</li>
-    <li><strong>App overrides orientation.</strong> Some apps (camera, most video players) take over orientation lock. The rule fires (Diagnostics shows it); the app ignores it. That's the app, not us.</li>
-  </ol>
-
-  <h2>Crash log or "Application keeps closing"</h2>
-  <p>If Autorotate.Codes crashes immediately on launch or after a specific screen, pull a Console log from the Mac (Console.app &gt; iPhone &gt; Autorotate.Codes) and send the last ~200 lines to <code>feedback@simplewithus.com</code>. If you can repro, note the exact steps and the iOS version (Settings &gt; General &gt; About).</p>
-
-  <h2>Rule fired but the screen did not rotate</h2>
-  <p>The Diagnostics screen shows recent firings. If a rule fired and the screen did not change, the targeted app almost certainly locks orientation itself. That's an app-level constraint we cannot override without using private APIs. Email the app's developer; the most you can do is open the app, leave it, and reopen.</p>
-
-  <h2>Sending logs to support</h2>
-  <p>The app's Settings screen has a "Send Logs" action (under Diagnostics). It bundles the last few minutes into a single zip, scrubbed of your rule names, and opens a prefilled email to <code>feedback@simplewithus.com</code>. Attach the zip; we respond usually within a business day.</p>
-
+  <p class="lede">For a rotation issue, include the connector name, rotation ID, and outcome without sending secret material.</p>
+  <h2>Before contacting us</h2>
+  <p>A rotation can be partial after one destination updates and another fails.&nbsp; Inspect the affected target, reconnect if necessary, then run a new rotation.</p>
+  <p>Check the <a href="/autorotate/">product page</a> for current platform availability and the <a href="/privacy.html">privacy notice</a> for site-level information.</p>
   <h2>Contact</h2>
-  <div class="callout">
-    <p><strong>feedback@simplewithus.com</strong> -- open a thread, don't worry about templates. Note your iOS version and the app you were testing the rule against.</p>
-  </div>
-
-  <p style="margin-top: 32px;"><a class="btn btn-secondary" href="/">&larr; Back to Simple With Us</a></p>
+  <p>Email <a href="mailto:feedback@simplewithus.com?subject=autorotate%20support">feedback@simplewithus.com</a> with your device or browser version and steps to reproduce.&nbsp; Leave out passwords, API keys, personal contact data, and private logs.</p>
 </article>
 
 <footer class="site-footer">

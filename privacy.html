@@ -4,13 +4,14 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Privacy -- Simple With Us</title>
-  <meta name="description" content="Simple With Us's privacy notice covering simplewithus.com and every app shipped under a com.simplewithus.* bundle identifier." />
+  <meta name="description" content="Privacy information for the Simple With Us catalog and links to product-specific practices." />
   <meta name="theme-color" content="#1a1a2e" />
   <link rel="icon" type="image/png" href="/assets/logos/swu-logo-whitecircle-1024.png" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
   <link rel="stylesheet" href="/style.css" />
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 
 <header class="site-header">
   <div class="container">
@@ -27,58 +28,26 @@
   </div>
 </header>
 
-<article class="article">
+<article class="article" id="main">
   <span class="kicker">Privacy notice</span>
-  <h1>What we collect, and what we don't.</h1>
-  <p class="lede">Effective 23 September 2026. Operator: Simple With Us, mailing address <a href="mailto:feedback@simplewithus.com">feedback@simplewithus.com</a>. This notice covers <code>simplewithus.com</code> and every app shipped under a <code>com.simplewithus.*</code> bundle identifier.</p>
+  <h1>Privacy at Simple With Us</h1>
+  <p class="lede">Updated 26 September 2026.&nbsp; This notice describes the public catalog at <code>simplewithus.com</code>.&nbsp; Product data flows depend on the app and platform; check each product's own privacy information before using it.</p>
 
-  <h2>The short version</h2>
-  <p>If a feature in any of our apps needs to send data off your device, it asks first. We don't run ad networks, we don't sell usage data, and we don't profile you. Where we do collect something, it's scoped to making the thing you asked for work.</p>
+  <h2>This website</h2>
+  <p>The catalog is a static site hosted through GitHub Pages.&nbsp; Its current page code does not include an analytics or advertising script.&nbsp; GitHub Pages and linked resources, including Google Fonts on some pages, may receive ordinary web requests under their own policies.</p>
+  <p>Opening an external product site, public source repository, download, or TestFlight page sends a request to that destination.&nbsp; Links are labeled so you can choose when to leave this site.</p>
 
-  <h2>What this site collects</h2>
-  <p>Static pages. We don't run analytics on simplewithus.com -- there is no tracking pixel, no fingerprint script, no third-party tag manager. The only data the site generates is the standard web-server access log (request URL, response code, your IP for the duration of the request, and the User-Agent string), kept for 30 days to detect abuse and then rotated out.</p>
-
-  <h2>What each app collects</h2>
-
-  <h3>MiniMax Remote (com.simplewithus.minimaxremote)</h3>
+  <h2>Product data varies</h2>
   <ul>
-    <li><strong>On-device:</strong> the companion server address and pair token you save, in iOS-protected storage; the seed used to rotate that token.</li>
-    <li><strong>Off-device:</strong> nothing is sent to Simple With Us. The app talks to the Mac you paired; the Mac talks to your own MiniMax Code session. We are not in that path.</li>
-    <li><strong>Crash reports:</strong> opt-in. If you turn them on, the standard Apple toolchain surfaces stack traces without your identifiers.</li>
+    <li><strong>Usage Local Monitor:</strong> local tracking data may be combined with direct requests to supported provider services using credentials stored in iOS Keychain.</li>
+    <li><strong>Usage Client Monitor:</strong> the iPhone app connects to a Usage Monitor server configured by its user; provider collection and storage happen on that server.</li>
+    <li><strong>CodeCaps:</strong> the Mac app can read local CLI session data.&nbsp; Optional endpoint push or pull is off by default; optional collector tokens use macOS Keychain.</li>
+    <li><strong>ContactLogo:</strong> local review, logo network lookups, and optional Google Contacts import or sync have different transfer paths.&nbsp; Review selected contacts before syncing.</li>
   </ul>
+  <p>Other product sites describe their own account, broker, contact, or service data practices.&nbsp; This site-level notice does not replace those product policies.</p>
 
-  <h3>CodeCaps Companion (com.simplewithus.codecaps.ios) and CodeCaps for Mac (com.simplewithus.codecaps.macos)</h3>
-  <ul>
-    <li><strong>On-device:</strong> the per-service balance state and rate-limit windows you've authorised. All local by default.</li>
-    <li><strong>Cross-device sync:</strong> opt-in, end-to-end encrypted via your iCloud Keychain. If you don't turn it on, your state never leaves the device you installed it on.</li>
-    <li><strong>Crash reports:</strong> same opt-in model.</li>
-  </ul>
-
-  <h2>Third-party services we route through</h2>
-  <ul>
-    <li><strong>Email.</strong> Inbound and outbound email for the studio runs through a third-party email provider. Their privacy policy applies to the message headers and bodies you send to <code>feedback@simplewithus.com</code> and to anything we send back.</li>
-    <li><strong>App Store Connect.</strong> Apple's developer portal, used only to publish apps and process TestFlight distribution. Apple's developer privacy policy applies there.</li>
-  </ul>
-  <p>We do not run or rent any analytics, ads, retargeting, attribution, or fingerprinting service. If we ever add one, this notice will say so explicitly and the change will be highlighted in every affected app's release notes.</p>
-
-  <h2>Your rights</h2>
-  <p>For any data we hold -- which, in practice, is whatever you wrote to us -- you can ask for a copy, ask us to correct it, or ask us to delete it. Write <a href="mailto:feedback@simplewithus.com">feedback@simplewithus.com</a>; we respond within seven days. EU/UK residents get the full set of rights under GDPR; California residents get the equivalent under CCPA/CPRA. We are a tiny studio, so "data we hold" rarely amounts to much.</p>
-
-  <h2>Data retention</h2>
-  <p>Email correspondence is kept for as long as it's useful for the thread, then archived on encrypted disk for up to two years, then deleted. App-side crash logs, if you opt in, are retained by Apple's crash service for 90 days per Apple's policy.</p>
-
-  <h2>Children's privacy</h2>
-  <p>None of these products are aimed at children under 13. We do not knowingly collect data from children. If a parent or guardian believes a child has provided us data, write <a href="mailto:feedback@simplewithus.com">feedback@simplewithus.com</a> and we'll remove it.</p>
-
-  <h2>International transfers</h2>
-  <p>simplewithus.com is hosted on Cloudflare Pages (United States + global edge). If you contact us by email, your message may transit providers in your region and ours. We rely on standard contractual clauses for any transfers that require them.</p>
-
-  <h2>Changes to this notice</h2>
-  <p>When this notice changes materially, we'll bump the effective date at the top and surface a one-line summary inside each affected app's release notes the next time you open it.</p>
-
-  <div class="callout">
-    <p><strong>Email:</strong> <a href="mailto:feedback@simplewithus.com">feedback@simplewithus.com</a>. We'll respond within seven days.</p>
-  </div>
+  <h2>Contact</h2>
+  <p>If you email <a href="mailto:feedback@simplewithus.com">feedback@simplewithus.com</a>, your message and address pass through the mail providers used to handle the request.&nbsp; You can ask about or request deletion of information you sent to this address.&nbsp; Please do not email passwords, API keys, pairing tokens, or unredacted personal data.</p>
 </article>
 
 <footer class="site-footer">

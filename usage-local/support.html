@@ -4,13 +4,14 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Usage Local Monitor Support -- Simple With Us</title>
-  <meta name="description" content="Local store, manual entry, and known-issue reference for Usage Local Monitor on iOS." />
+  <meta name="description" content="Support for Usage Local Monitor." />
   <meta name="theme-color" content="#1a1a2e" />
   <link rel="icon" type="image/png" href="/assets/logos/swu-logo-whitecircle-1024.png" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
   <link rel="stylesheet" href="/style.css" />
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 
 <header class="site-header">
   <div class="container">
@@ -27,34 +28,15 @@
   </div>
 </header>
 
-<article class="article">
+<article class="article" id="main">
   <span class="kicker">Usage Local Monitor</span>
   <h1>Support</h1>
-  <p class="lede">Local store, manual entry, and known-issue reference. If the four checks below don't fix it, send the output to <code>feedback@simplewithus.com</code> and we'll come back the same day.</p>
-
-  <h2>The four checks that catch 90% of cap-warning issues</h2>
-  <ol>
-    <li><strong>Cap set in the Providers screen.</strong> If the cap field is empty, the warning never fires. Open the provider, scroll to Cap, enter the monthly limit, and save.</li>
-    <li><strong>Daily spend logged today.</strong> The rollup uses today's entry. If you forgot to log a session, today's spend is missing and the cap looks further away than it is.</li>
-    <li><strong>Notification permission granted.</strong> Settings &gt; Notifications &gt; Usage Local Monitor &gt; Allow Notifications. Without this, the local warning fires silently.</li>
-    <li><strong>Device date and timezone.</strong> The app rolls by local date. If your travel changed timezone mid-day, today's entry may split across two days.</li>
-  </ol>
-
-  <h2>Crash log or "Application keeps closing"</h2>
-  <p>If Usage Local Monitor crashes immediately on launch or after a specific screen, pull a Console log from the Mac (Console.app &gt; iPhone &gt; Usage Local Monitor) and send the last ~200 lines to <code>feedback@simplewithus.com</code>. If you can repro, note the exact steps and the iOS version (Settings &gt; General &gt; About).</p>
-
-  <h2>Lost data after a device wipe</h2>
-  <p>Usage Local Monitor does not sync. If you wiped the device without exporting, the local store is gone. The next release adds an iCloud Drive backup toggle; for now, export CSV from the Diagnostics screen before any major device change.</p>
-
-  <h2>Sending logs to support</h2>
-  <p>The app's Settings screen has a "Send Logs" action (under Diagnostics). It bundles the last few minutes into a single zip, scrubbed of your provider names and caps, and opens a prefilled email to <code>feedback@simplewithus.com</code>. Attach the zip; we respond usually within a business day.</p>
-
+  <p class="lede">For a missing reading, note the provider adapter, last refresh time, and whether you entered a manual subscription row.</p>
+  <h2>Before contacting us</h2>
+  <p>Direct polling uses provider credentials from iOS Keychain and makes network requests to supported services.&nbsp; Subscription rows may need manual updates.</p>
+  <p>Check the <a href="/usage-local/">product page</a> for current platform availability and the <a href="/privacy.html">privacy notice</a> for site-level information.</p>
   <h2>Contact</h2>
-  <div class="callout">
-    <p><strong>feedback@simplewithus.com</strong> -- open a thread, don't worry about templates. Note your iOS version and which provider the cap warning was supposed to fire on.</p>
-  </div>
-
-  <p style="margin-top: 32px;"><a class="btn btn-secondary" href="/">&larr; Back to Simple With Us</a></p>
+  <p>Email <a href="mailto:feedback@simplewithus.com?subject=usage-local%20support">feedback@simplewithus.com</a> with your device or browser version and steps to reproduce.&nbsp; Leave out passwords, API keys, personal contact data, and private logs.</p>
 </article>
 
 <footer class="site-footer">

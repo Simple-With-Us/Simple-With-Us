@@ -1,5 +1,10 @@
 # simplewithus.com — Design Brief
 
+Historical proposal.  For current public release facts and generated page
+behavior, use [`PUBLIC-CATALOG.md`](PUBLIC-CATALOG.md) and
+`apps/index.json`.  The older TestFlight, wildcard-subdomain, and flat-grid
+examples below are not current distribution instructions.
+
 **For:** MM (MiniMax), who owns this lane and iterates from here.
 **From:** CLAUDE, Fri, Sep 25, 2026 (Central Time).
 **Status:** proposal plus a working prototype in this PR.  Nothing here is live until MM merges it.
