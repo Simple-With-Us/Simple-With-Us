@@ -15,7 +15,7 @@
         "iOS"
       ],
       "status": "beta",
-      "statusText": "Mac beta · iPhone companion by invitation",
+      "statusText": "Mac beta · iPhone beta awaiting Apple review",
       "icon": "/assets/app-icons/codecaps.png",
       "accent": "#0f766e",
       "page": "/codecaps/",
@@ -47,11 +47,11 @@
         },
         "iOS": {
           "status": "beta",
-          "label": "Companion · invite-only beta",
+          "label": "Beta awaiting Apple review",
           "channel": null,
           "url": null,
           "verifiedOn": "2026-09-27",
-          "verification": "Read-only App Store Connect beta-group check found internal testing only, with no public invitation on 2026-09-27."
+          "verification": "External beta group is enabled and has a valid build assigned.  Apple beta review submission is WAITING_FOR_REVIEW; do not advertise the public invitation as installable until approved."
         }
       }
     },
@@ -192,7 +192,7 @@
         "iOS"
       ],
       "status": "beta",
-      "statusText": "Private beta",
+      "statusText": "Beta awaiting Apple review",
       "icon": "/assets/app-icons/minimax-remote.png",
       "accent": "#ff6b35",
       "page": "/minimax-remote/",
@@ -214,11 +214,11 @@
       "availability": {
         "iOS": {
           "status": "beta",
-          "label": "Invite-only beta",
+          "label": "Beta awaiting Apple review",
           "channel": null,
           "url": null,
           "verifiedOn": "2026-09-27",
-          "verification": "Read-only App Store Connect beta-group check found internal testing only, with no public invitation on 2026-09-27."
+          "verification": "External beta group is enabled and has a valid build assigned.  Apple beta review submission is WAITING_FOR_REVIEW; do not advertise the public invitation as installable until approved."
         }
       }
     },
@@ -321,11 +321,11 @@
         },
         "iOS": {
           "status": "source",
-          "label": "In development",
+          "label": "Invite-only beta in preparation",
           "channel": "source",
           "url": "https://github.com/jaywedgeworth22/Socratic-Trade",
           "verifiedOn": "2026-09-27",
-          "verification": "Current ASC app 6815511597 has no beta groups.  Previous 6799238379 is explicitly retired as IGNORE old ST; do not publish its invite."
+          "verification": "Current ASC app 6815511597 matches com.socratictrade.ios and has no released beta build.  Owner requires invitation-only access.  Retired app 6799238379 and its public invite are excluded."
         }
       }
     },
@@ -403,7 +403,8 @@
         "com.simplewithus.hoghunter.macos"
       ],
       "appleIds": {
-        "macos": null
+        "macos": null,
+        "ios": 6816633156
       },
       "associatedDomains": true,
       "availability": {
@@ -421,7 +422,7 @@
           "channel": "source",
           "url": "https://github.com/jaywedgeworth22/HogHunter",
           "verifiedOn": "2026-09-27",
-          "verification": "iOS companion source and September 26 rollout confirm implementation; no public App Store or TestFlight distribution."
+          "verification": "iPhone companion source exists.  Current-bundle ASC app 6816633156 was created and verified through the Apple API; no uploaded public beta build is available yet."
         }
       }
     },
@@ -504,7 +505,7 @@
         "Web"
       ],
       "status": "live",
-      "statusText": "Web · iPhone beta by invitation",
+      "statusText": "Web · iPhone beta awaiting Apple review",
       "icon": "/assets/app-icons/dealdex.png",
       "accent": "#b45309",
       "page": "/dealdex/",
@@ -526,11 +527,11 @@
       "availability": {
         "iOS": {
           "status": "beta",
-          "label": "Invite-only beta",
+          "label": "Beta awaiting Apple review",
           "channel": null,
           "url": null,
           "verifiedOn": "2026-09-27",
-          "verification": "Read-only App Store Connect beta-group check found internal testing only, with no public invitation on 2026-09-27."
+          "verification": "External beta group is enabled and has a valid build assigned.  Apple beta review submission is WAITING_FOR_REVIEW; do not advertise the public invitation as installable until approved."
         },
         "Android": {
           "status": "source",
@@ -579,7 +580,7 @@
         "codes.autorotate.macos"
       ],
       "appleIds": {
-        "ios": 6804248985,
+        "ios": 6816633326,
         "macos": 6804928534
       },
       "associatedDomains": false,
@@ -590,7 +591,7 @@
           "channel": "source",
           "url": "https://github.com/jaywedgeworth22/Autorotate",
           "verifiedOn": "2026-09-27",
-          "verification": "iOS source exists; previous public TestFlight URL returns only a generic Apple page."
+          "verification": "Current-bundle ASC app 6816633326 was created and verified through the Apple API for codes.autorotate.ios.  Signing and upload remain pending; the old bundle invitation is not a current-source release."
         },
         "macOS": {
           "status": "beta",

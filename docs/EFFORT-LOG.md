@@ -1,3 +1,5 @@
+- **2026-09-27 — CODEX — IN PROGRESS — Current beta review and app identities (#22, board e7074f23, codex/beta-review-status-20260927).**  Reflect Apple review pending for DealDex, CodeCaps iOS, and MiniMax Remote; preserve Socratic Trade invitation-only access.  Hog Hunter and Autorotate current-bundle App Store Connect records created.  No pending invitation is presented as an available install.
+
 # Simple With Us implementation log
 
 ## In progress
