@@ -94,6 +94,12 @@ class CatalogContractTests(unittest.TestCase):
             self.assertIn(catalog.identity_region(app), page)
             self.assertLess(page.index(f'<h1>{app["name"]}</h1>'), page.index('class="lede"'))
 
+    def test_shared_asset_urls_change_with_content(self):
+        rendered = catalog.chrome('<link href="/assets/site.css"><script src="/assets/status.mjs"></script>')
+        self.assertRegex(rendered, r'site\.css\?v=[a-f0-9]{12}')
+        self.assertRegex(rendered, r'status\.mjs\?v=[a-f0-9]{12}')
+        self.assertEqual(rendered, catalog.chrome(rendered))
+
     def test_invalid_shelf_support_and_calendar_date_are_rejected(self):
         data = copy.deepcopy(self.data)
         app = data["apps"][0]

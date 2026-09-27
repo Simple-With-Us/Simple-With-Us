@@ -15,3 +15,5 @@ The public link auditor now treats generic or explicitly retired TestFlight page
 ## Publication
 
 PR #20 merged as `28af546`.  GitHub Pages run `36303036956` succeeded at that exact commit.  The live catalog audit passed all 89 destinations, with no broken or unverified results.  The public manifest, shared stylesheet, status module, complete SWU logo, and all 12 edition icon assets matched source.  The initial local-preview image failures did not reproduce in the deployed asset checks.
+
+Live browser inspection caught a cached previous stylesheet despite correct origin bytes.  Shared CSS and status module URLs now include a generated content fingerprint so browsers request the matching assets after a publication.

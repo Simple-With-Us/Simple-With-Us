@@ -18,6 +18,7 @@ Rules enforced (see docs/DESIGN-BRIEF.md sections 5 and 9):
   * generated links do not point to private repositories or generic store pages
 """
 import html
+import hashlib
 from datetime import date
 import json
 import pathlib
@@ -210,7 +211,12 @@ FOOTER = """<footer class="site-footer">
 
 def chrome(page: str) -> str:
     page = re.sub(r'<header class="site-header">.*?</header>', lambda _: HEADER, page, flags=re.S)
-    return re.sub(r'<footer class="site-footer">.*?</footer>', lambda _: FOOTER, page, flags=re.S)
+    page = re.sub(r'<footer class="site-footer">.*?</footer>', lambda _: FOOTER, page, flags=re.S)
+    def asset_version(match):
+        path = match[2]
+        digest = hashlib.sha256((ROOT / path.lstrip("/")).read_bytes()).hexdigest()[:12]
+        return f'{match[1]}="{path}?v={digest}"'
+    return re.sub(r'(href|src)="(/assets/(?:site\.css|status\.mjs))(?:\?v=[a-f0-9]+)?"', asset_version, page)
 
 
 def identity_region(app: dict) -> str:
