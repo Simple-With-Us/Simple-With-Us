@@ -4,6 +4,7 @@ import json
 import tempfile
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
 import audit_catalog_links as audit
 
@@ -53,6 +54,32 @@ class CatalogLinkAuditTests(unittest.TestCase):
         self.assertEqual(audit.classify_http_status(200), "ok")
         self.assertEqual(audit.classify_http_status(404), "broken")
         self.assertEqual(audit.classify_http_status(410), "broken")
+
+    def test_apple_redirects_keep_product_identity(self):
+        app_store = "https://apps.apple.com/app/id123456789"
+        self.assertIsNone(audit.validate_final_destination(app_store, app_store))
+        self.assertIn("product identity", audit.validate_final_destination(app_store, "https://apps.apple.com/us/app/other/id987654321"))
+        invite = "https://testflight.apple.com/join/ABC123"
+        self.assertIsNone(audit.validate_final_destination(invite, invite))
+        self.assertIn("invite identity", audit.validate_final_destination(invite, "https://testflight.apple.com/join/OTHER"))
+
+    def test_online_audit_combines_local_and_live_results(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / "index.html").write_text('<a id="home" href="/detail.html">Detail</a>')
+            (root / "detail.html").write_text("Detail")
+            live = audit.Result(audit.Target("https://simplewithus.com/detail.html", "external"), "ok", "HTTP 200", "https://simplewithus.com/detail.html", 200)
+            with patch.object(audit, "external_result", return_value=live):
+                results = audit.audit({"apps": []}, root=root)
+        self.assertTrue(any(result.target.url == "/detail.html" and result.status == "ok" for result in results))
+
+    def test_broken_result_is_a_failed_audit(self):
+        with tempfile.TemporaryDirectory() as directory:
+            report = Path(directory) / "report.md"
+            broken = audit.Result(audit.Target("/missing.html", "local"), "broken", "missing local path")
+            with patch.object(audit, "audit", return_value=[broken]):
+                self.assertEqual(audit.main(["--report", str(report)]), 1)
+            self.assertIn("broken", report.read_text())
 
     def test_offline_audit_still_checks_local_routes(self):
         data = copy.deepcopy(self.data)

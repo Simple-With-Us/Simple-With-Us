@@ -171,6 +171,21 @@ def classify_http_status(status: int) -> str:
     return "broken"
 
 
+def validate_final_destination(target_url: str, final_url: str) -> str | None:
+    """Return a mismatch explanation when an Apple CTA loses product identity."""
+    target = urlsplit(target_url)
+    final = urlsplit(final_url)
+    if target.hostname == "apps.apple.com":
+        product_id = next((part for part in target.path.split("/") if part.startswith("id")), "")
+        if final.hostname != "apps.apple.com" or not product_id or product_id not in final.path.split("/"):
+            return f"App Store redirect lost product identity ({product_id or 'missing product id'})"
+    if target.hostname == "testflight.apple.com":
+        invite = target.path.split("/join/", 1)[-1] if "/join/" in target.path else ""
+        if final.hostname != "testflight.apple.com" or not invite or f"/join/{invite}" not in final.path:
+            return f"TestFlight redirect lost invite identity ({invite or 'missing invite'})"
+    return None
+
+
 def external_result(target: Target, timeout: float = 10.0) -> Result:
     request = Request(target.url, headers={"User-Agent": USER_AGENT, "Accept": "text/html,application/json;q=0.9,*/*;q=0.5"})
     try:
@@ -178,7 +193,11 @@ def external_result(target: Target, timeout: float = 10.0) -> Result:
             response.read(1)
             status = int(response.status)
             final_url = response.geturl()
-            return Result(target, classify_http_status(status), f"HTTP {status}", final_url, status)
+            state = classify_http_status(status)
+            mismatch = validate_final_destination(target.url, final_url) if state == "ok" else None
+            if mismatch:
+                return Result(target, "broken", mismatch, final_url, status)
+            return Result(target, state, f"HTTP {status}", final_url, status)
     except HTTPError as exc:
         status = int(exc.code)
         final_url = exc.geturl() or target.url
@@ -193,7 +212,21 @@ def audit(data: dict, *, offline: bool = False, timeout: float = 10.0, root: Pat
     for target in collect_targets(data, root):
         split = urlsplit(target.url)
         if target.kind == "local" or (split.scheme in EXTERNAL_SCHEMES and split.netloc == "simplewithus.com"):
-            results.append(local_result(target, root))
+            local = local_result(target, root)
+            if offline:
+                results.append(local)
+                continue
+            route = split.path or target.url
+            if split.query:
+                route += f"?{split.query}"
+            live_target = Target(f"https://simplewithus.com{route}", "external", target.sources)
+            live = external_result(live_target, timeout)
+            if local.status == "broken":
+                results.append(Result(target, "broken", f"{local.detail}; live check: {live.detail}", live.final_url, live.http_status))
+            elif live.status == "ok":
+                results.append(Result(target, "ok", f"{local.detail}; live {live.detail}", live.final_url, live.http_status))
+            else:
+                results.append(Result(target, live.status, f"{local.detail}; live check: {live.detail}", live.final_url, live.http_status))
         elif offline:
             results.append(Result(target, "unverified", "network check skipped (--offline)"))
         else:
@@ -236,7 +269,7 @@ def main(argv: list[str] | None = None) -> int:
         print(f"catalog audit could not run: {exc}", file=sys.stderr)
         return 2
     print(report)
-    return 0
+    return 1 if any(result.status == "broken" for result in results) else 0
 
 
 if __name__ == "__main__":
