@@ -19,10 +19,12 @@ class CatalogContractTests(unittest.TestCase):
                 continue
             path = catalog.ROOT / app["page"].lstrip("/") / "index.html"
             page = path.read_text()
-            self.assertEqual(page, catalog.splice(page, "availability", catalog.availability_region(app)))
+            token = self.data.get("appStoreProviderToken")
+            self.assertEqual(page, catalog.splice(page, "availability", catalog.availability_region(app, token)))
             for fact in app["availability"].values():
                 if fact["url"]:
-                    self.assertIn(f'href="{fact["url"]}"', page)
+                    destination = catalog.app_store_url(fact["url"], app["slug"], token, "hero") if fact["channel"] == "appStore" else fact["url"]
+                    self.assertIn(f'href="{catalog.attr(destination)}"', page)
 
     def test_private_source_and_generic_invite_are_rejected(self):
         data = copy.deepcopy(self.data)
@@ -41,6 +43,26 @@ class CatalogContractTests(unittest.TestCase):
         self.assertIn('id="availability-title"', generated)
         self.assertIn('<!-- catalog:availability:end -->', generated)
         self.assertEqual(generated, catalog.splice(generated, "availability", catalog.availability_region(app)))
+
+    def test_template_uses_only_generated_availability_actions(self):
+        template = (catalog.ROOT / "_template" / "index.html").read_text()
+        self.assertEqual(0, template.count('class="btn-row"'))
+        self.assertNotIn("{{links.appStore}}", template)
+        app = self.data["apps"][0]
+        generated = catalog.splice(template, "availability", catalog.availability_region(app))
+        self.assertEqual(1, generated.count('class="btn-row"'))
+
+    def test_app_store_attribution_in_card_and_detail(self):
+        app = copy.deepcopy(self.data["apps"][0])
+        url = "https://apps.apple.com/app/id123456789"
+        app["links"]["appStore"] = url
+        app["availability"]["iOS"].update(status="live", channel="appStore", url=url)
+        for token, query in ((None, "ct="), ("token 123", "pt=token+123&amp;ct=")):
+            card = catalog.card(app, token)
+            detail = catalog.availability_region(app, token)
+            self.assertIn(f'{url}?{query}swu-codecaps-card', card)
+            self.assertIn(f'{url}?{query}swu-codecaps-hero', detail)
+            self.assertNotIn("{{providerToken}}", card + detail)
 
     def test_independent_platform_check_dates_are_rendered(self):
         app = copy.deepcopy(self.data["apps"][0])

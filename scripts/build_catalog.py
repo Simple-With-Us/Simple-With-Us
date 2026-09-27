@@ -24,7 +24,7 @@ import pathlib
 import re
 import sys
 from html.parser import HTMLParser
-from urllib.parse import urlsplit
+from urllib.parse import urlencode, urlsplit
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 DATA = ROOT / "apps" / "index.json"
@@ -75,10 +75,11 @@ def attr(text: str) -> str:
     return html.escape(text, quote=True)
 
 
-def app_store_url(url: str, slug: str, provider_token) -> str:
+def app_store_url(url: str, slug: str, provider_token, placement: str) -> str:
+    params = {"ct": f"swu-{slug}-{placement}"}
     if provider_token:
-        return f"{url}?pt={provider_token}&ct=swu-{slug}-card"
-    return f"{url}?ct=swu-{slug}-card"
+        params = {"pt": provider_token, **params}
+    return f"{url}?{urlencode(params)}"
 
 
 def primary_link(app: dict):
@@ -120,7 +121,9 @@ def card(app: dict, provider_token) -> str:
         out.append('  <div class="card-links">')
         if chosen:
             label = {"website": "Visit website", "source": "View public source", "download": "Download Mac beta", "testFlight": "Open TestFlight beta", "appStore": "Open App Store listing"}[chosen["channel"]]
-            out.append(f'    <a href="{attr(chosen["url"])}" rel="noopener">{label}<span aria-hidden="true"> ↗</span></a>')
+            url = (app_store_url(chosen["url"], app["slug"], provider_token, "card")
+                   if chosen["channel"] == "appStore" else chosen["url"])
+            out.append(f'    <a href="{attr(url)}" rel="noopener">{label}<span aria-hidden="true"> ↗</span></a>')
         if app.get("support"):
             out.append(f'    <a href="{attr(app["support"])}">Support</a>')
         out.append("  </div>")
@@ -144,7 +147,7 @@ def render(data: dict) -> dict:
     return {"facts": facts, "grid": "\n".join(grid)}
 
 
-def availability_region(app: dict) -> str:
+def availability_region(app: dict, provider_token=None) -> str:
     rows = ['<section class="availability" aria-labelledby="availability-title">',
             '  <h2 id="availability-title">Availability</h2>',
             '  <ul class="availability-list">']
@@ -156,7 +159,9 @@ def availability_region(app: dict) -> str:
             continue
         label = {"website": "Visit website", "source": "View public source", "appStore": "Open App Store listing", "testFlight": "Open TestFlight beta", "download": "Download Mac beta"}[fact["channel"]]
         klass = "btn btn-primary" if fact["status"] == "live" else "btn btn-secondary"
-        rows.append(f'    <a class="{klass}" href="{attr(fact["url"])}" rel="noopener">{label}</a>')
+        url = (app_store_url(fact["url"], app["slug"], provider_token, "hero")
+               if fact["channel"] == "appStore" else fact["url"])
+        rows.append(f'    <a class="{klass}" href="{attr(url)}" rel="noopener">{label}</a>')
     if app.get("support"):
         rows.append(f'    <a class="btn btn-secondary" href="{attr(app["support"])}">Support</a>')
     checked = {platform: date.fromisoformat(fact["verifiedOn"]).strftime("%d %b %Y")
@@ -310,7 +315,7 @@ def main() -> int:
             continue
         detail = ROOT / app["page"].lstrip("/") / "index.html"
         original = detail.read_text()
-        rendered = splice(original, "availability", availability_region(app), detail.relative_to(ROOT))
+        rendered = splice(original, "availability", availability_region(app, data.get("appStoreProviderToken")), detail.relative_to(ROOT))
         if rendered != original:
             if check:
                 errors.append(f"{detail.relative_to(ROOT)} is stale: run python3 scripts/build_catalog.py")
