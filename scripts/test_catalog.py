@@ -19,10 +19,12 @@ class CatalogContractTests(unittest.TestCase):
                 continue
             path = catalog.ROOT / app["page"].lstrip("/") / "index.html"
             page = path.read_text()
-            self.assertEqual(page, catalog.splice(page, "availability", catalog.availability_region(app)))
+            token = self.data.get("appStoreProviderToken")
+            self.assertEqual(page, catalog.splice(page, "availability", catalog.availability_region(app, token)))
             for fact in app["availability"].values():
                 if fact["url"]:
-                    self.assertIn(f'href="{fact["url"]}"', page)
+                    destination = catalog.app_store_url(fact["url"], app["slug"], token, "hero") if fact["channel"] == "appStore" else fact["url"]
+                    self.assertIn(f'href="{catalog.attr(destination)}"', page)
 
     def test_private_source_and_generic_invite_are_rejected(self):
         data = copy.deepcopy(self.data)
