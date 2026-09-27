@@ -20,7 +20,7 @@ repos below are a 2026-09-25 snapshot:
 | CodeCaps (Mac, iOS)  | `jaywedgeworth22/CodeCaps`          | `/codecaps/`             | `codecaps.simplewithus.com` (CodeCaps repo's own Pages) |
 | Usage Client Monitor | `jaywedgeworth22/Usage-Monitor`     | `/usage-client/`         | `usage.jays.services` (web app)       |
 | Usage Local Monitor  | `jaywedgeworth22/Usage-Monitor`     | `/usage-local/`          | none                                  |
-| MiniMax Remote       | `jaywedgeworth22/MiniMax-ios` (private) | `/minimax-remote/`   | none                                  |
+| MiniMax Remote       | Private source | `/minimax-remote/`   | none                                  |
 | Harness              | `jaywedgeworth22/Harness`           | none yet                 | none (`harness.` is not claimed)      |
 | HogHunter            | `jaywedgeworth22/HogHunter`         | none yet                 | none                                  |
 | BotFleet             | `jaywedgeworth22/BotFleet`          | `/botfleet/`             | `botfleet.app`                        |
@@ -48,7 +48,7 @@ the matching brand domain in `~/apps/ios-fleet/apps.json` (cross-link with
 the iOS-fleet registry).  Never move or delete an existing
 `<slug>/support.html`: App Store Connect records point at those URLs.
 
-Hosting and routing inventory is maintained in the private Fleet-OPS workspace.  Keep operational paths and repository links out of public pages and docs.
+Hosting and routing inventory is maintained in the private operations workspace.  Keep operational paths and repository links out of public pages and docs.
 
 ## Branch and worktree conventions
 
