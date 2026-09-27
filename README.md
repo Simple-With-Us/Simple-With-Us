@@ -13,7 +13,7 @@ Remote's source is private.
 index.html             family-directory homepage listing every fleet app
 privacy.html           site privacy notice and scoped product data overview
 support.html           general support landing
-terms.html             universal terms
+terms.html             catalog terms; product-specific licenses may differ
 style.css              product-page stylesheet
 assets/site.css        catalog stylesheet
 <slug>/                per-app marketing (index.html) + support (support.html)
