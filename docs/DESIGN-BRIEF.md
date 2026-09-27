@@ -119,7 +119,7 @@ Required per app:
 | `links.testFlight` | A **public invite** `https://testflight.apple.com/join/<code>`, else null.  Bare `https://testflight.apple.com/` is rejected. |
 | `links.brew` | `brew install …` once a tap exists, else null.  No tap exists today. |
 | `bundleIds` / `appleIds` | Identifiers, for the AASA file and the store-link audit. |
-| `associatedDomains` | True only when the app's entitlements declare `applinks:simplewithus.com`.  The build fails if such an app is missing from the AASA file. |
+| `associatedDomains` / `associatedDomainBundleIds` | True when a target declares `applinks:simplewithus.com`.  The optional bundle list limits this check to those targets; without it, all declared bundles are checked.  A companion does not inherit its desktop app's entitlements. |
 
 ### 5.2 CTA rules (graft from Catalog)
 
@@ -247,7 +247,7 @@ Excluded on purpose: test bundles, widgets, Safari extensions and their containe
 
 ### 7.2 The file
 
-`.well-known/apple-app-site-association` (no extension, no comments) lists all eight app IDs as `CC8UTF7ATG.<bundle id>` under `applinks.details` and `webcredentials.apps`.  Listing an app whose entitlement does not declare the domain does nothing, so pre-listing is harmless.  Each app gets a **narrow** component, `{"/": "/<slug>/open/*"}` (HogHunter is `/hoghunter/open/*`), so a Mac or iPhone with the app installed never swallows the marketing pages.  An app with no catalog page of its own reuses the closest existing slug's path instead of inventing one that does not exist: `usage.macos` (the menu bar app, not itself a catalog entry) uses `/usage-client/open/*`, the same self-hosted-server product family on another platform.  When an app starts declaring the domain, set `associatedDomains: true` in `apps/index.json`, and CI checks that it is listed.
+`.well-known/apple-app-site-association` (no extension, no comments) lists all eight app IDs as `CC8UTF7ATG.<bundle id>` under `applinks.details` and `webcredentials.apps`.  Association metadata does not implement a native URL handler.  Adding an app to `applinks` or `webcredentials` changes the domain's trust declaration and requires deliberate review.  Each app gets a **narrow** component, `{"/": "/<slug>/open/*"}` (HogHunter is `/hoghunter/open/*`), so a Mac or iPhone with the app installed never swallows the marketing pages.  An app with no catalog page of its own reuses the closest existing slug's path instead of inventing one that does not exist: `usage.macos` (the menu bar app, not itself a catalog entry) uses `/usage-client/open/*`, the same self-hosted-server product family on another platform.  When an app starts declaring the domain, set `associatedDomains: true` in `apps/index.json`, and CI checks that it is listed.
 
 ### 7.3 Serving it as `application/json` with no redirect
 

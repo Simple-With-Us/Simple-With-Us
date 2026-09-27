@@ -331,8 +331,16 @@ def lint(data: dict) -> list:
         aasa = json.loads(AASA.read_text())
         listed = {i for d in aasa["applinks"]["details"] for i in d["appIDs"]}
         for app in data["apps"]:
+            scoped_bundles = app.get("associatedDomainBundleIds")
+            if scoped_bundles is not None and (
+                not isinstance(scoped_bundles, list)
+                or not all(isinstance(bid, str) and bid in app["bundleIds"] for bid in scoped_bundles)
+                or bool(scoped_bundles) != bool(app.get("associatedDomains"))
+            ):
+                errors.append(f"{app['slug']}: associatedDomainBundleIds must match declared bundle IDs and association status")
+                continue
             if app.get("associatedDomains"):
-                for bid in app["bundleIds"]:
+                for bid in scoped_bundles if scoped_bundles is not None else app["bundleIds"]:
                     if f'{data["teamId"]}.{bid}' not in listed:
                         errors.append(f"{app['slug']}: {bid} declares associated domains but is not in the AASA file")
     except (OSError, ValueError, KeyError) as exc:

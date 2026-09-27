@@ -6,6 +6,8 @@
 
 ## Completed
 
+2026-09-27 — CODEX — Catalog identity follow-up to #23: pair Hog Hunter and Autorotate current iOS Apple IDs with their actual bundle identifiers, and remove the hand-written MiniMax invitation claim so availability has one rendered source.  Existing catalog and status tests pass.
+
 - **2026-09-27 — CODEX — COMPLETED — Current beta review and app identities (#22 / PR #23, board e7074f23, codex/beta-review-status-20260927).**  Reflect Apple review pending for DealDex, CodeCaps iOS, and MiniMax Remote; preserve Socratic Trade invitation-only access.  Hog Hunter and Autorotate current-bundle App Store Connect records created.  No pending invitation is presented as an available install.
 
 ## Deployed

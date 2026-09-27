@@ -36,6 +36,16 @@ class CatalogContractTests(unittest.TestCase):
         self.assertTrue(any("source repository has not been verified public" in error for error in errors), errors)
         self.assertTrue(any("destination does not match its channel" in error for error in errors), errors)
 
+    def test_companion_does_not_inherit_desktop_domain_association(self):
+        data = copy.deepcopy(self.data)
+        app = next(a for a in data["apps"] if a["slug"] == "hoghunter")
+        self.assertIn("com.simplewithus.hoghunter.ios", app["bundleIds"])
+        self.assertEqual([], catalog.lint(data))
+        app["associatedDomainBundleIds"].append("com.simplewithus.hoghunter.ios")
+        self.assertTrue(any("hoghunter.ios declares associated domains" in e for e in catalog.lint(data)))
+        app["associatedDomainBundleIds"] = ["not.a.declared.bundle"]
+        self.assertTrue(any("associatedDomainBundleIds must match" in e for e in catalog.lint(data)))
+
     def test_new_detail_page_template_has_availability_region(self):
         template = (catalog.ROOT / "_template" / "index.html").read_text()
         app = self.data["apps"][0]
