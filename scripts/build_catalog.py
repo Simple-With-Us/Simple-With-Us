@@ -41,8 +41,6 @@ LEGACY_OVERSIZE = {
     "assets/app-icons/dd.png",
     "assets/app-icons/st.png",
     "assets/app-icons/um.png",
-    "assets/logos/swu-logo-wide.svg",
-    "assets/logos/swu-logo-wide.webp",
 }
 NBSP_GAP = "  "  # FLEET-UI-COPY: U+00A0 plus a space between sentences in HTML
 
@@ -194,7 +192,7 @@ def availability_region(app: dict, provider_token=None) -> str:
 
 HEADER = """<header class="site-header">
   <div class="wrap">
-    <a class="wordmark" href="/" aria-label="Simple With Us home"><img src="/assets/logos/swu-wordmark.webp" alt="Simple With Us" width="288" height="30"></a>
+    <a class="wordmark" href="/" aria-label="Simple With Us home"><img src="/assets/logos/swu-wordmark.webp" alt="Simple With Us" width="288" height="40"></a>
     <nav class="site-nav" aria-label="Primary">
       <a href="/#apps">Apps</a><a href="/#status">Status</a><a href="/support.html">Support</a>
     </nav>

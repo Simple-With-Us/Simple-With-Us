@@ -104,6 +104,24 @@ class CatalogContractTests(unittest.TestCase):
             self.assertIn(catalog.identity_region(app), page)
             self.assertLess(page.index(f'<h1>{app["name"]}</h1>'), page.index('class="lede"'))
 
+    def test_every_page_exposes_exactly_one_main_landmark(self):
+        """axe landmark-one-main: a skip link to id=main is not a main landmark.
+
+        Per-app pages shipped <article class="article" id="main">, so the skip
+        link worked but screen reader users had no main landmark (Lighthouse
+        accessibility 98).  This walks every published HTML file, not just the
+        cataloged ones, so a new app page cannot regress the same way.
+        """
+        for path in sorted(catalog.ROOT.rglob("*.html")):
+            if "_template" in path.parts:
+                continue
+            page = path.read_text()
+            with self.subTest(page=str(path.relative_to(catalog.ROOT))):
+                self.assertEqual(1, page.count("<main"), "expected exactly one <main> element")
+                self.assertNotIn('<article class="article" id="main">', page)
+                if 'class="skip-link"' in page:
+                    self.assertIn('id="main"', page, "skip link has no target")
+
     def test_shared_asset_urls_change_with_content(self):
         rendered = catalog.chrome('<link href="/assets/site.css"><script src="/assets/status.mjs"></script>')
         self.assertRegex(rendered, r'site\.css\?v=[a-f0-9]{12}')
