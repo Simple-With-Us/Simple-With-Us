@@ -20,8 +20,7 @@ repos below are a 2026-09-25 snapshot:
 | CodeCaps (Mac, iOS)  | `jaywedgeworth22/CodeCaps`          | `/codecaps/`             | `codecaps.simplewithus.com` (CodeCaps repo's own Pages) |
 | Usage Client Monitor | `jaywedgeworth22/Usage-Monitor`     | `/usage-client/`         | `usage.jays.services` (web app)       |
 | Usage Local Monitor  | `jaywedgeworth22/Usage-Monitor`     | `/usage-local/`          | none                                  |
-| MiniMax Remote       | Private source | `/minimax-remote/`   | none                                  |
-| Harness              | `jaywedgeworth22/Harness`           | none yet                 | none (`harness.` is not claimed)      |
+| Harness (Mac, iOS)   | `jaywedgeworth22/Harness`           | `/harness/`              | none (`harness.` is not claimed)      |
 | HogHunter            | `jaywedgeworth22/HogHunter`         | none yet                 | none                                  |
 | BotFleet             | `jaywedgeworth22/BotFleet`          | `/botfleet/`             | `botfleet.app`                        |
 | Socratic Trade       | `jaywedgeworth22/Socratic-Trade`    | `/socratic-trade/`       | `socratictrade.com`                   |

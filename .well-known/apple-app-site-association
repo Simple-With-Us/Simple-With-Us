@@ -70,16 +70,6 @@
             "/": "/harness/open/*"
           }
         ]
-      },
-      {
-        "appIDs": [
-          "CC8UTF7ATG.com.simplewithus.minimaxremote"
-        ],
-        "components": [
-          {
-            "/": "/minimax-remote/open/*"
-          }
-        ]
       }
     ]
   },
@@ -91,8 +81,7 @@
       "CC8UTF7ATG.com.simplewithus.usage.client",
       "CC8UTF7ATG.com.simplewithus.usage.local",
       "CC8UTF7ATG.com.simplewithus.usage.macos",
-      "CC8UTF7ATG.com.simplewithus.harness.mac",
-      "CC8UTF7ATG.com.simplewithus.minimaxremote"
+      "CC8UTF7ATG.com.simplewithus.harness.mac"
     ]
   }
 }

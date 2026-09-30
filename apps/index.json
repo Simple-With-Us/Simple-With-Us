@@ -147,13 +147,14 @@
     {
       "slug": "harness",
       "name": "Harness",
-      "tagline": "Run a local agent harness with DeepSeek and MiniMax support.",
+      "tagline": "Run a local agent harness with DeepSeek and MiniMax support, on your Mac and from your iPhone.",
       "shelf": "coding",
       "platforms": [
-        "macOS"
+        "macOS",
+        "iOS"
       ],
       "status": "source",
-      "statusText": "Build from source",
+      "statusText": "Mac from source · iOS app coming soon",
       "icon": "/assets/app-icons/harness-wordmark.svg",
       "accent": "#0ea5e9",
       "page": "/harness/",
@@ -166,10 +167,12 @@
         "brew": null
       },
       "bundleIds": [
-        "com.simplewithus.harness.mac"
+        "com.simplewithus.harness.mac",
+        "com.simplewithus.harness.ios"
       ],
       "appleIds": {
-        "macos": null
+        "macos": null,
+        "ios": null
       },
       "associatedDomains": false,
       "availability": {
@@ -180,45 +183,14 @@
           "url": "https://github.com/jaywedgeworth22/Harness",
           "verifiedOn": "2026-09-26",
           "verification": "Public repository returned HTTP 200; installation was not tested."
-        }
-      }
-    },
-    {
-      "slug": "minimax-remote",
-      "name": "MiniMax Remote",
-      "tagline": "Preview build: pairs your iPhone to a Mac companion over the local network. Content is placeholder data, not your real sessions.",
-      "shelf": "coding",
-      "platforms": [
-        "iOS"
-      ],
-      "status": "beta",
-      "statusText": "Beta awaiting Apple review",
-      "icon": "/assets/app-icons/minimax-remote.png",
-      "accent": "#ff6b35",
-      "page": "/minimax-remote/",
-      "support": "/minimax-remote/support.html",
-      "links": {
-        "website": null,
-        "github": null,
-        "appStore": null,
-        "testFlight": null,
-        "brew": null
-      },
-      "bundleIds": [
-        "com.simplewithus.minimaxremote"
-      ],
-      "appleIds": {
-        "ios": 6814624056
-      },
-      "associatedDomains": false,
-      "availability": {
+        },
         "iOS": {
-          "status": "beta",
-          "label": "Beta awaiting Apple review",
+          "status": "unverified",
+          "label": "iOS app coming soon",
           "channel": null,
           "url": null,
-          "verifiedOn": "2026-09-27",
-          "verification": "External beta group is enabled and has a valid build assigned.  Apple beta review submission is WAITING_FOR_REVIEW; do not advertise the public invitation as installable until approved."
+          "verifiedOn": "2026-09-30",
+          "verification": "The iOS app is built and merged in the public repository; no App Store Connect record or TestFlight build exists yet, so no install link is offered."
         }
       }
     },
