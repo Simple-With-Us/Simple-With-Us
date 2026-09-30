@@ -28,7 +28,7 @@ class CatalogContractTests(unittest.TestCase):
 
     def test_private_source_and_generic_invite_are_rejected(self):
         data = copy.deepcopy(self.data)
-        private_app = next(app for app in data["apps"] if app["slug"] == "minimax-remote")
+        private_app = next(app for app in data["apps"] if app["slug"] == "dealdex")
         private_app["links"]["github"] = "https://github.com/jaywedgeworth22/MiniMax-ios"
         botfleet = next(app for app in data["apps"] if app["slug"] == "botfleet")
         botfleet["availability"]["iOS"]["url"] = "https://testflight.apple.com/"
