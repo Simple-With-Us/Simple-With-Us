@@ -57,7 +57,7 @@ PUBLIC_SOURCE_REPOS = {
     "CodeCaps", "Usage-Monitor", "Harness", "HogHunter", "BotFleet",
     "Socratic-Trade", "Congress.Trade", "ContactLogo", "DealDex", "Autorotate",
 }
-PRIVATE_DESTINATIONS = ("github.com/jaywedgeworth22/Fleet-OPS", "github.com/jaywedgeworth22/MiniMax-ios")
+PRIVATE_DESTINATIONS = ("github.com/jaywedgeworth22/Fleet-OPS",)
 AVAILABILITY_STATUSES = {"live", "beta", "source", "unverified"}
 CHANNELS = {"website", "source", "appStore", "testFlight", "download"}
 
