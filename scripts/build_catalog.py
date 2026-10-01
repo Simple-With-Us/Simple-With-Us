@@ -54,7 +54,7 @@ LINK_RULES = {
 LINK_RULES["source"] = LINK_RULES["github"]
 LINK_RULES["download"] = re.compile(r"^https://github\.com/jaywedgeworth22/[A-Za-z0-9._-]+/releases/latest/download/[A-Za-z0-9._-]+\.dmg$")
 PUBLIC_SOURCE_REPOS = {
-    "CodeCaps", "Usage-Monitor", "Harness", "HogHunter", "BotFleet",
+    "CodeCaps", "Usage-Monitor", "Clutch", "HogHunter", "BotFleet",
     "Socratic-Trade", "Congress.Trade", "ContactLogo", "DealDex", "Autorotate",
 }
 PRIVATE_DESTINATIONS = ("github.com/jaywedgeworth22/Fleet-OPS",)
