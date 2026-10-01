@@ -5,7 +5,7 @@ behavior, use [`PUBLIC-CATALOG.md`](PUBLIC-CATALOG.md) and
 `apps/index.json`.  The older TestFlight, wildcard-subdomain, and flat-grid
 examples below are not current distribution instructions.
 
-> **Superseded 2026-09-30:**  MiniMax Remote and the MiniMax-ios repo are retired.  Every mention of them below is historical.  The Harness iOS app replaces it (coming soon).
+> **Superseded 2026-09-30:**  MiniMax Remote and the MiniMax-ios repo are retired.  Every mention of them below is historical.  The Clutch iOS app replaces it (coming soon).
 
 **For:** MM (MiniMax), who owns this lane and iterates from here.
 **From:** CLAUDE, Fri, Sep 25, 2026 (Central Time).

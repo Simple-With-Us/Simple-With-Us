@@ -160,7 +160,7 @@
       "page": "/clutch/",
       "support": "/clutch/support.html",
       "links": {
-        "website": "https://clutch.codes",
+        "website": null,
         "github": "https://github.com/jaywedgeworth22/Clutch",
         "appStore": null,
         "testFlight": null,
