@@ -20,7 +20,7 @@ repos below are a 2026-09-25 snapshot:
 | CodeCaps (Mac, iOS)  | `jaywedgeworth22/CodeCaps`          | `/codecaps/`             | `codecaps.simplewithus.com` (CodeCaps repo's own Pages) |
 | Usage Client Monitor | `jaywedgeworth22/Usage-Monitor`     | `/usage-client/`         | `usage.jays.services` (web app)       |
 | Usage Local Monitor  | `jaywedgeworth22/Usage-Monitor`     | `/usage-local/`          | none                                  |
-| Harness (Mac, iOS)   | `jaywedgeworth22/Harness`           | `/harness/`              | none (`harness.` is not claimed)      |
+| Clutch.Codes (Mac, iOS) | `jaywedgeworth22/Clutch`         | `/clutch/`               | `clutch.codes` (own site)             |
 | HogHunter            | `jaywedgeworth22/HogHunter`         | none yet                 | none                                  |
 | BotFleet             | `jaywedgeworth22/BotFleet`          | `/botfleet/`             | `botfleet.app`                        |
 | Socratic Trade       | `jaywedgeworth22/Socratic-Trade`    | `/socratic-trade/`       | `socratictrade.com`                   |
@@ -29,7 +29,7 @@ repos below are a 2026-09-25 snapshot:
 | DealDex              | `jaywedgeworth22/DealDex`           | `/dealdex/`              | `dealdex.net`                         |
 | Autorotate           | `jaywedgeworth22/Autorotate`        | `/autorotate/`           | `autorotate.codes` (no A record yet)  |
 
-`harness.`, `local.`, `client.`, `remote.`, and every other unlisted label
+`local.`, `client.`, `remote.`, and every other unlisted label
 currently resolve only through a wildcard `*` CNAME to
 `jaywedgeworth22.github.io` that no Pages site claims.  Do not link to them.
 The brief's section 6 has the fix.

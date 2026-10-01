@@ -145,9 +145,9 @@
       "catalogGroup": "usage-monitor"
     },
     {
-      "slug": "harness",
-      "name": "Harness",
-      "tagline": "Run a local agent harness with DeepSeek and MiniMax support, on your Mac and from your iPhone.",
+      "slug": "clutch",
+      "name": "Clutch.Codes",
+      "tagline": "Run a local coding agent with DeepSeek and MiniMax support, on your Mac and from your iPhone.",
       "shelf": "coding",
       "platforms": [
         "macOS",
@@ -155,20 +155,20 @@
       ],
       "status": "source",
       "statusText": "Mac from source · iOS app coming soon",
-      "icon": "/assets/app-icons/harness-wordmark.svg",
+      "icon": "/assets/app-icons/clutch-wordmark.svg",
       "accent": "#0ea5e9",
-      "page": "/harness/",
-      "support": "/harness/support.html",
+      "page": "/clutch/",
+      "support": "/clutch/support.html",
       "links": {
         "website": null,
-        "github": "https://github.com/jaywedgeworth22/Harness",
+        "github": "https://github.com/jaywedgeworth22/Clutch",
         "appStore": null,
         "testFlight": null,
         "brew": null
       },
       "bundleIds": [
-        "com.simplewithus.harness.mac",
-        "com.simplewithus.harness.ios"
+        "codes.clutch.macos",
+        "codes.clutch.ios"
       ],
       "appleIds": {
         "macos": null,
@@ -180,7 +180,7 @@
           "status": "source",
           "label": "Build from public source",
           "channel": "source",
-          "url": "https://github.com/jaywedgeworth22/Harness",
+          "url": "https://github.com/jaywedgeworth22/Clutch",
           "verifiedOn": "2026-09-26",
           "verification": "Public repository returned HTTP 200; installation was not tested."
         },

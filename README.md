@@ -25,7 +25,6 @@ The catalog details use apex paths:
 
 * `https://simplewithus.com/`                family directory
 * `https://simplewithus.com/codecaps/`       CodeCaps catalog details
-* `https://simplewithus.com/minimax-remote/` retired MiniMax Remote notice (replaced by Harness iOS)
 
 Existing product domains retain their current roles.  Unclaimed wildcard
 subdomains are not public app destinations.
