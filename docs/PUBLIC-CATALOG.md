@@ -17,3 +17,11 @@ The audit deduplicates manifest, homepage, and detail-page links.  Offline mode 
 The following product entries returned HTTP 200 after redirects: `codecaps.simplewithus.com`, `botfleet.app`, `socratictrade.com` (redirected to sign-in), `congress.trade`, `contactlogo.com`, and `dealdex.net`.  The public source repositories for CodeCaps, Usage-Monitor, Harness, HogHunter, BotFleet, Socratic-Trade, Congress.Trade, ContactLogo, DealDex, and Autorotate returned HTTP 200.  The BotFleet TestFlight page showed “Join the BotFleet beta.”  The CodeCaps and BotFleet Mac DMG URLs returned HTTP 200 after redirects in a bounded reachability check by the product-site reviewer.  These checks did not install a binary, join a beta, authenticate, or exercise a product workflow.
 
 The owner's `usage.jays.services` deployment is password-gated and is not a public customer signup destination.  Most native betas have no confirmed public invite or download; their URL remains null.  Recheck external links and release status around a release before changing a CTA.
+
+## Identity corrections, 3 October 2026
+
+Bundle and Apple IDs were realigned with the fleet Apple registry.  The Usage Monitor editions are `services.jays.usage.client.monitor` (6799230435) and `services.jays.usage.local.monitor` (6799230729), Autorotate's live iOS record is `codes.autorotate` (6804248985), and the CodeCaps Mac record is 6814951477.  The Clutch iOS record `codes.clutch.ios` (6817951255) is registered but has no uploaded build.  FleetLink joined the catalog with no App Store Connect record, so its iOS row carries no install link.
+
+The repository named Harness in the 26 September check above was renamed: `jaywedgeworth22/Harness` now redirects to `Simple-With-Us/Clutch`, and the catalog slug is `clutch`.  Its upstream README still self-describes as Harness and links to `/harness/`, which is stale in that repository rather than here.
+
+Two hosting facts worth recording: `clutch.codes` is registered but does not resolve, and the `.well-known/apple-app-site-association` file still lists the pre-rename Usage bundle IDs.  Both need Apple or DNS confirmation before they are changed.

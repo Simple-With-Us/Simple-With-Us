@@ -56,6 +56,7 @@ LINK_RULES["download"] = re.compile(r"^https://github\.com/jaywedgeworth22/[A-Za
 PUBLIC_SOURCE_REPOS = {
     "CodeCaps", "Usage-Monitor", "Clutch", "HogHunter", "BotFleet",
     "Socratic-Trade", "Congress.Trade", "ContactLogo", "DealDex", "Autorotate",
+    "FleetLink",
 }
 PRIVATE_DESTINATIONS = ("github.com/jaywedgeworth22/Fleet-OPS",)
 AVAILABILITY_STATUSES = {"live", "beta", "source", "unverified"}
