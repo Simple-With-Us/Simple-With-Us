@@ -1,6 +1,6 @@
 {
   "schema": 2,
-  "updated": "2026-09-26",
+  "updated": "2026-10-03",
   "notes": "Public release facts for the catalog and product pages.  Availability is per platform; a null URL means no public install action.  Run python3 scripts/build_catalog.py after editing.  Verification describes the evidence checked on that date, not a promise that a beta invite is open.",
   "teamId": "CC8UTF7ATG",
   "appStoreProviderToken": null,
@@ -33,7 +33,7 @@
       ],
       "appleIds": {
         "ios": 6814623846,
-        "macos": null
+        "macos": 6814951477
       },
       "associatedDomains": false,
       "availability": {
@@ -78,10 +78,10 @@
         "brew": null
       },
       "bundleIds": [
-        "com.simplewithus.usage.client"
+        "services.jays.usage.client.monitor"
       ],
       "appleIds": {
-        "ios": null
+        "ios": 6799230435
       },
       "associatedDomains": false,
       "availability": {
@@ -126,10 +126,10 @@
         "brew": null
       },
       "bundleIds": [
-        "com.simplewithus.usage.local"
+        "services.jays.usage.local.monitor"
       ],
       "appleIds": {
-        "ios": null
+        "ios": 6799230729
       },
       "associatedDomains": false,
       "availability": {
@@ -172,7 +172,7 @@
       ],
       "appleIds": {
         "macos": null,
-        "ios": null
+        "ios": 6817951255
       },
       "associatedDomains": false,
       "availability": {
@@ -189,8 +189,8 @@
           "label": "iOS app coming soon",
           "channel": null,
           "url": null,
-          "verifiedOn": "2026-09-30",
-          "verification": "The iOS app is built and merged in the public repository; no App Store Connect record or TestFlight build exists yet, so no install link is offered."
+          "verifiedOn": "2026-10-03",
+          "verification": "The iOS app is built and merged in the public repository.  The fleet Apple registry synced 2026-10-03 records codes.clutch.ios as app 6817951255, but no build has been uploaded to it, so no install link is offered.  The macOS app has no App Store Connect record and ships from source."
         }
       }
     },
@@ -552,11 +552,11 @@
         "brew": null
       },
       "bundleIds": [
-        "codes.autorotate.ios",
+        "codes.autorotate",
         "codes.autorotate.macos"
       ],
       "appleIds": {
-        "ios": 6816633326,
+        "ios": 6804248985,
         "macos": 6804928534
       },
       "associatedDomains": false,
@@ -567,7 +567,7 @@
           "channel": "source",
           "url": "https://github.com/jaywedgeworth22/Autorotate",
           "verifiedOn": "2026-09-27",
-          "verification": "Current-bundle ASC app 6816633326 was created and verified through the Apple API for codes.autorotate.ios.  Signing and upload remain pending; the old bundle invitation is not a current-source release."
+          "verification": "The fleet Apple registry synced 2026-10-03 records codes.autorotate as app 6804248985 with a current build.  No public TestFlight invitation is verified, so the iOS row offers no install link; the Mac row carries the invitation."
         },
         "macOS": {
           "status": "beta",
@@ -592,6 +592,54 @@
           "url": "https://github.com/jaywedgeworth22/Autorotate",
           "verifiedOn": "2026-09-26",
           "verification": "Public repository returned HTTP 200; installation was not tested."
+        }
+      }
+    },
+    {
+      "slug": "fleetlink",
+      "name": "FleetLink",
+      "tagline": "Share files, previews, and small static sites through links that expire on a schedule.",
+      "shelf": "utility",
+      "platforms": [
+        "iOS",
+        "Web"
+      ],
+      "status": "live",
+      "statusText": "Live on the web",
+      "icon": "/assets/app-icons/fleetlink.png",
+      "accent": "#3b82f6",
+      "page": "/fleetlink/",
+      "support": "/fleetlink/support.html",
+      "links": {
+        "website": "https://fleetlink.online/",
+        "github": "https://github.com/jaywedgeworth22/FleetLink",
+        "appStore": null,
+        "testFlight": null,
+        "brew": null
+      },
+      "bundleIds": [
+        "online.fleetlink.ios"
+      ],
+      "appleIds": {
+        "ios": null
+      },
+      "associatedDomains": false,
+      "availability": {
+        "iOS": {
+          "status": "unverified",
+          "label": "App Clip not installable yet",
+          "channel": null,
+          "url": null,
+          "verifiedOn": "2026-10-03",
+          "verification": "The iOS build is an App Clip, and the fleet Apple registry synced 2026-10-02 carries no App Store Connect record for it.  Apple does not invoke an App Clip on a device without its parent app, so the clip cannot open today and no install link is offered."
+        },
+        "Web": {
+          "status": "live",
+          "label": "Web app",
+          "channel": "website",
+          "url": "https://fleetlink.online/",
+          "verifiedOn": "2026-10-03",
+          "verification": "Anonymous root returned HTTP 200; uploading needs a token, and individual share paths were not checked."
         }
       }
     }

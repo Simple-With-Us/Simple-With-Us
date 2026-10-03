@@ -28,6 +28,7 @@ repos below are a 2026-09-25 snapshot:
 | ContactLogo          | `jaywedgeworth22/ContactLogo`       | `/contactlogo/`          | `contactlogo.com`                     |
 | DealDex              | `jaywedgeworth22/DealDex`           | `/dealdex/`              | `dealdex.net`                         |
 | Autorotate           | `jaywedgeworth22/Autorotate`        | `/autorotate/`           | `autorotate.codes` (no A record yet)  |
+| FleetLink            | `jaywedgeworth22/FleetLink`         | `/fleetlink/`            | `fleetlink.online`, `fleetlink.app`   |
 
 `local.`, `client.`, `remote.`, and every other unlisted label
 currently resolve only through a wildcard `*` CNAME to

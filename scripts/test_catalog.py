@@ -82,7 +82,7 @@ class CatalogContractTests(unittest.TestCase):
         self.assertIn("verification", app["availability"]["iOS"])
 
     def test_family_count_keeps_both_monitor_editions(self):
-        self.assertEqual(10, catalog.app_count(self.data["apps"]))
+        self.assertEqual(11, catalog.app_count(self.data["apps"]))
         editions = [a for a in self.data["apps"] if a.get("catalogGroup") == "usage-monitor"]
         self.assertEqual({"usage-client", "usage-local"}, {a["slug"] for a in editions})
         self.assertEqual(2, len({a["icon"] for a in editions}))
