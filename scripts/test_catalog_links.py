@@ -20,8 +20,8 @@ class CatalogLinkAuditTests(unittest.TestCase):
         self.assertEqual(len(urls), len(set(urls)))
         self.assertIn("/privacy.html", urls)
         self.assertIn("/codecaps/support.html", urls)
-        self.assertIn("https://github.com/jaywedgeworth22/CodeCaps", urls)
-        target = next(item for item in targets if item.url == "https://github.com/jaywedgeworth22/Usage-Monitor")
+        self.assertIn("https://github.com/Simple-With-Us/CodeCaps", urls)
+        target = next(item for item in targets if item.url == "https://github.com/Simple-With-Us/Usage-Monitor")
         self.assertGreaterEqual(len(target.sources), 2)
 
     def test_local_paths_and_fragments_are_checked(self):

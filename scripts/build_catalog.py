@@ -46,13 +46,13 @@ NBSP_GAP = "  "  # FLEET-UI-COPY: U+00A0 plus a space between sentences in HTML
 
 LINK_RULES = {
     "website": re.compile(r"^https://[a-z0-9.-]+\.[a-z]{2,}(/.*)?$"),
-    "github": re.compile(r"^https://github\.com/jaywedgeworth22/[A-Za-z0-9._-]+$"),
+    "github": re.compile(r"^https://github\.com/(jaywedgeworth22|Simple-With-Us)/[A-Za-z0-9._-]+$"),
     "appStore": re.compile(r"^https://apps\.apple\.com/app/id\d+$"),
     "testFlight": re.compile(r"^https://testflight\.apple\.com/join/[A-Za-z0-9]+$"),
     "brew": re.compile(r"^brew install (--cask )?[a-z0-9/_-]+$"),
 }
 LINK_RULES["source"] = LINK_RULES["github"]
-LINK_RULES["download"] = re.compile(r"^https://github\.com/jaywedgeworth22/[A-Za-z0-9._-]+/releases/latest/download/[A-Za-z0-9._-]+\.dmg$")
+LINK_RULES["download"] = re.compile(r"^https://github\.com/(jaywedgeworth22|Simple-With-Us)/[A-Za-z0-9._-]+/releases/latest/download/[A-Za-z0-9._-]+\.dmg$")
 PUBLIC_SOURCE_REPOS = {
     "CodeCaps", "Usage-Monitor", "Clutch", "HogHunter", "BotFleet",
     "Socratic-Trade", "Congress.Trade", "ContactLogo", "DealDex", "Autorotate",
@@ -311,7 +311,7 @@ def lint(data: dict) -> list:
             if any(private in href for private in PRIVATE_DESTINATIONS):
                 errors.append(f"{page.relative_to(ROOT)}: private repository destination")
             target = urlsplit(href)
-            if target.hostname == "github.com" and target.path.startswith("/jaywedgeworth22/"):
+            if target.hostname == "github.com" and (target.path.startswith("/jaywedgeworth22/") or target.path.startswith("/Simple-With-Us/")):
                 repo = target.path.strip("/").split("/")[1]
                 allowed = {name.lower() for name in PUBLIC_SOURCE_REPOS | {"Simple-With-Us"}}
                 if repo.lower() not in allowed:
