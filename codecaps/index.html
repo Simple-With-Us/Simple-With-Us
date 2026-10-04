@@ -13,7 +13,7 @@
   <meta property="og:url" content="https://simplewithus.com/codecaps/" />
   <meta name="theme-color" content="#1a1a2e" />
   <link rel="icon" type="image/png" href="/assets/logos/swu-logo-whitecircle-1024.png" />
-  <link rel="stylesheet" href="/assets/site.css?v=939f689eece9" />
+  <link rel="stylesheet" href="/assets/site.css?v=4890c3842f5f" />
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
@@ -33,30 +33,45 @@
     <img class="app-icon" src="/assets/app-icons/codecaps.png" alt="" width="80" height="80">
     <div><a class="back-link" href="/#apps">← All apps</a><h1>CodeCaps</h1></div>
   </div><!-- catalog:identity:end -->
-  <p class="lede">CodeCaps reads supported quota and reset data from local CLI sessions on macOS 14+; an iPhone companion is in beta.&nbsp; What is available depends on the provider and credential scope.</p>
+  <p class="lede">CodeCaps monitors available AI plan quotas and reset windows across Claude, Codex, Cursor, Antigravity, Grok CLI, Grok Bot, and MiniMax from the macOS menu bar.&nbsp; It features dual-cadence monitoring (5-hour and weekly periods), pacing indicators, runaway burn rate alerting with marquee announcements, and an optional on-top PiP widget.</p>
   <!-- catalog:availability:start -->
 <section class="availability" aria-labelledby="availability-title">
   <h2 id="availability-title">Availability</h2>
   <ul class="availability-list">
-    <li><strong>macOS</strong><span><a href="https://github.com/jaywedgeworth22/codecaps/releases/latest/download/CodeCaps.dmg" rel="noopener">macOS beta download (macOS 14+)<span aria-hidden="true"> ↗</span></a></span></li>
+    <li><strong>macOS</strong><span><a href="https://github.com/Simple-With-Us/codecaps/releases/latest/download/CodeCaps.dmg" rel="noopener">macOS beta download (macOS 14+)<span aria-hidden="true"> ↗</span></a></span></li>
     <li><strong>iOS</strong><span>Beta awaiting Apple review</span></li>
   </ul>
   <div class="btn-row">
-    <a class="btn btn-primary" href="https://codecaps.simplewithus.com/">Visit website</a>
     <a class="btn btn-secondary" href="/codecaps/support.html">Support</a>
   </div>
 </section>
   <!-- catalog:availability:end -->
   <h2>What you can do</h2>
   <ul>
-    <li><strong>Quota windows.</strong> Check remaining capacity and reset timing where a provider exposes it.</li>
-    <li><strong>Usage and cost.</strong> Separate measured API usage and estimated cost from subscription charges.</li>
-    <li><strong>Provider setup.</strong> The Mac app reuses local CLI or session credentials.&nbsp; Optional collector tokens are stored in macOS Keychain; availability depends on the source.</li>
+    <li><strong>Dual-cadence monitoring.</strong> Track both 5-hour and weekly quota windows with elapsed-time pacing markers.</li>
+    <li><strong>Runaway alerting.</strong> Real-time detection of rapid quota exhaustion with marquee notifications and reset alarms.</li>
+    <li><strong>Forensic vendor resets.</strong> Acknowledge manual and automated provider quota restorations mid-cycle with audio and push notices.</li>
+    <li><strong>Local privacy first.</strong> Reuses local CLI or session credentials without requiring you to enter provider API keys.</li>
   </ul>
+
+  <section class="screenshots" aria-labelledby="screenshots-title">
+    <h2 id="screenshots-title">Screenshots</h2>
+    <div class="screenshot-grid">
+      <figure class="screenshot-card">
+        <img src="/assets/screenshots/codecaps/glance-light.webp" alt="CodeCaps Glance showing AI plan quotas, reset windows, and pacing markers" width="1140" height="942" loading="lazy" decoding="async">
+        <figcaption>CodeCaps Glance popover with dual-cadence quotas, pacing markers, and burn-rate warnings.</figcaption>
+      </figure>
+      <figure class="screenshot-card">
+        <img src="/assets/screenshots/codecaps/glance-fleet.webp" alt="CodeCaps Fleet view showing quotas across configured Macs" width="1140" height="942" loading="lazy" decoding="async">
+        <figcaption>Optional fleet view displaying aggregated quotas across multiple configured Macs.</figcaption>
+      </figure>
+    </div>
+  </section>
+
   <h2>Scope and data</h2>
   <p>Mac data stays local unless optional endpoint push or pull is enabled.&nbsp; Unsupported provider readings remain unavailable; review the current build and privacy details before connecting a source.</p>
   <p>See the <a href="support.html">product support page</a> and <a href="/privacy.html">privacy notice</a> for more detail.</p>
-  <p class="source-credit">Source: <a href="https://github.com/jaywedgeworth22/CodeCaps" rel="noopener">CodeCaps on GitHub</a>.</p>
+  <p class="source-credit">Source: <a href="https://github.com/Simple-With-Us/CodeCaps" rel="noopener">CodeCaps on GitHub</a>.</p>
 </main>
 
 <footer class="site-footer">

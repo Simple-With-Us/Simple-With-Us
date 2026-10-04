@@ -1,0 +1,194 @@
+{
+  "codecaps": [
+    {
+      "src": "/assets/screenshots/codecaps/glance-light.webp",
+      "width": 1140,
+      "height": 942,
+      "alt": "CodeCaps Glance showing AI plan quotas, reset windows, and pacing markers",
+      "caption": "CodeCaps Glance menu bar popover with dual-window monitoring and pacing indicators."
+    },
+    {
+      "src": "/assets/screenshots/codecaps/glance-fleet.webp",
+      "width": 1140,
+      "height": 942,
+      "alt": "CodeCaps Fleet view showing quotas across configured Macs",
+      "caption": "Optional fleet view combining readings from multiple Mac machines."
+    }
+  ],
+  "usage-client": [
+    {
+      "src": "/assets/screenshots/usage-client/dashboard.webp",
+      "width": 1280,
+      "height": 2781,
+      "alt": "Usage Client dashboard with real-time model quota tracking",
+      "caption": "Real-time AI model quota and usage monitoring on iPhone."
+    },
+    {
+      "src": "/assets/screenshots/usage-client/alerts.webp",
+      "width": 1280,
+      "height": 2781,
+      "alt": "Usage Client quota alerts and thresholds",
+      "caption": "Configurable usage alerts and rate-limit threshold warnings."
+    }
+  ],
+  "usage-local": [
+    {
+      "src": "/assets/screenshots/usage-local/overview.webp",
+      "width": 1280,
+      "height": 2781,
+      "alt": "Usage Local Monitor overview with on-device subscription costs",
+      "caption": "On-device subscription cost tracking and quota monitoring."
+    },
+    {
+      "src": "/assets/screenshots/usage-local/providers.webp",
+      "width": 1280,
+      "height": 2781,
+      "alt": "Usage Local Monitor provider breakdown",
+      "caption": "Detailed usage breakdown across supported AI providers."
+    }
+  ],
+  "clutch": [
+    {
+      "src": "/assets/screenshots/clutch/dashboard.webp",
+      "width": 1280,
+      "height": 720,
+      "alt": "Clutch local agent dashboard and active tasks",
+      "caption": "Local coding agent interface with DeepSeek and MiniMax support."
+    },
+    {
+      "src": "/assets/screenshots/clutch/settings.webp",
+      "width": 1280,
+      "height": 720,
+      "alt": "Clutch model and agent settings",
+      "caption": "Configuration panel for local models, tools, and execution environments."
+    }
+  ],
+  "botfleet": [
+    {
+      "src": "/assets/screenshots/botfleet/marketplace.webp",
+      "width": 1280,
+      "height": 800,
+      "alt": "BotFleet agent marketplace and automation skills",
+      "caption": "Catalog of autonomous agents and customizable routines."
+    },
+    {
+      "src": "/assets/screenshots/botfleet/agent-profile.webp",
+      "width": 1280,
+      "height": 831,
+      "alt": "BotFleet desktop agent workspace",
+      "caption": "Interactive desktop workspace for supervising running agents."
+    },
+    {
+      "src": "/assets/screenshots/botfleet/tasks-routines.webp",
+      "width": 1280,
+      "height": 831,
+      "alt": "BotFleet scheduled routines and background tasks",
+      "caption": "Automated background routines and scheduled task execution."
+    }
+  ],
+  "socratic-trade": [
+    {
+      "src": "/assets/screenshots/socratic-trade/autonomy-desk.webp",
+      "width": 1280,
+      "height": 1561,
+      "alt": "Socratic Trade autonomy desk and signal monitor",
+      "caption": "Signal analysis, autonomous execution desk, and risk controls."
+    },
+    {
+      "src": "/assets/screenshots/socratic-trade/login.webp",
+      "width": 1280,
+      "height": 720,
+      "alt": "Socratic Trade secure sign-in and account portal",
+      "caption": "Secure workspace entry with multi-factor authentication."
+    }
+  ],
+  "congress-trade": [
+    {
+      "src": "/assets/screenshots/congress-trade/feed.webp",
+      "width": 1280,
+      "height": 2781,
+      "alt": "Congress.Trade public disclosure feed",
+      "caption": "Real-time public STOCK Act disclosure feed and trade analysis."
+    },
+    {
+      "src": "/assets/screenshots/congress-trade/trends.webp",
+      "width": 1280,
+      "height": 2781,
+      "alt": "Congress.Trade politician trading trends",
+      "caption": "Aggregate volume, ticker trends, and committee trading patterns."
+    }
+  ],
+  "contactlogo": [
+    {
+      "src": "/assets/screenshots/contactlogo/search.webp",
+      "width": 1280,
+      "height": 937,
+      "alt": "ContactLogo vector brand search and preview",
+      "caption": "Instant vector brand logo lookup and high-resolution contact artwork."
+    },
+    {
+      "src": "/assets/screenshots/contactlogo/settings.webp",
+      "width": 1280,
+      "height": 1295,
+      "alt": "ContactLogo synchronization preferences",
+      "caption": "Google and iCloud contact card sync and artwork preferences."
+    }
+  ],
+  "dealdex": [
+    {
+      "src": "/assets/screenshots/dealdex/phone.webp",
+      "width": 1014,
+      "height": 882,
+      "alt": "DealDex mobile market spread and pricing analysis",
+      "caption": "Real-time market comp aggregation, spread detection, and appraisals."
+    },
+    {
+      "src": "/assets/screenshots/dealdex/ipad.webp",
+      "width": 1280,
+      "height": 593,
+      "alt": "DealDex card appraisal desk on iPad",
+      "caption": "Multi-marketplace pricing comparisons and condition multipliers."
+    }
+  ],
+  "autorotate": [
+    {
+      "src": "/assets/screenshots/autorotate/mac.webp",
+      "width": 1280,
+      "height": 800,
+      "alt": "Autorotate macOS secret and rotation dashboard",
+      "caption": "Automated credential rotation with verifiable audit trail on macOS."
+    },
+    {
+      "src": "/assets/screenshots/autorotate/iphone.webp",
+      "width": 1280,
+      "height": 2769,
+      "alt": "Autorotate iOS rotation logs and alerts",
+      "caption": "Mobile rotation event logs, push notifications, and compliance audit."
+    }
+  ],
+  "fleetlink": [
+    {
+      "src": "/assets/screenshots/fleetlink/preview.webp",
+      "width": 1280,
+      "height": 714,
+      "alt": "FleetLink secure clipboard handoff and verification",
+      "caption": "End-to-end encrypted packet handoff between Macs and iOS devices."
+    },
+    {
+      "src": "/assets/screenshots/fleetlink/preview-locked.webp",
+      "width": 1280,
+      "height": 714,
+      "alt": "FleetLink passphrase protection",
+      "caption": "Client-side passphrase encryption protecting shared payloads."
+    }
+  ],
+  "hoghunter": [
+    {
+      "src": "/assets/screenshots/hoghunter/companion.webp",
+      "width": 1280,
+      "height": 2781,
+      "alt": "HogHunter iOS companion inspecting Mac resource usage",
+      "caption": "HogHunter companion on iPhone monitoring Mac resource usage over local Wi-Fi."
+    }
+  ]
+}
