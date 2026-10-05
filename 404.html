@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <title>Page Not Found - Simple With Us</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/assets/site.css?v=4890c3842f5f">
   <style>
     body {
       display: flex;
@@ -37,18 +37,21 @@
   <h1>404</h1>
   <p>We couldn't find that page.</p>
   <p>Redirecting to the homepage in <span id="timer" class="countdown">3</span>...</p>
+  <p><a href="/">Go to the homepage</a></p>
 
   <script>
     let timeLeft = 3;
     const timerElement = document.getElementById('timer');
-    
+
     const countdown = setInterval(() => {
       timeLeft--;
       if (timeLeft > 0) {
         timerElement.textContent = timeLeft;
       } else {
         clearInterval(countdown);
-        window.location.replace("https://simplewithus.com/");
+        fetch("/", { method: "HEAD" }).then((response) => {
+          if (response.status === 200) window.location.replace("/");
+        }).catch(() => {});
       }
     }, 1000);
   </script>
