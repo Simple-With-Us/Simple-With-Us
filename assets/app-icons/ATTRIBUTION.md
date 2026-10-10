@@ -14,7 +14,7 @@ Last re-derived: 2026-10-03.
 | `codecaps.png` | `jaywedgeworth22/CodeCaps` — `assets/icon-1024.png` |
 | `usage-client.png` | `jaywedgeworth22/Usage-Monitor` — `ios/UsageMonitor/App/Assets.xcassets/AppIcon.appiconset/AppIcon-1024.png` |
 | `usage-local.png` | `jaywedgeworth22/Usage-Monitor` — `ios/UsageMonitor/LocalApp/Assets.xcassets/AppIcon.appiconset/AppIcon-1024.png` |
-| `clutch-wordmark.svg` | Hand-authored in this repo, not a downscale.  A neutral Clutch tile with no provider symbol.  The upstream `jaywedgeworth22/Clutch` repo still ships the pre-rename `assets/harness-wordmark.svg` tile, so do not treat it as the current master. |
+| `clutch.png` | `Simple-With-Us/Clutch` — `ios/Assets.xcassets/AppIcon.appiconset/icon-1024.png` |
 | `botfleet.png` | `jaywedgeworth22/BotFleet` — `ios/App/Assets.xcassets/AppIcon.appiconset/icon-1024.png` |
 | `socratic-trade.png` | `jaywedgeworth22/Socratic-Trade` — `ios/SocraticTrade/Assets.xcassets/AppIcon.appiconset/AppIcon-1024.png` |
 | `socratic-trade.svg` | Byte-identical copy of the fleet mirror `agent-logos/app-st.svg`.  It has no vector counterpart in the Socratic Trade repo, so it is a mirror, not an app master. |
@@ -30,6 +30,8 @@ files (`ar.png`, `bf.png`, and so on) predate the 200 KB image budget and are
 slated for removal once every page uses the slug-named icons.
 
 ## Change log
+
+2026-10-10: Re-derived `codecaps.png`, `hoghunter.png`, `fleetlink.png`, and added `clutch.png` from canonical 1024 masters (CodeCaps 3D brand asset, HogHunter full-bleed green fabric mark, FleetLink master, Clutch C-monogram master).
 
 2026-10-03: Re-derived every slug-named icon from the owning app's canonical
 master.  `codecaps.png` and `hoghunter.png` were genuinely stale and changed:
