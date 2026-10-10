@@ -155,7 +155,7 @@
       ],
       "status": "source",
       "statusText": "Mac from source \u00b7 iOS app coming soon",
-      "icon": "/assets/app-icons/clutch-wordmark.svg",
+      "icon": "/assets/app-icons/clutch.png",
       "accent": "#0ea5e9",
       "page": "/clutch/",
       "support": "/clutch/support.html",
