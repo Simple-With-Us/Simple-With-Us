@@ -31,6 +31,8 @@ slated for removal once every page uses the slug-named icons.
 
 ## Change log
 
+2026-10-10: Re-derived `codecaps.png`, `hoghunter.png`, `fleetlink.png`, and added `clutch.png` from canonical 1024 masters (CodeCaps 3D brand asset, HogHunter full-bleed green fabric mark, FleetLink master, Clutch C-monogram master).
+
 2026-10-03: Re-derived every slug-named icon from the owning app's canonical
 master.  `codecaps.png` and `hoghunter.png` were genuinely stale and changed:
 the old CodeCaps mark was a teal circuit-and-arrow tile, now a blue gauge with

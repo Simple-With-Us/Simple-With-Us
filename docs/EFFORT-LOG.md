@@ -2,6 +2,8 @@
 
 ## In progress
 
+2026-10-10 — AG — Active TestFlight public beta links enabled for CodeCaps, HogHunter, and DealDex.  Canonical 1024 master icons refreshed across the catalog and app pages.  Branch `ag/tf-betas-and-catalog-refresh`.
+
 2026-09-27 — CODEX — Report-only public catalog destination audit for manifest, support/privacy routes, and generated links.  Issue #13; branch `codex/catalog-link-audit`.  The scheduled/manual workflow does not participate in source PR gating and classifies provider challenges and transient failures as unverified.
 
 ## Completed

@@ -1,6 +1,6 @@
 {
   "schema": 2,
-  "updated": "2026-10-04",
+  "updated": "2026-10-10",
   "notes": "Public release facts for the catalog and product pages.  Availability is per platform; a null URL means no public install action.  Run python3 scripts/build_catalog.py after editing.  Verification describes the evidence checked on that date, not a promise that a beta invite is open.",
   "teamId": "CC8UTF7ATG",
   "appStoreProviderToken": null,
@@ -15,7 +15,7 @@
         "iOS"
       ],
       "status": "beta",
-      "statusText": "Mac beta \u00b7 iPhone beta awaiting Apple review",
+      "statusText": "Mac beta \u00b7 iPhone TestFlight beta",
       "icon": "/assets/app-icons/codecaps.png",
       "accent": "#0f766e",
       "page": "/codecaps/",
@@ -24,7 +24,7 @@
         "website": null,
         "github": "https://github.com/Simple-With-Us/CodeCaps",
         "appStore": null,
-        "testFlight": null,
+        "testFlight": "https://testflight.apple.com/join/JTGY4Buz",
         "brew": null
       },
       "bundleIds": [
@@ -47,11 +47,11 @@
         },
         "iOS": {
           "status": "beta",
-          "label": "Beta awaiting Apple review",
-          "channel": null,
-          "url": null,
-          "verifiedOn": "2026-09-27",
-          "verification": "External beta group is enabled and has a valid build assigned.  Apple beta review submission is WAITING_FOR_REVIEW; do not advertise the public invitation as installable until approved."
+          "label": "TestFlight beta",
+          "channel": "testFlight",
+          "url": "https://testflight.apple.com/join/JTGY4Buz",
+          "verifiedOn": "2026-10-10",
+          "verification": "Named product TestFlight invitation confirmed on Apple public join page."
         }
       }
     },
@@ -358,8 +358,8 @@
         "macOS",
         "iOS"
       ],
-      "status": "source",
-      "statusText": "Build from source",
+      "status": "beta",
+      "statusText": "Mac from source \u00b7 iOS TestFlight beta",
       "icon": "/assets/app-icons/hoghunter.png",
       "accent": "#92400e",
       "page": "/hoghunter/",
@@ -368,7 +368,7 @@
         "website": null,
         "github": "https://github.com/Simple-With-Us/HogHunter",
         "appStore": null,
-        "testFlight": null,
+        "testFlight": "https://testflight.apple.com/join/yrHXfqSR",
         "brew": null
       },
       "bundleIds": [
@@ -390,12 +390,12 @@
           "verification": "Public repository returned HTTP 200; installation was not tested."
         },
         "iOS": {
-          "status": "source",
-          "label": "Companion \u00b7 build from source",
-          "channel": "source",
-          "url": "https://github.com/Simple-With-Us/HogHunter",
-          "verifiedOn": "2026-09-27",
-          "verification": "iPhone companion source exists.  Current-bundle ASC app 6816633156 was created and verified through the Apple API; no uploaded public beta build is available yet."
+          "status": "beta",
+          "label": "TestFlight beta",
+          "channel": "testFlight",
+          "url": "https://testflight.apple.com/join/yrHXfqSR",
+          "verifiedOn": "2026-10-10",
+          "verification": "Named product TestFlight invitation confirmed on Apple public join page."
         }
       },
       "associatedDomainBundleIds": [
@@ -481,7 +481,7 @@
         "Web"
       ],
       "status": "live",
-      "statusText": "Web \u00b7 iPhone beta awaiting Apple review",
+      "statusText": "Web \u00b7 iOS TestFlight beta",
       "icon": "/assets/app-icons/dealdex.png",
       "accent": "#b45309",
       "page": "/dealdex/",
@@ -490,7 +490,7 @@
         "website": "https://dealdex.net/",
         "github": "https://github.com/Simple-With-Us/DealDex",
         "appStore": null,
-        "testFlight": null,
+        "testFlight": "https://testflight.apple.com/join/yHQaYygf",
         "brew": null
       },
       "bundleIds": [
@@ -503,11 +503,11 @@
       "availability": {
         "iOS": {
           "status": "beta",
-          "label": "Beta awaiting Apple review",
-          "channel": null,
-          "url": null,
-          "verifiedOn": "2026-09-27",
-          "verification": "External beta group is enabled and has a valid build assigned.  Apple beta review submission is WAITING_FOR_REVIEW; do not advertise the public invitation as installable until approved."
+          "label": "TestFlight beta",
+          "channel": "testFlight",
+          "url": "https://testflight.apple.com/join/yHQaYygf",
+          "verifiedOn": "2026-10-10",
+          "verification": "Named product TestFlight invitation confirmed on Apple public join page."
         },
         "Android": {
           "status": "source",
