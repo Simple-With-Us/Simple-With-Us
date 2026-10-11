@@ -1,5 +1,8 @@
 # Simple With Us implementation log
 
+> **ARCHIVED Sun, Oct 11, 2026.**  Linear is the system of record: team AFC, https://linear.app/simple-with-us/team/AFC.
+> This file is read-only history.  Do not edit it or add rows.  See EFFORT-LOG-PROTOCOL.md.
+
 ## In progress
 
 2026-10-10 — AG — Active TestFlight public beta links enabled for CodeCaps, HogHunter, and DealDex.  Canonical 1024 master icons refreshed across the catalog and app pages.  Branch `ag/tf-betas-and-catalog-refresh`.
