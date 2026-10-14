@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Privacy Policy — FleetLink — Simple With Us</title>
+  <meta name="description" content="Privacy policy for FleetLink artifact hosting, ephemeral file sharing, and vanity redirects." />
+
+  <link rel="canonical" href="https://simplewithus.com/fleetlink/privacy.html" />
+  <meta name="theme-color" content="#1a1a2e" />
+  <link rel="icon" type="image/png" href="/assets/logos/swu-logo-whitecircle-1024.png" />
+  <link rel="stylesheet" href="/assets/site.css?v=4890c3842f5f" />
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="wordmark" href="/" aria-label="Simple With Us home"><img src="/assets/logos/swu-wordmark.webp" alt="Simple With Us" width="288" height="40"></a>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="/#apps">Apps</a><a href="/#status">Status</a><a href="/support.html">Support</a>
+    </nav>
+  </div>
+</header>
+
+<main class="article" id="main">
+<!-- catalog:identity:start -->
+<div class="app-identity">
+    <img class="app-icon" src="/assets/app-icons/fleetlink.png" alt="" width="80" height="80">
+    <div><a class="back-link" href="/fleetlink/">← FleetLink</a><h1>FleetLink Privacy Policy</h1></div>
+  </div>
+<!-- catalog:identity:end -->
+<p class="lede">FleetLink is designed around ephemeral, time-bounded storage.&nbsp; Opening shares requires no account and collects no user identity.</p>
+
+  <h2>Overview</h2>
+  <p>FleetLink (&ldquo;we&rdquo;, &ldquo;our&rdquo;, or &ldquo;us&rdquo;) provides temporary artifact, file, batch, and directory hosting and custom vanity redirect URLs across the AI fleet and web operators.&nbsp; This policy applies to <code>fleetlink.online</code>, <code>fleetlink.app</code>, the native iOS app (<code>online.fleetlink.ios</code>), embedded App Clip (<code>online.fleetlink.ios.Clip</code>), MCP server (<code>fleetlink-mcp</code>), and CLI utilities (<code>fleet-share</code>).&nbsp; You can also view the live standalone policy at <a href="https://fleetlink.online/privacy" rel="noopener">fleetlink.online/privacy</a>.</p>
+
+  <h2>Ephemeral Storage &amp; Automatic Expiration</h2>
+  <p>FleetLink enforces strict Time-to-Live (TTL) expiration schedules on all hosted content:</p>
+  <ul>
+    <li><strong>Automatic Pruning:</strong> When a share reaches its scheduled expiration timestamp, all underlying file objects stored in Cloudflare R2 and database records in Cloudflare D1 are permanently, irreversibly pruned.</li>
+    <li><strong>Retention Tiers:</strong> Unauthenticated guest uploads expire within 6 hours (files) or 24 hours (redirects).&nbsp; Automated agent token uploads are capped at a maximum of 7 days (defaulting to 3 days).&nbsp; Vanity redirect links allow retention for up to 180 days (6 months).&nbsp; Permanent retention is strictly reserved for administrative assets under 500 MB.</li>
+    <li><strong>Passphrase Protection:</strong> Uploaders can protect any share with an optional password, gating access behind cryptographic challenge verification before files or directory indexes can be viewed.</li>
+  </ul>
+
+  <h2>What We Collect</h2>
+  <ul>
+    <li><strong>Uploaded Artifacts:</strong> Files, directories, markdown documents, and media that you upload to generate temporary links.</li>
+    <li><strong>Redirect URLs:</strong> Target destination URLs provided when creating short redirect links.</li>
+    <li><strong>Account Information:</strong> If you sign in (via GitHub, Google, or Apple), we store your verified email address, display name, and provider subject ID to manage active shares in the portal and enforce rate limits.</li>
+    <li><strong>Agent Tokens:</strong> Scoped API tokens generated for automated fleet seats, stored in hashed format.</li>
+  </ul>
+
+  <h2>What We Do Not Collect or Sell</h2>
+  <ul>
+    <li><strong>No Account Required to View:</strong> Anyone with a link can preview or download public artifacts without an account or personal data collection.</li>
+    <li><strong>No Data Monetization:</strong> We do not sell, rent, monetize, or trade uploaded files or personal information to third parties, data brokers, or advertising networks.</li>
+    <li><strong>No Cross-Site Tracking:</strong> We do not use third-party advertising cookies, fingerprinting libraries, or cross-site behavioral tracking.</li>
+  </ul>
+
+  <h2>Infrastructure &amp; Third-Party Services</h2>
+  <p>FleetLink infrastructure is built upon trusted cloud and distribution providers:</p>
+  <ul>
+    <li><strong>Cloudflare:</strong> Cloudflare Workers (edge compute), Cloudflare R2 (object storage), and Cloudflare D1 (database).&nbsp; Cloudflare processes network requests and provides privacy-preserving Cloudflare Web Analytics (RUM) measuring performance without tracking cookies.</li>
+    <li><strong>Apple:</strong> Distributes the native iOS app and embedded App Clip via App Store Connect and Apple Content Delivery Networks.</li>
+  </ul>
+
+  <h2>User Choices &amp; Immediate Deletion</h2>
+  <ul>
+    <li><strong>Immediate Deletion:</strong> You do not need to wait for expiration to remove data.&nbsp; You can permanently delete any active share immediately via the web portal at <code>/portal</code>, through the developer CLI (<code>fleet-share --delete &lt;slug&gt;</code>), the MCP tool (<code>fleetlink_delete_share</code>), or by issuing an authenticated <code>DELETE /api/shares/:slug</code> HTTP request.</li>
+    <li><strong>Session Logout:</strong> Terminate authenticated sessions at any time by clicking &ldquo;Sign out&rdquo;.</li>
+  </ul>
+
+  <h2>Contact</h2>
+  <p>If you have questions about this privacy policy, data practices, or need assistance, email <a href="mailto:support@fleetlink.online">support@fleetlink.online</a> or <a href="mailto:feedback@simplewithus.com">feedback@simplewithus.com</a>.</p>
+  <p class="source-credit"><a href="https://github.com/Simple-With-Us/FleetLink" rel="noopener">FleetLink on GitHub</a></p>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>Apps by <a href="https://jays.services/">Jay Wedgeworth</a>.</p>
+    <nav aria-label="Footer"><a href="/#apps">Apps</a><a href="/#status">Status</a><a href="/support.html">Support</a><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a></nav>
+    <p class="legal">© 2026 Simple With Us.</p>
+  </div>
+</footer>
+</body>
+</html>

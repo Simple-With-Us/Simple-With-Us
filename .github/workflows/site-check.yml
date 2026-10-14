@@ -12,15 +12,15 @@ jobs:
   catalog:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
         with:
-          python-version: "3.12"
+          python-version: "3.14"
       # Fails when generated catalog/detail regions drift, a public link has the wrong
       # shape, an image exceeds the budget, or the AASA file is invalid.
       - run: python3 scripts/build_catalog.py --check
       - run: python3 -m unittest discover -s scripts -p 'test_*.py'
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         with:
-          node-version: "22"
+          node-version: "24"
       - run: node --test scripts/test_status.mjs
