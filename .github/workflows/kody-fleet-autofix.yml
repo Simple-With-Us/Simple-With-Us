@@ -13,12 +13,13 @@ on:
     types: [completed]
 
 permissions: {}
-concurrency:
-  group: kody-caller-${{ github.repository_id }}-${{ github.event.check_run.pull_requests[0].number || github.event.check_run.id }}
-  cancel-in-progress: false
 
 jobs:
   propose:
+    # Caller-side same-repo guard.  The pinned helper still rejects a foreign
+    # head before it reads source.  Concurrency is on this job and keyed by
+    # app, conclusion, and head repository, so a skipped or unrelated
+    # check_run cannot cancel a queued proposal.
     if: >-
       vars.SWU_KODY_AUTOFIX_ENABLED == 'true' &&
       github.event_name == 'check_run' && github.event.action == 'completed' &&
@@ -28,7 +29,12 @@ jobs:
       github.event.sender.login == 'kody-ai[bot]' &&
       github.event.check_run.conclusion == 'success' &&
       github.event.check_run.pull_requests[0].number != null &&
+      github.event.check_run.pull_requests[0].head.repo.full_name == github.repository &&
+      github.event.check_run.pull_requests[0].head.repo.fork == false &&
       github.event.check_run.pull_requests[1] == null
+    concurrency:
+      group: kody-caller-${{ github.repository_id }}-${{ github.event.check_run.app.id }}-${{ github.event.check_run.conclusion }}-${{ github.event.check_run.pull_requests[0].head.repo.full_name }}-${{ github.event.check_run.pull_requests[0].number || github.event.check_run.id }}
+      cancel-in-progress: false
     permissions:
       contents: write
       pull-requests: write
