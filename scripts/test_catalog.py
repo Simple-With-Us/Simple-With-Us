@@ -26,6 +26,11 @@ class CatalogContractTests(unittest.TestCase):
                     destination = catalog.app_store_url(fact["url"], app["slug"], token, "hero") if fact["channel"] == "appStore" else fact["url"]
                     self.assertIn(f'href="{catalog.attr(destination)}"', page)
 
+    def test_header_uses_full_owner_lockup(self):
+        self.assertIn('/assets/logos/swu-header-lockup.png', catalog.HEADER)
+        self.assertIn('alt="Simple With Us - Jay Wedgeworth"', catalog.HEADER)
+        self.assertNotIn('swu-wordmark.webp', catalog.HEADER)
+
     def test_private_source_and_generic_invite_are_rejected(self):
         data = copy.deepcopy(self.data)
         private_app = next(app for app in data["apps"] if app["slug"] == "dealdex")
