@@ -25,3 +25,7 @@ Bundle and Apple IDs were realigned with the fleet Apple registry.  The Usage Mo
 The repository named Harness in the 26 September check above was renamed: `jaywedgeworth22/Harness` now redirects to `Simple-With-Us/Clutch`, and the catalog slug is `clutch`.  Its upstream README still self-describes as Harness and links to `/harness/`, which is stale in that repository rather than here.
 
 Two hosting facts worth recording: `clutch.codes` is registered but does not resolve, and the `.well-known/apple-app-site-association` file still lists the pre-rename Usage bundle IDs.  Both need Apple or DNS confirmation before they are changed.
+
+## Archived apps
+
+An app with `archived: true` is omitted from the active shelves and rendered at the end of the homepage, after service status, inside a native `details` section labeled "Archived".  It is closed by default and works without JavaScript.  Existing product and support URLs remain reachable.  Autorotate is archived at the owner's request; its Mac TestFlight invitation is no longer published in the manifest or generated pages.

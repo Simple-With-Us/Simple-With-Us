@@ -150,7 +150,7 @@ def render(data: dict) -> dict:
     token = data.get("appStoreProviderToken")
     grid = []
     for shelf, title in data["shelves"].items():
-        subset = [a for a in apps if a["shelf"] == shelf]
+        subset = [a for a in apps if a["shelf"] == shelf and not a.get("archived")]
         grid += [f'<section class="catalog-group" aria-labelledby="shelf-{attr(shelf)}">',
                  f'  <h3 id="shelf-{attr(shelf)}">{gap(title)}</h3>',
                  '  <ul class="grid" role="list">']
@@ -165,7 +165,17 @@ def render(data: dict) -> dict:
                 grid.append(card(app, token))
         grid += ['  </ul>', '</section>']
     facts = f'<p class="facts">{app_count(apps)} apps</p>'
-    return {"facts": facts, "grid": "\n".join(grid)}
+    archived = [a for a in apps if a.get("archived")]
+    archive = ""
+    if archived:
+        archive = '\n'.join([
+            '<section class="section" id="archived" aria-label="Archived apps">',
+            '  <div class="wrap"><details class="archived-apps">',
+            '    <summary>Archived</summary>',
+            '    <ul class="grid" role="list">',
+            *[card(a, token) for a in archived],
+            '    </ul>', '  </details></div>', '</section>'])
+    return {"facts": facts, "grid": "\n".join(grid), "archived": archive}
 
 
 def availability_region(app: dict, provider_token=None) -> str:

@@ -344,3 +344,8 @@ details summary { cursor: pointer; font-weight: 600; }
   line-height: 1.45;
 }
 
+
+/* Native details keeps archived apps closed by default, including without JS. */
+.archived-apps summary { cursor: pointer; font-size: 1.25rem; font-weight: 600; padding: 12px 0; }
+.archived-apps summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+.archived-apps[open] summary { margin-bottom: 20px; }

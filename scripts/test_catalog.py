@@ -26,6 +26,23 @@ class CatalogContractTests(unittest.TestCase):
                     destination = catalog.app_store_url(fact["url"], app["slug"], token, "hero") if fact["channel"] == "appStore" else fact["url"]
                     self.assertIn(f'href="{catalog.attr(destination)}"', page)
 
+    def test_autorotate_is_last_closed_archive_without_testflight(self):
+        rendered = catalog.render(self.data)
+        self.assertNotIn('/autorotate/', rendered["grid"])
+        archive = rendered["archived"]
+        self.assertIn('<summary>Archived</summary>', archive)
+        self.assertIn('<details class="archived-apps">', archive)
+        self.assertNotIn(' open', archive)
+        self.assertIn('/autorotate/', archive)
+        self.assertNotIn('testflight.apple.com', archive)
+        app = next(a for a in self.data["apps"] if a["slug"] == "autorotate")
+        self.assertTrue(app["archived"])
+        self.assertFalse(app["links"].get("testFlight"))
+        self.assertNotIn('testflight.apple.com', catalog.availability_region(app))
+        home = catalog.PAGE.read_text()
+        self.assertLess(home.index('id="status"'), home.index('id="archived"'))
+        self.assertLess(home.index('id="archived"'), home.index('</main>'))
+
     def test_private_source_and_generic_invite_are_rejected(self):
         data = copy.deepcopy(self.data)
         private_app = next(app for app in data["apps"] if app["slug"] == "dealdex")
