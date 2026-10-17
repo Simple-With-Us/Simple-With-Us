@@ -31,6 +31,17 @@ class CatalogContractTests(unittest.TestCase):
         self.assertIn('alt="Simple With Us - Jay Wedgeworth"', catalog.HEADER)
         self.assertNotIn('swu-wordmark.webp', catalog.HEADER)
 
+    def test_title_and_icon_share_a_centered_row(self):
+        for app in self.data["apps"]:
+            identity = catalog.identity_region(app)
+            self.assertNotIn('class="back-link"', identity)
+            self.assertIn(f'    <h1>{app["name"]}</h1>', identity)
+            self.assertNotIn('<div><a', identity)
+        css = (catalog.ROOT / "assets/site.css").read_text()
+        self.assertIn('.app-identity h1 { margin: 0;', css)
+        # fleetlink/privacy.html keeps a back link above its h1, so that pair needs its own gap.
+        self.assertIn('.back-link + h1 { margin-top: 8px; }', css)
+
     def test_private_source_and_generic_invite_are_rejected(self):
         data = copy.deepcopy(self.data)
         private_app = next(app for app in data["apps"] if app["slug"] == "dealdex")

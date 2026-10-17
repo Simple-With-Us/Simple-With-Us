@@ -221,7 +221,7 @@ def chrome(page: str) -> str:
 def identity_region(app: dict) -> str:
     return f'''<div class="app-identity">
     <img class="app-icon" src="{attr(app["icon"])}" alt="" width="80" height="80">
-    <div><a class="back-link" href="/#apps">← All apps</a><h1>{gap(app["name"])}</h1></div>
+    <h1>{gap(app["name"])}</h1>
   </div>'''
 
 def splice(page: str, name: str, body: str, filename="index.html") -> str:

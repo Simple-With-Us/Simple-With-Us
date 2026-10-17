@@ -261,8 +261,9 @@ details summary { cursor: pointer; font-weight: 600; }
 .article .kicker { color: var(--accent); font-weight: 600; font-size: .875rem; }
 .app-identity { display: flex; gap: 20px; align-items: center; }
 .app-identity .app-icon { width: 80px; height: 80px; border-radius: 22%; flex: none; object-fit: cover; }
-.app-identity h1 { margin: 8px 0 0; font-size: clamp(1.75rem, 4.5vw, 2.625rem); }
+.app-identity h1 { margin: 0; font-size: clamp(1.75rem, 4.5vw, 2.625rem); }
 .back-link { font-size: .875rem; color: var(--text-muted); text-decoration: none; }
+.back-link + h1 { margin-top: 8px; }
 .back-link:hover { text-decoration: underline; }
 .availability { padding: 24px; background: var(--bg-raised); }
 .article .availability h2 { margin: 0 0 16px; font-size: 1.125rem; }
@@ -344,3 +345,6 @@ details summary { cursor: pointer; font-weight: 600; }
   line-height: 1.45;
 }
 
+
+/* Apps in the right-aligned primary nav is the single catalog return link. */
+.site-nav { margin-left: auto; justify-content: flex-end; }
