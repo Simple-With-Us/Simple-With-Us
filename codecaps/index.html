@@ -4,12 +4,12 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>CodeCaps — Simple With Us</title>
-  <meta name="description" content="Check supported AI quota and reset windows from the macOS menu bar." />
+  <meta name="description" content="Track AI quota, detect runaway usage and anomalies, review local history, and keep selected providers in a floating PiP window." />
 
   <link rel="canonical" href="https://simplewithus.com/codecaps/" />
   <meta property="og:type" content="website" />
   <meta property="og:title" content="CodeCaps — Simple With Us" />
-  <meta property="og:description" content="Check supported AI quota and reset windows from the macOS menu bar." />
+  <meta property="og:description" content="Track AI quota, detect runaway usage and anomalies, review local history, and keep selected providers in a floating PiP window." />
   <meta property="og:url" content="https://simplewithus.com/codecaps/" />
   <meta name="theme-color" content="#1a1a2e" />
   <link rel="icon" type="image/png" href="/assets/logos/swu-logo-whitecircle-1024.png" />
@@ -33,7 +33,7 @@
     <img class="app-icon" src="/assets/app-icons/codecaps.png" alt="" width="80" height="80">
     <h1>CodeCaps</h1>
   </div><!-- catalog:identity:end -->
-  <p class="lede">CodeCaps monitors available AI plan quotas and reset windows across Claude, Codex, Cursor, Antigravity, Grok CLI, Grok Bot, and MiniMax from the macOS menu bar.&nbsp; It features dual-cadence monitoring (5-hour and weekly periods), pacing indicators, runaway burn rate alerting with marquee announcements, and an optional on-top PiP widget.</p>
+  <p class="lede">Keep AI quota and reset windows in view from the macOS menu bar.&nbsp; CodeCaps detects runaway usage and usage anomalies, shows local usage history, and keeps selected providers visible in an optional on-top Picture in Picture (PiP) window.</p>
   <!-- catalog:availability:start -->
 <section class="availability" aria-labelledby="availability-title">
   <h2 id="availability-title">Availability</h2>
@@ -48,22 +48,36 @@
   <!-- catalog:availability:end -->
   <h2>What you can do</h2>
   <ul>
-    <li><strong>Dual-cadence monitoring.</strong> Track both 5-hour and weekly quota windows with elapsed-time pacing markers.</li>
-    <li><strong>Runaway alerting.</strong> Real-time detection of rapid quota exhaustion with marquee notifications and reset alarms.</li>
-    <li><strong>Forensic vendor resets.</strong> Acknowledge manual and automated provider quota restorations mid-cycle with audio and push notices.</li>
-    <li><strong>Local privacy first.</strong> Reuses local CLI or session credentials without requiring you to enter provider API keys.</li>
+    <li><strong>Quota and pacing.</strong> Monitor supported plan windows for Claude, Codex, Cursor, Antigravity, Grok CLI, Grok Bot, MiniMax, and Muse.&nbsp; See remaining quota, reset countdowns, and pacing markers where the provider supplies them.</li>
+    <li><strong>Runaway usage and usage anomaly detection.</strong> Compare the current quota burn rate with measured usage history.&nbsp; Set warning thresholds, see an in-app warning when usage spikes, and review recent alerts alongside the quota history behind them.</li>
+    <li><strong>Picture in Picture.</strong> Pin the providers you want in a compact floating PiP window with quota meters and reset countdowns.&nbsp; Choose a light, dark, or accent background, and optionally open PiP when quota runs low.</li>
+    <li><strong>Reset alerts.</strong> Configure reset alarms and notices for detected provider quota restorations.</li>
+    <li><strong>Local readings, optional fleet view.</strong> Reuse supported local CLI or session credentials rather than entering provider API keys.&nbsp; An optional endpoint combines readings from configured Macs.</li>
   </ul>
 
   <section class="screenshots" aria-labelledby="screenshots-title">
     <h2 id="screenshots-title">Screenshots</h2>
+    <p>Demo readings from the Mac app.&nbsp; Available windows and readings depend on your providers and connected sources.</p>
     <div class="screenshot-grid">
       <figure class="screenshot-card">
-        <img src="/assets/screenshots/codecaps/glance-light.webp" alt="CodeCaps Glance showing AI plan quotas, reset windows, and pacing markers" width="1140" height="942" loading="lazy" decoding="async">
-        <figcaption>CodeCaps Glance popover with dual-cadence quotas, pacing markers, and burn-rate warnings.</figcaption>
+        <img src="/assets/screenshots/codecaps/glance-light.webp" alt="CodeCaps menu bar view showing supported provider quotas and reset countdowns" width="1140" height="1182" loading="lazy" decoding="async">
+        <figcaption>Quotas, reset windows, and pacing in the menu bar view.</figcaption>
       </figure>
       <figure class="screenshot-card">
-        <img src="/assets/screenshots/codecaps/glance-fleet.webp" alt="CodeCaps Fleet view showing quotas across configured Macs" width="1140" height="942" loading="lazy" decoding="async">
-        <figcaption>Optional fleet view displaying aggregated quotas across multiple configured Macs.</figcaption>
+        <img src="/assets/screenshots/codecaps/runaway-alerts.webp" alt="CodeCaps Runaway Alerts settings and recent usage anomaly alerts" width="1280" height="896" loading="lazy" decoding="async">
+        <figcaption>Review runaway usage thresholds and recent anomaly alerts.</figcaption>
+      </figure>
+      <figure class="screenshot-card">
+        <img src="/assets/screenshots/codecaps/platform-alert-history.webp" alt="CodeCaps local quota history graph with a selected runaway usage alert" width="1280" height="896" loading="lazy" decoding="async">
+        <figcaption>See the quota history behind an alert.</figcaption>
+      </figure>
+      <figure class="screenshot-card">
+        <img src="/assets/screenshots/codecaps/pip-black.webp" alt="CodeCaps floating PiP window with provider logos, quota meters, and reset countdowns" width="860" height="460" loading="lazy" decoding="async">
+        <figcaption>Keep pinned providers in view with the on-top PiP window.</figcaption>
+      </figure>
+      <figure class="screenshot-card">
+        <img src="/assets/screenshots/codecaps/glance-fleet.webp" alt="CodeCaps optional Fleet view showing quota readings from configured Macs" width="1140" height="1182" loading="lazy" decoding="async">
+        <figcaption>Combine readings from configured Macs in the optional Fleet view.</figcaption>
       </figure>
     </div>
   </section>
