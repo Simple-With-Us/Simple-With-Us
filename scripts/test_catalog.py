@@ -29,6 +29,8 @@ class CatalogContractTests(unittest.TestCase):
     def test_header_uses_full_owner_lockup(self):
         self.assertIn('/assets/logos/swu-header-lockup.png', catalog.HEADER)
         self.assertIn('alt="Simple With Us - Jay Wedgeworth"', catalog.HEADER)
+        # aria-label overrides the image alt in the accessible name, so it has to carry the signature too.
+        self.assertIn('class="wordmark" href="/" aria-label="Simple With Us - Jay Wedgeworth home"', catalog.HEADER)
         self.assertNotIn('swu-wordmark.webp', catalog.HEADER)
 
     def test_title_and_icon_share_a_centered_row(self):
