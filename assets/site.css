@@ -234,7 +234,7 @@ details summary { cursor: pointer; font-weight: 600; }
 }
 .site-header .wrap { min-height: 84px; gap: 12px 32px; }
 .wordmark { display: inline-flex; align-items: center; }
-.wordmark img { width: 288px; height: auto; }
+.wordmark img { width: 480px; max-width: 100%; height: auto; }
 .site-nav { gap: 24px; font-size: 0.9375rem; }
 .site-nav a { min-height: 44px; display: inline-flex; align-items: center; }
 .hero { padding: 72px 0 56px; background: linear-gradient(140deg, rgb(61 186 210 / .07), transparent 65%); }
@@ -280,7 +280,7 @@ details summary { cursor: pointer; font-weight: 600; }
 @media (max-width: 560px) {
   .site-header .wrap { min-height: 0; padding: 20px; gap: 8px; }
   .wordmark { flex-basis: 100%; }
-  .wordmark img { width: min(288px, 100%); height: auto; }
+  .wordmark img { width: 100%; height: auto; }
   .site-nav { gap: 24px; }
   .hero { padding: 40px 0; }
   .hero h1 { font-size: 2.25rem; }
