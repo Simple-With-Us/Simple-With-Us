@@ -8,7 +8,7 @@
     {
       "slug": "codecaps",
       "name": "CodeCaps",
-      "tagline": "Check supported AI quota and reset windows from the macOS menu bar.",
+      "tagline": "Track AI quota, spot usage anomalies, and keep selected providers in an on-top PiP window.",
       "shelf": "coding",
       "platforms": [
         "macOS",
