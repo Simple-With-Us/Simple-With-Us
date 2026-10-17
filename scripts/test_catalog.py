@@ -34,6 +34,8 @@ class CatalogContractTests(unittest.TestCase):
             self.assertNotIn('<div><a', identity)
         css = (catalog.ROOT / "assets/site.css").read_text()
         self.assertIn('.app-identity h1 { margin: 0;', css)
+        # fleetlink/privacy.html keeps a back link above its h1, so that pair needs its own gap.
+        self.assertIn('.back-link + h1 { margin-top: 8px; }', css)
 
     def test_private_source_and_generic_invite_are_rejected(self):
         data = copy.deepcopy(self.data)
