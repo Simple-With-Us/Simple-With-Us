@@ -234,7 +234,7 @@ details summary { cursor: pointer; font-weight: 600; }
 }
 .site-header .wrap { min-height: 84px; gap: 12px 32px; }
 .wordmark { display: inline-flex; align-items: center; }
-.wordmark img { width: 288px; height: auto; }
+.wordmark img { width: 480px; max-width: 100%; height: auto; }
 .site-nav { gap: 24px; font-size: 0.9375rem; }
 .site-nav a { min-height: 44px; display: inline-flex; align-items: center; }
 .hero { padding: 72px 0 56px; background: linear-gradient(140deg, rgb(61 186 210 / .07), transparent 65%); }
@@ -261,8 +261,9 @@ details summary { cursor: pointer; font-weight: 600; }
 .article .kicker { color: var(--accent); font-weight: 600; font-size: .875rem; }
 .app-identity { display: flex; gap: 20px; align-items: center; }
 .app-identity .app-icon { width: 80px; height: 80px; border-radius: 22%; flex: none; object-fit: cover; }
-.app-identity h1 { margin: 8px 0 0; font-size: clamp(1.75rem, 4.5vw, 2.625rem); }
+.app-identity h1 { margin: 0; font-size: clamp(1.75rem, 4.5vw, 2.625rem); }
 .back-link { font-size: .875rem; color: var(--text-muted); text-decoration: none; }
+.back-link + h1 { margin-top: 8px; }
 .back-link:hover { text-decoration: underline; }
 .availability { padding: 24px; background: var(--bg-raised); }
 .article .availability h2 { margin: 0 0 16px; font-size: 1.125rem; }
@@ -279,7 +280,7 @@ details summary { cursor: pointer; font-weight: 600; }
 @media (max-width: 560px) {
   .site-header .wrap { min-height: 0; padding: 20px; gap: 8px; }
   .wordmark { flex-basis: 100%; }
-  .wordmark img { width: min(288px, 100%); height: auto; }
+  .wordmark img { width: 100%; height: auto; }
   .site-nav { gap: 24px; }
   .hero { padding: 40px 0; }
   .hero h1 { font-size: 2.25rem; }
@@ -345,6 +346,8 @@ details summary { cursor: pointer; font-weight: 600; }
 }
 
 
+/* Apps in the right-aligned primary nav is the single catalog return link. */
+.site-nav { margin-left: auto; justify-content: flex-end; }
 /* Native details keeps archived apps closed by default, including without JS. */
 .archived-apps summary { cursor: pointer; font-size: 1.25rem; font-weight: 600; padding: 12px 0; }
 .archived-apps summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }

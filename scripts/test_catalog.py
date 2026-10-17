@@ -26,6 +26,24 @@ class CatalogContractTests(unittest.TestCase):
                     destination = catalog.app_store_url(fact["url"], app["slug"], token, "hero") if fact["channel"] == "appStore" else fact["url"]
                     self.assertIn(f'href="{catalog.attr(destination)}"', page)
 
+    def test_header_uses_full_owner_lockup(self):
+        self.assertIn('/assets/logos/swu-header-lockup.png', catalog.HEADER)
+        self.assertIn('alt="Simple With Us - Jay Wedgeworth"', catalog.HEADER)
+        # aria-label overrides the image alt in the accessible name, so it has to carry the signature too.
+        self.assertIn('class="wordmark" href="/" aria-label="Simple With Us - Jay Wedgeworth home"', catalog.HEADER)
+        self.assertNotIn('swu-wordmark.webp', catalog.HEADER)
+
+    def test_title_and_icon_share_a_centered_row(self):
+        for app in self.data["apps"]:
+            identity = catalog.identity_region(app)
+            self.assertNotIn('class="back-link"', identity)
+            self.assertIn(f'    <h1>{app["name"]}</h1>', identity)
+            self.assertNotIn('<div><a', identity)
+        css = (catalog.ROOT / "assets/site.css").read_text()
+        self.assertIn('.app-identity h1 { margin: 0;', css)
+        # fleetlink/privacy.html keeps a back link above its h1, so that pair needs its own gap.
+        self.assertIn('.back-link + h1 { margin-top: 8px; }', css)
+
     def test_autorotate_is_last_closed_archive_without_testflight(self):
         rendered = catalog.render(self.data)
         self.assertNotIn('/autorotate/', rendered["grid"])
@@ -42,6 +60,22 @@ class CatalogContractTests(unittest.TestCase):
         home = catalog.PAGE.read_text()
         self.assertLess(home.index('id="status"'), home.index('id="archived"'))
         self.assertLess(home.index('id="archived"'), home.index('</main>'))
+
+    def test_catalog_count_matches_rendered_active_cards(self):
+        rendered = catalog.render(self.data)
+        archived = [a for a in self.data["apps"] if a.get("archived")]
+        self.assertTrue(archived)
+        visible = [a for a in self.data["apps"] if not a.get("archived")]
+        self.assertEqual(f'<p class="facts">{catalog.app_count(visible)} apps</p>', rendered["facts"])
+        self.assertEqual(catalog.app_count(visible), rendered["grid"].count('<li class="card'))
+
+    def test_splice_with_empty_body_is_idempotent(self):
+        page = '<main>\n  <!-- catalog:archived:start -->\nold\n  <!-- catalog:archived:end -->\n</main>'
+        once = catalog.splice(page, "archived", "")
+        self.assertEqual(once, catalog.splice(once, "archived", ""))
+        self.assertEqual('<main>\n  <!-- catalog:archived:start -->\n  <!-- catalog:archived:end -->\n</main>', once)
+        filled = catalog.splice(once, "archived", "body")
+        self.assertEqual(filled, catalog.splice(filled, "archived", "body"))
 
     def test_private_source_and_generic_invite_are_rejected(self):
         data = copy.deepcopy(self.data)

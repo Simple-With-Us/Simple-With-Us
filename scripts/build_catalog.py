@@ -149,8 +149,9 @@ def render(data: dict) -> dict:
     apps = data["apps"]
     token = data.get("appStoreProviderToken")
     grid = []
+    visible = [a for a in apps if not a.get("archived")]
     for shelf, title in data["shelves"].items():
-        subset = [a for a in apps if a["shelf"] == shelf and not a.get("archived")]
+        subset = [a for a in visible if a["shelf"] == shelf]
         grid += [f'<section class="catalog-group" aria-labelledby="shelf-{attr(shelf)}">',
                  f'  <h3 id="shelf-{attr(shelf)}">{gap(title)}</h3>',
                  '  <ul class="grid" role="list">']
@@ -164,7 +165,7 @@ def render(data: dict) -> dict:
             else:
                 grid.append(card(app, token))
         grid += ['  </ul>', '</section>']
-    facts = f'<p class="facts">{app_count(apps)} apps</p>'
+    facts = f'<p class="facts">{app_count(visible)} apps</p>'
     archived = [a for a in apps if a.get("archived")]
     archive = ""
     if archived:
@@ -203,7 +204,7 @@ def availability_region(app: dict, provider_token=None) -> str:
 
 HEADER = """<header class="site-header">
   <div class="wrap">
-    <a class="wordmark" href="/" aria-label="Simple With Us home"><img src="/assets/logos/swu-wordmark.webp" alt="Simple With Us" width="288" height="40"></a>
+    <a class="wordmark" href="/" aria-label="Simple With Us - Jay Wedgeworth home"><picture><source media="(prefers-color-scheme: dark)" srcset="/assets/logos/swu-header-lockup-dark.png"><img src="/assets/logos/swu-header-lockup.png" alt="Simple With Us - Jay Wedgeworth" width="2400" height="251"></picture></a>
     <nav class="site-nav" aria-label="Primary">
       <a href="/#apps">Apps</a><a href="/#status">Status</a><a href="/support.html">Support</a>
     </nav>
@@ -231,14 +232,16 @@ def chrome(page: str) -> str:
 def identity_region(app: dict) -> str:
     return f'''<div class="app-identity">
     <img class="app-icon" src="{attr(app["icon"])}" alt="" width="80" height="80">
-    <div><a class="back-link" href="/#apps">← All apps</a><h1>{gap(app["name"])}</h1></div>
+    <h1>{gap(app["name"])}</h1>
   </div>'''
 
 def splice(page: str, name: str, body: str, filename="index.html") -> str:
     pat = re.compile(rf"(<!-- catalog:{name}:start -->)(.*?)(\s*<!-- catalog:{name}:end -->)", re.S)
     if not pat.search(page):
         raise SystemExit(f"{filename} is missing the catalog:{name} markers")
-    return pat.sub(lambda m: m.group(1) + "\n" + body + m.group(3), page, count=1)
+    # An empty body must not add a newline: group 3 already holds the whitespace before the end marker,
+    # so adding one here would grow the region on every run and keep --check failing.
+    return pat.sub(lambda m: m.group(1) + (("\n" + body) if body else "") + m.group(3), page, count=1)
 
 
 def exists(path: str) -> bool:
