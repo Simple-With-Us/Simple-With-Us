@@ -149,8 +149,9 @@ def render(data: dict) -> dict:
     apps = data["apps"]
     token = data.get("appStoreProviderToken")
     grid = []
+    visible = [a for a in apps if not a.get("archived")]
     for shelf, title in data["shelves"].items():
-        subset = [a for a in apps if a["shelf"] == shelf]
+        subset = [a for a in visible if a["shelf"] == shelf]
         grid += [f'<section class="catalog-group" aria-labelledby="shelf-{attr(shelf)}">',
                  f'  <h3 id="shelf-{attr(shelf)}">{gap(title)}</h3>',
                  '  <ul class="grid" role="list">']
@@ -164,8 +165,18 @@ def render(data: dict) -> dict:
             else:
                 grid.append(card(app, token))
         grid += ['  </ul>', '</section>']
-    facts = f'<p class="facts">{app_count(apps)} apps</p>'
-    return {"facts": facts, "grid": "\n".join(grid)}
+    facts = f'<p class="facts">{app_count(visible)} apps</p>'
+    archived = [a for a in apps if a.get("archived")]
+    archive = ""
+    if archived:
+        archive = '\n'.join([
+            '<section class="section" id="archived" aria-label="Archived apps">',
+            '  <div class="wrap"><details class="archived-apps">',
+            '    <summary>Archived</summary>',
+            '    <ul class="grid" role="list">',
+            *[card(a, token) for a in archived],
+            '    </ul>', '  </details></div>', '</section>'])
+    return {"facts": facts, "grid": "\n".join(grid), "archived": archive}
 
 
 def availability_region(app: dict, provider_token=None) -> str:
@@ -228,7 +239,9 @@ def splice(page: str, name: str, body: str, filename="index.html") -> str:
     pat = re.compile(rf"(<!-- catalog:{name}:start -->)(.*?)(\s*<!-- catalog:{name}:end -->)", re.S)
     if not pat.search(page):
         raise SystemExit(f"{filename} is missing the catalog:{name} markers")
-    return pat.sub(lambda m: m.group(1) + "\n" + body + m.group(3), page, count=1)
+    # An empty body must not add a newline: group 3 already holds the whitespace before the end marker,
+    # so adding one here would grow the region on every run and keep --check failing.
+    return pat.sub(lambda m: m.group(1) + (("\n" + body) if body else "") + m.group(3), page, count=1)
 
 
 def exists(path: str) -> bool:

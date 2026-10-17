@@ -1,6 +1,6 @@
 {
   "schema": 2,
-  "updated": "2026-10-10",
+  "updated": "2026-10-16",
   "notes": "Public release facts for the catalog and product pages.  Availability is per platform; a null URL means no public install action.  Run python3 scripts/build_catalog.py after editing.  Verification describes the evidence checked on that date, not a promise that a beta invite is open.",
   "teamId": "CC8UTF7ATG",
   "appStoreProviderToken": null,
@@ -538,8 +538,8 @@
         "Android",
         "Web"
       ],
-      "status": "beta",
-      "statusText": "Mac TestFlight beta",
+      "status": "archived",
+      "statusText": "Archived",
       "icon": "/assets/app-icons/autorotate.png",
       "accent": "#059669",
       "page": "/autorotate/",
@@ -571,11 +571,11 @@
         },
         "macOS": {
           "status": "beta",
-          "label": "TestFlight beta",
-          "channel": "testFlight",
-          "url": "https://testflight.apple.com/join/5yDXA8Vk",
-          "verifiedOn": "2026-09-27",
-          "verification": "Named product TestFlight invitation confirmed on Apple public join page.  Enrollment and installation were not tested."
+          "label": "Archived; no public install link",
+          "channel": null,
+          "url": null,
+          "verifiedOn": "2026-10-16",
+          "verification": "Owner requested archiving Autorotate and removing its TestFlight link on 2026-10-16.  This removes the catalog invitation; it does not assert that Apple disabled the beta."
         },
         "Android": {
           "status": "source",
@@ -593,7 +593,8 @@
           "verifiedOn": "2026-09-26",
           "verification": "Public repository returned HTTP 200; installation was not tested."
         }
-      }
+      },
+      "archived": true
     },
     {
       "slug": "fleetlink",
