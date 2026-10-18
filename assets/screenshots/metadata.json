@@ -134,22 +134,6 @@
       "caption": "Google and iCloud contact card sync and artwork preferences."
     }
   ],
-  "dealdex": [
-    {
-      "src": "/assets/screenshots/dealdex/phone.webp",
-      "width": 1014,
-      "height": 882,
-      "alt": "DealDex mobile market spread and pricing analysis",
-      "caption": "Real-time market comp aggregation, spread detection, and appraisals."
-    },
-    {
-      "src": "/assets/screenshots/dealdex/ipad.webp",
-      "width": 1280,
-      "height": 593,
-      "alt": "DealDex card appraisal desk on iPad",
-      "caption": "Multi-marketplace pricing comparisons and condition multipliers."
-    }
-  ],
   "autorotate": [
     {
       "src": "/assets/screenshots/autorotate/mac.webp",
@@ -167,13 +151,6 @@
     }
   ],
   "fleetlink": [
-    {
-      "src": "/assets/screenshots/fleetlink/preview.webp",
-      "width": 1280,
-      "height": 714,
-      "alt": "FleetLink secure clipboard handoff and verification",
-      "caption": "End-to-end encrypted packet handoff between Macs and iOS devices."
-    },
     {
       "src": "/assets/screenshots/fleetlink/preview-locked.webp",
       "width": 1280,
