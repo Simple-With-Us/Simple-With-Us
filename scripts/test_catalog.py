@@ -35,6 +35,33 @@ class CatalogContractTests(unittest.TestCase):
         self.assertIn('class="wordmark" href="/" aria-label="Simple With Us - Jay Wedgeworth home"', catalog.HEADER)
         self.assertNotIn('swu-wordmark.webp', catalog.HEADER)
 
+    def test_every_page_ships_the_light_and_dark_favicon_pair(self):
+        """The favicon is the one asset that breaks where nobody looks at it.
+
+        The plate has to follow prefers-color-scheme, or the icon floats on
+        a black square in a light tab.  This walks every published page plus
+        _template/, so a new app page cannot ship a single-variant icon.
+        """
+        pair = [
+            '<link rel="icon" href="/assets/logos/swu-favicon-32-light.webp" type="image/webp" media="(prefers-color-scheme: light)">',
+            '<link rel="icon" href="/assets/logos/swu-favicon-32-dark.webp" type="image/webp" media="(prefers-color-scheme: dark)">',
+            '<link rel="apple-touch-icon" media="(prefers-color-scheme: light)" href="/assets/logos/swu-favicon-180-light.webp">',
+            '<link rel="apple-touch-icon" media="(prefers-color-scheme: dark)" href="/assets/logos/swu-favicon-180-dark.webp">',
+        ]
+        retired = ["swu-square-32.webp", "swu-square-32-light.webp", "swu-square-192-light.webp"]
+        checked = 0
+        for path in sorted(catalog.ROOT.rglob("*.html")):
+            if ".git" in path.parts:
+                continue
+            page = path.read_text()
+            with self.subTest(page=str(path.relative_to(catalog.ROOT))):
+                for tag in pair:
+                    self.assertIn(tag, page)
+                for name in retired:
+                    self.assertNotIn(name, page)
+            checked += 1
+        self.assertGreaterEqual(checked, 39)
+
     def test_title_and_icon_share_a_centered_row(self):
         for app in self.data["apps"]:
             identity = catalog.identity_region(app)
