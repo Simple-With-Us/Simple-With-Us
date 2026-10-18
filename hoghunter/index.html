@@ -1,4 +1,4 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>HogHunter — Simple With Us</title><meta name="description" content="Inspect Mac resource usage, or check it from an iPhone on the same Wi-Fi."><link rel="canonical" href="https://simplewithus.com/hoghunter/"><link rel="stylesheet" href="/assets/site.css?v=63657e1a3e86"><link rel="icon" href="/assets/favicon.svg"></head><body><a class="skip-link" href="#main">Skip to content</a><header class="site-header">
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>HogHunter — Simple With Us</title><meta name="description" content="Track CPU and memory hogs on your Mac, clean up disk clutter, and check or control it all from your iPhone."><link rel="canonical" href="https://simplewithus.com/hoghunter/"><link rel="stylesheet" href="/assets/site.css?v=63657e1a3e86"><link rel="icon" href="/assets/favicon.svg"></head><body><a class="skip-link" href="#main">Skip to content</a><header class="site-header">
   <div class="wrap">
     <a class="wordmark" href="/" aria-label="Simple With Us - Jay Wedgeworth home"><picture><source media="(prefers-color-scheme: dark)" srcset="/assets/logos/swu-header-lockup-dark.png"><img src="/assets/logos/swu-header-lockup.png" alt="Simple With Us - Jay Wedgeworth" width="2400" height="251"></picture></a>
     <nav class="site-nav" aria-label="Primary">
@@ -9,11 +9,11 @@
 <div class="app-identity">
     <img class="app-icon" src="/assets/app-icons/hoghunter.png" alt="" width="80" height="80">
     <h1>HogHunter</h1>
-  </div><!-- catalog:identity:end --><p class="lede">Inspect Mac resource usage, or check it from an iPhone on the same Wi-Fi.</p><!-- catalog:availability:start -->
+  </div><!-- catalog:identity:end --><p class="lede">Track CPU and memory hogs on your Mac, clean up disk clutter, and check or control it all from your iPhone.</p><!-- catalog:availability:start -->
 <section class="availability" aria-labelledby="availability-title">
   <h2 id="availability-title">Availability</h2>
   <ul class="availability-list">
-    <li><strong>macOS</strong><span><a href="https://github.com/Simple-With-Us/HogHunter" rel="noopener">Build from public source<span aria-hidden="true"> ↗</span></a></span></li>
+    <li><strong>macOS</strong><span><a href="https://github.com/Simple-With-Us/HogHunter/releases/latest/download/HogHunter.dmg" rel="noopener">Download for Mac<span aria-hidden="true"> ↗</span></a></span></li>
     <li><strong>iOS</strong><span><a href="https://testflight.apple.com/join/yrHXfqSR" rel="noopener">TestFlight beta<span aria-hidden="true"> ↗</span></a></span></li>
   </ul>
   <div class="btn-row">
@@ -21,12 +21,24 @@
   </div>
 </section><!-- catalog:availability:end -->
 
+  <section aria-labelledby="what-it-does-title">
+  <h2 id="what-it-does-title">What it does</h2>
+  <ul>
+    <li>Names the apps and processes eating CPU and memory right now, over the past hour, and over the past 24 hours - then quit or force quit a hog after a confirm.</li>
+    <li>Shows what is using your disk, down to each app's hidden costs (containers, caches, logs, saved state), and cleans reclaimable clutter with a Standard or deeper Extreme clean.</li>
+    <li>Maintain runs scheduled background cleaning and maintenance scripts, with run history and alerts when a schedule is missed.</li>
+    <li>Watches live network bandwidth with a 24-hour peak.</li>
+    <li>Alerts when an app holds CPU above your threshold for a sustained time, optionally to a webhook.</li>
+    <li>iPhone companion over local Wi-Fi or Tailscale: see the same lists, quit or tame apps, run cleans, and change settings, with every action confirmed on the phone. Home-screen widgets included.</li>
+  </ul>
+</section>
+
   <section class="screenshots" aria-labelledby="screenshots-title">
     <h2 id="screenshots-title">Screenshots</h2>
     <div class="screenshot-grid">
       <figure class="screenshot-card">
         <img src="/assets/screenshots/hoghunter/companion.webp" alt="HogHunter iOS companion inspecting Mac resource usage" width="1280" height="2781" loading="lazy" decoding="async">
-        <figcaption>HogHunter companion on iPhone monitoring Mac resource usage over local Wi-Fi.</figcaption>
+        <figcaption>HogHunter companion on iPhone monitoring Mac resource usage over local Wi-Fi or Tailscale.</figcaption>
       </figure>
     </div>
   </section>

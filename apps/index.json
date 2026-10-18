@@ -15,7 +15,7 @@
         "iOS"
       ],
       "status": "beta",
-      "statusText": "Mac beta \u00b7 iPhone TestFlight beta",
+      "statusText": "Mac beta · iPhone TestFlight beta",
       "icon": "/assets/app-icons/codecaps.png",
       "accent": "#0f766e",
       "page": "/codecaps/",
@@ -154,7 +154,7 @@
         "iOS"
       ],
       "status": "source",
-      "statusText": "Mac from source \u00b7 iOS app coming soon",
+      "statusText": "Mac from source · iOS app coming soon",
       "icon": "/assets/app-icons/clutch.png",
       "accent": "#0ea5e9",
       "page": "/clutch/",
@@ -352,14 +352,14 @@
     {
       "slug": "hoghunter",
       "name": "HogHunter",
-      "tagline": "Inspect Mac resource usage, or check it from an iPhone on the same Wi-Fi.",
+      "tagline": "Track CPU and memory hogs on your Mac, clean up disk clutter, and check or control it all from your iPhone.",
       "shelf": "utility",
       "platforms": [
         "macOS",
         "iOS"
       ],
       "status": "beta",
-      "statusText": "Mac from source \u00b7 iOS TestFlight beta",
+      "statusText": "Mac download · iOS TestFlight beta",
       "icon": "/assets/app-icons/hoghunter.png",
       "accent": "#92400e",
       "page": "/hoghunter/",
@@ -382,12 +382,12 @@
       "associatedDomains": true,
       "availability": {
         "macOS": {
-          "status": "source",
-          "label": "Build from public source",
-          "channel": "source",
-          "url": "https://github.com/Simple-With-Us/HogHunter",
-          "verifiedOn": "2026-09-26",
-          "verification": "Public repository returned HTTP 200; installation was not tested."
+          "status": "beta",
+          "label": "Download for Mac",
+          "channel": "download",
+          "url": "https://github.com/Simple-With-Us/HogHunter/releases/latest/download/HogHunter.dmg",
+          "verifiedOn": "2026-10-17",
+          "verification": "Direct DMG URL returned HTTP 200 after redirects (latest v1.0.6-build.132, CI-published signed and notarized); installation was not tested."
         },
         "iOS": {
           "status": "beta",
@@ -414,7 +414,7 @@
         "Web"
       ],
       "status": "live",
-      "statusText": "Web \u00b7 iPhone and Mac betas",
+      "statusText": "Web · iPhone and Mac betas",
       "icon": "/assets/app-icons/contactlogo.png",
       "accent": "#6366f1",
       "page": "/contactlogo/",
@@ -473,7 +473,7 @@
     {
       "slug": "dealdex",
       "name": "DealDex",
-      "tagline": "Compare Pok\u00e9mon card listing prices with available market sources.",
+      "tagline": "Compare Pokémon card listing prices with available market sources.",
       "shelf": "utility",
       "platforms": [
         "iOS",
@@ -481,7 +481,7 @@
         "Web"
       ],
       "status": "live",
-      "statusText": "Web \u00b7 iOS TestFlight beta",
+      "statusText": "Web · iOS TestFlight beta",
       "icon": "/assets/app-icons/dealdex.png",
       "accent": "#b45309",
       "page": "/dealdex/",
