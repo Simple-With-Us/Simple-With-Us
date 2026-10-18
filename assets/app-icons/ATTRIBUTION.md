@@ -25,11 +25,53 @@ Last re-derived: 2026-10-03.
 | `autorotate.png` | `jaywedgeworth22/Autorotate` — `apple/TopSpin-iOS/Assets.xcassets/AppIcon.appiconset/AppIcon-1024.png` |
 | `fleetlink.png` | `jaywedgeworth22/FleetLink` — `ios/Assets.xcassets/AppIcon.appiconset/icon-1024.png` |
 
+## Third-party marks in `assets/badges/`
+
+These are **not** fleet artwork.  Both come from Apple and are used as
+provided; Apple's marketing guidelines say to use only the badge artwork they
+publish and never to modify it.
+
+| File | Origin | Terms |
+| --- | --- | --- |
+| `badges/app-store-badge.svg` | Apple's published "Download on the App Store" badge, fetched unmodified from `developer.apple.com/assets/elements/badges/download-on-the-app-store.svg` (native 119.66407 × 40). | Used exactly as provided.  Apple's guidelines say to use the preferred black badge in all marketing for an app on the App Store, and not to modify, angle or animate it. |
+| `badges/testflight-icon.png` | The TestFlight app icon, from Apple's CDN via the public iTunes lookup for id 899247664, resized to 128 px with `sips -Z 128` (4× the 30 px badge tile). | Apple publishes **no TestFlight badge**, so the badge around it is ours; only the icon is Apple's.  It is nominative:  the button it sits in links to `testflight.apple.com`. |
+
+Apple's badge licence covers apps available on the App Store, which is why the
+App Store badge appears only for an app that is actually listed, and the
+TestFlight badge only for one that is not.
+
 Each icon belongs to its own app and repo, all Apache-2.0.  The two-letter
 files (`ar.png`, `bf.png`, and so on) predate the 200 KB image budget and are
 slated for removal once every page uses the slug-named icons.
 
 ## Change log
+
+2026-10-18: Rebuilt the Simple With Us brand set in `assets/logos/` from Jay's
+master art.  The header now serves WebP through a `<picture>`, so the dark
+plate ships with the light one and the lockup survives a dark page.  The
+favicon set is the same idea at icon sizes.  Watch the naming:  the **unsuffixed
+square files are the black plates**, the `-light` ones are the white plates, and
+`swu-square-*-dark.webp` were bare transparent marks with no plate (removed as
+unused).  Verified:  `swu-square-32.webp` reads (0, 0, 0) in the corners,
+`swu-square-32-light.webp` reads (255, 255, 255).  The master blue is `#36C6F4`.
+
+| File | Role |
+| --- | --- |
+| `logos/swu-header-lockup.webp` | Header lockup, light plate. 640 × 64. |
+| `logos/swu-header-lockup-dark.webp` | Header lockup, dark plate. Same `<picture>`. |
+| `logos/swu-wordmark.webp` | Wordmark only, no plate. |
+| `logos/swu-wordmark-dark.webp` | Wordmark for dark backgrounds. |
+| `logos/swu-square-32-light.webp` | Favicon, white plate, 32 px. |
+| `logos/swu-square-32.webp` | Favicon, **black** plate, 32 px — used for dark browser chrome. |
+| `logos/swu-square-192-light.webp` | `apple-touch-icon`, white plate, 192 px. |
+| `logos/swu-square-white.png` | `og:image`, 512 px. PNG because most social scrapers do not read WebP. |
+
+Dropped 20 unused derived variants (~504 KB) — stacked marks, `jay` /
+`black` / `light` / `dark` square alternates, and PNG duplicates of WebP
+files — so the folder holds only what the site serves plus its PNG fallbacks.
+Regenerate rather than redraw.
+
+2026-10-17: Added `assets/badges/` (Apple App Store badge, Apple TestFlight icon) and this third-party section.
 
 2026-10-10: Re-derived `codecaps.png`, `hoghunter.png`, `fleetlink.png`, and added `clutch.png` from canonical 1024 masters (CodeCaps 3D brand asset, HogHunter full-bleed green fabric mark, FleetLink master, Clutch C-monogram master).
 

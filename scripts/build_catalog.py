@@ -123,7 +123,10 @@ def card(app: dict, provider_token) -> str:
             label = {"website": "Visit website", "source": "View public source", "download": "Download Mac beta", "testFlight": "Open TestFlight beta", "appStore": "Open App Store listing"}[chosen["channel"]]
             url = (app_store_url(chosen["url"], app["slug"], provider_token, "card")
                    if chosen["channel"] == "appStore" else chosen["url"])
-            out.append(f'    <a href="{attr(url)}" rel="noopener">{label}<span aria-hidden="true"> ↗</span></a>')
+            # A card carries one badge, sized for a single-column grid on a phone.
+            mark = badge(chosen["channel"], url, app["slug"], provider_token, None)
+            out.append(f'    {mark}' if mark
+                       else f'    <a href="{attr(url)}" rel="noopener">{label}<span aria-hidden="true"> ↗</span></a>')
         if app.get("support"):
             out.append(f'    <a href="{attr(app["support"])}">Support</a>')
         out.append("  </div>")
@@ -179,6 +182,39 @@ def render(data: dict) -> dict:
     return {"facts": facts, "grid": "\n".join(grid), "archived": archive}
 
 
+# Availability badges (SWU-11).  Three shapes, one system:  our two share a
+# measured 161px width and invert with the theme, and Apple's is embedded
+# unmodified at its native 119.66 x 40 because their guidelines forbid it.
+_DOWNLOAD_GLYPH = (
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" '
+    'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'
+    '<path d="M12 3.4v11.2m0 0 4.3-4.3M12 14.6 7.7 10.3"/>'
+    '<path d="M4.2 17.4v1.4a1.8 1.8 0 0 0 1.8 1.8h12a1.8 1.8 0 0 0 1.8-1.8v-1.4"/>'
+    '</svg>')
+
+
+def badge(channel: str, url: str, slug: str, provider_token, platform: str) -> str:
+    """One badge element, or '' when the channel has no badge."""
+    if channel == "appStore":
+        store = (app_store_url(url, slug, provider_token, "hero") if provider_token else url)
+        return (f'<a class="badge-store" href="{attr(store)}" rel="noopener" '
+                f'aria-label="Download on the App Store">'
+                f'<img src="/assets/badges/app-store-badge.svg" width="119.66407" height="40" '
+                f'alt="Download on the App Store"></a>')
+    if channel == "testFlight":
+        return (f'<a class="badge" href="{attr(url)}" rel="noopener" '
+                f'aria-label="Join the beta on Apple TestFlight">'
+                f'<span class="badge-tile"><img src="/assets/badges/testflight-icon.png" alt="" width="30" height="30"></span>'
+                f'<span class="badge-lines"><span class="badge-l1">Join the beta on</span>'
+                f'<span class="badge-l2">Apple TestFlight</span></span></a>')
+    if channel == "download":
+        return (f'<a class="badge" href="{attr(url)}" rel="noopener" '
+                f'aria-label="Download the macOS beta">'
+                f'<span class="badge-tile">{_DOWNLOAD_GLYPH}</span>'
+                f'<span class="badge-lines"><span class="badge-l1">Download the</span>'
+                f'<span class="badge-l2">macOS Beta</span></span></a>')
+    return ""
+
 def availability_region(app: dict, provider_token=None) -> str:
     rows = ['<section class="availability" aria-labelledby="availability-title">',
             '  <h2 id="availability-title">Availability</h2>',
@@ -190,21 +226,22 @@ def availability_region(app: dict, provider_token=None) -> str:
             url = (app_store_url(fact["url"], app["slug"], provider_token, "hero")
                    if fact["channel"] == "appStore" else fact["url"])
             linked.add(fact["url"])
-            label = f'<a href="{attr(url)}" rel="noopener">{label}<span aria-hidden="true"> ↗</span></a>'
+            mark = badge(fact["channel"], url, app["slug"], provider_token, platform)
+            label = mark or f'<a href="{attr(url)}" rel="noopener">{label}<span aria-hidden="true"> ↗</span></a>'
         rows.append(f'    <li><strong>{gap(platform)}</strong><span>{label}</span></li>')
     rows += ['  </ul>', '  <div class="btn-row">']
     website = app["links"].get("website")
     if website and website not in linked:
         rows.append(f'    <a class="btn btn-primary" href="{attr(website)}">Visit website</a>')
     if app.get("support"):
-        rows.append(f'    <a class="btn btn-secondary" href="{attr(app["support"])}">Support</a>')
+        rows.append(f'    <a class="btn btn-secondary" href="{attr(app["support"])}">Contact</a>')
     rows += ['  </div>', '</section>']
     return "\n".join(rows)
 
 
 HEADER = """<header class="site-header">
   <div class="wrap">
-    <a class="wordmark" href="/" aria-label="Simple With Us - Jay Wedgeworth home"><picture><source media="(prefers-color-scheme: dark)" srcset="/assets/logos/swu-header-lockup-dark.png"><img src="/assets/logos/swu-header-lockup.png" alt="Simple With Us - Jay Wedgeworth" width="2400" height="251"></picture></a>
+    <a class="wordmark" href="/" aria-label="Simple With Us - Jay Wedgeworth home"><picture><source media="(prefers-color-scheme: dark)" srcset="/assets/logos/swu-header-lockup-dark.webp" type="image/webp"><img src="/assets/logos/swu-header-lockup.webp" alt="Simple With Us - Jay Wedgeworth" width="640" height="64" decoding="async"></picture></a>
     <nav class="site-nav" aria-label="Primary">
       <a href="/#apps">Apps</a><a href="/#status">Status</a><a href="/support.html">Support</a>
     </nav>
@@ -291,8 +328,8 @@ def lint(data: dict) -> list:
                 errors.append(f"{slug}/{platform}: channel and URL must appear together")
             if state == "unverified" and url:
                 errors.append(f"{slug}/{platform}: unverified availability must have no public URL")
-            if state == "beta" and url and channel not in {"download", "testFlight"}:
-                errors.append(f"{slug}/{platform}: beta URL must be a product download or invite")
+            if state == "beta" and url and channel not in {"download", "testFlight", "appStore"}:
+                errors.append(f"{slug}/{platform}: beta URL must be a product download, an invite, or an App Store listing")
             if state in {"live", "source"} and not url:
                 errors.append(f"{slug}/{platform}: available platform needs a destination")
             if channel and url and (not LINK_RULES[channel].fullmatch(url)):

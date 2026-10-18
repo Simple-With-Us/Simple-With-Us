@@ -27,7 +27,9 @@ class CatalogContractTests(unittest.TestCase):
                     self.assertIn(f'href="{catalog.attr(destination)}"', page)
 
     def test_header_uses_full_owner_lockup(self):
-        self.assertIn('/assets/logos/swu-header-lockup.png', catalog.HEADER)
+        self.assertIn('/assets/logos/swu-header-lockup.webp', catalog.HEADER)
+        # The dark plate has to ship in the same <picture>, or the lockup vanishes on a dark page.
+        self.assertIn('<source media="(prefers-color-scheme: dark)" srcset="/assets/logos/swu-header-lockup-dark.webp" type="image/webp">', catalog.HEADER)
         self.assertIn('alt="Simple With Us - Jay Wedgeworth"', catalog.HEADER)
         # aria-label overrides the image alt in the accessible name, so it has to carry the signature too.
         self.assertIn('class="wordmark" href="/" aria-label="Simple With Us - Jay Wedgeworth home"', catalog.HEADER)
@@ -189,7 +191,12 @@ class CatalogContractTests(unittest.TestCase):
         for message in ["declared catalog shelf", "support destination", "verifiedOn must be a date"]:
             self.assertTrue(any(message in error for error in errors), errors)
         app["availability"]["macOS"]["verifiedOn"] = "2026-09-26"
-        self.assertNotIn('>Support</a>', catalog.availability_region(app))
+        # With support restored the button comes back, and it is labelled Contact, not Support:
+        # the nav and footer still say Support, so the detail button needed its own word.
+        app["support"] = "/support.html"
+        region = catalog.availability_region(app)
+        self.assertIn('>Contact</a>', region)
+        self.assertNotIn('>Support</a>', region)
 
 
 if __name__ == "__main__":
