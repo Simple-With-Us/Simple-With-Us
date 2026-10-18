@@ -385,9 +385,9 @@
           "status": "beta",
           "label": "Download for Mac",
           "channel": "download",
-          "url": "https://github.com/Simple-With-Us/HogHunter/releases",
+          "url": "https://github.com/Simple-With-Us/HogHunter/releases/latest/download/HogHunter.dmg",
           "verifiedOn": "2026-10-17",
-          "verification": "GitHub Releases lists CI-published signed, notarized DMG/ZIP builds (latest v1.0.6-build.132); installation was not tested."
+          "verification": "Direct DMG URL returned HTTP 200 after redirects (latest v1.0.6-build.132, CI-published signed and notarized); installation was not tested."
         },
         "iOS": {
           "status": "beta",
