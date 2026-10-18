@@ -48,16 +48,11 @@ SOURCES = {
         ("/Users/jay/Code/ContactLogo/web/tests/e2e/visual.spec.ts-snapshots/homepage-chromium-linux.png", "search.webp", "ContactLogo vector brand search and preview", "Instant vector brand logo lookup and high-resolution contact artwork."),
         ("/Users/jay/Code/ContactLogo/web/tests/e2e/visual.spec.ts-snapshots/settings-chromium-linux.png", "settings.webp", "ContactLogo synchronization preferences", "Google and iCloud contact card sync and artwork preferences."),
     ],
-    "dealdex": [
-        ("/Users/jay/Code/DealDex/.vercel/output/static/__grok/install/assets/homescreen/ob-phone.png", "phone.webp", "DealDex mobile market spread and pricing analysis", "Real-time market comp aggregation, spread detection, and appraisals."),
-        ("/Users/jay/Code/DealDex/.vercel/output/static/__grok/install/assets/homescreen/ob-ipad.png", "ipad.webp", "DealDex card appraisal desk on iPad", "Multi-marketplace pricing comparisons and condition multipliers."),
-    ],
     "autorotate": [
         ("/Users/jay/Code/Autorotate/assets/screenshots/mac_1.png", "mac.webp", "Autorotate macOS secret and rotation dashboard", "Automated credential rotation with verifiable audit trail on macOS."),
         ("/Users/jay/Code/Autorotate/assets/screenshots/iphone_1.png", "iphone.webp", "Autorotate iOS rotation logs and alerts", "Mobile rotation event logs, push notifications, and compliance audit."),
     ],
     "fleetlink": [
-        ("/Users/jay/Code/FleetLink/assets/preview.png", "preview.webp", "FleetLink secure clipboard handoff and verification", "End-to-end encrypted packet handoff between Macs and iOS devices."),
         ("/Users/jay/Code/FleetLink/assets/preview-locked.png", "preview-locked.webp", "FleetLink passphrase protection", "Client-side passphrase encryption protecting shared payloads."),
     ],
     "hoghunter": [
