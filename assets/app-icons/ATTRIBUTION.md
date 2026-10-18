@@ -61,15 +61,42 @@ unused).  Verified:  `swu-square-32.webp` reads (0, 0, 0) in the corners,
 | `logos/swu-header-lockup-dark.webp` | Header lockup, dark plate. Same `<picture>`. |
 | `logos/swu-wordmark.webp` | Wordmark only, no plate. |
 | `logos/swu-wordmark-dark.webp` | Wordmark for dark backgrounds. |
-| `logos/swu-square-32-light.webp` | Favicon, white plate, 32 px. |
-| `logos/swu-square-32.webp` | Favicon, **black** plate, 32 px — used for dark browser chrome. |
-| `logos/swu-square-192-light.webp` | `apple-touch-icon`, white plate, 192 px. |
 | `logos/swu-square-white.png` | `og:image`, 512 px. PNG because most social scrapers do not read WebP. |
 
 Dropped 20 unused derived variants (~504 KB) — stacked marks, `jay` /
 `black` / `light` / `dark` square alternates, and PNG duplicates of WebP
 files — so the folder holds only what the site serves plus its PNG fallbacks.
 Regenerate rather than redraw.
+
+2026-10-18 (later): **favicons replaced with Jay's own pack.**  The three
+`swu-square-*` favicon derivatives are gone; the `swu-square-white.png`
+`og:image` stays for now.  Canonical source is Jay's *Latest SimpleWithUs
+Favicons — SWU* pack, which holds eight 1024 × 1024 masters:
+
+| Jay's file | Used as |
+| --- | --- |
+| `SWU Favicon-Icon - Light Mode - White BG.png` | `swu-favicon-*-light.*` — light browser chrome |
+| `SWU Favicon-Icon - Dark Mode - Black BG.png` | `swu-favicon-*-dark.*` — dark browser chrome |
+
+The pack also carries Transparent variants of each.  They are **not** wired
+up, and the reason is worth keeping:  the two transparent files are not the
+same picture.  The thin grey W is `#6A6A6A` in the light one and `#A8A8A8`
+in the dark one, so each is tuned to a tab colour.  Dropped onto the wrong
+tab the W all but disappears.  The white and black plates carry no such
+dependency and are the safe pair for a favicon.
+
+Naming note, replacing the earlier trap:  the old derived set used the
+*unsuffixed* file for the black plate, which read `(0,0,0)` in the corners
+while `-light` read `(255,255,255)`.  The new set is explicit — the mode
+is in the name.  Jay's pack also carries a stray grey pixel at `(0,0)` of
+the Black BG master, an export artifact rather than design; it was cleaned
+to the plate colour before downscaling.  Three such pixels, not one.
+
+Sizes served: 32 px for `<link rel="icon">`, 180 px for `apple-touch-icon`
+(Apple's documented size, not 192).  Both use the light/dark pair via
+`media="(prefers-color-scheme: …)"`.  The 1024 masters are **not** kept in
+this repository — the favicon PNGs are the same convention as the app icons
+above, derived output with the canonical master living with its owner.
 
 2026-10-17: Added `assets/badges/` (Apple App Store badge, Apple TestFlight icon) and this third-party section.
 
