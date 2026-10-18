@@ -311,7 +311,7 @@
         "iOS"
       ],
       "status": "live",
-      "statusText": "Live on the web",
+      "statusText": "Live on the web and the iPhone App Store",
       "icon": "/assets/app-icons/congress-trade.png",
       "accent": "#7c3aed",
       "page": "/congress-trade/",
@@ -319,7 +319,7 @@
       "links": {
         "website": "https://congress.trade/",
         "github": "https://github.com/Simple-With-Us/Congress.Trade",
-        "appStore": null,
+        "appStore": "https://apps.apple.com/app/id6798076688",
         "testFlight": "https://testflight.apple.com/join/VNUEU6Ge",
         "brew": null
       },
@@ -340,12 +340,12 @@
           "verification": "Anonymous product entry returned HTTP 200; authenticated workflows were not checked."
         },
         "iOS": {
-          "status": "beta",
-          "label": "TestFlight beta",
-          "channel": "testFlight",
-          "url": "https://testflight.apple.com/join/VNUEU6Ge",
-          "verifiedOn": "2026-09-26",
-          "verification": "Product-specific TestFlight page returned HTTP 200; enrollment was not tested."
+          "status": "live",
+          "label": "iPhone app",
+          "channel": "appStore",
+          "url": "https://apps.apple.com/app/id6798076688",
+          "verifiedOn": "2026-10-18",
+          "verification": "iTunes lookup returned the public listing, version 1.0.235 released Oct 15; install not tested."
         }
       }
     },

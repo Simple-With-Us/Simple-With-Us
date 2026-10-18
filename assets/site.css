@@ -352,3 +352,43 @@ details summary { cursor: pointer; font-weight: 600; }
 .archived-apps summary { cursor: pointer; font-size: 1.25rem; font-weight: 600; padding: 12px 0; }
 .archived-apps summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
 .archived-apps[open] summary { margin-bottom: 20px; }
+
+/* --- Availability badges (SWU-11) -----------------------------------------
+   40px is the App Store badge's own height, so all three line up as a row.
+   Our two share one measured width; Apple's keeps its native 119.66px because
+   their guidelines forbid modifying the artwork. */
+.badge {
+  --badge-h: 40px; --badge-tile: 30px;
+  display: inline-flex; align-items: center; gap: 8px;
+  flex: none;                      /* never grow or shrink: the width is the design */
+  width: 161px; height: var(--badge-h);
+  padding: 0 12px 0 5px;
+  border-radius: 9px; white-space: nowrap;
+  background: #0b0b0f; color: #fff;
+  border: 1px solid rgba(255,255,255,.22);
+  text-decoration: none; font-weight: 400;
+  transition: transform .12s ease, box-shadow .12s ease;
+}
+.badge:hover { transform: translateY(-1px); box-shadow: 0 5px 16px rgb(12 12 29 / .18); }
+:root:not([data-theme="dark"]) .badge { background: #0b0b0f; color: #fff; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .badge { background: #f4f4f6; color: #14171a; border-color: #2b2b48; }
+}
+:root[data-theme="dark"] .badge { background: #f4f4f6; color: #14171a; border-color: #2b2b48; }
+
+.badge-tile {
+  width: var(--badge-tile); height: var(--badge-tile); flex: none;
+  border-radius: 22.37%; overflow: hidden; display: grid; place-items: center;
+}
+.badge-tile img { width: 100%; height: 100%; display: block; border-radius: 22.37%; }
+.badge-tile svg { width: 21px; height: 21px; }   /* currentColor: inverts with the plate */
+.badge-lines { display: flex; flex-direction: column; line-height: 1.14; min-width: 0; }
+.badge-l1 { font-size: 10px; font-weight: 500; letter-spacing: .012em; opacity: .66; }
+.badge-l2 { font-size: 13.5px; font-weight: 600; letter-spacing: -.015em; }
+
+/* Apple's badge, used exactly as published. */
+.badge-store {
+  display: inline-flex; flex: none; line-height: 0;
+  border-radius: 9px; overflow: hidden;
+}
+.badge-store img { display: block; height: var(--badge-h, 40px); width: auto; }

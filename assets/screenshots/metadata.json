@@ -3,16 +3,37 @@
     {
       "src": "/assets/screenshots/codecaps/glance-light.webp",
       "width": 1140,
-      "height": 942,
-      "alt": "CodeCaps Glance showing AI plan quotas, reset windows, and pacing markers",
-      "caption": "CodeCaps Glance menu bar popover with dual-window monitoring and pacing indicators."
+      "height": 1182,
+      "alt": "CodeCaps menu bar view showing supported provider quotas and reset countdowns",
+      "caption": ""
+    },
+    {
+      "src": "/assets/screenshots/codecaps/runaway-alerts.webp",
+      "width": 1280,
+      "height": 896,
+      "alt": "CodeCaps Runaway Alerts settings and recent usage anomaly alerts",
+      "caption": ""
+    },
+    {
+      "src": "/assets/screenshots/codecaps/platform-alert-history.webp",
+      "width": 1280,
+      "height": 896,
+      "alt": "CodeCaps local quota history graph with a selected runaway usage alert",
+      "caption": ""
+    },
+    {
+      "src": "/assets/screenshots/codecaps/pip-black.webp",
+      "width": 860,
+      "height": 460,
+      "alt": "CodeCaps floating PiP window with provider logos, quota meters, and reset countdowns",
+      "caption": ""
     },
     {
       "src": "/assets/screenshots/codecaps/glance-fleet.webp",
       "width": 1140,
-      "height": 942,
-      "alt": "CodeCaps Fleet view showing quotas across configured Macs",
-      "caption": "Optional fleet view combining readings from multiple Mac machines."
+      "height": 1182,
+      "alt": "CodeCaps optional Fleet view showing quota readings from configured Macs",
+      "caption": ""
     }
   ],
   "usage-client": [
