@@ -110,6 +110,47 @@ class CatalogContractTests(unittest.TestCase):
         self.assertIn('class="wordmark" href="/" aria-label="Simple With Us - Jay Wedgeworth home"', catalog.HEADER)
         self.assertNotIn('swu-wordmark.webp', catalog.HEADER)
 
+    def test_every_local_asset_a_page_pulls_in_exists(self):
+        """A referenced file that is not in the repo is a broken image.
+
+        The header markup has always named the dark wordmark, and the markup
+        test above has always passed, but the 1x file was never in the repo:
+        dark mode showed a broken-image icon and the alt text on every page.
+        Asserting the markup cannot catch that, so assert the files.
+        """
+        missing = []
+        for path in sorted(catalog.ROOT.rglob("*.html")):
+            if ".git" in path.parts:
+                continue
+            for ref in catalog.missing_local_assets(path.read_text()):
+                missing.append(f"{path.relative_to(catalog.ROOT)}: {ref}")
+        self.assertEqual([], missing, "these pages reference files that are not in the repo")
+
+    def test_the_asset_check_reports_a_file_that_is_not_there(self):
+        """The check above is only worth having if it can still fail.
+
+        A detector that finds nothing is indistinguishable from a detector
+        that is not looking, so give it a page with a file that cannot exist
+        and require the name back.
+        """
+        page = '<picture><source srcset="/assets/logos/not-a-real-file.webp" type="image/webp">'
+        page += '<img src="/assets/logos/also-not-real.webp" alt=""></picture>'
+        missing = catalog.missing_local_assets(page)
+        self.assertIn("/assets/logos/not-a-real-file.webp", missing)
+        self.assertIn("/assets/logos/also-not-real.webp", missing)
+        # A file that does exist must not be reported.
+        self.assertEqual([], catalog.missing_local_assets('<img src="/assets/site.css" alt="">'))
+        # A srcset carries a width descriptor; the descriptor is not the path.
+        self.assertEqual(
+            [],
+            catalog.missing_local_assets('<img srcset="/assets/site.css 480w" alt="">'),
+        )
+        # External and data URLs are not repo files, so they are not this check's business.
+        self.assertEqual(
+            [],
+            catalog.missing_local_assets('<img src="https://example.com/logo.png" alt="">'),
+        )
+
     def test_every_page_ships_the_light_and_dark_favicon_pair(self):
         """The favicon is the one asset that breaks where nobody looks at it.
 
