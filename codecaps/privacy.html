@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Privacy Policy — CodeCaps — Simple With Us</title>
+  <meta name="description" content="Privacy policy for the CodeCaps macOS menu bar app and the CodeCaps iPhone and iPad companion." />
+
+  <link rel="canonical" href="https://simplewithus.com/codecaps/privacy.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Privacy Policy — CodeCaps — Simple With Us" />
+  <meta property="og:description" content="Privacy policy for the CodeCaps macOS menu bar app and the CodeCaps iPhone and iPad companion." />
+  <meta property="og:url" content="https://simplewithus.com/codecaps/privacy.html" />
+  <meta name="theme-color" content="#1a1a2e" />
+  <link rel="icon" href="/assets/logos/swu-favicon-32-light.webp" type="image/webp" media="(prefers-color-scheme: light)">
+  <link rel="icon" href="/assets/logos/swu-favicon-32-dark.webp" type="image/webp" media="(prefers-color-scheme: dark)">
+  <link rel="apple-touch-icon" media="(prefers-color-scheme: light)" href="/assets/logos/swu-favicon-180-light.webp">
+  <link rel="apple-touch-icon" media="(prefers-color-scheme: dark)" href="/assets/logos/swu-favicon-180-dark.webp">
+  <link rel="mask-icon" href="/assets/favicon.svg" color="#36c6f4">
+  <link rel="stylesheet" href="/assets/site.css?v=c8297fac17e2" />
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="wordmark" href="/" aria-label="Simple With Us - Jay Wedgeworth home"><picture><source media="(prefers-color-scheme: dark)" srcset="/assets/logos/swu-wordmark-dark.webp" type="image/webp"><source media="(prefers-color-scheme: dark)" srcset="/assets/logos/swu-wordmark-dark-2x.webp" type="image/webp" sizes="480px"><img src="/assets/logos/swu-wordmark-light.webp" srcset="/assets/logos/swu-wordmark-light-2x.webp" type="image/webp" sizes="480px" alt="Simple With Us - Jay Wedgeworth" width="288" height="30" decoding="async"></picture></a>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="/#apps">Apps</a><a href="/#status">Status</a><a href="/support.html">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main class="article" id="main">
+<!-- catalog:identity:start -->
+<div class="app-identity">
+    <img class="app-icon" src="/assets/app-icons/codecaps.png" alt="" width="80" height="80">
+    <div><a class="back-link" href="/codecaps/">← CodeCaps</a><h1>CodeCaps Privacy Policy</h1></div>
+  </div>
+<!-- catalog:identity:end -->
+<p class="lede">Updated 19 October 2026.&nbsp; CodeCaps is a centralized monitor for your AI subscription plans: it shows the quota, the reset window, and the pacing for the AI services you have already signed in to.&nbsp; This policy covers the CodeCaps macOS menu bar app and the CodeCaps iPhone and iPad companion.</p>
+
+<h2>Overview</h2>
+<p>CodeCaps (<code>we</code>, <code>our</code>, or <code>us</code>) is a monitoring tool for AI subscription plans and the quota they include.&nbsp; It reads usage data that already exists on your own devices and presents the quota remaining, the reset window, and the pacing in one place.</p>
+<p>This policy covers two products:</p>
+<ul>
+  <li><strong>The CodeCaps macOS menu bar app.</strong> The menu bar application that reads local AI CLI and session data on your Mac and shows quota readings in its menu and in a floating Picture in Picture window.</li>
+  <li><strong>The CodeCaps iPhone and iPad companion</strong> (<code>com.simplewithus.codecaps.ios</code>).&nbsp; The companion app and the home screen widget that ships with it, which show the readings the Mac app has shared or that you have pointed the app at yourself.</li>
+</ul>
+<p>CodeCaps runs no CodeCaps account, no sign-up, and no login of its own.&nbsp; The quota readings stay on your devices, and the only data that reaches a service we operate is the diagnostic data described below.</p>
+
+<h2>The macOS Menu Bar App</h2>
+<p>Quota readings are computed from data that is already on your Mac.</p>
+<ul>
+  <li><strong>It reads your local sign-ins.</strong> CodeCaps reads the local CLI and session data for the AI tools you have already signed in to — Claude, Codex, Cursor, Antigravity, xAI (Grok), MiniMax, and Muse — and uses it to work out the quota remaining and when the window resets.</li>
+  <li><strong>You do not type provider API keys.</strong> Where a provider needs a credential, CodeCaps reuses the local sign-in your CLI already has instead of asking you for a key.</li>
+  <li><strong>It reads local files only.</strong> Every reading comes from files and sessions on your Mac.&nbsp; No CodeCaps server fetches anything on your behalf, because there is no CodeCaps server that does that.</li>
+</ul>
+<p>Endpoint push and pull are off by default.&nbsp; Nothing leaves your Mac until you turn them on in Settings.</p>
+<p>When you enable them, you give the app an endpoint URL, and it pushes readings to that endpoint or pulls readings from it.&nbsp; The endpoint is one you choose: a server you run, or a fleet sync service that you already have an account with.</p>
+<p>A collector token, if you use one, is stored in the macOS Keychain.&nbsp; It is never written to a plain text file, and it is never sent anywhere except to the endpoint you configured.</p>
+<p>A separate, optional setup lets the owner of the Mac sync the app's own app-level settings — the two fleet endpoint URLs and a refresh interval — through Infisical, a secrets manager.&nbsp; Your display preferences and alert settings never go there, and the read and push tokens stay in the macOS Keychain.</p>
+
+<h2>The iPhone and iPad Companion</h2>
+<p>The companion has no account, no login, and no subscription, and it collects no personal data about you.</p>
+<p>It shows the quota readings for your AI subscription plans, and it gets them in one of two ways:</p>
+<ul>
+  <li><strong>From the Mac app.</strong> When the CodeCaps macOS app shares readings through the shared app group on the same device, the companion displays them.</li>
+  <li><strong>From an endpoint you configure.</strong> In Settings you enter an endpoint URL and a bearer token, and the companion pulls the readings from that endpoint.</li>
+</ul>
+<p>The bearer token is kept in the device's Keychain and is never stored in plain text.&nbsp; It is sent only as the authorization header of a request to the endpoint you chose.</p>
+<p>If you configure no endpoint and the Mac app has shared nothing, the companion shows an empty state and sends nothing anywhere, apart from the diagnostic data described below.</p>
+<p>The home screen widget shows the same readings as the app.&nbsp; It reads the shared snapshot on the device, and if you have configured an endpoint it refreshes from that same endpoint with the same bearer token.&nbsp; The widget collects no additional data.</p>
+
+<h2>Diagnostic Data</h2>
+<p>Both apps use Sentry, a crash reporting service, to collect technical diagnostic data so that we can find and fix crashes and performance problems.</p>
+<ul>
+  <li><strong>Crash data.</strong> Crash reports from the app.</li>
+  <li><strong>Performance data.</strong> App hangs longer than two seconds, a sample of traces, a sample of continuous profiles, and failed network requests.</li>
+  <li><strong>Other diagnostic data.</strong> Device model, operating system version, app version, and an anonymous installation identifier.</li>
+</ul>
+<p>This data is used for app functionality only, which means keeping the apps working and fixing problems in them.&nbsp; It is not linked to your identity, it is not used for tracking, and it is not used for advertising or marketing.</p>
+<p>The specifics:</p>
+<ul>
+  <li>The diagnostic SDK is configured to send no personal information by default, and no screenshot and no view hierarchy is attached to a crash report.</li>
+  <li>Query parameters named <code>token</code>, <code>key</code>, <code>secret</code>, <code>auth</code>, or <code>password</code> are redacted on the device before an event is sent.&nbsp; Read tokens, quota payloads, and provider credentials are never attached to an event.</li>
+  <li>On the iPhone and iPad, Sentry can record a short replay of the app's own screens to help diagnose a problem.&nbsp; Text and images are masked before the recording leaves the device, so the shape of the screen is captured and the values on it are not.&nbsp; The macOS app does not record screen replays.</li>
+  <li>The companion's privacy manifest declares tracking as off and declares no tracking domains.</li>
+</ul>
+
+<h2>What We Do Not Do</h2>
+<ul>
+  <li><strong>No advertising.</strong> We do not show advertising in CodeCaps, and we do not use advertising networks.</li>
+  <li><strong>No selling or renting data.</strong> We do not sell, rent, trade, or monetize your readings, your diagnostic data, or anything else.</li>
+  <li><strong>No cross-app tracking.</strong> We do not track you across other apps or websites, and the companion reads no advertising identifier.</li>
+  <li><strong>No third-party analytics.</strong> Neither app links an advertising or product-analytics SDK.&nbsp; The macOS app links Sentry for crash reporting and Sparkle for signed in-app updates, and the companion links Sentry for crash reporting; neither is used for advertising or marketing.</li>
+</ul>
+
+<h2>Your Choices and Deletion</h2>
+<ul>
+  <li>Turn endpoint push or pull off in the macOS app's Settings at any time, and the app stops sending readings.</li>
+  <li>Clear the sync token in the companion's Settings to stop the app from contacting your endpoint.</li>
+  <li>Delete the app to remove the readings and the token it stored on the device.</li>
+</ul>
+<p>If you would like diagnostic data removed, email us and we will ask Sentry to delete it.</p>
+
+<h2>Children</h2>
+<p>CodeCaps is a productivity tool and is not directed at children.&nbsp; The companion collects no personal data about anyone, including children.</p>
+
+<h2>Changes to This Policy</h2>
+<p>If this policy changes, we will update the date at the top of the page and keep the new version at the same address.</p>
+
+<h2>Contact</h2>
+<p>Questions about this policy, about the data CodeCaps handles, or a deletion request are all welcome.&nbsp; Email <a href="mailto:feedback@simplewithus.com">feedback@simplewithus.com</a> or use the <a href="/codecaps/support.html">CodeCaps support page</a>.</p>
+<p>Please do not email passwords, API keys, bearer tokens, or unredacted personal data.</p>
+<p>This policy covers CodeCaps only.&nbsp; The <a href="/privacy.html">Simple With Us privacy notice</a> covers the rest of the catalog.</p>
+<p class="source-credit">Source: <a href="https://github.com/Simple-With-Us/CodeCaps" rel="noopener">CodeCaps on GitHub</a>.</p>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>Apps by <a href="https://jays.services/">Jay Wedgeworth</a>.</p>
+    <nav aria-label="Footer"><a href="/#apps">Apps</a><a href="/#status">Status</a><a href="/support.html">Contact</a><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a></nav>
+    <p class="legal">© 2026 Simple With Us.</p>
+  </div>
+</footer>
+
+</body>
+</html>
