@@ -1,9 +1,9 @@
-# DEFAULT-DISABLED SETUP DRAFT.  This pin implements the initial DeepSeek route only.
-# MiniMax routing and budget integration remain pending in Usage-Monitor #1602:
-# https://github.com/Simple-With-Us/Usage-Monitor/issues/1602
-# Keep disabled until the reviewed replacement and secure activation setup are ready.
+# DEFAULT-DISABLED SETUP DRAFT.  This is the fleet-standard Kody caller:
+# the MiniMax M3 route, the same reusable workflow the other fleet repos
+# pin.  Keep disabled until the budget approval and secure activation
+# setup are ready.
 # daily_attempt_limit is zero and budget_policy_id is pending.
-name: Kody DeepSeek Fix Proposals
+name: Kody MiniMax M3 Fix Proposals
 
 # Generated offline.  Missing SWU_KODY_AUTOFIX_ENABLED means disabled.
 # Budget approval and protected-environment setup are separate owner actions.
@@ -40,10 +40,14 @@ jobs:
       pull-requests: write
       checks: read
       actions: read
-    uses: Simple-With-Us/congress-trading-shared/.github/workflows/kody-autofix-reusable.yml@8ef33de1953158f26b2fd872b8d1bc045032844e
+    uses: Simple-With-Us/congress-trading-shared/.github/workflows/kody-autofix-reusable.yml@31659885f58f08e129b6dc092f3493d7cdb74a11
     with:
       repository_id: '1384087033'
       profile: 'python'
       source_prefixes: '["scripts/build_catalog.py","scripts/audit_catalog_links.py"]'
+      model: 'MiniMax-M3'
+      model_base_url: 'https://api.minimax.io/v1'
       daily_attempt_limit: 0
       budget_policy_id: 'pending'
+    secrets:
+      MODEL_API_KEY: ${{ secrets.MINIMAX_API_KEY }}
