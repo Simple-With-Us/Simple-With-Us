@@ -243,7 +243,7 @@ HEADER = """<header class="site-header">
   <div class="wrap">
     <a class="wordmark" href="/" aria-label="Simple With Us - Jay Wedgeworth home"><picture><source media="(prefers-color-scheme: dark)" srcset="/assets/logos/swu-header-lockup-dark.webp" type="image/webp"><img src="/assets/logos/swu-header-lockup.webp" alt="Simple With Us - Jay Wedgeworth" width="640" height="64" decoding="async"></picture></a>
     <nav class="site-nav" aria-label="Primary">
-      <a href="/#apps">Apps</a><a href="/#status">Status</a><a href="/support.html">Support</a>
+      <a href="/#apps">Apps</a><a href="/#status">Status</a><a href="/support.html">Contact</a>
     </nav>
   </div>
 </header>"""
