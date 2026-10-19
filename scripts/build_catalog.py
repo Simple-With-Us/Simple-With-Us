@@ -296,6 +296,58 @@ class Links(HTMLParser):
             self.hrefs += [value for key, value in attrs if key == "href" and value]
 
 
+class AssetRefs(HTMLParser):
+    """Every local file a page pulls in: images, sources, icons, stylesheets.
+
+    An anchor href can be a page, so a missing one is a dead link and the
+    existing check covers it.  An image src is a file, and a missing one is
+    a broken image that still renders a page: the header wordmark vanished in
+    dark mode on every page because its 1x source was never in the repo.
+    """
+
+    def __init__(self):
+        super().__init__()
+        self.refs = []
+
+    def handle_starttag(self, tag, attrs):
+        values = dict(attrs)
+        for key in ("src", "srcset"):
+            if values.get(key):
+                self.refs += _srcset_urls(values[key])
+        if tag == "link" and values.get("href"):
+            self.refs.append(values["href"])
+
+
+def _srcset_urls(value: str) -> list:
+    """The URLs in a srcset, which may carry a width or density descriptor."""
+    urls = []
+    for candidate in value.split(","):
+        candidate = candidate.strip()
+        if not candidate:
+            continue
+        urls.append(candidate.split()[0])
+    return urls
+
+
+def local_asset_refs(page: str) -> list:
+    """The local file paths a page references, without duplicates."""
+    parsed = AssetRefs()
+    parsed.feed(page)
+    refs = set()
+    for ref in parsed.refs:
+        if not ref.startswith("/") or ref.startswith("//"):
+            continue
+        path = ref.split("#")[0].split("?")[0]
+        if path:
+            refs.add(path)
+    return sorted(refs)
+
+
+def missing_local_assets(page: str) -> list:
+    """The local files a page references that are not in the repo."""
+    return [ref for ref in local_asset_refs(page) if not (ROOT / ref.lstrip("/")).is_file()]
+
+
 def lint(data: dict) -> list:
     errors = []
     seen = set()
@@ -370,6 +422,8 @@ def lint(data: dict) -> list:
                 errors.append(f"{page.relative_to(ROOT)}: generic store destination")
             if href.startswith("/") and not href.startswith("//") and not exists(href.split("#")[0].split("?")[0]):
                 errors.append(f"{page.relative_to(ROOT)}: missing local destination {href}")
+        for ref in missing_local_assets(page.read_text()):
+            errors.append(f"{page.relative_to(ROOT)}: missing local asset {ref}")
     for img in ROOT.rglob("*"):
         rel = img.relative_to(ROOT).as_posix()
         if rel.startswith(".git/") or img.suffix.lower() not in IMAGE_EXTS or not img.is_file():
