@@ -188,5 +188,14 @@
       "alt": "HogHunter iOS companion inspecting Mac resource usage",
       "caption": "HogHunter companion on iPhone monitoring Mac resource usage over local Wi-Fi."
     }
+  ],
+  "dealdex": [
+    {
+      "src": "/assets/screenshots/dealdex/scan-results.webp",
+      "width": 1280,
+      "height": 800,
+      "alt": "DealDex market scan with live Mercari listings, verdicts, and desk ranges",
+      "caption": "A live scan comparing listing asks against market references."
+    }
   ]
 }
