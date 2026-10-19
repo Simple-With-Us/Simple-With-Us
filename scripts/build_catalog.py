@@ -128,7 +128,7 @@ def card(app: dict, provider_token) -> str:
             out.append(f'    {mark}' if mark
                        else f'    <a href="{attr(url)}" rel="noopener">{label}<span aria-hidden="true"> ↗</span></a>')
         if app.get("support"):
-            out.append(f'    <a href="{attr(app["support"])}">Support</a>')
+            out.append(f'    <a href="{attr(app["support"])}">Contact</a>')
         out.append("  </div>")
     out.append("</li>")
     return "\n".join(out)
@@ -250,7 +250,7 @@ HEADER = """<header class="site-header">
 FOOTER = """<footer class="site-footer">
   <div class="wrap">
     <p>Apps by <a href="https://jays.services/">Jay Wedgeworth</a>.</p>
-    <nav aria-label="Footer"><a href="/#apps">Apps</a><a href="/#status">Status</a><a href="/support.html">Support</a><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a></nav>
+    <nav aria-label="Footer"><a href="/#apps">Apps</a><a href="/#status">Status</a><a href="/support.html">Contact</a><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a></nav>
     <p class="legal">© 2026 Simple With Us.</p>
   </div>
 </footer>"""
