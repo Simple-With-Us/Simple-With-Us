@@ -27,9 +27,9 @@ class CatalogContractTests(unittest.TestCase):
                     self.assertIn(f'href="{catalog.attr(destination)}"', page)
 
     def test_header_uses_full_owner_lockup(self):
-        self.assertIn('/assets/logos/swu-header-lockup.webp', catalog.HEADER)
-        # The dark plate has to ship in the same <picture>, or the lockup vanishes on a dark page.
-        self.assertIn('<source media="(prefers-color-scheme: dark)" srcset="/assets/logos/swu-header-lockup-dark.webp" type="image/webp">', catalog.HEADER)
+        self.assertIn('/assets/logos/swu-wordmark-light.webp', catalog.HEADER)
+        # The dark wordmark has to ship in the same <picture>, or the grey WITH vanishes on a dark page.
+        self.assertIn('<source media="(prefers-color-scheme: dark)" srcset="/assets/logos/swu-wordmark-dark.webp" type="image/webp">', catalog.HEADER)
         self.assertIn('alt="Simple With Us - Jay Wedgeworth"', catalog.HEADER)
         # aria-label overrides the image alt in the accessible name, so it has to carry the signature too.
         self.assertIn('class="wordmark" href="/" aria-label="Simple With Us - Jay Wedgeworth home"', catalog.HEADER)
