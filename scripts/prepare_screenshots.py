@@ -4,10 +4,10 @@
 Resizes to max 1280px width, converts to WebP (quality 85),
 and verifies each image meets the < 150 KB budget from DESIGN-BRIEF.md.
 """
+import json
 import os
 import pathlib
 import sys
-from PIL import Image
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 OUTPUT_DIR = ROOT / "assets" / "screenshots"
@@ -59,10 +59,14 @@ SOURCES = {
     "hoghunter": [
         ("/tmp/hoghunter-ios.png", "companion.webp", "HogHunter iOS companion inspecting Mac resource usage", "HogHunter companion on iPhone monitoring Mac resource usage over local Wi-Fi."),
     ],
+    "dealdex": [
+        ("/Users/jay/Code/DealDex/docs/screenshots/scan-results.png", "scan-results.webp", "DealDex market scan with live Mercari listings, verdicts, and desk ranges", "A live scan comparing listing asks against market references."),
+    ],
 }
 
 
 def process_image(src_path: str, dst_path: pathlib.Path):
+    from PIL import Image
     img = Image.open(src_path)
     if img.mode in ("RGBA", "LA") or (img.mode == "P" and "transparency" in img.info):
         pass
@@ -89,30 +93,88 @@ def process_image(src_path: str, dst_path: pathlib.Path):
     return width, height
 
 
+def _load_previous(meta_path: pathlib.Path) -> dict:
+    """The manifest as it stands, so a partial run can build on it."""
+    if not meta_path.exists():
+        return {}
+    try:
+        with open(meta_path) as handle:
+            loaded = json.load(handle)
+    except (json.JSONDecodeError, OSError):
+        return {}
+    return loaded if isinstance(loaded, dict) else {}
+
+
+def _published(previous: dict, output_dir: pathlib.Path) -> dict:
+    """The published entries whose image file is still on disk.
+
+    Keyed by slug and then filename, so a carried-forward entry can be
+    matched to the shot it describes.
+    """
+    kept: dict = {}
+    for slug, entries in previous.items():
+        if not isinstance(entries, list):
+            continue
+        for entry in entries:
+            if not isinstance(entry, dict):
+                continue
+            name = str(entry.get("src", "")).rsplit("/", 1)[-1]
+            if name and (output_dir / slug / name).exists():
+                kept.setdefault(slug, {})[name] = entry
+    return kept
+
+
 def main():
-    metadata = {}
+    meta_path = OUTPUT_DIR / "metadata.json"
+    previous = _load_previous(meta_path)
+    carried = _published(previous, OUTPUT_DIR)
+    metadata: dict = {}
+
+    # Walk the published manifest first.  The order is the order the pages
+    # were built with, and a run that changed nothing has to reproduce the
+    # committed file byte for byte.
+    for slug, entries in previous.items():
+        kept = carried.get(slug, {})
+        rebuilt = []
+        for entry in entries:
+            name = str(entry.get("src", "")).rsplit("/", 1)[-1]
+            if name in kept:
+                rebuilt.append(kept[name])
+        if rebuilt:
+            metadata[slug] = rebuilt
+
     for slug, shots in SOURCES.items():
-        metadata[slug] = []
-        app_dir = OUTPUT_DIR / slug
+        entries = metadata.setdefault(slug, [])
         for src, filename, alt, caption in shots:
             if not os.path.exists(src):
                 print(f"Warning: source missing for {slug}: {src}", file=sys.stderr)
+                # The source repo is not checked out here, not that the
+                # published image is gone.  The entry stays as it was
+                # published, in the place it was published.
                 continue
-            dst = app_dir / filename
+            dst = OUTPUT_DIR / slug / filename
             w, h = process_image(src, dst)
-            metadata[slug].append({
+            fresh = {
                 "src": f"/assets/screenshots/{slug}/{filename}",
                 "width": w,
                 "height": h,
                 "alt": alt,
                 "caption": caption
-            })
+            }
+            for index, entry in enumerate(entries):
+                if str(entry.get("src", "")).rsplit("/", 1)[-1] == filename:
+                    entries[index] = fresh
+                    break
+            else:
+                entries.append(fresh)
+
+    for slug, entries in list(metadata.items()):
+        if not entries:
+            del metadata[slug]
 
     # Save metadata JSON for catalog generation
-    import json
-    meta_path = OUTPUT_DIR / "metadata.json"
     with open(meta_path, "w") as f:
-        json.dump(metadata, f, indent=2)
+        f.write(json.dumps(metadata, indent=2) + "\n")
     print(f"Saved metadata to {meta_path}")
 
 
