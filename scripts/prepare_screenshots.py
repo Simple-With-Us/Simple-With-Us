@@ -58,6 +58,9 @@ SOURCES = {
     "hoghunter": [
         ("/tmp/hoghunter-ios.png", "companion.webp", "HogHunter iOS companion inspecting Mac resource usage", "HogHunter companion on iPhone monitoring Mac resource usage over local Wi-Fi."),
     ],
+    "dealdex": [
+        ("/Users/jay/Code/DealDex/docs/screenshots/scan-results.png", "scan-results.webp", "DealDex market scan with live Mercari listings, verdicts, and desk ranges", "A live scan comparing listing asks against market references."),
+    ],
 }
 
 
