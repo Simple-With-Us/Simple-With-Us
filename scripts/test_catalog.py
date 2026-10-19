@@ -1,10 +1,85 @@
 """Regression checks for public release actions and generated detail regions."""
 import copy
 import json
+import re
 import unittest
 from pathlib import Path
 
 import build_catalog as catalog
+
+
+def _specificity(selector: str) -> tuple:
+    """(ids, classes, types) for the selector forms this stylesheet uses."""
+    ids = len(re.findall(r"#[\w-]+", selector))
+    classes = len(re.findall(r"\.[\w-]+", selector))
+    classes += len(re.findall(r":[a-z-]+", selector))
+    classes += len(re.findall(r"\[[^\]]+\]", selector))
+    types = len(re.findall(r"(?:^|[\s>+~])[a-zA-Z][\w-]*", selector))
+    return (ids, classes, types)
+
+
+def _luminance(colour: str) -> float:
+    def channel(value: int) -> float:
+        srgb = value / 255
+        return srgb / 12.92 if srgb <= 0.04045 else ((srgb + 0.055) / 1.055) ** 2.4
+    red, green, blue = (int(colour[i:i + 2], 16) for i in (1, 3, 5))
+    return 0.2126 * channel(red) + 0.7152 * channel(green) + 0.0722 * channel(blue)
+
+
+def _contrast(foreground: str, background: str) -> float:
+    lighter, darker = sorted((_luminance(foreground), _luminance(background)), reverse=True)
+    return (lighter + 0.05) / (darker + 0.05)
+
+
+def _blend(foreground: str, background: str, alpha: float) -> str:
+    """foreground at `alpha` over background, as a hex colour."""
+    parts = []
+    for i in (1, 3, 5):
+        top, bottom = int(foreground[i:i + 2], 16), int(background[i:i + 2], 16)
+        parts.append(f"{round(top * alpha + bottom * (1 - alpha)):02x}")
+    return "#" + "".join(parts)
+
+
+def _matches_compound(compound: str, element: str) -> bool:
+    """True when one compound selector matches a described element."""
+    tag, _, classes = element.partition(".")
+    classes = classes.split(".") if classes else []
+    for simple in re.findall(r":not\([^)]*\)|:[\w-]+|\.[\w-]+|#[\w-]+|[\w-]+", compound):
+        if simple.startswith(":"):
+            name, _, argument = simple.partition("(")
+            if name == ":not" and _matches_compound(argument.rstrip(")"), element):
+                return False
+            # :hover, :focus and friends: assume they can be true.
+            continue
+        if simple.startswith("."):
+            if simple[1:] not in classes:
+                return False
+        elif simple.startswith("#"):
+            return False
+        elif simple.lower() != tag.lower():
+            return False
+    return True
+
+
+def _matches(selector: str, chain: list) -> bool:
+    """True when `selector` matches the first element of `chain`.
+
+    `chain` lists the element and its ancestors, nearest first, each as
+    "tag" or "tag.class".  Descendant combinators only, which is all this
+    stylesheet uses.
+    """
+    compounds = selector.split()
+    if not compounds or not _matches_compound(compounds[-1], chain[0]):
+        return False
+    ancestors = chain[1:]
+    for compound in reversed(compounds[:-1]):
+        for index, ancestor in enumerate(ancestors):
+            if _matches_compound(compound, ancestor):
+                ancestors = ancestors[index + 1:]
+                break
+        else:
+            return False
+    return True
 
 
 class CatalogContractTests(unittest.TestCase):
@@ -224,6 +299,105 @@ class CatalogContractTests(unittest.TestCase):
         region = catalog.availability_region(app)
         self.assertIn('>Contact</a>', region)
         self.assertNotIn('>Support</a>', region)
+
+    def test_badge_label_is_readable_on_every_plate(self):
+        """The badge is a plate with its own colour, so the label has to wear it.
+
+        `.availability-list span` paints the row's right-hand cell muted grey
+        (#525c67).  The badge label lives inside that cell, so without an
+        explicit opt-in it renders muted grey on the near-black plate (2.9:1)
+        and the download glyph, which strokes with currentColor, all but
+        disappears into it.  The opt-in has to cover the tile as well as both
+        label lines, and every plate/label pair the stylesheet defines has to
+        clear AA on its own.
+        """
+        css = re.sub(r"/\*.*?\*/", "", (catalog.ROOT / "assets/site.css").read_text(), flags=re.S)
+
+        opt_in = re.search(
+            r"(\.badge [^,{]+(?:,\s*\.badge [^,{]+)*)\s*\{([^}]*)\}", css)
+        self.assertIsNotNone(opt_in, "the badge parts must opt back in to the plate colour")
+        self.assertIn("color: inherit", opt_in.group(2))
+        covered = set(re.findall(r"\.badge \.([\w-]+)", opt_in.group(1)))
+        self.assertEqual({"badge-lines", "badge-tile", "badge-l1", "badge-l2"}, covered)
+        # The opt-in has to outrank the muted rule it is undoing.
+        self.assertGreater(_specificity(".badge .badge-l1"), _specificity(".availability-list span"))
+
+        # Every plate the stylesheet defines has to carry a label that reads on it.
+        plates = 0
+        for selector, body in re.findall(r"([^{}]+)\{([^{}]*)\}", css):
+            selector = " ".join(selector.split())
+            if not selector.split(",")[-1].strip().endswith(".badge"):
+                continue
+            plate = re.search(r"background:\s*(#[0-9a-fA-F]{6})\b", body)
+            label = re.search(r"(?<![-a-z])color:\s*(#[0-9a-fA-F]{6})\b", body)
+            if not (plate and label):
+                continue
+            plates += 1
+            with self.subTest(selector=selector):
+                self.assertGreaterEqual(_contrast(label.group(1), plate.group(1)), 4.5)
+                # The small line sits at 66% opacity over the plate, so it is the
+                # one that can fall through even when the big line passes.
+                small = _blend(label.group(1), plate.group(1), 0.66)
+                self.assertGreaterEqual(_contrast(small, plate.group(1)), 4.5)
+        self.assertGreaterEqual(plates, 2, "expected a light and a dark badge plate")
+
+    def test_badge_never_gets_the_row_hover_underline(self):
+        """The row's hover underline is for text links.
+
+        On the badge it paints a white rule straight through the label, and
+        because the plate is dark the rule reads louder than the label itself.
+        """
+        css = re.sub(r"/\*.*?\*/", "", (catalog.ROOT / "assets/site.css").read_text(), flags=re.S)
+        # The badge as it sits in an availability row.
+        chain = ["a.badge", "span", "li", "ul.availability-list", "section.availability", "main", "body", "html"]
+        underlines = 0
+        for selector, body in re.findall(r"([^{}]+)\{([^{}]*)\}", css):
+            if not re.search(r"text-decoration(?:-line)?:\s*[^;}]*underline", body):
+                continue
+            for part in " ".join(selector.split()).split(","):
+                part = part.strip()
+                if not part:
+                    continue
+                underlines += 1
+                if _matches(part, chain):
+                    self.assertIn(":not(.badge)", part, f"underline rule would strike the badge: {part}")
+        self.assertGreater(underlines, 0, "the availability row still underlines its text links")
+        # The row's own text links keep the underline; the badge does not.
+        self.assertRegex(css, r"\.availability-list a:not\(\.badge\):hover\s*\{[^}]*underline")
+
+    def test_every_badge_carries_the_parts_the_plate_colour_covers(self):
+        """The CSS opt-in only helps if the markup still has those parts."""
+        for path in sorted(catalog.ROOT.rglob("*.html")):
+            if ".git" in path.parts:
+                continue
+            page = path.read_text()
+            for anchor in re.findall(r'<a class="badge"[^>]*>.*?</a>', page, flags=re.S):
+                with self.subTest(page=str(path.relative_to(catalog.ROOT))):
+                    self.assertIn('class="badge-tile"', anchor)
+                    self.assertIn('class="badge-l1"', anchor)
+                    self.assertIn('class="badge-l2"', anchor)
+
+    def test_every_span_inside_a_badge_takes_the_plate_colour(self):
+        """The colour is inherited down the chain, so every part has to be listed.
+
+        A new span inside the badge that is missing from the opt-in rule
+        silently takes the availability row's muted grey again, and nothing
+        in the page then says so.
+        """
+        css = re.sub(r"/\*.*?\*/", "", (catalog.ROOT / "assets/site.css").read_text(), flags=re.S)
+        opt_in = re.search(r"(\.badge [^,{]+(?:,\s*\.badge [^,{]+)*)\s*\{[^}]*color:\s*inherit", css)
+        self.assertIsNotNone(opt_in, "the badge parts must opt back in to the plate colour")
+        covered = set(re.findall(r"\.badge \.([\w-]+)", opt_in.group(1)))
+        seen = set()
+        for path in sorted(catalog.ROOT.rglob("*.html")):
+            if ".git" in path.parts:
+                continue
+            page = path.read_text()
+            for anchor in re.findall(r'<a class="badge"[^>]*>.*?</a>', page, flags=re.S):
+                for part in re.findall(r'<span class="([^"]+)"', anchor):
+                    seen.add(part)
+        self.assertTrue(seen, "no badge markup found to check")
+        self.assertEqual(set(), seen - covered, "these badge parts are not covered by the plate-colour rule")
 
 
 if __name__ == "__main__":
