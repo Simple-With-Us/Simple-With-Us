@@ -82,6 +82,33 @@ def _matches(selector: str, chain: list) -> bool:
     return True
 
 
+def _share_card_problems(page: str) -> list:
+    """What is wrong with the share card a page declares, if anything.
+
+    A page that declares no og:image is not a problem here: only the apps
+    whose own site already publishes a card get one, and that set grows
+    when an app publishes a card, not when the catalog invents one.
+    """
+    problems = []
+    image = re.search(r'<meta property="og:image" content="([^"]+)"', page)
+    if not image:
+        return problems
+    url = image.group(1)
+    if not url.startswith("https://"):
+        problems.append(f"og:image must be an absolute https URL: {url}")
+    for name, value in (("og:image:width", "1200"), ("og:image:height", "630")):
+        match = re.search(rf'<meta property="{name}" content="([^"]+)"', page)
+        if not match:
+            problems.append(f"{name} is missing")
+        elif match.group(1) != value:
+            problems.append(f"{name} is {match.group(1)}, not {value}")
+    if not re.search(r'<meta property="og:image:alt" content="[^"]+"', page):
+        problems.append("og:image:alt is missing")
+    if not re.search(r'<meta name="twitter:card" content="summary_large_image"', page):
+        problems.append("twitter:card is not summary_large_image")
+    return problems
+
+
 class CatalogContractTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
@@ -398,6 +425,87 @@ class CatalogContractTests(unittest.TestCase):
                     seen.add(part)
         self.assertTrue(seen, "no badge markup found to check")
         self.assertEqual(set(), seen - covered, "these badge parts are not covered by the plate-colour rule")
+
+    def test_every_declared_share_card_is_complete(self):
+        """A share card that is missing its size or its alt text is a bad card.
+
+        The platform reads og:image, then og:image:width and og:image:height
+        to lay the preview out, and og:image:alt for the text under it.  A
+        page that names a card and forgets the rest still renders, so the
+        omission is silent.
+        """
+        declared = 0
+        for path in sorted(catalog.ROOT.rglob("*.html")):
+            if ".git" in path.parts:
+                continue
+            page = path.read_text()
+            with self.subTest(page=str(path.relative_to(catalog.ROOT))):
+                self.assertEqual([], _share_card_problems(page))
+            if 'property="og:image"' in page:
+                declared += 1
+        self.assertGreater(declared, 0, "no page declares a share card")
+
+    def test_an_app_with_a_card_keeps_it_on_its_page(self):
+        """The card an app publishes on its own site belongs on its page.
+
+        Which apps have a card is data, in apps/index.json, so the set is
+        reviewable and a card cannot quietly disappear from a page.
+        """
+        data = json.loads(catalog.DATA.read_text())
+        with_card = [a for a in data["apps"] if a.get("ogImage")]
+        self.assertTrue(with_card, "no app claims a share card")
+        for app in with_card:
+            page = catalog.ROOT / app["page"].lstrip("/") / "index.html"
+            with self.subTest(app=app["slug"]):
+                self.assertTrue(page.is_file(), f"{app['slug']}: detail page is missing")
+                html = page.read_text()
+                self.assertIn(f'<meta property="og:image" content="{app["ogImage"]}"', html)
+                self.assertEqual([], _share_card_problems(html))
+
+    def test_no_page_keeps_a_card_the_data_does_not_claim(self):
+        """A card left on a page that no longer has one is stale."""
+        data = json.loads(catalog.DATA.read_text())
+        for app in data["apps"]:
+            if app.get("ogImage"):
+                continue
+            page = catalog.ROOT / app["page"].lstrip("/") / "index.html"
+            if not page.is_file():
+                continue
+            with self.subTest(app=app["slug"]):
+                self.assertIsNone(
+                    re.search(r'<meta property="og:image" content="([^"]+)"', page.read_text()),
+                    "this page declares a card that apps/index.json does not claim",
+                )
+
+    def test_the_share_card_check_catches_a_broken_card(self):
+        """The check above is only worth having if it can still fail."""
+        good = (
+            '<meta property="og:image" content="https://example.com/card.png" />'
+            '<meta property="og:image:width" content="1200" />'
+            '<meta property="og:image:height" content="630" />'
+            '<meta name="twitter:card" content="summary_large_image" />'
+            '<meta property="og:image:alt" content="Example" />'
+        )
+        self.assertEqual([], _share_card_problems(good))
+        # A card with no size and no alt text is exactly the silent failure.
+        self.assertIn(
+            "og:image:width is missing",
+            _share_card_problems('<meta property="og:image" content="https://example.com/card.png" />'),
+        )
+        self.assertIn(
+            "og:image:alt is missing",
+            _share_card_problems('<meta property="og:image" content="https://example.com/card.png" />'),
+        )
+        # A square card is not a share card, and the declared size has to say 1200 by 630.
+        square = good.replace('content="1200"', 'content="512"').replace('content="630"', 'content="512"')
+        self.assertIn("og:image:width is 512, not 1200", _share_card_problems(square))
+        # A relative path cannot be fetched by a platform crawler.
+        self.assertIn(
+            "og:image must be an absolute https URL: /card.png",
+            _share_card_problems(good.replace("https://example.com/card.png", "/card.png")),
+        )
+        # A page with no card at all is not a failure: only some apps have one.
+        self.assertEqual([], _share_card_problems('<meta property="og:title" content="Example" />'))
 
 
 if __name__ == "__main__":

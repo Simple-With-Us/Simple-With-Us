@@ -6,6 +6,8 @@
     Field meanings and CTA render rules: docs/DESIGN-BRIEF.md section 5.
     Values come from the app's entry in apps/index.json; do not write copy that is not true today.
     Sentence gaps in visible copy are U+00A0 plus a space, never the literal entity text.
+    The share card is the catalog's own 1200x630 card.  If the app's own site publishes
+    a 1200x630 card, point og:image at that instead and set og:image:alt to the app name.
   -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -16,7 +18,11 @@
   <meta property="og:title" content="{{Name}} · Simple With Us">
   <meta property="og:description" content="{{tagline}}">
   <meta property="og:url" content="https://simplewithus.com/{{slug}}/">
-  <meta property="og:image" content="https://simplewithus.com{{icon}}">
+  <meta property="og:image" content="https://simplewithus.com/assets/logos/swu-share-1200x630.webp">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="og:image:alt" content="Simple With Us">
   <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#0b0e14" media="(prefers-color-scheme: dark)">
   <link rel="icon" href="/assets/logos/swu-favicon-32-light.webp" type="image/webp" media="(prefers-color-scheme: light)">
