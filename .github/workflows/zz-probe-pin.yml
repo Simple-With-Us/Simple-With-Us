@@ -10,6 +10,7 @@ name: Kody DeepSeek Fix Proposals
 # Daily attempt slots bound this repository only; they are not a dollar cap.
 on:
   workflow_dispatch:
+  push:
   check_run:
     types: [completed]
 
