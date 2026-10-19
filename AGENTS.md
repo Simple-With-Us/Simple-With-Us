@@ -18,8 +18,8 @@ repos below are a 2026-09-25 snapshot:
 | App                  | Fleet repo                          | Page on this site        | Other hostname                        |
 | -------------------- | ----------------------------------- | ------------------------ | ------------------------------------- |
 | CodeCaps (Mac, iOS)  | `jaywedgeworth22/CodeCaps`          | `/codecaps/`             | `codecaps.simplewithus.com` (CodeCaps repo's own Pages) |
-| Usage Client Monitor | `jaywedgeworth22/Usage-Monitor`     | `/usage-client/`         | `usage.jays.services` (web app)       |
-| Usage Local Monitor  | `jaywedgeworth22/Usage-Monitor`     | `/usage-local/`          | none                                  |
+| Usage Monitor Client | `jaywedgeworth22/Usage-Monitor`     | `/usage-client/`         | `usage.jays.services` (web app)       |
+| Usage Monitor Local  | `jaywedgeworth22/Usage-Monitor`     | `/usage-local/`          | none                                  |
 | Clutch.Codes (Mac, iOS) | `jaywedgeworth22/Clutch`         | `/clutch/`               | `clutch.codes` (own site)             |
 | HogHunter            | `jaywedgeworth22/HogHunter`         | none yet                 | none                                  |
 | BotFleet             | `jaywedgeworth22/BotFleet`          | `/botfleet/`             | `botfleet.app`                        |

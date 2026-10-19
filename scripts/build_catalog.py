@@ -92,6 +92,17 @@ def primary_link(app: dict):
     return app.get("page") or links.get("website") or links.get("github")
 
 
+def offers_contact(app: dict) -> bool:
+    """True when the app should offer a link out to its support page.
+
+    An app whose page already carries its support details does not need a
+    second link out of it: the reader would press Contact and land on the
+    same words a scroll away.  The standalone support page stays published
+    either way, because App Store Connect records point at its URL.
+    """
+    return bool(app.get("support")) and not app.get("supportInline")
+
+
 def card(app: dict, provider_token) -> str:
     primary = primary_link(app)
     actions = [v for v in app["availability"].values() if v["url"]]
@@ -117,7 +128,7 @@ def card(app: dict, provider_token) -> str:
     out.append("  </div>")
     out.append(f'  <p>{gap(app["tagline"])}</p>')
     out.append(f'  <span class="status status-{attr(app["status"])}">{gap(app["statusText"])}</span>')
-    if chosen or app.get("support"):
+    if chosen or offers_contact(app):
         out.append('  <div class="card-links">')
         if chosen:
             label = {"website": "Visit website", "source": "View public source", "download": "Download Mac beta", "testFlight": "Open TestFlight beta", "appStore": "Open App Store listing"}[chosen["channel"]]
@@ -127,7 +138,7 @@ def card(app: dict, provider_token) -> str:
             mark = badge(chosen["channel"], url, app["slug"], provider_token, None)
             out.append(f'    {mark}' if mark
                        else f'    <a href="{attr(url)}" rel="noopener">{label}<span aria-hidden="true"> ↗</span></a>')
-        if app.get("support"):
+        if offers_contact(app):
             out.append(f'    <a href="{attr(app["support"])}">Contact</a>')
         out.append("  </div>")
     out.append("</li>")
@@ -229,13 +240,20 @@ def availability_region(app: dict, provider_token=None) -> str:
             mark = badge(fact["channel"], url, app["slug"], provider_token, platform)
             label = mark or f'<a href="{attr(url)}" rel="noopener">{label}<span aria-hidden="true"> ↗</span></a>'
         rows.append(f'    <li><strong>{gap(platform)}</strong><span>{label}</span></li>')
-    rows += ['  </ul>', '  <div class="btn-row">']
+    rows.append('  </ul>')
+    buttons = []
     website = app["links"].get("website")
     if website and website not in linked:
-        rows.append(f'    <a class="btn btn-primary" href="{attr(website)}">Visit website</a>')
-    if app.get("support"):
-        rows.append(f'    <a class="btn btn-secondary" href="{attr(app["support"])}">Contact</a>')
-    rows += ['  </div>', '</section>']
+        buttons.append(f'    <a class="btn btn-primary" href="{attr(website)}">Visit website</a>')
+    if offers_contact(app):
+        buttons.append(f'    <a class="btn btn-secondary" href="{attr(app["support"])}">Contact</a>')
+    # An app with no website and no Contact link has no buttons at all, so the
+    # row goes with them rather than shipping an empty div.
+    if buttons:
+        rows.append('  <div class="btn-row">')
+        rows += buttons
+        rows.append('  </div>')
+    rows.append('</section>')
     return "\n".join(rows)
 
 
@@ -404,8 +422,17 @@ def lint(data: dict) -> list:
             errors.append(f"{slug}: needs at least one of page, links.website, links.github")
         if app.get("page"):
             page = ROOT / app["page"].lstrip("/") / "index.html"
-            if "<!-- catalog:availability:start -->" not in page.read_text():
+            text = page.read_text()
+            if "<!-- catalog:availability:start -->" not in text:
                 errors.append(f"{slug}: detail page lacks generated availability region")
+            # An inline support section and the Contact link it replaced have to
+            # agree: otherwise the reader either gets a link back to the page
+            # they are already on, or a page with no way to ask for help.
+            inline = "<!-- catalog:support:start -->" in text
+            if inline and not app.get("supportInline"):
+                errors.append(f"{slug}: detail page carries an inline support section but supportInline is not set")
+            if app.get("supportInline") and not inline:
+                errors.append(f"{slug}: supportInline is set but the detail page has no inline support section")
     for page in (p for p in ROOT.rglob("*.html") if "_template" not in p.parts and ".git" not in p.parts):
         parsed = Links()
         parsed.feed(page.read_text())

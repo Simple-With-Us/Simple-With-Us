@@ -548,6 +548,68 @@ class CatalogContractTests(unittest.TestCase):
         # A page with no card at all is not a failure: only some apps have one.
         self.assertEqual([], _share_card_problems('<meta property="og:title" content="Example" />'))
 
+    def test_an_app_that_carries_its_support_offers_no_contact_link(self):
+        """An app whose page carries the support details needs no Contact button.
+
+        The button sent the reader to a page with the same words, one click
+        away from where they already were.  The standalone support page stays
+        published, because App Store Connect records point at its URL.
+        """
+        inline = [a for a in self.data["apps"] if a.get("supportInline")]
+        self.assertTrue(inline, "no app claims an inline support section")
+        for app in inline:
+            with self.subTest(app=app["slug"]):
+                region = catalog.availability_region(app)
+                self.assertNotIn(">Contact</a>", region)
+                self.assertNotIn("btn-row", region)
+                self.assertTrue(app.get("support"), "the standalone support page must stay")
+                self.assertTrue((catalog.ROOT / app["support"].lstrip("/")).is_file())
+                page = (catalog.ROOT / app["page"].lstrip("/") / "index.html").read_text()
+                self.assertIn("<!-- catalog:support:start -->", page)
+                self.assertIn("<h2>Support</h2>", page)
+                # The words have to be on the page, not only a heading over them.
+                self.assertIn("contact@simplewithus.com", page)
+
+    def test_an_app_without_inline_support_still_offers_the_contact_link(self):
+        """The rule above must not take the button away from every other app."""
+        for app in self.data["apps"]:
+            if app.get("supportInline"):
+                continue
+            with self.subTest(app=app["slug"]):
+                self.assertIn(">Contact</a>", catalog.availability_region(app))
+
+    def test_the_inline_support_section_and_the_contact_link_have_to_agree(self):
+        """A page with inline support but no flag still shows a link out of itself.
+
+        Either way the reader is stranded: a link back to the page they are
+        on, or a page with no way to ask for help at all.
+        """
+        data = copy.deepcopy(self.data)
+        app = next(a for a in data["apps"] if a.get("supportInline"))
+        app.pop("supportInline")
+        self.assertTrue(any("supportInline is not set" in e for e in catalog.lint(data)))
+        # The other way round: the flag promises a section the page does not carry.
+        data = copy.deepcopy(self.data)
+        app = next(a for a in data["apps"] if a.get("supportInline"))
+        app["page"] = "/codecaps/"
+        self.assertTrue(any("no inline support section" in e for e in catalog.lint(data)))
+
+    def test_the_two_monitor_editions_carry_their_new_names(self):
+        """The editions are Usage Monitor Client and Usage Monitor Local.
+
+        The old names would otherwise survive in a title, an alt text, or the
+        privacy notice, where no generator goes looking for them.
+        """
+        names = {a["slug"]: a["name"] for a in self.data["apps"]}
+        self.assertEqual("Usage Monitor Client", names["usage-client"])
+        self.assertEqual("Usage Monitor Local", names["usage-local"])
+        stale = re.compile(r"Usage (Client|Local) Monitor")
+        for path in sorted(catalog.ROOT.rglob("*.html")):
+            if ".git" in path.parts or "_template" in path.parts:
+                continue
+            with self.subTest(page=str(path.relative_to(catalog.ROOT))):
+                self.assertIsNone(stale.search(path.read_text()), "this page still carries the old name")
+
 
 if __name__ == "__main__":
     unittest.main()
