@@ -173,11 +173,18 @@
   ],
   "fleetlink": [
     {
-      "src": "/assets/screenshots/fleetlink/preview-locked.webp",
+      "src": "/assets/screenshots/fleetlink/landing-hero.webp",
       "width": 1280,
-      "height": 714,
-      "alt": "FleetLink passphrase protection",
-      "caption": "Client-side passphrase encryption protecting shared payloads."
+      "height": 800,
+      "alt": "FleetLink dashboard listing live shares with their owner, team, and expiry",
+      "caption": "Every share carries its owner, its team, and the day it expires."
+    },
+    {
+      "src": "/assets/screenshots/fleetlink/handoff.webp",
+      "width": 1280,
+      "height": 800,
+      "alt": "FleetLink handoff steps showing the fleet-share command and a share link",
+      "caption": "One command publishes the share; the link goes where the work is."
     }
   ],
   "hoghunter": [

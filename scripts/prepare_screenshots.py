@@ -53,7 +53,8 @@ SOURCES = {
         ("/Users/jay/Code/Autorotate/assets/screenshots/iphone_1.png", "iphone.webp", "Autorotate iOS rotation logs and alerts", "Mobile rotation event logs, push notifications, and compliance audit."),
     ],
     "fleetlink": [
-        ("/Users/jay/Code/FleetLink/assets/preview-locked.png", "preview-locked.webp", "FleetLink passphrase protection", "Client-side passphrase encryption protecting shared payloads."),
+        ("/Users/jay/Code/FleetLink/docs/screenshots/landing-hero.png", "landing-hero.webp", "FleetLink dashboard listing live shares with their owner, team, and expiry", "Every share carries its owner, its team, and the day it expires."),
+        ("/Users/jay/Code/FleetLink/docs/screenshots/handoff.png", "handoff.webp", "FleetLink handoff steps showing the fleet-share command and a share link", "One command publishes the share; the link goes where the work is."),
     ],
     "hoghunter": [
         ("/tmp/hoghunter-ios.png", "companion.webp", "HogHunter iOS companion inspecting Mac resource usage", "HogHunter companion on iPhone monitoring Mac resource usage over local Wi-Fi."),
