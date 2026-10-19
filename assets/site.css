@@ -23,6 +23,15 @@
   --beta: #a16207;
   --source: #475569;
 
+  /* CodeCaps logo palette.  Extracted from the supplied dark logo artwork and
+     fixed by the brand, so these do not follow the page theme and are
+     deliberately not overridden in the dark block.  Keep in step with
+     assets/brand/brand-colors.json in the CodeCaps repo. */
+  --codecaps-bg: #222325;
+  --codecaps-teal: #4fd1c5;
+  --codecaps-red: #ff6b6b;
+  --codecaps-white: #ffffff;
+
   /* Type */
   --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, Roboto, "Helvetica Neue", Arial, sans-serif;
   --font-mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
