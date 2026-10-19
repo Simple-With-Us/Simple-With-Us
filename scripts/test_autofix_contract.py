@@ -5,12 +5,13 @@ import unittest
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 WORKFLOW = (ROOT / ".github/workflows/autofix.yml").read_text()
-PIN = "00def8545947e21ffe285ea67c1812c7bd321dfc"
+# Public Git commit fixture, not an authentication credential.
+TEST_REUSABLE_COMMIT_SHA = "00def8545947e21ffe285ea67c1812c7bd321dfc"
 EXPECTED = {"kody-ai[bot]", "chatgpt-codex-connector[bot]", "cursor[bot]", "claude[bot]", "sentry", "sentry[bot]"}
 
 class AutofixContractTests(unittest.TestCase):
     def test_verified_reusable_pin(self):
-        self.assertIn("pr-autofix-reusable.yml@" + PIN, WORKFLOW)
+        self.assertIn("pr-autofix-reusable.yml@" + TEST_REUSABLE_COMMIT_SHA, WORKFLOW)
 
     def test_only_existing_actors_and_exact_sentry_aliases(self):
         matches = re.findall(r'^      allowed_bots: "([^"]+)"$', WORKFLOW, re.M)
