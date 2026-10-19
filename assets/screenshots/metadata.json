@@ -5,7 +5,7 @@
       "width": 1140,
       "height": 1182,
       "alt": "CodeCaps menu bar view showing supported provider quotas and reset countdowns",
-      "caption": ""
+      "caption": "Quotas, reset windows, and pacing in the menu bar view."
     },
     {
       "src": "/assets/screenshots/codecaps/runaway-alerts.webp",
@@ -33,7 +33,7 @@
       "width": 1140,
       "height": 1182,
       "alt": "CodeCaps optional Fleet view showing quota readings from configured Macs",
-      "caption": ""
+      "caption": "Combine readings from configured Macs in the optional Fleet view."
     }
   ],
   "usage-client": [
@@ -41,14 +41,14 @@
       "src": "/assets/screenshots/usage-client/dashboard.webp",
       "width": 1280,
       "height": 2781,
-      "alt": "Usage Client dashboard with real-time model quota tracking",
+      "alt": "Usage Monitor Client dashboard with real-time model quota tracking",
       "caption": "Real-time AI model quota and usage monitoring on iPhone."
     },
     {
       "src": "/assets/screenshots/usage-client/alerts.webp",
       "width": 1280,
       "height": 2781,
-      "alt": "Usage Client quota alerts and thresholds",
+      "alt": "Usage Monitor Client quota alerts and thresholds",
       "caption": "Configurable usage alerts and rate-limit threshold warnings."
     }
   ],
@@ -57,14 +57,14 @@
       "src": "/assets/screenshots/usage-local/overview.webp",
       "width": 1280,
       "height": 2781,
-      "alt": "Usage Local Monitor overview with on-device subscription costs",
+      "alt": "Usage Monitor Local overview with on-device subscription costs",
       "caption": "On-device subscription cost tracking and quota monitoring."
     },
     {
       "src": "/assets/screenshots/usage-local/providers.webp",
       "width": 1280,
       "height": 2781,
-      "alt": "Usage Local Monitor provider breakdown",
+      "alt": "Usage Monitor Local provider breakdown",
       "caption": "Detailed usage breakdown across supported AI providers."
     }
   ],

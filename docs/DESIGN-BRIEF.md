@@ -239,8 +239,8 @@ The fleet-wide picture (every domain, registrar, and host) belongs in the privat
 | HogHunter (macOS) | `com.simplewithus.hoghunter.macos` | **Yes**: `applinks:` and `webcredentials:` | App Group `group.com.simplewithus.hoghunter`.  `project.yml` has **no `DEVELOPMENT_TEAM`**.  Set `CC8UTF7ATG` or the entitlement cannot be provisioned. |
 | CodeCaps (macOS) | `com.simplewithus.codecaps.macos` | No | Team `CC8UTF7ATG`. |
 | CodeCaps Companion (iOS) | `com.simplewithus.codecaps.ios` | No | Team `CC8UTF7ATG`. |
-| Usage Client Monitor (iOS) | `com.simplewithus.usage.client` | No | The Sep 23 fix reverted `com.simplewithus.usagemonitor.*`; the Sep 22 Slack note is stale.  App Store record pending. |
-| Usage Local Monitor (iOS) | `com.simplewithus.usage.local` | No | App Store record pending. |
+| Usage Monitor Client (iOS) | `com.simplewithus.usage.client` | No | The Sep 23 fix reverted `com.simplewithus.usagemonitor.*`; the Sep 22 Slack note is stale.  App Store record pending. |
+| Usage Monitor Local (iOS) | `com.simplewithus.usage.local` | No | App Store record pending. |
 | Usage Monitor menu bar (macOS) | `com.simplewithus.usage.macos` | No | From `script/build_and_run.sh`.  Has no catalog page of its own (`usage-monitor` is not a slug in `apps/index.json`), so its AASA component points at the `usage-client` slug's path instead. |
 | Harness (macOS) | `com.simplewithus.harness.mac` | No | Ad-hoc signed, not registered with Apple, no team. |
 | MiniMax Remote (iOS) | `com.simplewithus.minimaxremote` | No | Team `CC8UTF7ATG`. |

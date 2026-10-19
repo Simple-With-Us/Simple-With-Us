@@ -16,16 +16,16 @@ BUDGET_BYTES = 150 * 1024
 
 SOURCES = {
     "codecaps": [
-        ("/Users/jay/Code/CodeCaps/docs/screenshots/glance-light.png", "glance-light.webp", "CodeCaps Glance showing AI plan quotas, reset windows, and pacing markers", "CodeCaps Glance menu bar popover with dual-window monitoring and pacing indicators."),
-        ("/Users/jay/Code/CodeCaps/docs/screenshots/glance-fleet.png", "glance-fleet.webp", "CodeCaps Fleet view showing quotas across configured Macs", "Optional fleet view combining readings from multiple Mac machines."),
+        ("/Users/jay/Code/CodeCaps/docs/screenshots/glance-light.png", "glance-light.webp", "CodeCaps menu bar view showing supported provider quotas and reset countdowns", "Quotas, reset windows, and pacing in the menu bar view."),
+        ("/Users/jay/Code/CodeCaps/docs/screenshots/glance-fleet.png", "glance-fleet.webp", "CodeCaps optional Fleet view showing quota readings from configured Macs", "Combine readings from configured Macs in the optional Fleet view."),
     ],
     "usage-client": [
-        ("/Users/jay/Code/Usage-Monitor/docs/asc/screenshots/client/iphone/dashboard.png", "dashboard.webp", "Usage Client dashboard with real-time model quota tracking", "Real-time AI model quota and usage monitoring on iPhone."),
-        ("/Users/jay/Code/Usage-Monitor/docs/asc/screenshots/client/iphone/alerts.png", "alerts.webp", "Usage Client quota alerts and thresholds", "Configurable usage alerts and rate-limit threshold warnings."),
+        ("/Users/jay/Code/Usage-Monitor/docs/asc/screenshots/client/iphone/dashboard.png", "dashboard.webp", "Usage Monitor Client dashboard with real-time model quota tracking", "Real-time AI model quota and usage monitoring on iPhone."),
+        ("/Users/jay/Code/Usage-Monitor/docs/asc/screenshots/client/iphone/alerts.png", "alerts.webp", "Usage Monitor Client quota alerts and thresholds", "Configurable usage alerts and rate-limit threshold warnings."),
     ],
     "usage-local": [
-        ("/Users/jay/Code/Usage-Monitor/docs/asc/screenshots/local/iphone/overview.png", "overview.webp", "Usage Local Monitor overview with on-device subscription costs", "On-device subscription cost tracking and quota monitoring."),
-        ("/Users/jay/Code/Usage-Monitor/docs/asc/screenshots/local/iphone/providers.png", "providers.webp", "Usage Local Monitor provider breakdown", "Detailed usage breakdown across supported AI providers."),
+        ("/Users/jay/Code/Usage-Monitor/docs/asc/screenshots/local/iphone/overview.png", "overview.webp", "Usage Monitor Local overview with on-device subscription costs", "On-device subscription cost tracking and quota monitoring."),
+        ("/Users/jay/Code/Usage-Monitor/docs/asc/screenshots/local/iphone/providers.png", "providers.webp", "Usage Monitor Local provider breakdown", "Detailed usage breakdown across supported AI providers."),
     ],
     "clutch": [
         ("/Users/jay/Code/Clutch/e2e/web-visual.spec.ts-snapshots/web-home-chromium-linux.png", "dashboard.webp", "Clutch local agent dashboard and active tasks", "Local coding agent interface with DeepSeek and MiniMax support."),

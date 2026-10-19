@@ -57,7 +57,7 @@
     },
     {
       "slug": "usage-client",
-      "name": "Usage Client Monitor",
+      "name": "Usage Monitor Client",
       "tagline": "View data from your self-hosted Usage Monitor server on iPhone.",
       "shelf": "coding",
       "platforms": [
@@ -70,6 +70,7 @@
       "accent": "#ea580c",
       "page": "/usage-client/",
       "support": "/usage-client/support.html",
+      "supportInline": true,
       "links": {
         "website": null,
         "github": "https://github.com/Simple-With-Us/Usage-Monitor",
@@ -106,7 +107,7 @@
     },
     {
       "slug": "usage-local",
-      "name": "Usage Local Monitor",
+      "name": "Usage Monitor Local",
       "tagline": "Track supported provider usage and manual subscription costs on iPhone.",
       "shelf": "coding",
       "platforms": [
@@ -118,6 +119,7 @@
       "accent": "#ea580c",
       "page": "/usage-local/",
       "support": "/usage-local/support.html",
+      "supportInline": true,
       "links": {
         "website": null,
         "github": "https://github.com/Simple-With-Us/Usage-Monitor",
