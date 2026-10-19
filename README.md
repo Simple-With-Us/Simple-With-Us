@@ -1,6 +1,6 @@
 # Simple With Us
 
-Marketing pages for tools published at [simplewithus.com](https://simplewithus.com).
+Marketing pages for tools published at [SimpleWithUs.com](https://simplewithus.com).
 
 This repository hosts the static catalog and product pages at
 `/<slug>/` on the Simple With Us site.  It has no runtime service.
