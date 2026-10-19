@@ -315,6 +315,7 @@
       "icon": "/assets/app-icons/congress-trade.png",
       "accent": "#7c3aed",
       "page": "/congress-trade/",
+      "ogImage": "https://congress.trade/og-image.png",
       "support": "/congress-trade/support.html",
       "links": {
         "website": "https://congress.trade/",
@@ -418,6 +419,7 @@
       "icon": "/assets/app-icons/contactlogo.png",
       "accent": "#6366f1",
       "page": "/contactlogo/",
+      "ogImage": "https://contactlogo.com/og.png",
       "support": "/contactlogo/support.html",
       "links": {
         "website": "https://contactlogo.com/",
@@ -485,6 +487,7 @@
       "icon": "/assets/app-icons/dealdex.png",
       "accent": "#b45309",
       "page": "/dealdex/",
+      "ogImage": "https://dealdex.net/og.jpg",
       "support": "/dealdex/support.html",
       "links": {
         "website": "https://dealdex.net/",
