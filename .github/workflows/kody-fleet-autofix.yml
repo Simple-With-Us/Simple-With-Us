@@ -18,8 +18,9 @@ jobs:
   propose:
     # Caller-side same-repo guard.  The pinned helper still rejects a foreign
     # head before it reads source.  Concurrency is on this job and keyed by
-    # app, conclusion, and head repository, so a skipped or unrelated
-    # check_run cannot cancel a queued proposal.
+    # github.repository + pull request number, and the group is intentionally
+    # shared with .github/workflows/autofix.yml so each PR gets at most one
+    # autofix run at a time across both lanes.
     if: >-
       vars.SWU_KODY_AUTOFIX_ENABLED == 'true' &&
       github.event_name == 'check_run' && github.event.action == 'completed' &&
