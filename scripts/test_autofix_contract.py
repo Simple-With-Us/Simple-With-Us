@@ -16,8 +16,8 @@ class AutofixContractTests(unittest.TestCase):
         self.assertIn("pr-autofix-reusable.yml@" + TEST_REUSABLE_COMMIT_SHA, WORKFLOW)
 
     def test_kody_reusable_pin_is_immutable(self):
-        self.assertIn("kody-autofix-reusable.yml@" + KODY_REUSABLE_COMMIT_SHA, KODY_WORKFLOW)
-        self.assertNotRegex(KODY_WORKFLOW, r"kody-autofix-reusable\.yml@(?:main|master|v?\d[\w.-]*)$")
+        pins = re.findall(r"kody-autofix-reusable\.yml@(\S+)", KODY_WORKFLOW)
+        self.assertEqual(pins, [KODY_REUSABLE_COMMIT_SHA])
 
     def test_only_existing_actors_and_exact_sentry_aliases(self):
         matches = re.findall(r'^      allowed_bots: "([^"]+)"$', WORKFLOW, re.M)
