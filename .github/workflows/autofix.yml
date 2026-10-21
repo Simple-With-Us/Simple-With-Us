@@ -18,6 +18,17 @@ jobs:
   guard:
     name: Same-repository PR head check
     runs-on: ubuntu-latest
+    # Only events that can actually start an autofix run allocate this
+    # runner: pull-request events from bot actors.  A human comment, or any
+    # comment on a plain issue, skips the guard entirely (a skipped guard
+    # makes the autofix job's same_repo output check false, so the run ends
+    # green-skipped instead of red-failed on a pulls/<issue> 404).
+    if: >
+      (github.event.issue.pull_request || github.event.pull_request) &&
+      (
+        (github.event_name == 'pull_request_review' && contains(fromJSON('["bot", "Bot"]'), github.event.review.user.type)) ||
+        (github.event_name != 'pull_request_review' && contains(fromJSON('["bot", "Bot"]'), github.event.comment.user.type))
+      )
     permissions:
       pull-requests: read
     outputs:
