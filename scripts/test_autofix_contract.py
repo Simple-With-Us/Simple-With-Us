@@ -8,7 +8,7 @@ WORKFLOW = (ROOT / ".github/workflows/autofix.yml").read_text()
 KODY_WORKFLOW = (ROOT / ".github/workflows/kody-fleet-autofix.yml").read_text()
 # Public Git commit fixture, not an authentication credential.
 TEST_REUSABLE_COMMIT_SHA = "c97a2dae96762eb9ffc122c753f0dfb0a7840650"
-EXPECTED = {"kody-ai[bot]", "chatgpt-codex-connector[bot]", "cursor[bot]", "claude[bot]", "sentry", "sentry[bot]"}
+EXPECTED = {"kody-ai[bot]", "chatgpt-codex-connector[bot]", "cursor[bot]", "claude[bot]", "sentry", "sentry[bot]", "swu-ag[bot]", "swu-bf-builder[bot]", "swu-bf-compiler[bot]", "swu-bf-deployer[bot]", "swu-bf-designer[bot]", "swu-bf-director[bot]", "swu-bf-fixer[bot]", "swu-bf-housekeeper[bot]", "swu-bf-monitor[bot]", "swu-bf-oracle[bot]", "swu-bf-plumber[bot]", "swu-bf-publisher[bot]", "swu-claude[bot]", "swu-clutch[bot]", "swu-codex[bot]", "swu-cursor[bot]", "swu-cursor-cloud[bot]", "swu-echo[bot]", "swu-fx[bot]", "swu-gb-compiler[bot]", "swu-gb-deployer[bot]", "swu-gb-designer[bot]", "swu-gb-director[bot]", "swu-gb-engineer[bot]", "swu-gb-fixer[bot]", "swu-gb-housekeeper[bot]", "swu-gb-monitor[bot]", "swu-gb-oracle[bot]", "swu-gb-plumber[bot]", "swu-gb-publisher[bot]", "swu-gb-trader[bot]", "swu-grok-build[bot]", "swu-grok-web[bot]", "swu-jet[bot]", "swu-mc[bot]", "swu-minimax[bot]", "swu-opencode[bot]", "swu-operator[bot]", "swu-rob[bot]", "swu-wise[bot]"}
 
 class AutofixContractTests(unittest.TestCase):
     def test_verified_reusable_pin(self):

@@ -1,9 +1,9 @@
 # DEFAULT-DISABLED SETUP DRAFT.  This is the fleet-standard Kody caller:
-# the MiniMax M3 route, the same reusable workflow the other fleet repos
+# the MiniMax M3.1 Flash route, the same reusable workflow the other fleet repos
 # pin.  Keep disabled until the budget approval and secure activation
 # setup are ready.
 # daily_attempt_limit is zero and budget_policy_id is pending.
-name: Kody MiniMax M3 Fix Proposals
+name: Kody MiniMax M3.1 Flash Fix Proposals
 
 # Generated offline.  Missing SWU_KODY_AUTOFIX_ENABLED means disabled.
 # Budget approval and protected-environment setup are separate owner actions.

@@ -15,8 +15,45 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  autofix:
+  guard:
+    name: Same-repository PR head check
+    runs-on: ubuntu-latest
+    # Only events that can actually start an autofix run allocate this
+    # runner: pull-request events from bot actors.  A human comment, or any
+    # comment on a plain issue, skips the guard entirely (a skipped guard
+    # makes the autofix job's same_repo output check false, so the run ends
+    # green-skipped instead of red-failed on a pulls/<issue> 404).
     if: >
+      (github.event.issue.pull_request || github.event.pull_request) &&
+      (
+        (github.event_name == 'pull_request_review' && contains(fromJSON('["bot", "Bot"]'), github.event.review.user.type)) ||
+        (github.event_name != 'pull_request_review' && contains(fromJSON('["bot", "Bot"]'), github.event.comment.user.type))
+      )
+    permissions:
+      pull-requests: read
+    outputs:
+      same_repo: ${{ steps.check.outputs.same_repo }}
+    steps:
+      - name: Resolve the PR head repository
+        id: check
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if [ "${{ github.event_name }}" = "issue_comment" ]; then
+            num="${{ github.event.issue.number }}"
+          else
+            num="${{ github.event.pull_request.number }}"
+          fi
+          head_repo="$(gh api "repos/${{ github.repository }}/pulls/${num}" --jq '.head.repo.full_name')"
+          if [ "$head_repo" = "${{ github.repository }}" ]; then
+            echo "same_repo=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "same_repo=false" >> "$GITHUB_OUTPUT"
+          fi
+  autofix:
+    needs: guard
+    if: >
+      needs.guard.outputs.same_repo == 'true' &&
       (github.event.issue.pull_request || github.event.pull_request) &&
       (github.event.issue.state == 'open' || github.event.pull_request.state == 'open') &&
       (
@@ -30,7 +67,7 @@ jobs:
       actions: read
     uses: Simple-With-Us/AI-Fleet-Coordinator/.github/workflows/pr-autofix-reusable.yml@c97a2dae96762eb9ffc122c753f0dfb0a7840650
     with:
-      allowed_bots: "kody-ai[bot],chatgpt-codex-connector[bot],cursor[bot],claude[bot],sentry,sentry[bot]"
+      allowed_bots: "kody-ai[bot],chatgpt-codex-connector[bot],cursor[bot],claude[bot],sentry,sentry[bot],swu-ag[bot],swu-bf-builder[bot],swu-bf-compiler[bot],swu-bf-deployer[bot],swu-bf-designer[bot],swu-bf-director[bot],swu-bf-fixer[bot],swu-bf-housekeeper[bot],swu-bf-monitor[bot],swu-bf-oracle[bot],swu-bf-plumber[bot],swu-bf-publisher[bot],swu-claude[bot],swu-clutch[bot],swu-codex[bot],swu-cursor[bot],swu-cursor-cloud[bot],swu-echo[bot],swu-fx[bot],swu-gb-compiler[bot],swu-gb-deployer[bot],swu-gb-designer[bot],swu-gb-director[bot],swu-gb-engineer[bot],swu-gb-fixer[bot],swu-gb-housekeeper[bot],swu-gb-monitor[bot],swu-gb-oracle[bot],swu-gb-plumber[bot],swu-gb-publisher[bot],swu-gb-trader[bot],swu-grok-build[bot],swu-grok-web[bot],swu-jet[bot],swu-mc[bot],swu-minimax[bot],swu-opencode[bot],swu-operator[bot],swu-rob[bot],swu-wise[bot]"
     secrets:
       MINIMAX_API_KEY: ${{ secrets.MINIMAX_API_KEY }}
       META_MODEL_API_TOKEN: ${{ secrets.META_MODEL_API_TOKEN }}
