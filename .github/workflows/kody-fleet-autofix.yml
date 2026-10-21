@@ -46,7 +46,8 @@ jobs:
       repository_id: '1384087033'
       profile: 'python'
       source_prefixes: '["scripts/build_catalog.py","scripts/audit_catalog_links.py"]'
-      model: 'MiniMax-M3'
+      # Owner ruling 2026-10-20: all fleet MiniMax use goes to MiniMax-M3.1-Flash.
+      model: 'MiniMax-M3.1-Flash'
       model_base_url: 'https://api.minimax.io/v1'
       daily_attempt_limit: 0
       budget_policy_id: 'pending'
