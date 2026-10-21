@@ -6,7 +6,7 @@ import unittest
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 WORKFLOW = (ROOT / ".github/workflows/autofix.yml").read_text()
 # Public Git commit fixture, not an authentication credential.
-TEST_REUSABLE_COMMIT_SHA = "a652e46755412be2201a2f406e50a422c1376b4c"
+TEST_REUSABLE_COMMIT_SHA = "c97a2dae96762eb9ffc122c753f0dfb0a7840650"
 EXPECTED = {"kody-ai[bot]", "chatgpt-codex-connector[bot]", "cursor[bot]", "claude[bot]", "sentry", "sentry[bot]"}
 
 class AutofixContractTests(unittest.TestCase):
