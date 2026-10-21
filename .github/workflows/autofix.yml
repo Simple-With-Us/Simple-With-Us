@@ -18,6 +18,8 @@ jobs:
   guard:
     name: Same-repository PR head check
     runs-on: ubuntu-latest
+    permissions:
+      pull-requests: read
     outputs:
       same_repo: ${{ steps.check.outputs.same_repo }}
     steps:
