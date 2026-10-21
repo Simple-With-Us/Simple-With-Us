@@ -30,7 +30,7 @@ class AutofixContractTests(unittest.TestCase):
         self.assertIn("cancel-in-progress: false", WORKFLOW)
         self.assertIn("group: pr-autofix-", WORKFLOW)
         self.assertIn("permissions: {}", WORKFLOW)
-        self.assertIn("      contents: write\n      pull-requests: read\n      actions: read", WORKFLOW)
+        self.assertIn("      contents: write\n      pull-requests: read\n      issues: write\n      actions: read", WORKFLOW)
 
 if __name__ == "__main__":
     unittest.main()
