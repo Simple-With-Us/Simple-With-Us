@@ -16,7 +16,7 @@
       ],
       "status": "beta",
       "statusText": "Mac beta · iPhone TestFlight beta",
-      "icon": "/assets/app-icons/codecaps.png",
+      "icon": "/assets/logos/codecaps-logo-transparent.svg",
       "accent": "#0f766e",
       "page": "/codecaps/",
       "support": "/codecaps/support.html",
