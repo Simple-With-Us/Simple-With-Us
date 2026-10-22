@@ -270,6 +270,14 @@ details summary { cursor: pointer; font-weight: 600; }
 .article .kicker { color: var(--accent); font-weight: 600; font-size: .875rem; }
 .app-identity { display: flex; gap: 20px; align-items: center; }
 .app-identity .app-icon { width: 80px; height: 80px; border-radius: 22%; flex: none; object-fit: cover; }
+/* The CodeCaps mark is owner art drawn for a light surface: its needle and its
+   six gauge dots are #222325, so on the dark page they vanish and the mark
+   loses its gauge detail.  Give the mark a light plate in dark mode, the way
+   the header wordmark ships a dark variant, and leave the artwork alone. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .card-icon[src$="/assets/logos/codecaps-logo-transparent.svg"],
+  :root:not([data-theme="light"]) .app-identity .app-icon[src$="/assets/logos/codecaps-logo-transparent.svg"] { background: #ffffff; }
+}
 .app-identity h1 { margin: 0; font-size: clamp(1.75rem, 4.5vw, 2.625rem); }
 .back-link { font-size: .875rem; color: var(--text-muted); text-decoration: none; }
 .back-link + h1 { margin-top: 8px; }
