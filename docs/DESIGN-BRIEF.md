@@ -108,7 +108,7 @@ Required per app:
 |---|---|
 | `slug` | URL segment.  Matches the existing folder name exactly. |
 | `name` | Display name, exact brand casing. |
-| `tagline` | One or two sentences, sentence case, two ASCII spaces between sentences (the generator converts them to U+00A0 plus a space).  Must match the repo description or the app's own site. |
+| `tagline` | One or two sentences, sentence case.  In `apps/index.json`, separate sentences with two ASCII spaces:  that is the generator's input marker, and `gap()` in `scripts/build_catalog.py` renders each `.`, `?` or `!` plus two spaces as U+00A0 plus a space in the HTML.  Must match the repo description or the app's own site. |
 | `shelf` | `ai-coders`, `markets`, or `utilities`. |
 | `platforms` | Any of `iOS`, `macOS`, `Android`, `Web`. |
 | `status` / `statusText` | `live`, `beta`, or `source`, plus a short sentence-case label such as "Private beta" or "App Store record pending". |
@@ -311,7 +311,7 @@ Before collapsing any `-mac` stub or the `usage-client`/`usage-local` pair, or c
 
 **Accessibility:** WCAG 2.2 AA; skip link; `header`, `nav`, `main`, and `footer` landmarks; one `h1`; a 2 px `:focus-visible` outline; hit targets at least 44 px; a real `<button>` for Copy with an `aria-live="polite"` "Copied" announcement; no text in images; no truncation without the full text available.
 
-**Copy mechanics:** two ASCII spaces between sentences in every source file.  In rendered HTML the gap is U+00A0 plus a space, written as the literal character (the generator does this for data strings).  The six-character entity text never appears on screen.
+**Copy mechanics:**  the fleet sentence gap (owner ruling 2026-10-23) is a real U+00A0 plus a normal space, never the `&nbsp;` entity and never two plain ASCII spaces in prose.  Hand-written page copy and docs carry the gap directly (HTML markup source may write it as `&#160;`).  The one exception is data strings in `apps/index.json`, where two ASCII spaces after `.`, `?` or `!` are the generator's input marker:  `gap()` in `scripts/build_catalog.py` HTML-escapes each string and writes U+00A0 plus a space into the rendered HTML.  The six-character entity text never appears on screen.
 
 ## 10. Build plan for MM
 
