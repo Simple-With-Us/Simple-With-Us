@@ -41,8 +41,10 @@ apex directly.
 
 * Use sentence case for prose, buttons, headings, and
   the page `<title>`.
-* Two literal ASCII spaces between sentences in every human-readable
-  surface, including this README.
+* A real U+00A0 plus a normal space between sentences in every
+  human-readable surface, including this README (owner ruling 2026-10-23).
+  The one exception is `apps/index.json` data strings, where two ASCII
+  spaces are the generator's input marker (see `docs/DESIGN-BRIEF.md`).
 * Default UI theme follows the system preference, never a hard-coded
   light or dark mode.
 * Keep images under the 200 KB build budget unless listed as legacy assets
