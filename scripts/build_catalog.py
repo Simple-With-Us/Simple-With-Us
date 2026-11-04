@@ -58,7 +58,10 @@ PUBLIC_SOURCE_REPOS = {
     "Socratic-Trade", "Congress.Trade", "ContactLogo", "DealDex", "Autorotate",
     "FleetLink",
 }
-PRIVATE_DESTINATIONS = ("github.com/jaywedgeworth22/Fleet-OPS",)
+PRIVATE_DESTINATIONS = (
+    "github.com/jaywedgeworth22/Fleet-OPS",
+    "github.com/Simple-With-Us/Fleet-OPS",
+)
 AVAILABILITY_STATUSES = {"live", "beta", "source", "unverified"}
 CHANNELS = {"website", "source", "appStore", "testFlight", "download"}
 
