@@ -119,6 +119,7 @@ code, pre, kbd { font-family: var(--font-mono); font-size: 0.9em; }
 .skip-link {
   position: absolute; left: var(--space-4); top: -48px;
   background: var(--text); color: var(--bg); padding: var(--space-2) var(--space-3);
+  min-height: 44px; display: inline-flex; align-items: center;
   border-radius: var(--radius-1); z-index: 10;
 }
 .skip-link:focus { top: var(--space-3); }
@@ -187,7 +188,7 @@ code, pre, kbd { font-family: var(--font-mono); font-size: 0.9em; }
 .status::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--source); }
 .status-live::before { background: var(--ok); }
 .status-beta::before { background: var(--beta); }
-.card-links { margin-top: auto; padding-top: var(--space-2); display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); font-size: var(--step--1); position: relative; z-index: 1; }
+.card-links { margin-top: auto; padding-top: var(--space-2); display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2) var(--space-4); font-size: var(--step--1); position: relative; z-index: 1; }
 .card-links a { font-weight: 600; text-decoration: none; padding: var(--space-1) 0; }
 .card-links a:hover { text-decoration: underline; }
 
@@ -226,7 +227,8 @@ details summary { cursor: pointer; font-weight: 600; }
 /* Footer */
 .site-footer { border-top: 1px solid var(--border); padding: var(--space-6) 0 var(--space-7); color: var(--text-muted); font-size: var(--step--1); }
 .site-footer .wrap { display: flex; flex-wrap: wrap; gap: var(--space-4) var(--space-6); justify-content: space-between; }
-.site-footer nav { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); }
+.site-footer nav { display: flex; flex-wrap: wrap; align-items: center; gap: 0 4px; }
+.site-footer nav a { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; min-width: 44px; padding: 0 8px; }
 .site-footer a { color: var(--text-muted); }
 .site-footer a:hover { color: var(--text); }
 .legal { flex-basis: 100%; font-size: 0.75rem; margin: 0; }
@@ -244,8 +246,8 @@ details summary { cursor: pointer; font-weight: 600; }
 .site-header .wrap { min-height: 84px; gap: 12px 32px; }
 .wordmark { display: inline-flex; align-items: center; }
 .wordmark img { width: 480px; max-width: 100%; height: auto; }
-.site-nav { gap: 24px; font-size: 0.9375rem; }
-.site-nav a { min-height: 44px; display: inline-flex; align-items: center; }
+.site-nav { gap: 8px; font-size: 0.9375rem; }
+.site-nav a { min-height: 44px; min-width: 44px; display: inline-flex; align-items: center; justify-content: center; padding: 0 8px; }
 .hero { padding: 72px 0 56px; background: linear-gradient(140deg, rgb(61 186 210 / .07), transparent 65%); }
 .hero h1 { max-width: 19ch; font-size: clamp(2.25rem, 4vw, 3.5rem); line-height: 1.09; letter-spacing: -.035em; }
 .hero .facts { font: 600 .875rem var(--font-sans); color: var(--accent); }
@@ -290,15 +292,15 @@ details summary { cursor: pointer; font-weight: 600; }
 .callout { border: 1px solid var(--border); border-radius: 12px; padding: 20px; overflow-wrap: anywhere; background: var(--bg-raised); }
 .status-panel { display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
 .status-panel .lede { margin-bottom: 12px; }
-.status-badge { border: 1px solid var(--border); padding: 20px; border-radius: 12px; background: #fff; max-width: 100%; }
+.status-badge { border: 1px solid var(--border); padding: 20px; border-radius: 12px; background: var(--bg-raised); color: var(--text); max-width: 100%; }
 .status-badge iframe { display: block; border: 0; max-width: 100%; color-scheme: normal; }
-.status-badge p { margin: 8px 0 0; font-size: .75rem; color: #525c67; }
+.status-badge p { margin: 8px 0 0; font-size: .75rem; color: var(--text-muted); }
 .site-footer p { margin: 0; }
 @media (max-width: 560px) {
   .site-header .wrap { min-height: 0; padding: 20px; gap: 8px; }
   .wordmark { flex-basis: 100%; }
   .wordmark img { width: 100%; height: auto; }
-  .site-nav { gap: 24px; }
+  .site-nav { gap: 8px; }
   .hero { padding: 40px 0; }
   .hero h1 { font-size: 2.25rem; }
   .wrap { padding-left: 24px; padding-right: 24px; }
@@ -309,25 +311,30 @@ details summary { cursor: pointer; font-weight: 600; }
   .availability-list li { display: grid; grid-template-columns: 80px 1fr; }
   .availability-list span { text-align: left; }
 }
-.status-badge .service-state { font-size: .9375rem; font-weight: 600; color: #404258; margin: 0; }
+.status-badge .service-state { font-size: .9375rem; font-weight: 600; color: var(--text); margin: 0; }
 .service-state::before { content: ""; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #757575; margin-right: 8px; }
 .service-state[data-state="operational"]::before { background: #047857; }
 .service-state[data-state="degraded"]::before, .service-state[data-state="maintenance"]::before { background: #a16207; }
 .service-state[data-state="downtime"]::before { background: #b91c1c; }
 
-.availability-list a { display: inline-flex; align-items: center; gap: 4px; min-height: 36px; font-weight: 600; text-decoration: none; }
+.availability-list a { display: inline-flex; align-items: center; gap: 4px; min-height: 44px; font-weight: 600; text-decoration: none; }
+.availability-list a.badge,
+.availability-list a.badge-store { min-height: 40px; height: 40px; }
 /* The badge is a plate, not a text link: underlining it paints a white rule
    straight through the label, so the row's hover underline skips it. */
 .availability-list a:not(.badge):hover { text-decoration: underline; }
 .availability-list li { align-items: center; padding: 5px 0; }
 
-.wordmark, .wordmark:hover, .wordmark:focus, .wordmark:focus-visible,
+.wordmark, .wordmark:hover, .wordmark:focus,
 .footer-brand, .footer-brand:hover, .footer-brand a, .footer-brand a:hover,
 .swu-attribution, .swu-attribution:hover, .swu-attribution a, .swu-attribution a:hover,
 .site-footer a.wordmark, .site-footer a.wordmark:hover {
   text-decoration: none !important;
   border-bottom: none !important;
-  outline: none;
+}
+.wordmark:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 4px;
 }
 .wordmark img, .footer-brand img, .swu-attribution img {
   border: none !important;
@@ -418,3 +425,12 @@ details summary { cursor: pointer; font-weight: 600; }
   border-radius: 9px; overflow: hidden;
 }
 .badge-store img { display: block; height: var(--badge-h, 40px); width: auto; }
+
+/* The plates stay 40px so they line up with the App Store badge.  The extra
+   box is only a hit area, so a thumb can land on the control. */
+.badge, .badge-store { position: relative; }
+.badge::before, .badge-store::before { content: ""; position: absolute; inset: -2px 0; }
+.card-links a:not(.badge):not(.badge-store) { display: inline-flex; align-items: center; min-height: 44px; }
+.status-panel a { display: inline-flex; align-items: center; min-height: 44px; }
+body.missing { min-height: 100vh; display: flex; flex-direction: column; }
+body.missing main { flex: 1 0 auto; }

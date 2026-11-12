@@ -108,7 +108,7 @@ Required per app:
 |---|---|
 | `slug` | URL segment.  Matches the existing folder name exactly. |
 | `name` | Display name, exact brand casing. |
-| `tagline` | One or two sentences, sentence case, two ASCII spaces between sentences (the generator converts them to U+00A0 plus a space).  Must match the repo description or the app's own site. |
+| `tagline` | One or two sentences, sentence case.  In `apps/index.json`, separate sentences with two ASCII spaces:  that is the generator's input marker, and `gap()` in `scripts/build_catalog.py` renders each `.`, `?` or `!` plus two spaces as U+00A0 plus a space in the HTML.  Must match the repo description or the app's own site. |
 | `shelf` | `ai-coders`, `markets`, or `utilities`. |
 | `platforms` | Any of `iOS`, `macOS`, `Android`, `Web`. |
 | `status` / `statusText` | `live`, `beta`, or `source`, plus a short sentence-case label such as "Private beta" or "App Store record pending". |
@@ -148,7 +148,7 @@ Copy to `/<slug>/` and fill from the app's data entry.  Order:
 7. Screenshots: one to three real screenshots captured on a light Mac, WebP or AVIF, each under 150 KB.
 8. Optional `#mac` section.  Keep the anchor wherever an App Store Connect record or an old `/<slug>-mac/` stub points at it.
 9. Privacy and Support: what leaves the device, then the feedback address and `support.html`.
-10. Attribution block (required by `AGENTS.md`): "{Name} is developed in the open at github.com/jaywedgeworth22/{Repo} under the Apache License 2.0.  This page lives in jaywedgeworth22/Simple-With-Us."
+10. Attribution block (required by `AGENTS.md`): "{Name} is developed in the open at github.com/Simple-With-Us/{Repo} under the Apache License 2.0.  This page lives in Simple-With-Us/Simple-With-Us."
 
 Every page needs `<link rel="canonical">`, an Open Graph block, both `theme-color` metas, a skip link, and landmarks.
 
@@ -302,7 +302,7 @@ Before collapsing any `-mac` stub or the `usage-client`/`usage-local` pair, or c
 **CI (in this PR): `.github/workflows/site-check.yml` runs `python3 scripts/build_catalog.py --check`, which fails when:**
 
 - `index.html` is stale against `apps/index.json` (graft from Catalog: the site cannot drift from its data);
-- a link has the wrong shape (bare TestFlight, a non-`apps.apple.com` store link, a non-`jaywedgeworth22` repo);
+- a link has the wrong shape (bare TestFlight, a non-`apps.apple.com` store link, a non-`Simple-With-Us` fleet repo);
 - a `page`, `support`, or `icon` path in the data does not exist;
 - any committed image is over **200 KB**, except the eight legacy files listed in the script (they get re-encoded or deleted in PR 2, and the list shrinks to zero);
 - the AASA file is invalid JSON or misses an app that sets `associatedDomains`.
@@ -311,7 +311,7 @@ Before collapsing any `-mac` stub or the `usage-client`/`usage-local` pair, or c
 
 **Accessibility:** WCAG 2.2 AA; skip link; `header`, `nav`, `main`, and `footer` landmarks; one `h1`; a 2 px `:focus-visible` outline; hit targets at least 44 px; a real `<button>` for Copy with an `aria-live="polite"` "Copied" announcement; no text in images; no truncation without the full text available.
 
-**Copy mechanics:** two ASCII spaces between sentences in every source file.  In rendered HTML the gap is U+00A0 plus a space, written as the literal character (the generator does this for data strings).  The six-character entity text never appears on screen.
+**Copy mechanics:**  the fleet sentence gap (owner ruling 2026-10-23) is a real U+00A0 plus a normal space, never the `&nbsp;` entity and never two plain ASCII spaces in prose.  Hand-written page copy and docs carry the gap directly (HTML markup source may write it as `&#160;`).  The one exception is data strings in `apps/index.json`, where two ASCII spaces after `.`, `?` or `!` are the generator's input marker:  `gap()` in `scripts/build_catalog.py` HTML-escapes each string and writes U+00A0 plus a space into the rendered HTML.  The six-character entity text never appears on screen.
 
 ## 10. Build plan for MM
 

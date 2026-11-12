@@ -46,19 +46,22 @@ NBSP_GAP = "  "  # FLEET-UI-COPY: U+00A0 plus a space between sentences in HTML
 
 LINK_RULES = {
     "website": re.compile(r"^https://[a-z0-9.-]+\.[a-z]{2,}(/.*)?$"),
-    "github": re.compile(r"^https://github\.com/(jaywedgeworth22|Simple-With-Us)/[A-Za-z0-9._-]+$"),
+    "github": re.compile(r"^https://github\.com/Simple-With-Us/[A-Za-z0-9._-]+$"),
     "appStore": re.compile(r"^https://apps\.apple\.com/app/id\d+$"),
     "testFlight": re.compile(r"^https://testflight\.apple\.com/join/[A-Za-z0-9]+$"),
     "brew": re.compile(r"^brew install (--cask )?[a-z0-9/_-]+$"),
 }
 LINK_RULES["source"] = LINK_RULES["github"]
-LINK_RULES["download"] = re.compile(r"^https://github\.com/(jaywedgeworth22|Simple-With-Us)/[A-Za-z0-9._-]+/releases/latest/download/[A-Za-z0-9._-]+\.dmg$")
+LINK_RULES["download"] = re.compile(r"^https://github\.com/Simple-With-Us/[A-Za-z0-9._-]+/releases/latest/download/[A-Za-z0-9._-]+\.dmg$")
 PUBLIC_SOURCE_REPOS = {
     "CodeCaps", "Usage-Monitor", "Clutch", "HogHunter", "BotFleet",
     "Socratic-Trade", "Congress.Trade", "ContactLogo", "DealDex", "Autorotate",
     "FleetLink",
 }
-PRIVATE_DESTINATIONS = ("github.com/jaywedgeworth22/Fleet-OPS",)
+PRIVATE_DESTINATIONS = (
+    "github.com/jaywedgeworth22/Fleet-OPS",
+    "github.com/Simple-With-Us/Fleet-OPS",
+)
 AVAILABILITY_STATUSES = {"live", "beta", "source", "unverified"}
 CHANNELS = {"website", "source", "appStore", "testFlight", "download"}
 
@@ -259,7 +262,7 @@ def availability_region(app: dict, provider_token=None) -> str:
 
 HEADER = """<header class="site-header">
   <div class="wrap">
-    <a class="wordmark" href="/" aria-label="Simple With Us - Jay Wedgeworth home"><picture><source media="(prefers-color-scheme: dark)" srcset="/assets/logos/swu-wordmark-dark.webp" type="image/webp"><source media="(prefers-color-scheme: dark)" srcset="/assets/logos/swu-wordmark-dark-2x.webp" type="image/webp" sizes="480px"><img src="/assets/logos/swu-wordmark-light.webp" srcset="/assets/logos/swu-wordmark-light-2x.webp" type="image/webp" sizes="480px" alt="Simple With Us - Jay Wedgeworth" width="288" height="30" decoding="async"></picture></a>
+    <a class="wordmark" href="/" aria-label="Simple With Us - Jay Wedgeworth home"><picture><source media="(prefers-color-scheme: dark)" srcset="/assets/logos/swu-wordmark-dark.webp 1x, /assets/logos/swu-wordmark-dark-2x.webp 2x" type="image/webp"><img src="/assets/logos/swu-wordmark-light.webp" srcset="/assets/logos/swu-wordmark-light.webp 1x, /assets/logos/swu-wordmark-light-2x.webp 2x" alt="Simple With Us - Jay Wedgeworth" width="480" height="50" decoding="async"></picture></a>
     <nav class="site-nav" aria-label="Primary">
       <a href="/#apps">Apps</a><a href="/#status">Status</a><a href="/support.html">Contact</a>
     </nav>
@@ -440,7 +443,9 @@ def lint(data: dict) -> list:
             if any(private in href for private in PRIVATE_DESTINATIONS):
                 errors.append(f"{page.relative_to(ROOT)}: private repository destination")
             target = urlsplit(href)
-            if target.hostname == "github.com" and (target.path.startswith("/jaywedgeworth22/") or target.path.startswith("/Simple-With-Us/")):
+            if target.hostname == "github.com" and target.path.startswith("/jaywedgeworth22/"):
+                errors.append(f"{page.relative_to(ROOT)}: stale jaywedgeworth22 GitHub link (use Simple-With-Us org)")
+            if target.hostname == "github.com" and target.path.startswith("/Simple-With-Us/"):
                 repo = target.path.strip("/").split("/")[1]
                 allowed = {name.lower() for name in PUBLIC_SOURCE_REPOS | {"Simple-With-Us"}}
                 if repo.lower() not in allowed:
