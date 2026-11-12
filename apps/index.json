@@ -8,7 +8,7 @@
     {
       "slug": "codecaps",
       "name": "CodeCaps",
-      "tagline": "Track AI quota, spot usage anomalies, and keep selected providers in an on-top PiP window.",
+      "tagline": "Track AI quota, spot usage anomalies, and keep selected providers in a floating window.",
       "shelf": "coding",
       "platforms": [
         "macOS",
@@ -633,7 +633,7 @@
       "availability": {
         "iOS": {
           "status": "unverified",
-          "label": "App Clip not installable yet",
+          "label": "Not available to install yet",
           "channel": null,
           "url": null,
           "verifiedOn": "2026-10-03",
