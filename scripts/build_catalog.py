@@ -46,19 +46,22 @@ NBSP_GAP = "  "  # FLEET-UI-COPY: U+00A0 plus a space between sentences in HTML
 
 LINK_RULES = {
     "website": re.compile(r"^https://[a-z0-9.-]+\.[a-z]{2,}(/.*)?$"),
-    "github": re.compile(r"^https://github\.com/(jaywedgeworth22|Simple-With-Us)/[A-Za-z0-9._-]+$"),
+    "github": re.compile(r"^https://github\.com/Simple-With-Us/[A-Za-z0-9._-]+$"),
     "appStore": re.compile(r"^https://apps\.apple\.com/app/id\d+$"),
     "testFlight": re.compile(r"^https://testflight\.apple\.com/join/[A-Za-z0-9]+$"),
     "brew": re.compile(r"^brew install (--cask )?[a-z0-9/_-]+$"),
 }
 LINK_RULES["source"] = LINK_RULES["github"]
-LINK_RULES["download"] = re.compile(r"^https://github\.com/(jaywedgeworth22|Simple-With-Us)/[A-Za-z0-9._-]+/releases/latest/download/[A-Za-z0-9._-]+\.dmg$")
+LINK_RULES["download"] = re.compile(r"^https://github\.com/Simple-With-Us/[A-Za-z0-9._-]+/releases/latest/download/[A-Za-z0-9._-]+\.dmg$")
 PUBLIC_SOURCE_REPOS = {
     "CodeCaps", "Usage-Monitor", "Clutch", "HogHunter", "BotFleet",
     "Socratic-Trade", "Congress.Trade", "ContactLogo", "DealDex", "Autorotate",
     "FleetLink",
 }
-PRIVATE_DESTINATIONS = ("github.com/jaywedgeworth22/Fleet-OPS",)
+PRIVATE_DESTINATIONS = (
+    "github.com/jaywedgeworth22/Fleet-OPS",
+    "github.com/Simple-With-Us/Fleet-OPS",
+)
 AVAILABILITY_STATUSES = {"live", "beta", "source", "unverified"}
 CHANNELS = {"website", "source", "appStore", "testFlight", "download"}
 
@@ -92,6 +95,17 @@ def primary_link(app: dict):
     return app.get("page") or links.get("website") or links.get("github")
 
 
+def offers_contact(app: dict) -> bool:
+    """True when the app should offer a link out to its support page.
+
+    An app whose page already carries its support details does not need a
+    second link out of it: the reader would press Contact and land on the
+    same words a scroll away.  The standalone support page stays published
+    either way, because App Store Connect records point at its URL.
+    """
+    return bool(app.get("support")) and not app.get("supportInline")
+
+
 def card(app: dict, provider_token) -> str:
     primary = primary_link(app)
     actions = [v for v in app["availability"].values() if v["url"]]
@@ -117,7 +131,7 @@ def card(app: dict, provider_token) -> str:
     out.append("  </div>")
     out.append(f'  <p>{gap(app["tagline"])}</p>')
     out.append(f'  <span class="status status-{attr(app["status"])}">{gap(app["statusText"])}</span>')
-    if chosen or app.get("support"):
+    if chosen or offers_contact(app):
         out.append('  <div class="card-links">')
         if chosen:
             label = {"website": "Visit website", "source": "View public source", "download": "Download Mac beta", "testFlight": "Open TestFlight beta", "appStore": "Open App Store listing"}[chosen["channel"]]
@@ -127,7 +141,7 @@ def card(app: dict, provider_token) -> str:
             mark = badge(chosen["channel"], url, app["slug"], provider_token, None)
             out.append(f'    {mark}' if mark
                        else f'    <a href="{attr(url)}" rel="noopener">{label}<span aria-hidden="true"> ↗</span></a>')
-        if app.get("support"):
+        if offers_contact(app):
             out.append(f'    <a href="{attr(app["support"])}">Contact</a>')
         out.append("  </div>")
     out.append("</li>")
@@ -229,19 +243,26 @@ def availability_region(app: dict, provider_token=None) -> str:
             mark = badge(fact["channel"], url, app["slug"], provider_token, platform)
             label = mark or f'<a href="{attr(url)}" rel="noopener">{label}<span aria-hidden="true"> ↗</span></a>'
         rows.append(f'    <li><strong>{gap(platform)}</strong><span>{label}</span></li>')
-    rows += ['  </ul>', '  <div class="btn-row">']
+    rows.append('  </ul>')
+    buttons = []
     website = app["links"].get("website")
     if website and website not in linked:
-        rows.append(f'    <a class="btn btn-primary" href="{attr(website)}">Visit website</a>')
-    if app.get("support"):
-        rows.append(f'    <a class="btn btn-secondary" href="{attr(app["support"])}">Contact</a>')
-    rows += ['  </div>', '</section>']
+        buttons.append(f'    <a class="btn btn-primary" href="{attr(website)}">Visit website</a>')
+    if offers_contact(app):
+        buttons.append(f'    <a class="btn btn-secondary" href="{attr(app["support"])}">Contact</a>')
+    # An app with no website and no Contact link has no buttons at all, so the
+    # row goes with them rather than shipping an empty div.
+    if buttons:
+        rows.append('  <div class="btn-row">')
+        rows += buttons
+        rows.append('  </div>')
+    rows.append('</section>')
     return "\n".join(rows)
 
 
 HEADER = """<header class="site-header">
   <div class="wrap">
-    <a class="wordmark" href="/" aria-label="Simple With Us - Jay Wedgeworth home"><picture><source media="(prefers-color-scheme: dark)" srcset="/assets/logos/swu-wordmark-dark.webp" type="image/webp"><source media="(prefers-color-scheme: dark)" srcset="/assets/logos/swu-wordmark-dark-2x.webp" type="image/webp" sizes="480px"><img src="/assets/logos/swu-wordmark-light.webp" srcset="/assets/logos/swu-wordmark-light-2x.webp" type="image/webp" sizes="480px" alt="Simple With Us - Jay Wedgeworth" width="288" height="30" decoding="async"></picture></a>
+    <a class="wordmark" href="/" aria-label="Simple With Us - Jay Wedgeworth home"><picture><source media="(prefers-color-scheme: dark)" srcset="/assets/logos/swu-wordmark-dark.webp 1x, /assets/logos/swu-wordmark-dark-2x.webp 2x" type="image/webp"><img src="/assets/logos/swu-wordmark-light.webp" srcset="/assets/logos/swu-wordmark-light.webp 1x, /assets/logos/swu-wordmark-light-2x.webp 2x" alt="Simple With Us - Jay Wedgeworth" width="480" height="50" decoding="async"></picture></a>
     <nav class="site-nav" aria-label="Primary">
       <a href="/#apps">Apps</a><a href="/#status">Status</a><a href="/support.html">Contact</a>
     </nav>
@@ -294,6 +315,58 @@ class Links(HTMLParser):
     def handle_starttag(self, tag, attrs):
         if tag == "a":
             self.hrefs += [value for key, value in attrs if key == "href" and value]
+
+
+class AssetRefs(HTMLParser):
+    """Every local file a page pulls in: images, sources, icons, stylesheets.
+
+    An anchor href can be a page, so a missing one is a dead link and the
+    existing check covers it.  An image src is a file, and a missing one is
+    a broken image that still renders a page: the header wordmark vanished in
+    dark mode on every page because its 1x source was never in the repo.
+    """
+
+    def __init__(self):
+        super().__init__()
+        self.refs = []
+
+    def handle_starttag(self, tag, attrs):
+        values = dict(attrs)
+        for key in ("src", "srcset"):
+            if values.get(key):
+                self.refs += _srcset_urls(values[key])
+        if tag == "link" and values.get("href"):
+            self.refs.append(values["href"])
+
+
+def _srcset_urls(value: str) -> list:
+    """The URLs in a srcset, which may carry a width or density descriptor."""
+    urls = []
+    for candidate in value.split(","):
+        candidate = candidate.strip()
+        if not candidate:
+            continue
+        urls.append(candidate.split()[0])
+    return urls
+
+
+def local_asset_refs(page: str) -> list:
+    """The local file paths a page references, without duplicates."""
+    parsed = AssetRefs()
+    parsed.feed(page)
+    refs = set()
+    for ref in parsed.refs:
+        if not ref.startswith("/") or ref.startswith("//"):
+            continue
+        path = ref.split("#")[0].split("?")[0]
+        if path:
+            refs.add(path)
+    return sorted(refs)
+
+
+def missing_local_assets(page: str) -> list:
+    """The local files a page references that are not in the repo."""
+    return [ref for ref in local_asset_refs(page) if not (ROOT / ref.lstrip("/")).is_file()]
 
 
 def lint(data: dict) -> list:
@@ -352,8 +425,17 @@ def lint(data: dict) -> list:
             errors.append(f"{slug}: needs at least one of page, links.website, links.github")
         if app.get("page"):
             page = ROOT / app["page"].lstrip("/") / "index.html"
-            if "<!-- catalog:availability:start -->" not in page.read_text():
+            text = page.read_text()
+            if "<!-- catalog:availability:start -->" not in text:
                 errors.append(f"{slug}: detail page lacks generated availability region")
+            # An inline support section and the Contact link it replaced have to
+            # agree: otherwise the reader either gets a link back to the page
+            # they are already on, or a page with no way to ask for help.
+            inline = "<!-- catalog:support:start -->" in text
+            if inline and not app.get("supportInline"):
+                errors.append(f"{slug}: detail page carries an inline support section but supportInline is not set")
+            if app.get("supportInline") and not inline:
+                errors.append(f"{slug}: supportInline is set but the detail page has no inline support section")
     for page in (p for p in ROOT.rglob("*.html") if "_template" not in p.parts and ".git" not in p.parts):
         parsed = Links()
         parsed.feed(page.read_text())
@@ -361,7 +443,9 @@ def lint(data: dict) -> list:
             if any(private in href for private in PRIVATE_DESTINATIONS):
                 errors.append(f"{page.relative_to(ROOT)}: private repository destination")
             target = urlsplit(href)
-            if target.hostname == "github.com" and (target.path.startswith("/jaywedgeworth22/") or target.path.startswith("/Simple-With-Us/")):
+            if target.hostname == "github.com" and target.path.startswith("/jaywedgeworth22/"):
+                errors.append(f"{page.relative_to(ROOT)}: stale jaywedgeworth22 GitHub link (use Simple-With-Us org)")
+            if target.hostname == "github.com" and target.path.startswith("/Simple-With-Us/"):
                 repo = target.path.strip("/").split("/")[1]
                 allowed = {name.lower() for name in PUBLIC_SOURCE_REPOS | {"Simple-With-Us"}}
                 if repo.lower() not in allowed:
@@ -370,6 +454,8 @@ def lint(data: dict) -> list:
                 errors.append(f"{page.relative_to(ROOT)}: generic store destination")
             if href.startswith("/") and not href.startswith("//") and not exists(href.split("#")[0].split("?")[0]):
                 errors.append(f"{page.relative_to(ROOT)}: missing local destination {href}")
+        for ref in missing_local_assets(page.read_text()):
+            errors.append(f"{page.relative_to(ROOT)}: missing local asset {ref}")
     for img in ROOT.rglob("*"):
         rel = img.relative_to(ROOT).as_posix()
         if rel.startswith(".git/") or img.suffix.lower() not in IMAGE_EXTS or not img.is_file():

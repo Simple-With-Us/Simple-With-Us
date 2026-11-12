@@ -11,19 +11,18 @@ Last re-derived: 2026-10-03.
 
 | Slug | Canonical master |
 | --- | --- |
-| `codecaps.png` | `jaywedgeworth22/CodeCaps` — `assets/icon-1024.png` |
-| `usage-client.png` | `jaywedgeworth22/Usage-Monitor` — `ios/UsageMonitor/App/Assets.xcassets/AppIcon.appiconset/AppIcon-1024.png` |
-| `usage-local.png` | `jaywedgeworth22/Usage-Monitor` — `ios/UsageMonitor/LocalApp/Assets.xcassets/AppIcon.appiconset/AppIcon-1024.png` |
+| `usage-client.png` | `Simple-With-Us/Usage-Monitor` — `ios/UsageMonitor/App/Assets.xcassets/AppIcon.appiconset/AppIcon-1024.png` |
+| `usage-local.png` | `Simple-With-Us/Usage-Monitor` — `ios/UsageMonitor/LocalApp/Assets.xcassets/AppIcon.appiconset/AppIcon-1024.png` |
 | `clutch.png` | `Simple-With-Us/Clutch` — `ios/Assets.xcassets/AppIcon.appiconset/icon-1024.png` |
-| `botfleet.png` | `jaywedgeworth22/BotFleet` — `ios/App/Assets.xcassets/AppIcon.appiconset/icon-1024.png` |
-| `socratic-trade.png` | `jaywedgeworth22/Socratic-Trade` — `ios/SocraticTrade/Assets.xcassets/AppIcon.appiconset/AppIcon-1024.png` |
+| `botfleet.png` | `Simple-With-Us/BotFleet` — `ios/App/Assets.xcassets/AppIcon.appiconset/icon-1024.png` |
+| `socratic-trade.png` | `Simple-With-Us/Socratic-Trade` — `ios/SocraticTrade/Assets.xcassets/AppIcon.appiconset/AppIcon-1024.png` |
 | `socratic-trade.svg` | Byte-identical copy of the fleet mirror `agent-logos/app-st.svg`.  It has no vector counterpart in the Socratic Trade repo, so it is a mirror, not an app master. |
-| `congress-trade.png` | `jaywedgeworth22/Congress.Trade` — `clients/ios/CongressTrade/Assets.xcassets/AppIcon.appiconset/AppIcon.png` |
-| `hoghunter.png` | `jaywedgeworth22/HogHunter` — `ios/Assets.xcassets/AppIcon.appiconset/AppIcon-1024.png` |
-| `contactlogo.png` | `jaywedgeworth22/ContactLogo` — `Apps/ContactLogoiOS/Assets.xcassets/AppIcon.appiconset/icon_1024x1024.png` |
-| `dealdex.png` | `jaywedgeworth22/DealDex` — `native/ios/DealDex/Assets.xcassets/AppIcon.appiconset/Icon-1024.png` |
-| `autorotate.png` | `jaywedgeworth22/Autorotate` — `apple/TopSpin-iOS/Assets.xcassets/AppIcon.appiconset/AppIcon-1024.png` |
-| `fleetlink.png` | `jaywedgeworth22/FleetLink` — `ios/Assets.xcassets/AppIcon.appiconset/icon-1024.png` |
+| `congress-trade.png` | `Simple-With-Us/Congress.Trade` — `clients/ios/CongressTrade/Assets.xcassets/AppIcon.appiconset/AppIcon.png` |
+| `hoghunter.png` | `Simple-With-Us/HogHunter` — `ios/Assets.xcassets/AppIcon.appiconset/AppIcon-1024.png` |
+| `contactlogo.png` | `Simple-With-Us/ContactLogo` — `Apps/ContactLogoiOS/Assets.xcassets/AppIcon.appiconset/icon_1024x1024.png` |
+| `dealdex.png` | `Simple-With-Us/DealDex` — `native/ios/DealDex/Assets.xcassets/AppIcon.appiconset/Icon-1024.png` |
+| `autorotate.png` | `Simple-With-Us/Autorotate` — `apple/TopSpin-iOS/Assets.xcassets/AppIcon.appiconset/AppIcon-1024.png` |
+| `fleetlink.png` | `Simple-With-Us/FleetLink` — `ios/Assets.xcassets/AppIcon.appiconset/icon-1024.png` |
 
 ## Third-party marks in `assets/badges/`
 
@@ -45,6 +44,14 @@ files (`ar.png`, `bf.png`, and so on) predate the 200 KB image budget and are
 slated for removal once every page uses the slug-named icons.
 
 ## Change log
+
+2026-10-22: The CodeCaps catalog icon is the transparent ring mark now:
+`assets/logos/codecaps-logo-transparent.svg`, taken from
+`Simple-With-Us/CodeCaps` — `assets/brand/codecaps-logo-transparent.svg`
+(owner-supplied vector art, unaltered), so the catalog serves the mark at any
+size.  The 128 px `codecaps.png` downscale is gone with it.  The mark's needle
+and its six gauge dots are #222325, drawn for a light surface, so the
+stylesheet gives it a light plate in dark mode.
 
 2026-10-18: Rebuilt the Simple With Us brand set in `assets/logos/` from Jay's
 master art.  The header now serves WebP through a `<picture>`, so the dark
@@ -118,5 +125,5 @@ signature.
 Client and Usage Local use their respective native app icons.
 
 2026-09-25: Initial import from the fleet logo set.  The CodeCaps icon then
-named `assets/icon-512.png` in `jaywedgeworth22/CodeCaps`; that file no longer
+named `assets/icon-512.png` in `Simple-With-Us/CodeCaps`; that file no longer
 exists, which is why the 2026-10-03 pass points at `assets/icon-1024.png`.

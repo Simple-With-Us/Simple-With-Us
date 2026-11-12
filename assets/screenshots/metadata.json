@@ -5,7 +5,7 @@
       "width": 1140,
       "height": 1182,
       "alt": "CodeCaps menu bar view showing supported provider quotas and reset countdowns",
-      "caption": ""
+      "caption": "Quotas, reset windows, and pacing in the menu bar view."
     },
     {
       "src": "/assets/screenshots/codecaps/runaway-alerts.webp",
@@ -25,7 +25,7 @@
       "src": "/assets/screenshots/codecaps/pip-black.webp",
       "width": 860,
       "height": 460,
-      "alt": "CodeCaps floating PiP window with provider logos, quota meters, and reset countdowns",
+      "alt": "CodeCaps floating window with provider logos, quota meters, and reset countdowns",
       "caption": ""
     },
     {
@@ -33,7 +33,7 @@
       "width": 1140,
       "height": 1182,
       "alt": "CodeCaps optional Fleet view showing quota readings from configured Macs",
-      "caption": ""
+      "caption": "Combine readings from configured Macs in the optional Fleet view."
     }
   ],
   "usage-client": [
@@ -41,14 +41,14 @@
       "src": "/assets/screenshots/usage-client/dashboard.webp",
       "width": 1280,
       "height": 2781,
-      "alt": "Usage Client dashboard with real-time model quota tracking",
+      "alt": "Usage Monitor Client dashboard with real-time model quota tracking",
       "caption": "Real-time AI model quota and usage monitoring on iPhone."
     },
     {
       "src": "/assets/screenshots/usage-client/alerts.webp",
       "width": 1280,
       "height": 2781,
-      "alt": "Usage Client quota alerts and thresholds",
+      "alt": "Usage Monitor Client quota alerts and thresholds",
       "caption": "Configurable usage alerts and rate-limit threshold warnings."
     }
   ],
@@ -57,14 +57,14 @@
       "src": "/assets/screenshots/usage-local/overview.webp",
       "width": 1280,
       "height": 2781,
-      "alt": "Usage Local Monitor overview with on-device subscription costs",
+      "alt": "Usage Monitor Local overview with on-device subscription costs",
       "caption": "On-device subscription cost tracking and quota monitoring."
     },
     {
       "src": "/assets/screenshots/usage-local/providers.webp",
       "width": 1280,
       "height": 2781,
-      "alt": "Usage Local Monitor provider breakdown",
+      "alt": "Usage Monitor Local provider breakdown",
       "caption": "Detailed usage breakdown across supported AI providers."
     }
   ],
@@ -173,11 +173,18 @@
   ],
   "fleetlink": [
     {
-      "src": "/assets/screenshots/fleetlink/preview-locked.webp",
+      "src": "/assets/screenshots/fleetlink/landing-hero.webp",
       "width": 1280,
-      "height": 714,
-      "alt": "FleetLink passphrase protection",
-      "caption": "Client-side passphrase encryption protecting shared payloads."
+      "height": 800,
+      "alt": "FleetLink dashboard listing live shares with their owner, team, and expiry",
+      "caption": "Every share carries its owner, its team, and the day it expires."
+    },
+    {
+      "src": "/assets/screenshots/fleetlink/handoff.webp",
+      "width": 1280,
+      "height": 800,
+      "alt": "FleetLink handoff steps showing the fleet-share command and a share link",
+      "caption": "One command publishes the share; the link goes where the work is."
     }
   ],
   "hoghunter": [
@@ -187,6 +194,15 @@
       "height": 2781,
       "alt": "HogHunter iOS companion inspecting Mac resource usage",
       "caption": "HogHunter companion on iPhone monitoring Mac resource usage over local Wi-Fi."
+    }
+  ],
+  "dealdex": [
+    {
+      "src": "/assets/screenshots/dealdex/scan-results.webp",
+      "width": 1280,
+      "height": 800,
+      "alt": "DealDex market scan with live Mercari listings, verdicts, and desk ranges",
+      "caption": "A live scan comparing listing asks against market references."
     }
   ]
 }

@@ -11,20 +11,21 @@
   <meta property="og:title" content="FleetLink — Simple With Us" />
   <meta property="og:description" content="Share files, previews, and small static sites through links that expire on a schedule." />
   <meta property="og:url" content="https://simplewithus.com/fleetlink/" />
-  <meta name="theme-color" content="#1a1a2e" />
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b0e14" media="(prefers-color-scheme: dark)">
   <link rel="icon" href="/assets/logos/swu-favicon-32-light.webp" type="image/webp" media="(prefers-color-scheme: light)">
   <link rel="icon" href="/assets/logos/swu-favicon-32-dark.webp" type="image/webp" media="(prefers-color-scheme: dark)">
   <link rel="apple-touch-icon" media="(prefers-color-scheme: light)" href="/assets/logos/swu-favicon-180-light.webp">
   <link rel="apple-touch-icon" media="(prefers-color-scheme: dark)" href="/assets/logos/swu-favicon-180-dark.webp">
   <link rel="mask-icon" href="/assets/favicon.svg" color="#36c6f4">
-  <link rel="stylesheet" href="/assets/site.css?v=c8297fac17e2" />
+  <link rel="stylesheet" href="/assets/site.css?v=751aceef665a" />
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
 
 <header class="site-header">
   <div class="wrap">
-    <a class="wordmark" href="/" aria-label="Simple With Us - Jay Wedgeworth home"><picture><source media="(prefers-color-scheme: dark)" srcset="/assets/logos/swu-wordmark-dark.webp" type="image/webp"><source media="(prefers-color-scheme: dark)" srcset="/assets/logos/swu-wordmark-dark-2x.webp" type="image/webp" sizes="480px"><img src="/assets/logos/swu-wordmark-light.webp" srcset="/assets/logos/swu-wordmark-light-2x.webp" type="image/webp" sizes="480px" alt="Simple With Us - Jay Wedgeworth" width="288" height="30" decoding="async"></picture></a>
+    <a class="wordmark" href="/" aria-label="Simple With Us - Jay Wedgeworth home"><picture><source media="(prefers-color-scheme: dark)" srcset="/assets/logos/swu-wordmark-dark.webp 1x, /assets/logos/swu-wordmark-dark-2x.webp 2x" type="image/webp"><img src="/assets/logos/swu-wordmark-light.webp" srcset="/assets/logos/swu-wordmark-light.webp 1x, /assets/logos/swu-wordmark-light-2x.webp 2x" alt="Simple With Us - Jay Wedgeworth" width="480" height="50" decoding="async"></picture></a>
     <nav class="site-nav" aria-label="Primary">
       <a href="/#apps">Apps</a><a href="/#status">Status</a><a href="/support.html">Contact</a>
     </nav>
@@ -44,7 +45,7 @@
 <section class="availability" aria-labelledby="availability-title">
   <h2 id="availability-title">Availability</h2>
   <ul class="availability-list">
-    <li><strong>iOS</strong><span>App Clip not installable yet</span></li>
+    <li><strong>iOS</strong><span>Not available to install yet</span></li>
     <li><strong>Web</strong><span><a href="https://fleetlink.online/" rel="noopener">Web app<span aria-hidden="true"> ↗</span></a></span></li>
   </ul>
   <div class="btn-row">
@@ -53,32 +54,36 @@
 </section>
   <!-- catalog:availability:end -->
 
-  <h2>What FleetLink Does</h2>
+  <h2>What FleetLink does</h2>
   <p>FleetLink publishes a file, a folder of files, or a small static site to a share link.&nbsp; Markdown, images, source files, and HTML previews open in the browser, and a folder that contains an index file is served as a working site.</p>
 
-  <h2>What You Can Do</h2>
+  <h2>What you can do</h2>
   <ul>
     <li>Preview in the browser.&nbsp; Markdown, images, HTML widgets, and source code render without a separate download step.</li>
     <li>Browse a set of files.&nbsp; A multi-file upload gets a clean directory index with a file-type icon per entry.</li>
     <li>Control the link.&nbsp; Expiry is set when you upload, and a share can be password protected or updated in place.</li>
   </ul>
 
-  <h2>iPhone Availability</h2>
-  <p>The native iOS parent app and embedded App Clip are currently in active TestFlight beta testing.&nbsp; The web app at <a href="https://fleetlink.online/">fleetlink.online</a> is fully available today.</p>
+  <h2>On iPhone</h2>
+  <p>The iPhone app is not available to install yet.  The web app at <a href="https://fleetlink.online/">fleetlink.online</a> is available.</p>
 
-  <h2>Scope and Data</h2>
+  <h2>Scope and data</h2>
   <p>Opening a share needs no account.&nbsp; Uploading needs a token, and a share you protect with a password stays behind that password until it expires.</p>
   <p>See the <a href="support.html">product support page</a> and <a href="/fleetlink/privacy.html">privacy notice</a> for more detail.</p>
 
-  <h2>Getting Started</h2>
+  <h2>Getting started</h2>
   <p>Open the web app to upload a share, or read the project README for self-hosting notes.</p>
 
   <section class="screenshots" aria-labelledby="screenshots-title">
     <h2 id="screenshots-title">Screenshots</h2>
     <div class="screenshot-grid">
       <figure class="screenshot-card">
-        <img src="/assets/screenshots/fleetlink/preview-locked.webp" alt="FleetLink passphrase protection" width="1280" height="714" loading="lazy" decoding="async">
-        <figcaption>Client-side passphrase encryption protecting shared payloads.</figcaption>
+        <img src="/assets/screenshots/fleetlink/landing-hero.webp" alt="FleetLink dashboard listing live shares with their owner, team, and expiry" width="1280" height="800" loading="lazy" decoding="async">
+        <figcaption>Every share carries its owner, its team, and the day it expires.</figcaption>
+      </figure>
+      <figure class="screenshot-card">
+        <img src="/assets/screenshots/fleetlink/handoff.webp" alt="FleetLink handoff steps showing the fleet-share command and a share link" width="1280" height="800" loading="lazy" decoding="async">
+        <figcaption>One command publishes the share; the link goes where the work is.</figcaption>
       </figure>
     </div>
   </section>

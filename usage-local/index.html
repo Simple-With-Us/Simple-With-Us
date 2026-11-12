@@ -3,28 +3,29 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Usage Local Monitor — Simple With Us</title>
+  <title>Usage Monitor Local — Simple With Us</title>
   <meta name="description" content="Track supported provider usage and manual subscription costs on iPhone." />
 
   <link rel="canonical" href="https://simplewithus.com/usage-local/" />
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Usage Local Monitor — Simple With Us" />
+  <meta property="og:title" content="Usage Monitor Local — Simple With Us" />
   <meta property="og:description" content="Track supported provider usage and manual subscription costs on iPhone." />
   <meta property="og:url" content="https://simplewithus.com/usage-local/" />
-  <meta name="theme-color" content="#1a1a2e" />
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b0e14" media="(prefers-color-scheme: dark)">
   <link rel="icon" href="/assets/logos/swu-favicon-32-light.webp" type="image/webp" media="(prefers-color-scheme: light)">
   <link rel="icon" href="/assets/logos/swu-favicon-32-dark.webp" type="image/webp" media="(prefers-color-scheme: dark)">
   <link rel="apple-touch-icon" media="(prefers-color-scheme: light)" href="/assets/logos/swu-favicon-180-light.webp">
   <link rel="apple-touch-icon" media="(prefers-color-scheme: dark)" href="/assets/logos/swu-favicon-180-dark.webp">
   <link rel="mask-icon" href="/assets/favicon.svg" color="#36c6f4">
-  <link rel="stylesheet" href="/assets/site.css?v=c8297fac17e2" />
+  <link rel="stylesheet" href="/assets/site.css?v=751aceef665a" />
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
 
 <header class="site-header">
   <div class="wrap">
-    <a class="wordmark" href="/" aria-label="Simple With Us - Jay Wedgeworth home"><picture><source media="(prefers-color-scheme: dark)" srcset="/assets/logos/swu-wordmark-dark.webp" type="image/webp"><source media="(prefers-color-scheme: dark)" srcset="/assets/logos/swu-wordmark-dark-2x.webp" type="image/webp" sizes="480px"><img src="/assets/logos/swu-wordmark-light.webp" srcset="/assets/logos/swu-wordmark-light-2x.webp" type="image/webp" sizes="480px" alt="Simple With Us - Jay Wedgeworth" width="288" height="30" decoding="async"></picture></a>
+    <a class="wordmark" href="/" aria-label="Simple With Us - Jay Wedgeworth home"><picture><source media="(prefers-color-scheme: dark)" srcset="/assets/logos/swu-wordmark-dark.webp 1x, /assets/logos/swu-wordmark-dark-2x.webp 2x" type="image/webp"><img src="/assets/logos/swu-wordmark-light.webp" srcset="/assets/logos/swu-wordmark-light.webp 1x, /assets/logos/swu-wordmark-light-2x.webp 2x" alt="Simple With Us - Jay Wedgeworth" width="480" height="50" decoding="async"></picture></a>
     <nav class="site-nav" aria-label="Primary">
       <a href="/#apps">Apps</a><a href="/#status">Status</a><a href="/support.html">Contact</a>
     </nav>
@@ -35,7 +36,7 @@
 <!-- catalog:identity:start -->
 <div class="app-identity">
     <img class="app-icon" src="/assets/app-icons/usage-local.png" alt="" width="80" height="80">
-    <h1>Usage Local Monitor</h1>
+    <h1>Usage Monitor Local</h1>
   </div><!-- catalog:identity:end -->
   <p class="lede">Track subscriptions and supported provider usage on your iPhone, without setting up a Usage Monitor server.</p>
   <!-- catalog:availability:start -->
@@ -44,9 +45,6 @@
   <ul class="availability-list">
     <li><strong>iOS</strong><span><a class="badge" href="https://testflight.apple.com/join/KJKdwYJf" rel="noopener" aria-label="Join the beta on Apple TestFlight"><span class="badge-tile"><img src="/assets/badges/testflight-icon.png" alt="" width="30" height="30"></span><span class="badge-lines"><span class="badge-l1">Join the beta on</span><span class="badge-l2">Apple TestFlight</span></span></a></span></li>
   </ul>
-  <div class="btn-row">
-    <a class="btn btn-secondary" href="/usage-local/support.html">Contact</a>
-  </div>
 </section>
   <!-- catalog:availability:end -->
   <h2>What you can do</h2>
@@ -57,23 +55,31 @@
   </ul>
   <h2>Scope and data</h2>
   <p>The app does not require the Usage Monitor server.&nbsp; Direct polling needs network access and provider credentials for the chosen adapters.</p>
-  <p>See the <a href="support.html">product support page</a> and <a href="/privacy.html">privacy notice</a> for more detail.</p>
+  <p>See the support section below and the <a href="/privacy.html">privacy notice</a> for more detail.</p>
+  <!-- catalog:support:start -->
+  <h2>Support</h2>
+  <p>For a missing reading, note the provider adapter, last refresh time, and whether you entered a manual subscription row.</p>
+  <ul>
+    <li><strong>Before you write.</strong> Direct polling uses provider credentials from iOS Keychain and makes network requests to supported services.&nbsp; Subscription rows may need manual updates.</li>
+    <li><strong>Contact.</strong> Write to <a href="mailto:contact@simplewithus.com?subject=usage-local%20support">contact@simplewithus.com</a> with your iPhone version and steps to reproduce.&nbsp; Leave out passwords, API keys, personal contact data, and private logs.</li>
+  </ul>
+  <!-- catalog:support:end -->
 
   <section class="screenshots" aria-labelledby="screenshots-title">
     <h2 id="screenshots-title">Screenshots</h2>
     <div class="screenshot-grid">
       <figure class="screenshot-card">
-        <img src="/assets/screenshots/usage-local/overview.webp" alt="Usage Local Monitor overview with on-device subscription costs" width="1280" height="2781" loading="lazy" decoding="async">
+        <img src="/assets/screenshots/usage-local/overview.webp" alt="Usage Monitor Local overview with on-device subscription costs" width="1280" height="2781" loading="lazy" decoding="async">
         <figcaption>On-device subscription cost tracking and quota monitoring.</figcaption>
       </figure>
       <figure class="screenshot-card">
-        <img src="/assets/screenshots/usage-local/providers.webp" alt="Usage Local Monitor provider breakdown" width="1280" height="2781" loading="lazy" decoding="async">
+        <img src="/assets/screenshots/usage-local/providers.webp" alt="Usage Monitor Local provider breakdown" width="1280" height="2781" loading="lazy" decoding="async">
         <figcaption>Detailed usage breakdown across supported AI providers.</figcaption>
       </figure>
     </div>
   </section>
 
-  <p class="source-credit">Source: <a href="https://github.com/Simple-With-Us/Usage-Monitor" rel="noopener">Usage Local Monitor on GitHub</a>.</p>
+  <p class="source-credit">Source: <a href="https://github.com/Simple-With-Us/Usage-Monitor" rel="noopener">Usage Monitor Local on GitHub</a>.</p>
 </main>
 
 <footer class="site-footer">

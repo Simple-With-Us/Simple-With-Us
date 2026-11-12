@@ -82,6 +82,33 @@ def _matches(selector: str, chain: list) -> bool:
     return True
 
 
+def _share_card_problems(page: str) -> list:
+    """What is wrong with the share card a page declares, if anything.
+
+    A page that declares no og:image is not a problem here: only the apps
+    whose own site already publishes a card get one, and that set grows
+    when an app publishes a card, not when the catalog invents one.
+    """
+    problems = []
+    image = re.search(r'<meta property="og:image" content="([^"]+)"', page)
+    if not image:
+        return problems
+    url = image.group(1)
+    if not url.startswith("https://"):
+        problems.append(f"og:image must be an absolute https URL: {url}")
+    for name, value in (("og:image:width", "1200"), ("og:image:height", "630")):
+        match = re.search(rf'<meta property="{name}" content="([^"]+)"', page)
+        if not match:
+            problems.append(f"{name} is missing")
+        elif match.group(1) != value:
+            problems.append(f"{name} is {match.group(1)}, not {value}")
+    if not re.search(r'<meta property="og:image:alt" content="[^"]+"', page):
+        problems.append("og:image:alt is missing")
+    if not re.search(r'<meta name="twitter:card" content="summary_large_image"', page):
+        problems.append("twitter:card is not summary_large_image")
+    return problems
+
+
 class CatalogContractTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
@@ -103,12 +130,67 @@ class CatalogContractTests(unittest.TestCase):
 
     def test_header_uses_full_owner_lockup(self):
         self.assertIn('/assets/logos/swu-wordmark-light.webp', catalog.HEADER)
-        # The dark wordmark has to ship in the same <picture>, or the grey WITH vanishes on a dark page.
-        self.assertIn('<source media="(prefers-color-scheme: dark)" srcset="/assets/logos/swu-wordmark-dark.webp" type="image/webp">', catalog.HEADER)
+        # Density descriptors, or the browser keeps the 1x file and the lockup
+        # is soft at the header's display size.  The dark file still has to be
+        # in this <picture>, or the grey WITH vanishes on a dark page.
+        self.assertIn('srcset="/assets/logos/swu-wordmark-dark.webp 1x, /assets/logos/swu-wordmark-dark-2x.webp 2x"', catalog.HEADER)
+        self.assertIn('srcset="/assets/logos/swu-wordmark-light.webp 1x, /assets/logos/swu-wordmark-light-2x.webp 2x"', catalog.HEADER)
         self.assertIn('alt="Simple With Us - Jay Wedgeworth"', catalog.HEADER)
         # aria-label overrides the image alt in the accessible name, so it has to carry the signature too.
         self.assertIn('class="wordmark" href="/" aria-label="Simple With Us - Jay Wedgeworth home"', catalog.HEADER)
         self.assertNotIn('swu-wordmark.webp', catalog.HEADER)
+
+    def test_theme_color_matches_the_page_background(self):
+        """Browser chrome follows the page, in both appearances."""
+        for path in sorted(catalog.ROOT.rglob("*.html")):
+            if "_template" in path.parts or ".git" in path.parts:
+                continue
+            text = path.read_text()
+            with self.subTest(page=str(path.relative_to(catalog.ROOT))):
+                self.assertNotIn("#1a1a2e", text)
+                self.assertIn('name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)"', text)
+                self.assertIn('name="theme-color" content="#0b0e14" media="(prefers-color-scheme: dark)"', text)
+
+    def test_every_local_asset_a_page_pulls_in_exists(self):
+        """A referenced file that is not in the repo is a broken image.
+
+        The header markup has always named the dark wordmark, and the markup
+        test above has always passed, but the 1x file was never in the repo:
+        dark mode showed a broken-image icon and the alt text on every page.
+        Asserting the markup cannot catch that, so assert the files.
+        """
+        missing = []
+        for path in sorted(catalog.ROOT.rglob("*.html")):
+            if ".git" in path.parts:
+                continue
+            for ref in catalog.missing_local_assets(path.read_text()):
+                missing.append(f"{path.relative_to(catalog.ROOT)}: {ref}")
+        self.assertEqual([], missing, "these pages reference files that are not in the repo")
+
+    def test_the_asset_check_reports_a_file_that_is_not_there(self):
+        """The check above is only worth having if it can still fail.
+
+        A detector that finds nothing is indistinguishable from a detector
+        that is not looking, so give it a page with a file that cannot exist
+        and require the name back.
+        """
+        page = '<picture><source srcset="/assets/logos/not-a-real-file.webp" type="image/webp">'
+        page += '<img src="/assets/logos/also-not-real.webp" alt=""></picture>'
+        missing = catalog.missing_local_assets(page)
+        self.assertIn("/assets/logos/not-a-real-file.webp", missing)
+        self.assertIn("/assets/logos/also-not-real.webp", missing)
+        # A file that does exist must not be reported.
+        self.assertEqual([], catalog.missing_local_assets('<img src="/assets/site.css" alt="">'))
+        # A srcset carries a width descriptor; the descriptor is not the path.
+        self.assertEqual(
+            [],
+            catalog.missing_local_assets('<img srcset="/assets/site.css 480w" alt="">'),
+        )
+        # External and data URLs are not repo files, so they are not this check's business.
+        self.assertEqual(
+            [],
+            catalog.missing_local_assets('<img src="https://example.com/logo.png" alt="">'),
+        )
 
     def test_every_page_ships_the_light_and_dark_favicon_pair(self):
         """The favicon is the one asset that breaks where nobody looks at it.
@@ -184,7 +266,7 @@ class CatalogContractTests(unittest.TestCase):
     def test_private_source_and_generic_invite_are_rejected(self):
         data = copy.deepcopy(self.data)
         private_app = next(app for app in data["apps"] if app["slug"] == "dealdex")
-        private_app["links"]["github"] = "https://github.com/jaywedgeworth22/Personal-Site"
+        private_app["links"]["github"] = "https://github.com/Simple-With-Us/Personal-Site"
         botfleet = next(app for app in data["apps"] if app["slug"] == "botfleet")
         botfleet["availability"]["iOS"]["url"] = "https://testflight.apple.com/"
         errors = catalog.lint(data)
@@ -398,6 +480,149 @@ class CatalogContractTests(unittest.TestCase):
                     seen.add(part)
         self.assertTrue(seen, "no badge markup found to check")
         self.assertEqual(set(), seen - covered, "these badge parts are not covered by the plate-colour rule")
+
+    def test_every_declared_share_card_is_complete(self):
+        """A share card that is missing its size or its alt text is a bad card.
+
+        The platform reads og:image, then og:image:width and og:image:height
+        to lay the preview out, and og:image:alt for the text under it.  A
+        page that names a card and forgets the rest still renders, so the
+        omission is silent.
+        """
+        declared = 0
+        for path in sorted(catalog.ROOT.rglob("*.html")):
+            if ".git" in path.parts:
+                continue
+            page = path.read_text()
+            with self.subTest(page=str(path.relative_to(catalog.ROOT))):
+                self.assertEqual([], _share_card_problems(page))
+            if 'property="og:image"' in page:
+                declared += 1
+        self.assertGreater(declared, 0, "no page declares a share card")
+
+    def test_an_app_with_a_card_keeps_it_on_its_page(self):
+        """The card an app publishes on its own site belongs on its page.
+
+        Which apps have a card is data, in apps/index.json, so the set is
+        reviewable and a card cannot quietly disappear from a page.
+        """
+        data = json.loads(catalog.DATA.read_text())
+        with_card = [a for a in data["apps"] if a.get("ogImage")]
+        self.assertTrue(with_card, "no app claims a share card")
+        for app in with_card:
+            page = catalog.ROOT / app["page"].lstrip("/") / "index.html"
+            with self.subTest(app=app["slug"]):
+                self.assertTrue(page.is_file(), f"{app['slug']}: detail page is missing")
+                html = page.read_text()
+                self.assertIn(f'<meta property="og:image" content="{app["ogImage"]}"', html)
+                self.assertEqual([], _share_card_problems(html))
+
+    def test_no_page_keeps_a_card_the_data_does_not_claim(self):
+        """A card left on a page that no longer has one is stale."""
+        data = json.loads(catalog.DATA.read_text())
+        for app in data["apps"]:
+            if app.get("ogImage"):
+                continue
+            page = catalog.ROOT / app["page"].lstrip("/") / "index.html"
+            if not page.is_file():
+                continue
+            with self.subTest(app=app["slug"]):
+                self.assertIsNone(
+                    re.search(r'<meta property="og:image" content="([^"]+)"', page.read_text()),
+                    "this page declares a card that apps/index.json does not claim",
+                )
+
+    def test_the_share_card_check_catches_a_broken_card(self):
+        """The check above is only worth having if it can still fail."""
+        good = (
+            '<meta property="og:image" content="https://example.com/card.png" />'
+            '<meta property="og:image:width" content="1200" />'
+            '<meta property="og:image:height" content="630" />'
+            '<meta name="twitter:card" content="summary_large_image" />'
+            '<meta property="og:image:alt" content="Example" />'
+        )
+        self.assertEqual([], _share_card_problems(good))
+        # A card with no size and no alt text is exactly the silent failure.
+        self.assertIn(
+            "og:image:width is missing",
+            _share_card_problems('<meta property="og:image" content="https://example.com/card.png" />'),
+        )
+        self.assertIn(
+            "og:image:alt is missing",
+            _share_card_problems('<meta property="og:image" content="https://example.com/card.png" />'),
+        )
+        # A square card is not a share card, and the declared size has to say 1200 by 630.
+        square = good.replace('content="1200"', 'content="512"').replace('content="630"', 'content="512"')
+        self.assertIn("og:image:width is 512, not 1200", _share_card_problems(square))
+        # A relative path cannot be fetched by a platform crawler.
+        self.assertIn(
+            "og:image must be an absolute https URL: /card.png",
+            _share_card_problems(good.replace("https://example.com/card.png", "/card.png")),
+        )
+        # A page with no card at all is not a failure: only some apps have one.
+        self.assertEqual([], _share_card_problems('<meta property="og:title" content="Example" />'))
+
+    def test_an_app_that_carries_its_support_offers_no_contact_link(self):
+        """An app whose page carries the support details needs no Contact button.
+
+        The button sent the reader to a page with the same words, one click
+        away from where they already were.  The standalone support page stays
+        published, because App Store Connect records point at its URL.
+        """
+        inline = [a for a in self.data["apps"] if a.get("supportInline")]
+        self.assertTrue(inline, "no app claims an inline support section")
+        for app in inline:
+            with self.subTest(app=app["slug"]):
+                region = catalog.availability_region(app)
+                self.assertNotIn(">Contact</a>", region)
+                self.assertNotIn("btn-row", region)
+                self.assertTrue(app.get("support"), "the standalone support page must stay")
+                self.assertTrue((catalog.ROOT / app["support"].lstrip("/")).is_file())
+                page = (catalog.ROOT / app["page"].lstrip("/") / "index.html").read_text()
+                self.assertIn("<!-- catalog:support:start -->", page)
+                self.assertIn("<h2>Support</h2>", page)
+                # The words have to be on the page, not only a heading over them.
+                self.assertIn("contact@simplewithus.com", page)
+
+    def test_an_app_without_inline_support_still_offers_the_contact_link(self):
+        """The rule above must not take the button away from every other app."""
+        for app in self.data["apps"]:
+            if app.get("supportInline"):
+                continue
+            with self.subTest(app=app["slug"]):
+                self.assertIn(">Contact</a>", catalog.availability_region(app))
+
+    def test_the_inline_support_section_and_the_contact_link_have_to_agree(self):
+        """A page with inline support but no flag still shows a link out of itself.
+
+        Either way the reader is stranded: a link back to the page they are
+        on, or a page with no way to ask for help at all.
+        """
+        data = copy.deepcopy(self.data)
+        app = next(a for a in data["apps"] if a.get("supportInline"))
+        app.pop("supportInline")
+        self.assertTrue(any("supportInline is not set" in e for e in catalog.lint(data)))
+        # The other way round: the flag promises a section the page does not carry.
+        data = copy.deepcopy(self.data)
+        app = next(a for a in data["apps"] if a.get("supportInline"))
+        app["page"] = "/codecaps/"
+        self.assertTrue(any("no inline support section" in e for e in catalog.lint(data)))
+
+    def test_the_two_monitor_editions_carry_their_new_names(self):
+        """The editions are Usage Monitor Client and Usage Monitor Local.
+
+        The old names would otherwise survive in a title, an alt text, or the
+        privacy notice, where no generator goes looking for them.
+        """
+        names = {a["slug"]: a["name"] for a in self.data["apps"]}
+        self.assertEqual("Usage Monitor Client", names["usage-client"])
+        self.assertEqual("Usage Monitor Local", names["usage-local"])
+        stale = re.compile(r"Usage (Client|Local) Monitor")
+        for path in sorted(catalog.ROOT.rglob("*.html")):
+            if ".git" in path.parts or "_template" in path.parts:
+                continue
+            with self.subTest(page=str(path.relative_to(catalog.ROOT))):
+                self.assertIsNone(stale.search(path.read_text()), "this page still carries the old name")
 
 
 if __name__ == "__main__":
