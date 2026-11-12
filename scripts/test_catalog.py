@@ -130,12 +130,26 @@ class CatalogContractTests(unittest.TestCase):
 
     def test_header_uses_full_owner_lockup(self):
         self.assertIn('/assets/logos/swu-wordmark-light.webp', catalog.HEADER)
-        # The dark wordmark has to ship in the same <picture>, or the grey WITH vanishes on a dark page.
-        self.assertIn('<source media="(prefers-color-scheme: dark)" srcset="/assets/logos/swu-wordmark-dark.webp" type="image/webp">', catalog.HEADER)
+        # Density descriptors, or the browser keeps the 1x file and the lockup
+        # is soft at the header's display size.  The dark file still has to be
+        # in this <picture>, or the grey WITH vanishes on a dark page.
+        self.assertIn('srcset="/assets/logos/swu-wordmark-dark.webp 1x, /assets/logos/swu-wordmark-dark-2x.webp 2x"', catalog.HEADER)
+        self.assertIn('srcset="/assets/logos/swu-wordmark-light.webp 1x, /assets/logos/swu-wordmark-light-2x.webp 2x"', catalog.HEADER)
         self.assertIn('alt="Simple With Us - Jay Wedgeworth"', catalog.HEADER)
         # aria-label overrides the image alt in the accessible name, so it has to carry the signature too.
         self.assertIn('class="wordmark" href="/" aria-label="Simple With Us - Jay Wedgeworth home"', catalog.HEADER)
         self.assertNotIn('swu-wordmark.webp', catalog.HEADER)
+
+    def test_theme_color_matches_the_page_background(self):
+        """Browser chrome follows the page, in both appearances."""
+        for path in sorted(catalog.ROOT.rglob("*.html")):
+            if "_template" in path.parts or ".git" in path.parts:
+                continue
+            text = path.read_text()
+            with self.subTest(page=str(path.relative_to(catalog.ROOT))):
+                self.assertNotIn("#1a1a2e", text)
+                self.assertIn('name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)"', text)
+                self.assertIn('name="theme-color" content="#0b0e14" media="(prefers-color-scheme: dark)"', text)
 
     def test_every_local_asset_a_page_pulls_in_exists(self):
         """A referenced file that is not in the repo is a broken image.

@@ -4,27 +4,28 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>CodeCaps — Simple With Us</title>
-  <meta name="description" content="Track AI quota, detect runaway usage and anomalies, review local history, and keep selected providers in a floating PiP window." />
+  <meta name="description" content="Track AI quota, detect runaway usage and anomalies, review local history, and keep selected providers in a floating window." />
 
   <link rel="canonical" href="https://simplewithus.com/codecaps/" />
   <meta property="og:type" content="website" />
   <meta property="og:title" content="CodeCaps — Simple With Us" />
-  <meta property="og:description" content="Track AI quota, detect runaway usage and anomalies, review local history, and keep selected providers in a floating PiP window." />
+  <meta property="og:description" content="Track AI quota, detect runaway usage and anomalies, review local history, and keep selected providers in a floating window." />
   <meta property="og:url" content="https://simplewithus.com/codecaps/" />
-  <meta name="theme-color" content="#1a1a2e" />
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b0e14" media="(prefers-color-scheme: dark)">
   <link rel="icon" href="/assets/logos/swu-favicon-32-light.webp" type="image/webp" media="(prefers-color-scheme: light)">
   <link rel="icon" href="/assets/logos/swu-favicon-32-dark.webp" type="image/webp" media="(prefers-color-scheme: dark)">
   <link rel="apple-touch-icon" media="(prefers-color-scheme: light)" href="/assets/logos/swu-favicon-180-light.webp">
   <link rel="apple-touch-icon" media="(prefers-color-scheme: dark)" href="/assets/logos/swu-favicon-180-dark.webp">
   <link rel="mask-icon" href="/assets/favicon.svg" color="#36c6f4">
-  <link rel="stylesheet" href="/assets/site.css?v=116c2cac8db0" />
+  <link rel="stylesheet" href="/assets/site.css?v=751aceef665a" />
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
 
 <header class="site-header">
   <div class="wrap">
-    <a class="wordmark" href="/" aria-label="Simple With Us - Jay Wedgeworth home"><picture><source media="(prefers-color-scheme: dark)" srcset="/assets/logos/swu-wordmark-dark.webp" type="image/webp"><source media="(prefers-color-scheme: dark)" srcset="/assets/logos/swu-wordmark-dark-2x.webp" type="image/webp" sizes="480px"><img src="/assets/logos/swu-wordmark-light.webp" srcset="/assets/logos/swu-wordmark-light-2x.webp" type="image/webp" sizes="480px" alt="Simple With Us - Jay Wedgeworth" width="288" height="30" decoding="async"></picture></a>
+    <a class="wordmark" href="/" aria-label="Simple With Us - Jay Wedgeworth home"><picture><source media="(prefers-color-scheme: dark)" srcset="/assets/logos/swu-wordmark-dark.webp 1x, /assets/logos/swu-wordmark-dark-2x.webp 2x" type="image/webp"><img src="/assets/logos/swu-wordmark-light.webp" srcset="/assets/logos/swu-wordmark-light.webp 1x, /assets/logos/swu-wordmark-light-2x.webp 2x" alt="Simple With Us - Jay Wedgeworth" width="480" height="50" decoding="async"></picture></a>
     <nav class="site-nav" aria-label="Primary">
       <a href="/#apps">Apps</a><a href="/#status">Status</a><a href="/support.html">Contact</a>
     </nav>
@@ -37,7 +38,7 @@
     <img class="app-icon" src="/assets/logos/codecaps-logo-transparent.svg" alt="" width="80" height="80">
     <h1>CodeCaps</h1>
   </div><!-- catalog:identity:end -->
-  <p class="lede">Keep AI quota and reset windows in view from the macOS menu bar.&nbsp; CodeCaps is engineered with the proactive safeguards you'll come to rely on — detecting runaway usage and anomalies, graphing local usage history, and surfacing an adaptive Picture in Picture (PiP) window when your quota runs low.</p>
+  <p class="lede">Keep AI quota and reset windows in view from the macOS menu bar.  CodeCaps flags runaway usage and other anomalies, graphs local history, and can show a floating window when a quota runs low.</p>
   <!-- catalog:availability:start -->
 <section class="availability" aria-labelledby="availability-title">
   <h2 id="availability-title">Availability</h2>
@@ -54,7 +55,7 @@
   <ul>
     <li><strong>Runaway usage and anomaly detection.</strong> Evaluates quota burn against your 7-day rolling average and peak-hour baseline.&nbsp; Catches stuck loops and unexpected spikes before your daily or weekly quota is exhausted.</li>
     <li><strong>Graphs of historical trends.</strong> Visualizes local quota drain over time with correlated anomaly alert markers directly on your timeline.</li>
-    <li><strong>Low-quota Picture in Picture (PiP).</strong> Keeps high-priority quotas visible in an on-top floating micro-HUD.&nbsp; PiP can automatically open whenever any provider's quota runs low, keeping you informed without interrupting your workflow.</li>
+    <li><strong>Low-quota floating window.</strong> Keeps high-priority quotas visible in a small window that stays on top.  It can open automatically when a provider's quota runs low.</li>
     <li><strong>Multi-cadence quotas and smart reset alerts.</strong> Monitors rapid 5-hour pacing alongside weekly and monthly plan allowances, with reset alarms that notify on period rollovers.</li>
     <li><strong>Zero typed credentials.</strong> Reuses existing local CLI and session logins for Claude, Codex, Cursor, Antigravity, xAI (Grok), MiniMax, and Muse rather than requiring provider API keys.</li>
   </ul>
@@ -76,8 +77,8 @@
         <figcaption>See the quota history behind an alert.</figcaption>
       </figure>
       <figure class="screenshot-card">
-        <img src="/assets/screenshots/codecaps/pip-black.webp" alt="CodeCaps floating PiP window with provider logos, quota meters, and reset countdowns" width="860" height="460" loading="lazy" decoding="async">
-        <figcaption>Keep pinned providers in view with the on-top PiP window.</figcaption>
+        <img src="/assets/screenshots/codecaps/pip-black.webp" alt="CodeCaps floating window with provider logos, quota meters, and reset countdowns" width="860" height="460" loading="lazy" decoding="async">
+        <figcaption>Keep pinned providers in view with the floating window.</figcaption>
       </figure>
       <figure class="screenshot-card">
         <img src="/assets/screenshots/codecaps/glance-fleet.webp" alt="CodeCaps optional Fleet view showing quota readings from configured Macs" width="1140" height="1182" loading="lazy" decoding="async">
@@ -86,7 +87,7 @@
     </div>
   </section>
 
-  <h2>Feedback and Contact</h2>
+  <h2>Feedback and contact</h2>
   <p>Always interested in hearing about any unmet needs, feature requests, and app issues.&nbsp; Please feel free to contact us regarding such concerns or for any other reason!</p>
   <p>See the <a href="support.html">product contact page</a> and <a href="/privacy.html">privacy notice</a> for more detail.</p>
 

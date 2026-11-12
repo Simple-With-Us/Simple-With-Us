@@ -262,7 +262,7 @@ def availability_region(app: dict, provider_token=None) -> str:
 
 HEADER = """<header class="site-header">
   <div class="wrap">
-    <a class="wordmark" href="/" aria-label="Simple With Us - Jay Wedgeworth home"><picture><source media="(prefers-color-scheme: dark)" srcset="/assets/logos/swu-wordmark-dark.webp" type="image/webp"><source media="(prefers-color-scheme: dark)" srcset="/assets/logos/swu-wordmark-dark-2x.webp" type="image/webp" sizes="480px"><img src="/assets/logos/swu-wordmark-light.webp" srcset="/assets/logos/swu-wordmark-light-2x.webp" type="image/webp" sizes="480px" alt="Simple With Us - Jay Wedgeworth" width="288" height="30" decoding="async"></picture></a>
+    <a class="wordmark" href="/" aria-label="Simple With Us - Jay Wedgeworth home"><picture><source media="(prefers-color-scheme: dark)" srcset="/assets/logos/swu-wordmark-dark.webp 1x, /assets/logos/swu-wordmark-dark-2x.webp 2x" type="image/webp"><img src="/assets/logos/swu-wordmark-light.webp" srcset="/assets/logos/swu-wordmark-light.webp 1x, /assets/logos/swu-wordmark-light-2x.webp 2x" alt="Simple With Us - Jay Wedgeworth" width="480" height="50" decoding="async"></picture></a>
     <nav class="site-nav" aria-label="Primary">
       <a href="/#apps">Apps</a><a href="/#status">Status</a><a href="/support.html">Contact</a>
     </nav>
