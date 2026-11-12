@@ -148,7 +148,7 @@ Copy to `/<slug>/` and fill from the app's data entry.  Order:
 7. Screenshots: one to three real screenshots captured on a light Mac, WebP or AVIF, each under 150 KB.
 8. Optional `#mac` section.  Keep the anchor wherever an App Store Connect record or an old `/<slug>-mac/` stub points at it.
 9. Privacy and Support: what leaves the device, then the feedback address and `support.html`.
-10. Attribution block (required by `AGENTS.md`): "{Name} is developed in the open at github.com/jaywedgeworth22/{Repo} under the Apache License 2.0.  This page lives in jaywedgeworth22/Simple-With-Us."
+10. Attribution block (required by `AGENTS.md`): "{Name} is developed in the open at github.com/Simple-With-Us/{Repo} under the Apache License 2.0.  This page lives in Simple-With-Us/Simple-With-Us."
 
 Every page needs `<link rel="canonical">`, an Open Graph block, both `theme-color` metas, a skip link, and landmarks.
 
@@ -302,7 +302,7 @@ Before collapsing any `-mac` stub or the `usage-client`/`usage-local` pair, or c
 **CI (in this PR): `.github/workflows/site-check.yml` runs `python3 scripts/build_catalog.py --check`, which fails when:**
 
 - `index.html` is stale against `apps/index.json` (graft from Catalog: the site cannot drift from its data);
-- a link has the wrong shape (bare TestFlight, a non-`apps.apple.com` store link, a non-`jaywedgeworth22` repo);
+- a link has the wrong shape (bare TestFlight, a non-`apps.apple.com` store link, a non-`Simple-With-Us` fleet repo);
 - a `page`, `support`, or `icon` path in the data does not exist;
 - any committed image is over **200 KB**, except the eight legacy files listed in the script (they get re-encoded or deleted in PR 2, and the list shrinks to zero);
 - the AASA file is invalid JSON or misses an app that sets `associatedDomains`.
