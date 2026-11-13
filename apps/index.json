@@ -1,6 +1,6 @@
 {
   "schema": 2,
-  "updated": "2026-10-16",
+  "updated": "2026-11-13",
   "notes": "Public release facts for the catalog and product pages.  Availability is per platform; a null URL means no public install action.  Run python3 scripts/build_catalog.py after editing.  Verification describes the evidence checked on that date, not a promise that a beta invite is open.",
   "teamId": "CC8UTF7ATG",
   "appStoreProviderToken": null,
@@ -193,6 +193,87 @@
           "url": null,
           "verifiedOn": "2026-10-03",
           "verification": "The iOS app is built and merged in the public repository.  The fleet Apple registry synced 2026-10-03 records codes.clutch.ios as app 6817951255, but no build has been uploaded to it, so no install link is offered.  The macOS app has no App Store Connect record and ships from source."
+        }
+      }
+    },
+    {
+      "slug": "muster",
+      "name": "Muster",
+      "tagline": "Inspect fleet configuration, services, and Mac and server health from a native Mac app.",
+      "shelf": "coding",
+      "platforms": [
+        "macOS"
+      ],
+      "status": "source",
+      "statusText": "Mac app from source",
+      "icon": "/assets/app-icons/muster.png",
+      "accent": "#0284c7",
+      "page": "/muster/",
+      "support": "/muster/support.html",
+      "links": {
+        "website": null,
+        "github": "https://github.com/Simple-With-Us/AI-Fleet-Coordinator",
+        "appStore": null,
+        "testFlight": null,
+        "brew": null
+      },
+      "bundleIds": [
+        "services.jays.Muster"
+      ],
+      "appleIds": {},
+      "associatedDomains": false,
+      "availability": {
+        "macOS": {
+          "status": "source",
+          "label": "Build from public source",
+          "channel": "source",
+          "url": "https://github.com/Simple-With-Us/AI-Fleet-Coordinator",
+          "verifiedOn": "2026-11-13",
+          "verification": "Public repository visibility verified through the GitHub relay.  Current source and setup documentation inspected; no installation or public binary verified."
+        }
+      }
+    },
+    {
+      "slug": "ai-fleet-coordinator",
+      "name": "AI Fleet Coordinator",
+      "tagline": "Shared tools, scripts, configuration, protocols, and documentation for a multi-agent coding fleet.",
+      "shelf": "coding",
+      "platforms": [
+        "macOS",
+        "Linux"
+      ],
+      "status": "source",
+      "statusText": "Tools from public source",
+      "icon": "/assets/app-icons/muster.png",
+      "accent": "#0284c7",
+      "page": "/ai-fleet-coordinator/",
+      "support": "/ai-fleet-coordinator/support.html",
+      "links": {
+        "website": null,
+        "github": "https://github.com/Simple-With-Us/AI-Fleet-Coordinator",
+        "appStore": null,
+        "testFlight": null,
+        "brew": null
+      },
+      "bundleIds": [],
+      "appleIds": {},
+      "associatedDomains": false,
+      "availability": {
+        "macOS": {
+          "status": "source",
+          "label": "Tools and setup documentation",
+          "channel": "source",
+          "url": "https://github.com/Simple-With-Us/AI-Fleet-Coordinator",
+          "verifiedOn": "2026-11-13",
+          "verification": "Public repository visibility verified through the GitHub relay.  Current source and setup documentation inspected; no installation or public binary verified."
+        },
+        "Linux": {
+          "status": "source",
+          "label": "Tools and setup documentation",
+          "channel": "source",
+          "url": "https://github.com/Simple-With-Us/AI-Fleet-Coordinator",
+          "verifiedOn": "2026-11-13",
+          "verification": "Public repository visibility verified through the GitHub relay.  Current source and setup documentation inspected; no installation or public binary verified."
         }
       }
     },
@@ -665,11 +746,6 @@
       "slug": "congress-trading-shared",
       "name": "congress-trading-shared",
       "reason": "Shared TypeScript contracts library, not a user-facing tool."
-    },
-    {
-      "slug": "ai-fleet-coordinator",
-      "name": "ai-fleet-coordinator",
-      "reason": "Fleet coordination infrastructure, not a user-facing tool."
     }
   ]
 }
