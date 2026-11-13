@@ -1,6 +1,7 @@
 // Run from the repository root with Playwright installed.
 // Usage: node visual-tests/fleet-catalog.mjs [output-directory]
 import { chromium } from 'playwright';
+import { expect } from '@playwright/test';
 import { createServer } from 'node:http';
 import { readFile, mkdir } from 'node:fs/promises';
 import { extname, resolve, sep } from 'node:path';
@@ -41,30 +42,39 @@ try {
           if (response.url().startsWith(origin) && response.status() >= 400) localErrors.push(response.url());
         });
         await page.goto(origin + route, { waitUntil: 'networkidle' });
-        await page.locator('img').evaluateAll(async images => {
+        await page.locator('img').evaluateAll(images => {
           images.forEach(image => { image.loading = 'eager'; });
-          await Promise.all(images.map(image => image.decode()));
         });
-        assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), false, `${route}: horizontal overflow at ${width}px`);
-        assert.deepEqual(localErrors, [], `${route}: missing local assets`);
-        const icon = await page.locator('link[rel="icon"]').evaluateAll(icons => {
-          return icons.filter(icon => !icon.media || matchMedia(icon.media).matches).at(-1).getAttribute('href');
-        });
-        assert.equal(icon, `/assets/logos/swu-favicon-32-${colorScheme}.png`);
-        assert.equal(await page.evaluate(async path => {
+        await expect.poll(() => page.locator('img').evaluateAll(images =>
+          images.length > 0 && images.every(image => image.complete && image.naturalWidth > 0)
+        ), { message: `${route}: images rendered` }).toBe(true);
+        await page.evaluate(() => document.fonts.ready);
+        await expect.poll(() => page.evaluate(() => document.documentElement.scrollWidth > innerWidth), {
+          message: `${route}: horizontal overflow at ${width}px`,
+        }).toBe(false);
+        expect(localErrors, `${route}: missing local assets`).toEqual([]);
+        const icon = `/assets/logos/swu-favicon-32-${colorScheme}.png`;
+        await expect.poll(() => page.locator('link[rel="icon"]').evaluateAll(icons =>
+          icons.filter(icon => !icon.media || matchMedia(icon.media).matches).at(-1)?.getAttribute('href')
+        )).toBe(icon);
+        await expect.poll(() => page.evaluate(async path => {
           const image = new Image();
           image.src = path;
-          await image.decode();
+          try {
+            await image.decode();
+          } catch {
+            return 0;
+          }
           return image.naturalWidth;
-        }, icon), 32);
-        assert.equal(await page.locator('link[rel="mask-icon"]').count(), 0);
+        }, icon)).toBe(32);
+        await expect(page.locator('link[rel="mask-icon"]')).toHaveCount(0);
         if (route === '/') {
           for (const path of ['/muster/', '/ai-fleet-coordinator/']) {
-            assert.equal(await page.locator(`.card h4 a[href="${path}"]`).count(), 1);
+            await expect(page.locator(`.card h4 a[href="${path}"]`)).toHaveCount(1);
           }
         } else {
-          assert.equal(await page.locator('h1').textContent(), route.startsWith('/muster/') ? 'Muster' : 'AI Fleet Coordinator');
-          assert.equal(await page.locator('a[href*="testflight.apple.com"], a[href*="apps.apple.com"], a[href*="releases/latest/download"]').count(), 0);
+          await expect(page.locator('h1')).toHaveText(route.startsWith('/muster/') ? 'Muster' : 'AI Fleet Coordinator');
+          await expect(page.locator('a[href*="testflight.apple.com"], a[href*="apps.apple.com"], a[href*="releases/latest/download"]')).toHaveCount(0);
         }
         const label = route === '/' ? 'catalog' : route.replace(/^\//, '').replace(/\/$/, '').replaceAll('/', '-').replace('.html', '');
         await page.screenshot({ path: resolve(out, `${label}-${colorScheme}-${width}.png`), fullPage: true });
