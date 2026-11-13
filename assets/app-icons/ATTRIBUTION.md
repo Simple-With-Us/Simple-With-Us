@@ -127,3 +127,5 @@ Client and Usage Local use their respective native app icons.
 2026-09-25: Initial import from the fleet logo set.  The CodeCaps icon then
 named `assets/icon-512.png` in `Simple-With-Us/CodeCaps`; that file no longer
 exists, which is why the 2026-10-03 pass points at `assets/icon-1024.png`.
+
+2026-11-13: `muster.png` is a byte-identical copy of `Simple-With-Us/AI-Fleet-Coordinator` — `muster/Muster/Assets.xcassets/AppIcon.appiconset/icon_128x128.png`, generated there from the owner's Muster artwork.  Muster and AI Fleet Coordinator share this artwork in the catalog and on their pages at the owner's request.  Browser and Apple touch icons now serve the existing PNG light/dark pair; the older synthetic SVG mask icon is retired.
