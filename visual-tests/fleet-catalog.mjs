@@ -1,7 +1,7 @@
 // Run from the repository root with Playwright installed.
 // Usage: node visual-tests/fleet-catalog.mjs [output-directory]
 import { chromium } from 'playwright';
-import { expect } from '@playwright/test';
+import { expect } from 'playwright/test';
 import { createServer } from 'node:http';
 import { readFile, mkdir } from 'node:fs/promises';
 import { extname, resolve, sep } from 'node:path';
