@@ -200,12 +200,13 @@ class CatalogContractTests(unittest.TestCase):
         _template/, so a new app page cannot ship a single-variant icon.
         """
         pair = [
-            '<link rel="icon" href="/assets/logos/swu-favicon-32-light.webp" type="image/webp" media="(prefers-color-scheme: light)">',
-            '<link rel="icon" href="/assets/logos/swu-favicon-32-dark.webp" type="image/webp" media="(prefers-color-scheme: dark)">',
-            '<link rel="apple-touch-icon" media="(prefers-color-scheme: light)" href="/assets/logos/swu-favicon-180-light.webp">',
-            '<link rel="apple-touch-icon" media="(prefers-color-scheme: dark)" href="/assets/logos/swu-favicon-180-dark.webp">',
+            '<link rel="icon" href="/assets/logos/swu-favicon-32-light.png" type="image/png" sizes="32x32">',
+            '<link rel="icon" href="/assets/logos/swu-favicon-32-light.png" type="image/png" sizes="32x32" media="(prefers-color-scheme: light)">',
+            '<link rel="icon" href="/assets/logos/swu-favicon-32-dark.png" type="image/png" sizes="32x32" media="(prefers-color-scheme: dark)">',
+            '<link rel="apple-touch-icon" media="(prefers-color-scheme: light)" href="/assets/logos/swu-favicon-180-light.png">',
+            '<link rel="apple-touch-icon" media="(prefers-color-scheme: dark)" href="/assets/logos/swu-favicon-180-dark.png">',
         ]
-        retired = ["swu-square-32.webp", "swu-square-32-light.webp", "swu-square-192-light.webp"]
+        retired = ["/assets/favicon.svg", "swu-favicon-32-light.webp", "swu-favicon-32-dark.webp", "swu-square-32.webp", "swu-square-32-light.webp", "swu-square-192-light.webp"]
         checked = 0
         for path in sorted(catalog.ROOT.rglob("*.html")):
             if ".git" in path.parts:
@@ -319,7 +320,7 @@ class CatalogContractTests(unittest.TestCase):
         self.assertIn("verification", app["availability"]["iOS"])
 
     def test_family_count_keeps_both_monitor_editions(self):
-        self.assertEqual(11, catalog.app_count(self.data["apps"]))
+        self.assertEqual(13, catalog.app_count(self.data["apps"]))
         editions = [a for a in self.data["apps"] if a.get("catalogGroup") == "usage-monitor"]
         self.assertEqual({"usage-client", "usage-local"}, {a["slug"] for a in editions})
         self.assertEqual(2, len({a["icon"] for a in editions}))

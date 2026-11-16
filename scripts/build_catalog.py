@@ -56,7 +56,7 @@ LINK_RULES["download"] = re.compile(r"^https://github\.com/Simple-With-Us/[A-Za-
 PUBLIC_SOURCE_REPOS = {
     "CodeCaps", "Usage-Monitor", "Clutch", "HogHunter", "BotFleet",
     "Socratic-Trade", "Congress.Trade", "ContactLogo", "DealDex", "Autorotate",
-    "FleetLink",
+    "FleetLink", "AI-Fleet-Coordinator",
 }
 PRIVATE_DESTINATIONS = (
     "github.com/jaywedgeworth22/Fleet-OPS",

@@ -71,7 +71,7 @@ The catalog and per-product availability sections are generated from [`apps/inde
 
 ## Product identity and release facts
 
-`apps/index.json` records each edition separately.  The two Usage Monitor editions share a catalog family, giving 11 app families with distinct Client and Local pages, icons, and invitations.  Fleet infrastructure is not part of the catalog.
+`apps/index.json` records each edition separately.  The two Usage Monitor editions share a catalog family, with distinct Client and Local pages, icons, and invitations.  The catalog also includes [Muster](https://simplewithus.com/muster/), the native Mac fleet-administration app, and [AI Fleet Coordinator](https://simplewithus.com/ai-fleet-coordinator/), the shared tooling and documentation.  Both link to public source without claiming a public binary release.
 
 The generator maintains the shared logo, header, footer, app identity, and release actions across pages.  Platform labels distinguish public downloads, invitation-only testing, and source builds.  A product record or HTTP 200 does not by itself establish a usable store listing.
 
