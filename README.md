@@ -1,3 +1,5 @@
+<p><img src="assets/logos/swu-logo.png" alt="Simple With Us logo" width="96" height="96"></p>
+
 # Simple With Us
 
 Marketing pages for tools published at [SimpleWithUs.com](https://simplewithus.com).
