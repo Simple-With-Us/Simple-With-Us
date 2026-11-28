@@ -1,0 +1,71 @@
+name: Claude Code Autofix
+on:
+  pull_request_review:
+    types: [submitted]
+  workflow_dispatch:
+    inputs:
+      pr:
+        description: "PR number to run the autofix loop on"
+        required: true
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+concurrency:
+  group: pr-autofix-${{ github.repository }}-${{ github.event.pull_request.number || github.event.inputs.pr }}
+  cancel-in-progress: false
+jobs:
+  guard:
+    name: Open same-repository PR check
+    runs-on: ubuntu-latest
+    # Runs only for events that can start this caller's autofix run: a manual dispatch, or
+    # a bot review that carries the @claude-code-autofix request tag (the reusable applies
+    # the exact first-token tag rules; this is a cheap superset).  Sentry is excluded: both
+    # reusables exempt Sentry from their tags, so a Sentry review would start both callers;
+    # the repository's existing autofix.yml owns Sentry reviews.  The two callers otherwise
+    # never share a review: each reusable requires its own first-token tag.
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      (github.event_name == 'pull_request_review' &&
+       contains(fromJSON('["bot", "Bot"]'), github.event.review.user.type) &&
+       github.event.review.user.login != 'sentry[bot]' &&
+       github.event.review.user.login != 'sentry' &&
+       contains(github.event.review.body, '@claude-code-autofix'))
+    permissions:
+      pull-requests: read
+    outputs:
+      ok: ${{ steps.check.outputs.ok }}
+    steps:
+      - name: Require an open pull request from this repository
+        id: check
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+          PR: ${{ github.event.pull_request.number || github.event.inputs.pr }}
+        run: |
+          set -euo pipefail
+          ok=false
+          if printf '%s' "$PR" | grep -Eq '^[0-9]+$'; then
+            info="$(gh api "repos/${REPO}/pulls/${PR}" --jq '.state + " " + (.head.repo.full_name // "")' 2>/dev/null || true)"
+            if [ "$info" = "open ${REPO}" ]; then ok=true; fi
+          fi
+          echo "ok=${ok}" >> "$GITHUB_OUTPUT"
+  autofix:
+    needs: guard
+    if: needs.guard.outputs.ok == 'true'
+    uses: Simple-With-Us/AI-Fleet-Coordinator/.github/workflows/claude-code-autofix-reusable.yml@a4c48f013a2108be517ee933dccb1b37e9403920
+    secrets:
+      MINIMAX_API_KEY: ${{ secrets.MINIMAX_API_KEY }}
+      META_MODEL_API_TOKEN: ${{ secrets.META_MODEL_API_TOKEN }}
+      USAGE_INGEST_TOKEN: ${{ secrets.USAGE_INGEST_TOKEN }}
+    with:
+      allowed_bots: "kody-ai[bot],chatgpt-codex-connector[bot],cursor[bot],claude[bot],sentry,sentry[bot],swu-ag[bot],swu-bf-builder[bot],swu-bf-compiler[bot],swu-bf-deployer[bot],swu-bf-designer[bot],swu-bf-director[bot],swu-bf-fixer[bot],swu-bf-housekeeper[bot],swu-bf-monitor[bot],swu-bf-oracle[bot],swu-bf-plumber[bot],swu-bf-publisher[bot],swu-claude[bot],swu-clutch[bot],swu-codex[bot],swu-cursor[bot],swu-cursor-cloud[bot],swu-echo[bot],swu-fx[bot],swu-gb-compiler[bot],swu-gb-deployer[bot],swu-gb-designer[bot],swu-gb-director[bot],swu-gb-engineer[bot],swu-gb-fixer[bot],swu-gb-housekeeper[bot],swu-gb-monitor[bot],swu-gb-oracle[bot],swu-gb-plumber[bot],swu-gb-publisher[bot],swu-gb-trader[bot],swu-grok-build[bot],swu-grok-web[bot],swu-jet[bot],swu-mc[bot],swu-minimax[bot],swu-opencode[bot],swu-operator[bot],swu-rob[bot],swu-wise[bot]"
+      prompt: |
+        You are the fleet's autofix bot.  A review bot (Codex, Kody, or Cursor) just reviewed this pull request.
+        1. Read every unresolved review comment from that review.  For each, decide against the current code whether it is a real defect.
+        2. Fix real defects with the smallest change that answers the comment.  Do not refactor unrelated code, rename things, or reformat files.
+        3. Never edit files under .github/workflows, never add or print secrets, and never weaken a test to make it pass.
+        4. Run this repo's verify command (below) and make sure it passes before committing.  If you cannot make it pass, commit nothing.
+        5. Commit with a subject starting "autofix:" and push to the PR branch.  Stop after one round.
+        6. If a comment is not a real defect or is unclear, change nothing for it.
+        This repo's verify command: `python3 scripts/build_catalog.py --check && python3 -m unittest discover -s scripts -p 'test_*.py' && node --test scripts/test_status.mjs`.
