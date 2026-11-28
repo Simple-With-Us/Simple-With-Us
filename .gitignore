@@ -36,3 +36,16 @@ npm-debug.log*
 
 # On-demand catalog audit output
 catalog-link-audit.md
+
+# --- No secrets in files: all secrets live only in Infisical ---
+.env
+.env.*
+*.env
+.dev.vars
+.dev.vars.*
+.prod.vars
+.prod.vars.*
+*.vars
+!*.example
+!*.sample
+!*.template
