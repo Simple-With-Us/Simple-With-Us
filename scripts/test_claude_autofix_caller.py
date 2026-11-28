@@ -35,7 +35,7 @@ class ClaudeAutofixCallerContract(unittest.TestCase):
     def test_guard_runs_only_for_dispatch_or_tagged_bot_reviews(self):
         guard = WORKFLOW.split("  guard:\n", 1)[1].split("  autofix:\n", 1)[0]
         self.assertIn("github.event_name == 'workflow_dispatch'", guard)
-        self.assertIn("github.event.review.user.type == 'Bot'", guard)
+        self.assertIn("""contains(fromJSON('["bot", "Bot"]'), github.event.review.user.type)""", guard)
         self.assertIn("contains(github.event.review.body, '@claude-code-autofix')", guard)
         # Sentry is exempt from both reusables' tags, so only autofix.yml may serve it.
         self.assertIn("github.event.review.user.login != 'sentry[bot]'", guard)
