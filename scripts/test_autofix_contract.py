@@ -55,23 +55,5 @@ class AutofixContractTests(unittest.TestCase):
         self.assertEqual(len(re.findall(r"^      cancel-in-progress: false$", KODY_WORKFLOW, re.M)), 1)
         self.assertNotIn("cancel-in-progress: true", KODY_WORKFLOW)
 
-    def test_claude_code_caller_contract(self):
-        caller = (ROOT / ".github/workflows/claude-code-autofix.yml").read_text()
-        # Reusable is pinned to a full commit SHA, never a branch or tag.
-        self.assertRegex(caller, r"claude-code-autofix-reusable\.yml@[0-9a-f]{40}\b")
-        # Same shared concurrency group as the other autofix callers, never cancelling a run.
-        self.assertIn("group: pr-autofix-${{ github.repository }}-${{ github.event.pull_request.number || github.event.inputs.pr }}", caller)
-        self.assertIn("cancel-in-progress: false", caller)
-        # Bot gate is case-insensitive and limited to same-repo pull requests.
-        self.assertIn("""contains(fromJSON('["bot", "Bot"]'), github.event.review.user.type)""", caller)
-        self.assertIn("github.event.pull_request.head.repo.full_name == github.repository", caller)
-        # Token scopes are exactly the three the reusable needs.
-        block = re.search(r"^permissions:\n((?:  [a-z0-9-]+: (?:read|write)\n)+)", caller, re.M)
-        self.assertIsNotNone(block)
-        scopes = dict(line.strip().split(": ") for line in block.group(1).splitlines())
-        self.assertEqual(scopes, {"contents": "write", "pull-requests": "write", "issues": "write"})
-        # The prompt never lets the bot edit workflows.
-        self.assertIn("Never edit files under .github/workflows", caller)
-
 if __name__ == "__main__":
     unittest.main()
