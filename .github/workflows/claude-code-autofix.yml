@@ -15,12 +15,44 @@ concurrency:
   group: pr-autofix-${{ github.repository }}-${{ github.event.pull_request.number || github.event.inputs.pr }}
   cancel-in-progress: false
 jobs:
-  autofix:
+  guard:
+    name: Open same-repository PR check
+    runs-on: ubuntu-latest
+    # Runs only for events that can start this caller's autofix run: a manual dispatch, or
+    # a bot review that carries the @claude-code-autofix request tag (the reusable applies
+    # the exact first-token tag rules; this is a cheap superset).  Sentry is excluded: both
+    # reusables exempt Sentry from their tags, so a Sentry review would start both callers;
+    # the repository's existing autofix.yml owns Sentry reviews.  The two callers otherwise
+    # never share a review: each reusable requires its own first-token tag.
     if: >-
       github.event_name == 'workflow_dispatch' ||
       (github.event_name == 'pull_request_review' &&
        github.event.review.user.type == 'Bot' &&
-       github.event.pull_request.head.repo.full_name == github.repository)
+       github.event.review.user.login != 'sentry[bot]' &&
+       github.event.review.user.login != 'sentry' &&
+       contains(github.event.review.body, '@claude-code-autofix'))
+    permissions:
+      pull-requests: read
+    outputs:
+      ok: ${{ steps.check.outputs.ok }}
+    steps:
+      - name: Require an open pull request from this repository
+        id: check
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+          PR: ${{ github.event.pull_request.number || github.event.inputs.pr }}
+        run: |
+          set -euo pipefail
+          ok=false
+          if printf '%s' "$PR" | grep -Eq '^[0-9]+$'; then
+            info="$(gh api "repos/${REPO}/pulls/${PR}" --jq '.state + " " + (.head.repo.full_name // "")' 2>/dev/null || true)"
+            if [ "$info" = "open ${REPO}" ]; then ok=true; fi
+          fi
+          echo "ok=${ok}" >> "$GITHUB_OUTPUT"
+  autofix:
+    needs: guard
+    if: needs.guard.outputs.ok == 'true'
     uses: Simple-With-Us/AI-Fleet-Coordinator/.github/workflows/claude-code-autofix-reusable.yml@a4c48f013a2108be517ee933dccb1b37e9403920
     secrets:
       MINIMAX_API_KEY: ${{ secrets.MINIMAX_API_KEY }}
